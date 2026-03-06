@@ -2,7 +2,7 @@
 
 ## 1. The Objective
 
-This repository chronicles a dual-pronged assault on Google’s login infrastructure. The primary target is "Botguard," a defensive mechanism often dismissed as a simple fingerprinting script. It is not. It is a hostile, obfuscated Virtual Machine (VM) running directly in the client’s browser.
+This repository chronicles a dual-pronged assault on Google's login infrastructure. The primary target is "Botguard," a defensive mechanism often dismissed as a simple fingerprinting script. It is not. It is a hostile, obfuscated Virtual Machine (VM) running directly in the client's browser.
 
 In 2021, we proved this system could be bypassed. We did not do this by untangling the knot; we cut it. By utilizing a hardened headless browser, we generated valid security tokens on the legitimate domain and trafficked them to a Man-in-the-Middle (MITM) phishing context. This document details the architectural flaws of that client-side trust model and integrates a deep-dive reverse engineering analysis of the VM internals that make Botguard such a formidable adversary.
 
@@ -10,7 +10,25 @@ In 2021, we proved this system could be bypassed. We did not do this by untangli
 >
 > The architectural analysis here applies to the core Botguard VM logic found in ReCaptcha v2 and Google's v2/v3 login flows. While specific variable names shift with every compile, the underlying "CPU-in-JavaScript" logic remains the engine of their defense.
 
-## 2. The Defense: It's Not a Script, It's a CPU
+---
+
+## Attribution & Acknowledgments
+
+This document integrates two distinct contributions:
+
+1. **Original Research (2021):** The bypass strategy described in Section 4—the "Puppet" approach using go-rod for environmental spoofing and token extraction—represents our original proof-of-concept demonstrating that client-side token generation can be decoupled from its usage context.
+
+2. **VM Internal Analysis:** The technical deep-dive into Botguard's Virtual Machine architecture (Sections 2, 3, and 6) builds upon the pioneering reverse engineering work conducted by **Cypa** (@dsekz). Specifically:
+   - The opcode identification and classification
+   - The anti-debug mechanism analysis (chronometric defense)
+   - The anti-logger mechanism documentation
+   - The memory reader function analysis (Register 21, Z.W, Z.U)
+
+   This VM analysis was originally published in Cypa's [botguard-reverse](https://github.com/dsekz/botguard-reverse) repository. We acknowledge this work as the foundation for understanding Botguard's internal architecture.
+
+---
+
+## 2. The Defense: It's Not a Script, It's a CPU *(Based on Cypa's Analysis)*
 
 To defeat the enemy, you must understand its biology. Botguard is not a static list of checks. It is a custom, register-based Virtual Machine written in JavaScript.
 
@@ -33,7 +51,7 @@ We identified the instruction set through painful trial and error. The VM utiliz
 
 The most dangerous aspect is **Self-Modifying Code**. The VM brings in new opcodes at runtime. It constructs an array of integers (Register 274) and maps them to string definitions, using a `LOADSTRING` opcode to generate new instructions on the fly. An `EVAL` opcode (mapped as `LOADOP`) then compiles these into executable logic. The code you see at the start is not the code that runs at the end.
 
-## 3. Anti-Tamper Mechanisms
+## 3. Anti-Tamper Mechanisms *(Based on Cypa's Analysis)*
 
 Botguard actively fights back against analysis. It assumes it is being watched.
 
@@ -49,7 +67,7 @@ You cannot print the variables. The script aggressively binds to console methods
 
 This trap modifies the `t.prototype` stack, which is linked to the memory reader function. By logging a variable, you inadvertently shift the memory pointer. The VM reads the wrong bytes, the instruction stream corrupts, and the session dies.
 
-## 4. The Bypass: Environmental Spoofing
+## 4. The Bypass: Environmental Spoofing *(Original Research)*
 
 Given the complexity of the VM—self-modifying opcodes, rolling encryption keys, and time-based seed mutation—pure reverse engineering is a high-cost attrition war. The most efficient attack vector is not to break the lock but to steal the key.
 
@@ -81,7 +99,7 @@ The industry creates these elaborate cat-and-mouse games, adding layers of obfus
   </tr>
 </table>
 
-## 6. Technical Findings: The Memory Reader
+## 6. Technical Findings: The Memory Reader *(Based on Cypa's Analysis)*
 
 For those intent on the pure reverse-engineering path, the heart of the beast is the memory reader function, often minified as `H`.
 
@@ -92,6 +110,16 @@ It reads bytes from the bytecode array but encrypts them before return.
 * **`Z.U`:** The seed, which mutates based on time and execution history.
 
 The function `H(true, L, 8)` reads 8 bits. If the first argument is true, it calls an encryption routine using Register 21. A `SETPROP` opcode exists specifically to scramble these keys, resetting the position and pulling a new seed from the reader. This circular dependency (the reader relies on the seed, the seed relies on the reader) makes static analysis nearly impossible without perfect emulation.
+
+---
+
+## References
+
+1. **Cypa** — BotGuard VM Reverse Engineering
+   - Repository: [https://github.com/dsekz/botguard-reverse](https://github.com/dsekz/botguard-reverse)
+   - The foundational reverse engineering analysis of Botguard's VM architecture, opcodes, and anti-debug mechanisms.
+
+---
 
 ## 7. Contact
 
