@@ -1,8 +1,8 @@
 # Paper TODO
 
-## Status: THIRD REVISION COMPLETE (Addressing Senior Expert PC Member Critique — All 17 Points)
+## Status: FOURTH REVISION COMPLETE (Addressing Second-Round Senior Expert PC Member Critique — All 10 Points)
 
-All critique points from the senior expert PC member review have been addressed:
+All critique points from the second-round senior expert PC member review have been addressed:
 
 ### ✅ Critique 1: Perfect Native Motor Control Fallacy (Section 1.4, 4.2)
 - Section 1.4 bullet 2: Replaced "The motor control is native" with detailed discussion of the orchestration layer gap — VLMs output text/JSON coordinates, not raw OS input; orchestration layer (PyAutoGUI, accessibility APIs) must translate to kinematic trajectories; naive interpolation produces detectable artifacts
@@ -67,6 +67,48 @@ All critique points from the senior expert PC member review have been addressed:
 - Added explicit APB threat model scope section after the existing scope section
 - Documents that probabilistic defenses remain effective against 95%+ of traffic
 - All claims of "collapse" scoped through this lens
+
+### ✅ Critique 10: Section 3.4 Table Contradiction (Zero Cost vs. Non-Zero Analysis)
+- Replaced the entire L1-L4 table: all "Zero" cost entries changed to "Shifted to..." descriptions
+- L1a: "Zero" → "Shifted to container-evasion engineering"
+- L1b: "Zero" → "Shifted to kinematic-smoothing orchestration"
+- L2: "Zero" → "Near-zero at VM level; shifted to app-level workflow RE"
+- L3: "Zero" → "Near-zero"
+- L4: "Zero" → "Shifted to latency-evasion at inference timescale"
+- Bullet point descriptions updated to reflect non-zero shift framing
+- Opening paragraph reframed: "the costs do not simply vanish to zero — they shift"
+- Closing paragraph reframed: "the nature of the cost shifts from browser-instrumentation forgery to systems-integration engineering"
+
+### ✅ Critique 11: L4 Mental Gymnastics (Section 5.2)
+- Replaced defensive "While Section 3.4 correctly notes that L4 was designed to detect instrumentation-layer timing deviation" with owning the evolution
+- New framing: "L4's detection premise is not obsolete; its target shifts"
+- Explicitly states: "L4 therefore survives the paradigm shift"
+- Identifies 25–50× latency gap as a potentially more robust detection surface than microsecond timing
+- Acknowledges the attacker cannot close this gap through better orchestration
+
+### ✅ Critique 12: Terminology — Cost-Accounting Framework (Section 5)
+- "Parametric cost model" → "attacker cost-accounting framework" throughout
+- Section 5 intro: added explicit disclaimer that the framework tallies costs without deriving supply/demand equilibria or utility functions
+- Contribution C3: "Initial Parametric Cost Model" → "Initial Cost-Accounting Framework"
+- Contribution list: "parametric cost model" → "cost-accounting framework"
+- Abstract: "parametric cost estimates" → "observable cost data"
+- Section 7.1: "parametric cost model" → "cost-accounting framework"
+
+### ✅ Critique 13: C_timeout_loss Clarification (Section 5.2)
+- Added "representing the expected inference cost from a geometric series of retries prior to success"
+
+### ✅ Critique 14: SDK-Proxy Insight — Push Harder (Section 4.3)
+- Added three-sentence paragraph on network-layer behavioral metadata as defender's only recourse against valid-but-attacker-controlled PAT attestations
+- Explicitly ties hardware-attestation critique back to necessity of server-side stateful analysis
+- Positions ASN reputation, IP-to-Account cardinality, velocity checks as critical complement
+
+### ✅ Critique 15: APB Usage in Conclusion
+- Conclusion opening paragraph: added "for the APB threat model" and replaced "all collapse" with per-layer cost-shift language
+- L4 specifically called out as shifting from microsecond detection to second-scale latency profiling
+
+### ✅ Critique 16: Privacy Regulation (Section 7.4)
+- Added: "Privacy regulation structurally mandates the amnesia that VLMs mathematically exploit"
+- Added analysis of how regulatory timeline and VLM capability timeline intersect to produce mutually reinforcing degradation of Type II defenses
 
 ## Remaining Work Before Submission
 
