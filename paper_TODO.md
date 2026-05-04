@@ -110,10 +110,32 @@ All critique points from the second-round senior expert PC member review have be
 - Added: "Privacy regulation structurally mandates the amnesia that VLMs mathematically exploit"
 - Added analysis of how regulatory timeline and VLM capability timeline intersect to produce mutually reinforcing degradation of Type II defenses
 
+## Completed in Fifth Revision (Addressing Senior PC Member Code Review)
+
+### ✅ §1.2 — APB / Commodity Bot Gradient Acknowledgment
+- Added sentence acknowledging the middle tier of moderately-resourced attackers between Commodity Bot and APB
+- Frames VLM adoption as the distinguishing capability rather than budget alone
+
+### ✅ §3.4 — L3 Cognitive Honeypots: Major Revision
+- Replaced WebVoyager citation with SeeAct [82] and CogAgent — the correct DOM-parsing VLM framework references
+- Replaced `opacity: 0.01` / `z-index: -9999` mechanism with concrete Cognitive Honeypot: full-viewport transparent `<div>` with decoy element, validated by `getBoundingClientRect()` dimensions
+- Added distinction between DOM-enumerating agentic frameworks (Tier 2/3) and pixel-level VLMs (immune) — multi-surface attack coverage analysis
+- Table "Nature of Shift" column rewritten to describe cost transformation: "moved from DevTools-trap evasion to perceptual-DOM alignment engineering"
+- Added cross-reference to Section 4.2 for resilience tier implications
+
+### ✅ §5 heading — Terminological Consistency
+- Heading updated to "An Initial Cost-Accounting Framework for VLM-Driven Attacks" (previously confirmed)
+
+### ✅ §7.2 — SDK Incentivized Proxying Caveat
+- Removed parenthetical; rewritten as main clause
+- Added explicit cross-reference to Section 4.3
+- Added cost qualification: latency, incentive costs, coordination complexity ensure residual attacker cost
+- Framed as deployment-time threat modeling requirement, not a universal bypass
+
 ## Remaining Work Before Submission
 
 - [ ] Add reference [67] (RFC 6750, Bearer Token), [68] (RFC 7519, JWT), [69] (RFC 9449, DPoP)
-- [ ] Add reference [79] (SDK proxy network whitepapers) and [80, 81] (VLM agentic benchmarking)
+- [ ] Add reference [79] (SDK proxy network whitepapers), [80, 81] (VLM agentic benchmarking), and [82] (SeeAct/CogAgent)
 - [ ] Complete all LaTeX formatting (inline tables in Section 1.3)
 - [ ] Archive all grey literature URLs via Wayback Machine
 - [ ] Add the forward-looking research subsections to the bibliography references
