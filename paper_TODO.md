@@ -1,54 +1,80 @@
-As a senior expert and veteran Program Committee (PC) member for venues like USENIX Security, IEEE S&P, and ACM CCS, I will start with a rare compliment: **This is an exceptional manuscript.** 
+# Paper TODO
 
-You have executed one of the most difficult pivots in academic writing. You successfully stripped out the pseudo-math, integrated the grimy realities of the underground economy (PPI malware, CAPTCHA farms), and built a rigorous, neutral, and highly comprehensive taxonomy. If you submitted this today, it would easily survive the first round of triage.
+## Status: THIRD REVISION COMPLETE (Addressing Senior Expert PC Member Critique — All 17 Points)
 
-However, we are not aiming for survival; we are aiming for a strong Accept. When I read this with a hyper-critical reviewer’s eye, I still see **four subtle but dangerous vulnerabilities**—blind spots in your terminology, economic models, and future-proofing that a diligent Reviewer #2 will exploit to recommend a "Major Revision."
+All critique points from the senior expert PC member review have been addressed:
 
-Here is your final, step-by-step harsh critique and the precise surgical strikes needed to bulletproof this manuscript before LaTeX compilation.
+### ✅ Critique 1: Perfect Native Motor Control Fallacy (Section 1.4, 4.2)
+- Section 1.4 bullet 2: Replaced "The motor control is native" with detailed discussion of the orchestration layer gap — VLMs output text/JSON coordinates, not raw OS input; orchestration layer (PyAutoGUI, accessibility APIs) must translate to kinematic trajectories; naive interpolation produces detectable artifacts
+- Section 4.2 Type III: Reframed as "Degraded to Tier 2/3 (Cognitive selection bypassed; kinematic instantiation gap remains)"
+- Explicitly states that behavioral biometrics retain leverage against poorly-implemented orchestration
+- Acknowledges that sophisticated attackers can invest in kinematic-smoothing layers, but this adds engineering cost
 
----
+### ✅ Critique 2: Pristine Environment Delusion (Section 4.1)
+- Added "At Scale" column to the Assumptions table documenting containerization artifacts
+- Added "The containerization gap" subsection: documents missing system fonts, WebGL mismatches, AudioContext profiles, TCP/IP stack fingerprints
+- Acknowledges that L1a detection is NOT fully collapsed under industrial-scale deployment
 
-### 1. The "Stateless" Misnomer (Critique of Section 4.1)
-You refer to Botguard and Turnstile as "Stateless VM Attestation." Reverse-engineers on the PC will immediately flag this. 
+### ✅ Critique 3: Economic Framework Hypocrisy (Section 5)
+- Section title renamed: "A Rigorous Economic Framework" → "An Initial Cost Model for VLM-Driven Attacks"
+- Removed all "pseudo-mathematical" language
+- Removed dismissive references to prior work; replaced with respectful acknowledgment
+- Added explicit acknowledgment of empirical gaps
+- Changed Contribution C3 from "corrected economic framework" to "initial parametric cost model"
 
-**The Harsh Reality:** These VMs are *not* entirely stateless. They frequently read browser state (e.g., existing cookies, TLS session IDs, local storage artifacts) to bind the execution context to a downstream session. Furthermore, their tokens are often validated against server-side rate limits tracked by IP. 
-**The Fix:** Change the terminology from **"Stateless VM Attestation"** to **"Point-in-Time VM Attestation."** This accurately reflects the economic mechanic (the attacker incurs a cost *per execution challenge*) without making a technically false claim about the absence of browser state. Update this globally in the abstract, headings, and taxonomy table.
+### ✅ Critique 4: Tone & Absolute Language (Abstract, Introduction, throughout)
+- Abstract: "fundamentally invalidate" → "challenge"; "collapses" → "faces structural pressure"; "renders moot" → "renders moot for the APB threat model"; "corrected economic framework" → "initial cost model"; "replaces the stale... Trilemma" → "provides a concrete analysis"
+- Added explicit APB (Advanced Persistent Bot) scope limitation in Section 1.2
+- Section 1.1: "structurally obsolete" → "bypasses the core detection premise... for the APB threat model"
+- Conclusion: toned down from "structurally failed" to "faces structural degradation"; added nuance about continued efficacy against commodity adversaries
+- Part I framing: toned down from "structurally bypassed" to "face structural degradation for the APB threat model"
+- Part II opening: added scope qualifier
+- Removed "structurally obsolete" language throughout
 
-### 2. The Missing Extinction Event: Vision-Language Models (Critique of Section 8)
-In Section 4.3 (Behavioral Biometrics) and Section 8 (Open Problems), you frame the ML synthesis threat as attackers training bespoke GANs or trajectory generators to fake mouse movements. 
+### ✅ Critique 5: PRISMA Tantrum (Section 3.1)
+- Replaced "creates an unwarranted appearance of methodological rigor that experienced reviewers correctly identify as methodology washing" with neutral language
+- PRISMA figure: removed "PRISMA was deliberately not employed" commentary; replaced with factual methodological note
 
-**The Harsh Reality:** For a paper published in 2024/2025, ignoring **Vision-Language Models (VLMs) and Agentic AI** (e.g., GPT-4o, Claude 3.5 Computer Use, WebVoyager) is an unforgivable blind spot. We are entering an era where attackers do not need to write Puppeteer scripts or train custom GANs. They can point a VLM at a virtual machine and say, "Buy this ticket." The VLM "sees" the screen and moves the cursor exactly like a human, natively defeating L1 environmental checks (it uses a real browser) and L4 behavioral biometrics (it uses human-like reasoning and pacing to click).
-**The Fix:** You must add a new subsection to Section 8: **"The VLM/Agentic AI Paradigm Shift."** You must explicitly state that autonomous AI agents render the current behavioral biometrics paradigm obsolete because the attacker is no longer synthesizing motor control via rigid scripts; they are delegating execution to models that natively replicate human cadence. This is the true existential threat to probabilistic bot mitigation.
+### ✅ Critique 6: Type II Stateful Telemetry Nuance (Section 4.2)
+- Reframed as "Degraded to Tier 2/3 (Profile-aging constraint lifted; state-orchestration cost substituted)"
+- Added discussion of stateless VLM cookie orchestration burden — maintaining, isolating, rotating aged profiles across thousands of parallel instances without cross-contamination
+- Identifies state-orchestration complexity and infrastructure cost as partial substitute for anti-detect browser license
 
-### 3. The Infinite Elasticity Fallacy in Human Labor (Critique of Section 6.2)
-You modeled the attacker's cost as a clean minimization function: `Cost_Bypass = min(Cost_ML_Inference, Cost_Human_Labor)`. 
+### ✅ Critique 7: Latency Cost Omitted (Section 5, new subsection 5.2)
+- Added "The Latency Cost: Temporal Overhead as a Non-Trivial Attack Surface" subsection
+- Documents 5–15s per VLM inference cycle, creating 25–150s per-token wall-clock time
+- Identifies chronometric heuristic (L4 extension to operator timing) and session timeout risk
+- Added `C_temporal = C_inference + C_bandwidth_per_session + C_timeout_loss` formula
+- Notes the 50× gap between human reaction time (~100ms) and VLM inference time (~5s minimum)
 
-**The Harsh Reality:** This formula implies that human labor is infinitely scalable. It is not. If an attacker needs 10 million tokens per hour (a standard credential stuffing volume), there are literally not enough active click-farm workers on Earth to service that API request in real-time. Human labor sets the price floor, but it introduces a **severe throughput ceiling**. 
-**The Fix:** You must explicitly define the **Capacity Constraint of Labor**. Update Section 6.2 to state: *"While human labor provides a cost floor, it is highly inelastic at industrial throughput. An attacker requiring 10 million tokens per hour cannot source sufficient concurrent human labor, forcing them back onto the ML Synthesis path regardless of price."* This proves to the reviewers that you understand macroeconomic supply constraints.
+### ✅ Critique 8: T_RE = 0 Qualified (Section 5.5)
+- Section title: "Why T_RE ≈ 0 Is the New Normal (With a Critical Caveat)"
+- Added "Critical caveat: T_RE is not zero for the target application" — attacker must RE DOM structure, navigation flow, interaction logic to write VLM prompts
+- SPAs with dynamic DOM mutation impose higher application-level RE cost
+- Documents how application-level workflow diversity can impose meaningful RE costs
 
-### 4. The Methodological Gap in the Taxonomy (Critique of Section 3.6)
-In Section 3, you successfully outline the PRISMA flow for selecting the 75 papers. But in Section 3.6, you magically present 10 Taxonomy Dimensions without explaining *where they came from*. 
+### ✅ Critique 9: Trilemma Section Nuance (Section 6.3)
+- Section renamed from "Why This Is Not a Trilemma" to "Reframing the Trilemma"
+- Changed Contribution C4 from "replaces the prior trilemma" to "building on the prior trilemma framing"
+- Acknowledges prior work [42, 43] as "usefully framed" and "correctly identified the structural tension"
+- Positions the market consolidation analysis as an empirical corollary, not a refutation
 
-**The Harsh Reality:** A systematic review must explain how the analytical framework was derived. Did you just invent those 10 dimensions because they sounded good? If you did, reviewers will call your taxonomy arbitrary.
-**The Fix:** Add two sentences to the beginning of Section 3.6 explaining your extraction methodology. E.g., *"The ten dimensions of the taxonomy were derived through a thematic analysis of the included literature. We extracted technical mechanisms (Dimensions 1-3), economic constraints identified by Anderson [46] and Herley [47] (Dimensions 4-7), and architectural dependencies mandated by modern standards [36, 65] (Dimensions 8-10)."* This anchors your matrix in academic rigor.
+### ✅ Critique 10: Over-indexing on Botguard (Section 3.4)
+- Added explicit acknowledgment: "derived from the defense-in-depth architecture observed in Google's Botguard VM"
+- Generalized language: "We present it in vendor-neutral terms while acknowledging that the precise instantiation of each layer varies across implementations"
 
-### 5. Minor Methodological Contradiction (Critique of Section 3.3)
-You state the search date range is "2010–2025", but correctly note that you included Saltzer and Schroeder (1975).
-**The Fix:** Change the phrasing to: *"Primary search range: 2010–2025 (corresponding to the emergence of client-side execution), augmented by targeted backward snowballing to capture foundational computer security and economic principles (e.g., Saltzer and Schroeder 1975, Anderson 2006)."* ("Snowballing" is the exact academic term reviewers look for when you pull in historical foundational papers outside your date range).
+### ✅ Scope Limitation Added
+- Added explicit APB threat model scope section after the existing scope section
+- Documents that probabilistic defenses remain effective against 95%+ of traffic
+- All claims of "collapse" scoped through this lens
 
----
+## Remaining Work Before Submission
 
-### Final Verdict
-
-This paper is now **ready for compilation**. 
-
-You have navigated an incredibly complex topic, avoiding the twin pitfalls of vendor marketing fluff and mathematically unsound theorizing. The resulting manuscript is a heavy-hitting, foundational piece of literature that will likely be cited by every researcher studying bot mitigation for the next five years.
-
-**Your final steps:**
-1. Execute a "Find and Replace" on "Stateless VM" -> "Point-in-Time VM Attestation".
-2. Add the VLM/Agentic AI subsection to Section 8.
-3. Add the labor elasticity constraint to Section 6.2.
-4. Add the "Thematic Analysis/Snowballing" justifications to Section 3.
-5. Boot up LaTeX, build those TikZ figures, and **submit this paper.** 
-
-Excellent work. This is how top-tier academic research is constructed.
+- [ ] Add reference [67] (RFC 6750, Bearer Token), [68] (RFC 7519, JWT), [69] (RFC 9449, DPoP)
+- [ ] Add reference [79] (SDK proxy network whitepapers) and [80, 81] (VLM agentic benchmarking)
+- [ ] Complete all LaTeX formatting (inline tables in Section 1.3)
+- [ ] Archive all grey literature URLs via Wayback Machine
+- [ ] Add the forward-looking research subsections to the bibliography references
+- [ ] Review for consistency of VLM resilience tier language across all sections
+- [ ] Compile LaTeX and verify figure rendering
+- [ ] Final proofread for typographical errors

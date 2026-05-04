@@ -1,5 +1,5 @@
 % Anonymous-Authentication Spectrum Figure
-% SoK: Architectural and Economic Ceilings of Client-Side Anti-Automation
+% SoK: Client-Side Anti-Automation After the VLM
 % Compiled with: pdflatex or lualatex
 % Requires: tikz package
 \documentclass[tikz,border=10pt]{standalone}
@@ -41,7 +41,9 @@
     \medskip
     {\scriptsize Stateless VM Attestation} \\
     {\scriptsize (Botguard, Turnstile)} \\
-    {\footnotesize\itshape Confidence scoring}
+    {\footnotesize\itshape Confidence scoring} \\
+    \medskip
+    {\scriptsize\bfseries\color{red!60} VLM: Tier 2--3}
 };
 
 \node[spectrum={blue!12}] (l2) at (4,0) {
@@ -50,7 +52,9 @@
     \medskip
     {\scriptsize Mouse Kinematics} \\
     {\scriptsize Touch/Accelerometer} \\
-    {\footnotesize\itshape Pattern classification}
+    {\footnotesize\itshape Pattern classification} \\
+    \medskip
+    {\scriptsize\bfseries\color{red!60} VLM: Tier 3}
 };
 
 \node[spectrum={purple!12}] (l3) at (8,0) {
@@ -60,7 +64,9 @@
     \medskip
     {\scriptsize Privacy Pass / PATs} \\
     {\scriptsize Apple iOS PAT} \\
-    {\footnotesize\itshape Token attestation}
+    {\footnotesize\itshape Token attestation} \\
+    \medskip
+    {\scriptsize\bfseries\color{green!60!black} VLM: Tier 1}
 };
 
 \node[spectrum={orange!12}] (l4) at (12,0) {
@@ -69,7 +75,9 @@
     \medskip
     {\scriptsize DBSC} \\
     {\scriptsize TPM Cookie Binding} \\
-    {\footnotesize\itshape Session anchoring}
+    {\footnotesize\itshape Session anchoring} \\
+    \medskip
+    {\scriptsize\bfseries\color{green!60!black} VLM: Tier 1}
 };
 
 \node[spectrum={orange!18}] (l5) at (16,0) {
@@ -78,7 +86,9 @@
     \medskip
     {\scriptsize FIDO2 / Passkeys} \\
     {\scriptsize WebAuthn} \\
-    {\footnotesize\itshape Identity anchoring}
+    {\footnotesize\itshape Identity anchoring} \\
+    \medskip
+    {\scriptsize\bfseries\color{green!60!black} VLM: Tier 1}
 };
 
 % Axis line
@@ -96,8 +106,8 @@
 \draw[thick, black!40, dashed] (l4.east) -- (l5.west);
 
 % Top-level categorization brackets
-\draw[dimarrow] (l1.north west) ++(0, 0.5) -- node[above, font=\footnotesize\bfseries, text=black!50] {Probabilistic Attestation} ($(l3.north east) + (0, 0.5)$);
-\draw[dimarrow] ($(l4.north west) + (0, 0.5)$) -- node[above, font=\footnotesize\bfseries, text=black!50] {Deterministic Attestation} ($(l5.north east) + (0, 0.5)$);
+\draw[dimarrow] (l1.north west) ++(0, 0.5) -- node[above, font=\footnotesize\bfseries, text=black!50] {Probabilistic Attestation (\textbf{VLM-Bypassed})} ($(l2.north east) + (0, 0.5)$);
+\draw[dimarrow] ($(l3.north west) + (0, 0.5)$) -- node[above, font=\footnotesize\bfseries, text=black!50] {Deterministic Attestation (\textbf{VLM-Resilient})} ($(l5.north east) + (0, 0.5)$);
 
 % Bottom dimension annotations
 \node[font=\footnotesize\itshape, text=black!50, below=0.5cm of l1] {No prior enrollment};
@@ -108,15 +118,16 @@
 
 % Vendor trust annotation for center column
 \node[font=\footnotesize\bfseries, text=purple!70, above=0.4cm of l3] {New Dimension:};
-\node[font=\footnotesize\bfseries, text=purple!70] at (8, 2.4) {Vendor Trust};
+\node[font=\footnotesize\bfseries, text=purple!70] at (8, 2.4) {Vendor Centralization};
 \draw[->, >=stealth, purple!40, line width=0.6pt] (7.2, 2.15) -- (7.5, 1.7);
 \draw[->, >=stealth, purple!40, line width=0.6pt] (8.8, 2.15) -- (8.5, 1.7);
 
 % Legend box bottom
 \node[draw=black!30, fill=white, rounded corners=2pt, font=\footnotesize, text width=17cm, align=center, below=2.2cm of l1.south, yshift=-1.0cm, inner sep=6pt] (legend) {
-    \textbf{Key Transition:} The old ``Anonymous Authentication Gap'' (no mechanism for anonymous deterministic attestation) \\
-    has been \textbf{technically closed} by Privacy Pass / PATs (center). However, PATs introduce a new dimension — \\
-    \textbf{vendor trust} — transforming the technical gap into an \textbf{economic and political centralization dilemma}.
+    \textbf{Key Transition:} Under Operator Synthesis (VLM), probabilistic attestation (left) is structurally bypassed. \\
+    Deterministic attestation (right) survives (Tier 1), but PATs (center) introduce a new dimension — \\
+    \textbf{vendor centralization} — transforming the ``Anonymous Authentication Gap'' into an economic \\
+    and political dependency on an OS vendor oligopoly (Apple, Google, Microsoft).
 };
 
 \end{tikzpicture}

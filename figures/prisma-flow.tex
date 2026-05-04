@@ -1,6 +1,9 @@
-% PRISMA Flow Diagram for SoK: Architectural and Economic Ceilings of Client-Side Anti-Automation
+% Search Methodology Diagram (replaces prior PRISMA flow diagram)
+% SoK: Client-Side Anti-Automation After the VLM
 % Compiled with: pdflatex or lualatex
 % Requires: tikz package
+% NOTE: This diagram documents the search methodology. It does not follow the PRISMA 
+% structured eligibility format, which was designed for clinical meta-analyses (see Section 3.1).
 \documentclass[tikz,border=10pt]{standalone}
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric, arrows, positioning, fit, backgrounds, calc}
@@ -40,7 +43,7 @@
 
 % IDENTIFICATION box
 \node[box] (identify) {
-    \textbf{Identification} \\
+    \textbf{Search} \\
     Records identified through database searching: \\
     IEEE Xplore, ACM DL, arXiv, Google Scholar, \\
     IETF Datatracker, W3C TR \\
@@ -53,7 +56,7 @@
     Duplicates removed: \textbf{n = 67}
 };
 \node[excluded, right=0.8cm of identify, yshift=-0.3cm] (excl-irrelevant) {
-    Irrelevant (out-of-scope domain): \textbf{n = 55}
+    Out-of-scope domain: \textbf{n = 55}
 };
 
 % SCREENING box
@@ -76,7 +79,7 @@
 % ELIGIBILITY box
 \node[box, below=of screen] (eligible) {
     \textbf{Eligibility} \\
-    Full-text articles assessed for eligibility: \\
+    Full-text articles assessed: \\
     Architectural relevance, verifiability, \\
     documented in academic/standards/grey literature \\
     \medskip
@@ -127,10 +130,17 @@
 \node[label, left=0.3cm of included] {Phase 4};
 
 % Inclusion criteria annotation
-\node[font=\footnotesize, text width=8cm, align=left, below=0.8cm of categories, text=black!50] (criteria) {
+\node[font=\footnotesize, text width=8cm, align=left, below=1.0cm of categories, text=black!50] (criteria) {
     \textbf{Inclusion Criteria:} (a) deployed in production by a major vendor or platform; \\
     (b) documented in academic literature, IETF/W3C standards, or peer-reviewed grey \\
     literature; (c) imposes costs on adversaries through client-side execution.
+};
+
+% Note about methodology
+\node[font=\footnotesize\itshape, text width=8cm, align=left, below=1.8cm of categories, text=black!40] (method-note) {
+    This diagram documents the search process transparently. The PRISMA structured \\
+    eligibility format is not applied here, as it was designed for clinical meta-analyses; \\
+    see Section 3.1 for methodology details.
 };
 
 \end{tikzpicture}

@@ -275,6 +275,15 @@
 **[75]** L. Allodi. "Economic Factors of Vulnerability Trade and Exploitation: Empirical Evidence from a Prominent Russian Cybercrime Market." In *Proc. ACM Conference on Computer and Communications Security (CCS)*, pp. 1483–1499, 2017. DOI: 10.1145/3133956.3133960.
 - **Use:** Cybercrime market pricing data; supports underground economy pricing claims.
 
+**[76]** M. Jones and D. Hardt. "The OAuth 2.0 Authorization Framework: Bearer Token Usage." *RFC 6750*, IETF, October 2012. DOI: 10.17487/RFC6750.
+- **Use:** Bearer token semantics and portability properties; cited for bearer token characterization of VM attestation outputs.
+
+**[77]** M. Jones, J. Bradley, and N. Sakimura. "JSON Web Token (JWT)." *RFC 7519*, IETF, May 2015. DOI: 10.17487/RFC7519.
+- **Use:** Standard token format; supports analysis of bearer token portability in client-side anti-automation contexts.
+
+**[78]** D. Fett, B. Campbell, J. Bradley, T. Lodderstedt, M. Jones, and D. Waite. "OAuth 2.0 Demonstrating Proof of Possession (DPoP)." *RFC 9449*, IETF, September 2023. DOI: 10.17487/RFC9449.
+- **Use:** Proof-of-possession mechanism for bound tokens; contrasts with bearer token portability in DBSC context.
+
 ---
 
 ## Reference Count Summary
@@ -292,8 +301,9 @@
 | Infostealer / PPI Malware | 5 |
 | Anti-Detect Browser & Proxy | 4 |
 | Threat Modeling & Standards | 6 |
+| Token Standards (RFC) | 3 |
 | Supporting Academic | 5 |
-| **Total** | **75** |
+| **Total** | **78** |
 
 **2021–2025 references:** 30+ (meets ≥15 requirement).
 
