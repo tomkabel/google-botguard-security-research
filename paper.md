@@ -4,7 +4,7 @@
 
 **Authors:** Abel, T. K.
 
-**Repository:** https://github.com/tomkabel/google-botguard-security-research
+**Repository:** <https://github.com/tomkabel/google-botguard-security-research>
 
 **Keywords:** Client-side attestation, VLM-based automation, operator synthesis, browser fingerprinting, behavioral biometrics, Privacy Pass, Private Access Tokens, device-bound session credentials, anti-automation economics, systematization of knowledge
 
@@ -15,10 +15,11 @@
 Client-side anti-automation — the set of techniques that distinguish human-driven browsers from automated agents — has evolved through five architecturally distinct paradigms over the past fifteen years, culminating in a landscape where Vision-Language Models (VLMs) and agentic AI systems challenge the foundational assumptions underlying probabilistic client-side defenses for a class of highly-resourced adversaries. This paper presents a Systematization of Knowledge organized as a two-part analysis. **Part I (The Historical Landscape, 2010–2024)** systematizes the five primary architectural paradigms — Point-in-Time VM Attestation, Stateful Behavioral Telemetry, Behavioral Biometrics & Sensor Telemetry, Platform/OS-level Anonymous Attestation, and Hardware-Anchored Determinism — as a retrospective post-mortem. We present the generalized L1–L4 defense-in-depth framework as a *historical diagnostic tool*: a lens that reveals *why* each architectural layer faces structural pressure under Operator Synthesis (the VLM attack vector) rather than as a prescriptive architecture for future defenses. We also provide a historical case study of the temporal arms race between AST obfuscators and symbolic execution engines, which the VLM paradigm renders moot for the APB threat model. **Part II (The VLM/Operator Synthesis Paradigm Shift)** analyzes which architectural properties survive the paradigm shift and which face structural degradation, culminating in an initial cost-accounting framework for VLM-driven attacks grounded in observable cost data — VLM inference pricing curves, proxy supply elasticity, state-orchestration overhead — while explicitly acknowledging the empirical gaps that prevent precise quantification. Part II also provides a concrete analysis of the attestation market centralization problem, documenting how Apple, Google, and Microsoft's control over Private Access Tokens, Privacy Pass, and Device Bound Session Credentials consolidates the infrastructure of web trust. The paper includes a historical diagnostic framework, an analysis of architectural resilience tiers, and a forward-looking research agenda for VLM-resilient attestation primitives.
 
 **Contributions:**
+
 1. A two-part SoK structure that resolves the structural dissonance of prior work: Part I as a historical retrospective on probabilistic attestation (2010–2024), Part II as a forward-looking analysis under Operator Synthesis.
 2. An L1–L4 defense-in-depth framework reframed as a *historical diagnostic tool* for understanding why probabilistic client-side defenses fail under VLM attack, rather than a prescriptive defensive architecture.
- 3. An initial cost-accounting framework for Operator Synthesis attacks, grounded in VLM inference pricing, proxy market supply elasticity, and state-orchestration overhead, with explicit acknowledgment of the empirical gaps that prevent precise quantification.
- 4. A concrete analysis of attestation market centralization — documenting the vendor oligopoly (Apple, Google, Microsoft) on root-of-trust infrastructure — building on prior trilemma formulations with empirically grounded observations about market consolidation.
+3. An initial cost-accounting framework for Operator Synthesis attacks, grounded in VLM inference pricing, proxy market supply elasticity, and state-orchestration overhead, with explicit acknowledgment of the empirical gaps that prevent precise quantification.
+4. A concrete analysis of attestation market centralization — documenting the vendor oligopoly (Apple, Google, Microsoft) on root-of-trust infrastructure — building on prior trilemma formulations with empirically grounded observations about market consolidation.
 
 ---
 
@@ -60,36 +61,10 @@ We adopt a three-axis threat model, with Axis C elevated from a supplementary di
 
 The quadrant mapping for Axes A and B is as follows:
 
-$$
-\begin{array}{l|l|l}
- & \textbf{Anonymous} & \textbf{Authenticated} \\ \hline
-\textbf{Scraping / Resource Exhaustion} & 
-\begin{tabular}{l}
-Quadrant I: Point-in-Time VM, \\
-Behavioral Biometrics, \\
-Compute-Bound Challenges (auxiliary). \\
-\text{[66]}
-\end{tabular} & 
-\begin{tabular}{l}
-Quadrant III: \\
-Session-bound rate limiting, \\
-quota enforcement.
-\end{tabular} \\ \hline
-\textbf{Account Takeover / Fraud} & 
-\begin{tabular}{l}
-Quadrant II: Stateful Telemetry \\
-\quad (login risk scoring), \\
-Platform Anonymous Attestation (PATs). \\
-\text{[66]}
-\end{tabular} & 
-\begin{tabular}{l}
-Quadrant IV: Hardware-Anchored \\
-\quad Determinism (DBSC, \\
-Passkeys, WebAuthn). \\
-\text{[65]}
-\end{tabular}
-\end{array}
-$$
+| | **Anonymous** | **Authenticated** |
+|---|---|---|
+| **Scraping / Resource Exhaustion** | Quadrant I: Point-in-Time VM,<br>Behavioral Biometrics,<br>Compute-Bound Challenges (auxiliary).<br>[66] | Quadrant III:<br>Session-bound rate limiting,<br>quota enforcement. |
+| **Account Takeover / Fraud** | Quadrant II: Stateful Telemetry<br>&nbsp;&nbsp;&nbsp;&nbsp;(login risk scoring),<br>Platform Anonymous Attestation (PATs).<br>[66] | Quadrant IV: Hardware-Anchored<br>&nbsp;&nbsp;&nbsp;&nbsp;Determinism (DBSC,<br>Passkeys, WebAuthn).<br>[65] |
 
 Axis C cuts across all four quadrants. Under Environmental Forgery, the attacker instruments the browser runtime to forge sensor data to a defensive VM. Under Operator Synthesis, the attacker drives an unmodified stock browser via OS-level accessibility APIs or GUI automation. The distinction is not a minor implementation detail but a category change: the defender's historical assumption — that the attacker must subvert the browser — no longer holds for the most capable adversary class.
 
@@ -207,7 +182,7 @@ Under Environmental Forgery, each layer imposes a cost because the attacker must
 
 - **L1a (Static Environmental Introspection)** — Detects forged `navigator` properties, WebGL artifacts, DOM prototype chain integrity violations [6]. Under OS at the browser level: properties are inherited from a legitimate browser. However, industrial-scale VLM deployment requires containerized environments (Docker, K8s) that bleed environmental anomalies — missing system fonts, WebGL rendering mismatches versus the User-Agent's declared OS, anomalous TCP/IP stack fingerprints. The attacker must invest in container-evasion engineering (Section 4.1).
 - **L1b (Dynamic Sensor Telemetry)** — Measures mouse kinematics, scroll patterns, click-timing against human-distribution models [15, 20]. Under OS at the cognitive level: VLM motor planning is emergent from web-scale human-demonstration training. However, VLMs output coordinate selections, not kinematic trajectories. An orchestration layer must translate coordinates into mouse movement, and naive interpolation produces detectable kinematic artifacts. The attacker must invest in kinematic-smoothing orchestration (Section 1.4).
-- **L2 (Code Obfuscation, Polymorphism)** — Self-modifying opcodes, compile rotation raise RE cost [24, 27]. Under OS: the VLM never inspects bytecode — executes the VM as a black box. $T_{RE} \approx 0$ at the VM level. However, application-level DOM and workflow reverse-engineering is still required (Section 5.5).
+- **L2 (Code Obfuscation, Polymorphism)** — Self-modifying opcodes, compile rotation raise RE cost [24, 27]. Under OS: the VLM never inspects bytecode — executes the VM as a black box. T_RE ≈ 0 at the VM level. However, application-level DOM and workflow reverse-engineering is still required (Section 5.5).
 - **L3 (Execution Traps)** — Console-bound traps, anti-debugger hooks, prototype integrity checks [24]. Under OS at the JS/DevTools level: no DevTools opened, no runtime instrumented — traps are never triggered. However, under Operator Synthesis, L3's detection premise shifts to the **Cognitive/Perceptual Layer**: the gap between what the rendered DOM exposes to agentic frameworks and what the human visual system perceives. Frameworks that traverse the DOM tree for action selection (SeeAct's text-based affordance enumeration [82], CogAgent's CogTool grounding) treat all rendered elements as interactable, including elements the human eye never registers. A defender can exploit this by deploying *Cognitive Honeypots*: a full-viewport transparent `<div>` (`position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.001)`) containing a decoy element at valid page coordinates. The decoy reports non-zero `getBoundingClientRect()` dimensions and passes DOM presence checks, but is visually imperceptible to a human. A VLM orchestrator using DOM-based element enumeration may select the decoy, triggering the defensive action (session blacklisting, telemetry flagging). This trap succeeds specifically against DOM-enumerating agentic frameworks (Tier 2/3 degradation per Section 4.2); pixel-level VLMs (GPT-4o CUA, Claude Computer Use) are immune since they operate on screenshots only, requiring a multi-surface attack for full coverage. The attacker must invest in visual-grounding validation — cross-referencing DOM targets against screenshot crops before selecting — to avoid honeypot activation. The cost shifts from anti-trap-evasion at the bytecode layer to perceptual-DOM alignment engineering at the orchestration layer.
 - **L4 (Chronometric Integrity)** — `performance.now()` polling and timing-delta-based seed mutation [24, 5]. Under OS at the microsecond instrumentation level: native execution introduces no timing deviation. However, Section 5.2 identifies that L4's detection premise can be *extended*: the macroscopic latency of VLM inference (5–15 seconds per action) versus human reaction time (~200ms) creates a 25–50× timing gap that a sophisticated defender can exploit.
 
@@ -308,11 +283,12 @@ The primary variable cost of an Operator Synthesis attack is VLM inference. Prio
 
 **Base cost-accounting equation.** The per-task inference cost is:
 
-```
+```text
 C_inference = (t_input × p_input + t_output × p_output) × r_per_token
 ```
 
 Where:
+
 - `t_input` = input tokens per task (screen capture encoding + prompt context)
 - `t_output` = output tokens per task (action selection + coordinate generation)
 - `p_input` = input token price (model-dependent, $1.25–$5.00 per million tokens for frontier models as of Q1 2026)
@@ -321,7 +297,7 @@ Where:
 
 **Modeling failure rates.** The base cost model assumes 100% task completion, which does not hold in practice. VLMs hallucinate, select incorrect bounding boxes, enter navigation loops, and time out on dynamic DOM elements that confuse their spatial mapping. The effective cost per successful bypass must incorporate the task success probability:
 
-```
+```text
 C_effective = C_inference / P(success) + C_retry × (1 - P(success)) / P(success)
 ```
 
@@ -330,6 +306,7 @@ Where `P(success)` is the per-attempt probability of producing a valid bypass to
 The dependence of `P(success)` on task complexity introduces a testable empirical prediction: defenses that increase perceptual ambiguity (dynamic CSS layouts, canvas obfuscation, adversarial-noise overlays) should reduce VLM task success rates, thereby increasing effective attack costs. This prediction links the economic framework directly to the visual-reasoning deobfuscation gap identified in Section 3.5.
 
 **Empirical baselines (as of Q1 2026).** Published pricing for frontier VLMs:
+
 - GPT-4o: $2.50/M input tokens, $10.00/M output tokens
 - Claude 3.5 Sonnet (Computer Use): $3.00/M input, $15.00/M output
 - Gemini 2.0 Flash: $1.25/M input, $5.00/M output
@@ -337,6 +314,7 @@ The dependence of `P(success)` on task complexity introduces a testable empirica
 For a typical web interaction task requiring one screen capture (∼1,000 tokens) and one action selection (∼500 tokens output), the per-action cost is approximately $0.0025–$0.01. For an attack requiring 10 interactions per token generation (navigating to the target page, waiting for the VM to load, receiving the token), the per-token cost is $0.025–$0.10.
 
 **Scaling properties.** Critically, VLM inference costs follow a *deflationary* trajectory. Each new model generation has historically reduced per-token costs by 2–5× while maintaining or improving capability. Moore's Law for LLM inference predicts sustained cost reduction through:
+
 - Quantization (FP16 → INT4 reduces cost by ∼4×)
 - Speculative decoding (2–3× throughput improvement)
 - Model distillation (smaller models for specific tasks)
@@ -356,7 +334,7 @@ This latency matters for two reasons:
 
 The effective cost per successful token must therefore incorporate temporal overhead:
 
-```
+```text
 C_temporal = C_inference + C_bandwidth_per_session + C_timeout_loss
 ```
 
@@ -367,6 +345,7 @@ Where `C_timeout_loss = C_inference × P(timeout) / (1 - P(timeout))`, represent
 Under Environmental Forgery, the proxy supply market was the binding structural constraint. Under Operator Synthesis, the proxy is still required — the VLM must route traffic through residential IPs — but the economics shift because the VLM imposes different demands on the proxy infrastructure.
 
 **Supply elasticity.** Residential proxy markets exhibit a tiered supply structure:
+
 - **Commodity tier:** ∼$0.50–$1.50/GB for shared residential IPs with moderate reputation. High elasticity: supply is effectively infinite at this price point. However, reputation is a commons [59]: aggressive usage burns IP reputation across the pool.
 - **Premium tier:** ∼$10–$15/GB for exclusive, unburned residential IPs. Low elasticity: supply is constrained by the number of devices in the botnet or proxy network.
 - **Enterprise tier:** ∼$25–$50/GB for dedicated IPs with guaranteed clean reputation. Very low elasticity.
@@ -375,11 +354,12 @@ For Operator Synthesis attacks, the commodity tier is less usable because the VL
 
 **Corrected conjunctive cost model.** Prior work modeled the conjunctive cost of stateful telemetry bypass as: `Cost_proxy + Cost_aged_profile + Cost_software_license`. Under Operator Synthesis, the attacker who drives a stock browser eliminates the anti-detect software license but *substitutes a state-orchestration infrastructure cost*:
 
-```
+```text
 Cost_bypass_OS = Cost_residential_proxy + Cost_session_isolation + Cost_VLM_inference
 ```
 
 Where `Cost_session_isolation` includes:
+
 - Containerized browser instances per session (Docker/K8s orchestration)
 - Persistent cookie-jar and local-storage management
 - Profile rotation and rehydration infrastructure
@@ -399,7 +379,7 @@ Prior work correctly identified human labor — CAPTCHA-solving farms at ∼$1 p
 
 Under Environmental Forgery, the temporal arms race between defender compile rotation and attacker RE was quantified as a race condition:
 
-```
+```text
 T_RE < T_Life → defense is structurally bypassed
 T_RE > T_Life → defense imposes recurring cost
 ```
@@ -433,6 +413,7 @@ Passkeys (FIDO2/WebAuthn [31]) eliminate shared secrets and credential phishing 
 The most significant structural consequence of the VLM paradigm shift — more significant than any individual architecture's vulnerability — is the transformation of the attestation infrastructure market. As probabilistic defenses lose efficacy against Operator Synthesis, the remaining viable defenses (PATs, DBSC, Passkeys) all share a common dependency: they require platform-level root of trust infrastructure operated by OS vendors.
 
 **The consolidation dynamic.** Three companies — Apple, Google, Microsoft — control the device attestation layer for the web:
+
 - **Apple PATs:** RSA blind signatures issued by Apple's servers, backed by Secure Enclave attestation on iOS 16+ and macOS Ventura+ [44]. Token issuance is rate-limited per device. Apple controls which origins receive tokens and at what rate.
 - **Google Privacy Pass:** VOPRF-based issuance integrated into Chrome via the Private State Token API [45]. Google operates an issuer. Google controls which origins participate and under what terms.
 - **Microsoft Device Bound Session Credentials:** TPM-backed session binding in Windows and Edge [36]. Microsoft controls the key storage and attestation infrastructure.
@@ -448,6 +429,7 @@ The most significant structural consequence of the VLM paradigm shift — more s
 ### 7.1 Closing the Empirical Gap in VLM Attack Economics
 
 The cost-accounting framework in Section 5 is deliberately incomplete. We currently lack:
+
 - Published empirical measurements of VLM-driven attack throughput at industrial scale
 - Reliable data on proxy market supply elasticity under Operator Synthesis demand patterns
 - Longitudinal studies of VLM inference cost deflation and its impact on attack economics
@@ -457,6 +439,7 @@ A standardized, ethical benchmark for measuring VLM-driven bypass costs — anal
 ### 7.2 VLM-Resilient Attestation Primitives
 
 The Tier 1 architectures identified in Section 4.2 survive Operator Synthesis but carry the structural dependencies documented in Section 6. Research needed on:
+
 - **Decentralized anonymous attestation:** Zero-knowledge proofs of personhood, decentralized issuer networks (threshold issuance, distributed VOPRF), and hardware-backed attestation without OS-vendor dependency.
 - **Physical-presence challenges:** Defenses that require physical-world interaction (camera-based liveness detection, ambient sensor fusion) that a VLM operating in a virtual machine cannot satisfy. These are not CAPTCHAs — they do not require human cognition — but they impose a physical-presence cost that distinguishes local execution from remote VLM operation. Defenders must account for a critical countermeasure: incentivized proxying, where SDK-based proxy networks—leveraging the attestation bypass dynamics analyzed in Section 4.3—prompt the legitimate device owner to satisfy the physical challenge in exchange for in-app rewards, bridging the physical gap. This does not reduce the bypass cost to zero — it introduces latency (user must be available), incentive costs (per-action reward), and coordination complexity — but it establishes that physical-presence challenges require deployment-time threat modeling against SDK-mediated human relay, not just autonomous VLM operation.
 - **Cross-modal consistency verification:** Verifying that sensor data from multiple independent channels (camera, microphone, touchscreen, accelerometer) is internally consistent with a single physical environment. A VLM operating in a VM cannot easily maintain cross-modal consistency because it does not control all sensor channels.
@@ -467,7 +450,7 @@ Academia lacks a standardized testbed for evaluating anti-automation defenses un
 
 ### 7.4 Privacy Regulation's Collateral Damage on Stateful Mitigation
 
-GDPR, ePrivacy Directive, and third-party cookie deprecation break the profile-aging model underpinning stateful telemetry (Type II). As browsers restrict persistent identifiers (ITP, ETP, Total Cookie Protection), the economic ceiling of stateful defenses rises — they become less effective — yet vendors continue to market them. The tension between privacy regulation and stateful bot mitigation, particularly under the additional stress of Operator Synthesis, is under-studied. 
+GDPR, ePrivacy Directive, and third-party cookie deprecation break the profile-aging model underpinning stateful telemetry (Type II). As browsers restrict persistent identifiers (ITP, ETP, Total Cookie Protection), the economic ceiling of stateful defenses rises — they become less effective — yet vendors continue to market them. The tension between privacy regulation and stateful bot mitigation, particularly under the additional stress of Operator Synthesis, is under-studied.
 
 The structural irony is acute: **privacy regulation structurally mandates the amnesia that VLMs mathematically exploit.** Profile-aging was the one Type II defense that Operator Synthesis could not trivially bypass — it required time, not just inference compute, to accumulate. By restricting persistent cross-session identifiers, privacy regulation eliminates the profile-aging constraint that was Type II's last structural ceiling against the APB threat model. Privacy and security are not inherently opposed, but in this specific case, the regulatory timeline (GDPR enforcement, ITP/ETP deployment) intersects with the VLM capability timeline (2024–2025) to produce an outcome that neither policy alone would have created.
 
@@ -482,6 +465,7 @@ This SoK has presented a two-part systematization of client-side anti-automation
 The architectures that survive — Platform/OS-level anonymous attestation and hardware-anchored determinism — do so because their security is anchored in cryptographic hardware possession rather than probabilistic detection of behavioral signals. But survival is not immunity: these architectures carry a structural dependency on a vendor oligopoly controlling the root of trust, and their economic ceiling is the black-market price of device compromise, not the mathematical hardness of the attestation protocol.
 
 Three insights define the field's trajectory for the APB threat model:
+
 1. **Probabilistic client-side attestation faces structural degradation under Operator Synthesis.** Against a well-resourced adversary operating a VLM through an adequate orchestration pipeline, the detection premise on which VM attestation, behavioral telemetry, and biometric analysis relied is bypassed. Defenses that remain effective against commodity adversaries lose their cost-imposing power against this top-tier threat model.
 2. **Hardware-anchored attestation is necessary but not sufficient.** It survives the paradigm shift but introduces vendor centralization, device-adoption dependencies, and a shifting of the attack surface to the device-compromise economics.
 3. **The defining open problem is no longer purely "how to detect bots" but increasingly "who controls the infrastructure of web trust."** The Anonymous Authentication Gap has been technically narrowed; the Centralization Gap has emerged as its successor.
