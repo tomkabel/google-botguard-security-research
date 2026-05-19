@@ -132,6 +132,19 @@ All critique points from the second-round senior expert PC member review have be
 - Added cost qualification: latency, incentive costs, coordination complexity ensure residual attacker cost
 - Framed as deployment-time threat modeling requirement, not a universal bypass
 
+### ✅ Abstract — Unfulfilled Promises & Terminology Drift
+- Removed "Grand Taxonomy diagnostic table" and "VLM resilience tier ranking" — nonexistent artifacts
+- Replaced with "historical diagnostic framework" and "analysis of architectural resilience tiers" — matching actual content
+- Fixed "initial cost model" → "initial cost-accounting framework" for terminological consistency
+
+### ✅ §4.2 — Formal VLM Resilience Tier Ranking Table (Option B)
+- Added summary table at end of Section 4.2 listing Types I–V with explicit Tier 1, 2, or 2/3 assignment
+- Four columns: Tier, Definition, Types, Degradation Mechanism
+- Provides the reader-facing artifact that the abstract now correctly references
+
+### ✅ §7.2 — Clunky Parenthetical
+- Replaced "(see Section 4.3 for the structural analysis of SDK proxy attestation bypass)" with em-dash construction: "—leveraging the attestation bypass dynamics analyzed in Section 4.3—"
+
 ## Remaining Work Before Submission
 
 - [ ] Add reference [67] (RFC 6750, Bearer Token), [68] (RFC 7519, JWT), [69] (RFC 9449, DPoP)
