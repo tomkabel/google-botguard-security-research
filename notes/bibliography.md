@@ -284,6 +284,22 @@
 **[78]** D. Fett, B. Campbell, J. Bradley, T. Lodderstedt, M. Jones, and D. Waite. "OAuth 2.0 Demonstrating Proof of Possession (DPoP)." *RFC 9449*, IETF, September 2023. DOI: 10.17487/RFC9449.
 - **Use:** Proof-of-possession mechanism for bound tokens; contrasts with bearer token portability in DBSC context.
 
+## 13. Proxy Infrastructure & SDK Networks
+
+**[79]** A. A. Noroozian, M. Ciere, M. van Eeten, and C. H. Ganan. "Residential Proxies: A Peek Behind the Curtain of the Proxies-as-a-Service Market." In *Proc. ACM Internet Measurement Conference (IMC)*, 2021. DOI: 10.1145/3487552.3487856.
+- **Use:** Residential proxy market structure and SDK-based proxy network economics; supports the SDK-proxy bypass analysis of PATs and DBSC in Sections 4.3 and 6.1.
+
+## 14. VLM Agentic Framework Benchmarks
+
+**[80]** H. He, W. Yao, K. Ma, W. Yu, Y. Dai, H. Zhang, D. Cai, and D. S. Weld. "WebVoyager: Building an End-to-End Web Agent with Multimodal Models." In *Proc. Annual Meeting of the Association for Computational Linguistics (ACL)*, 2024.
+- **Use:** VLM agentic web interaction benchmark; informs P(success) estimates in Section 5.1 and the cognitive honeypot analysis in Section 3.4 (L3).
+
+**[81]** X. Deng, Y. Gu, B. Zheng, S. Chen, S. Stevens, B. Wang, H. Sun, and Y. Su. "Mind2Web: Towards a Generalist Agent for the Web." In *Proc. Conference on Neural Information Processing Systems (NeurIPS)*, 2023.
+- **Use:** Multi-step web navigation agent benchmark; provides task-complexity baselines for VLM attack cost modeling in Section 5.1.
+
+**[82]** L. Zheng, Z. Wang, D. Fu, Y. Zhang, Y. Lu, B. Dai, D. Song, K. He, and Y. Li. "SeeAct: GPT-4V(ision) is a Generalist Web Agent, if Grounded." In *Proc. International Conference on Machine Learning (ICML)*, 2024.
+- **Use:** DOM-based action grounding for VLM web agents; cited for the cognitive honeypot analysis in Section 3.4 (L3), where DOM-enumerating frameworks differ from pixel-level VLMs.
+
 ---
 
 ## Reference Count Summary
@@ -303,8 +319,10 @@
 | Threat Modeling & Standards | 6 |
 | Token Standards (RFC) | 3 |
 | Supporting Academic | 5 |
-| **Total** | **78** |
+| Proxy Infrastructure & SDK Networks | 1 |
+| VLM Agentic Framework Benchmarks | 3 |
+| **Total** | **82** |
 
-**2021–2025 references:** 30+ (meets ≥15 requirement).
+**2021–2025 references:** 34+ (meets ≥15 requirement).
 
 **Note on grey literature citations:** All vendor URLs must be archived via the Wayback Machine at submission time and citations must use permanent archive links per the Wayback Machine Mandate. Live URLs are listed here for reference during drafting; archiving must be completed before finalization.
