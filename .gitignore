@@ -2,6 +2,9 @@
 _bmad/
 _bmad-output/
 
+# Agent skills mirror (tracked .agents files stay tracked; new installs ignored)
+.agents/
+
 # Local brain / graph runtime state
 .m1nd/
 .code-review-graph/
