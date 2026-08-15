@@ -1,0 +1,32 @@
+# BMad workflow artifacts
+_bmad/
+_bmad-output/
+
+# Local brain / graph runtime state
+.m1nd/
+.code-review-graph/
+
+# Machine-local agent tooling (settings, hooks, skills mirrors, MCP configs)
+.claude/
+.codebuddy/
+.commandcode/
+.cursorrules
+.gemini/
+.kiro/
+.mcp.json
+.qoder/
+.vscode/
+.windsurfrules
+
+# Generated agent-rule mirrors (canonical copy lives in AGENTS.md)
+CLAUDE.md
+CODEBUDDY.md
+GEMINI.md
+QODER.md
+opencode.jsonc
+
+# Paper working variants (canonical is paper.md)
+chunked.md
+paper.human.md
+paper.md.humanz
+rewrite.md
