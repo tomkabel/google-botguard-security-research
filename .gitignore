@@ -1,35 +1,27 @@
-# BMad workflow artifacts
-_bmad/
-_bmad-output/
+# Build artifact
+paper.pdf
 
-# Agent skills mirror (tracked .agents files stay tracked; new installs ignored)
+# Machine-local agent tooling (not part of the paper)
 .agents/
-
-# Local brain / graph runtime state
-.m1nd/
-.code-review-graph/
-
-# Machine-local agent tooling (settings, hooks, skills mirrors, MCP configs)
 .claude/
 .codebuddy/
 .commandcode/
-.cursorrules
 .gemini/
 .kiro/
-.mcp.json
+.m1nd/
 .qoder/
+.rumdl_cache/
 .vscode/
-.windsurfrules
+.code-review-graph/
+_bmad/
+_bmad-output/
 
 # Generated agent-rule mirrors (canonical copy lives in AGENTS.md)
 CLAUDE.md
 CODEBUDDY.md
 GEMINI.md
 QODER.md
+.cursorrules
+.windsurfrules
 opencode.jsonc
-
-# Paper working variants (canonical is paper.md)
-chunked.md
-paper.human.md
-paper.md.humanz
-rewrite.md
+.mcp.json

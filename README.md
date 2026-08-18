@@ -1,60 +1,62 @@
-# SoK: The Architectural and Economic Ceilings of Client-Side Anti-Automation
+# SoK: Client-Side Anti-Automation Under VLM-Based Attack — From Probabilistic Forgery to Operator Synthesis
 
----
-
-**Authors:** Abel, T. K.
+**Author:** Abel, T. K.
 
 **Repository:** https://github.com/tomkabel/google-botguard-security-research
 
-**Status:** Systematization of Knowledge (SoK) manuscript — analytical, no empirical data.
+**Status:** Systematization of Knowledge (SoK) manuscript — analytical, no empirical measurements.
 
 ---
 
 ## Abstract
 
-Client-side anti-automation — the set of techniques that distinguish human-driven browsers from automated agents — has evolved through five architecturally distinct paradigms over the past fifteen years. Despite this rich design space, the industry lacks a unified taxonomy, and recent innovations (Private Access Tokens, behavioral biometrics with sensor telemetry, device-bound session credentials) have fragmented the landscape further. This paper presents a Systematization of Knowledge (SoK) that proposes a comparative taxonomy of five primary defense classes — Stateless VM Attestation, Stateful Behavioral Telemetry, Behavioral Biometrics & Sensor Telemetry, Platform/OS-level Anonymous Attestation (Privacy Pass / PATs), and Hardware-Anchored Determinism (DBSC, FIDO2/Passkeys) — compared across ten dimensions. We generalize the L1–L4 defense-in-depth framework beyond its Botguard-specific origins, introduce a novel temporal constraint analysis (Defender AST Obfuscator vs. Attacker Symbolic Execution Engine), and provide a conceptual microeconomic analysis identifying three structural corrections: (a) anti-detect browsers impose a conjunctive, not alternative, cost structure; (b) human labor sets the global cost floor for behavioral biometrics; and (c) the temporal arms race is increasingly compute-driven. We identify the Centralization vs. Anonymity Trade-off as the defining open problem in anonymous attestation. The paper includes a PRISMA flow diagram, a Grand Taxonomy Table, an Anonymous-Authentication Spectrum figure, and a 75-reference bibliography. This work is a contribution in systematization: it provides analytical clarity rather than empirical breakthroughs.
+Client-side anti-automation has evolved through five architecturally distinct paradigms, culminating in a landscape where Vision-Language Models (VLMs) and agentic AI systems challenge the foundational assumptions behind probabilistic client-side defenses. This Systematization of Knowledge (SoK) is organized in two parts. **Part I (2010–2024)** systematizes the five architectural paradigms — Point-in-Time VM Attestation, Stateful Behavioral Telemetry, Behavioral Biometrics & Sensor Telemetry, Platform/OS-level Anonymous Attestation, and Hardware-Anchored Determinism — and reframes the L1–L4 defense-in-depth stack as a *historical diagnostic* lens rather than a prescriptive architecture, alongside a case study of the obfuscation-versus-symbolic-execution temporal arms race. **Part II** analyzes which architectural properties survive the VLM "Operator Synthesis" attack vector and which structurally degrade, an initial cost-accounting framework grounded in observable data (VLM inference pricing, proxy supply elasticity, state-orchestration overhead) with explicit empirical caveats, and an analysis of attestation-market centralization around the Apple/Google/Microsoft root-of-trust oligopoly. The paper contributes a taxonomy, a diagnostic framework, a cost model with acknowledged empirical gaps, and identifies the centralization problem as the defining open question — analytical clarity rather than empirical breakthroughs.
 
 ---
 
 ## Manuscript
 
-The complete manuscript is available at **[paper.md](paper.md)**.
+The complete, self-contained manuscript — including its inline 85-reference bibliography — is in **`paper.md`** (8 sections across two parts).
 
-## Repository Structure
+## Build
+
+```sh
+make          # produces paper.pdf via pandoc + lualatex
+make clean    # removes paper.pdf
+```
+
+## Repository Layout
 
 | Path | Description |
 |---|---|
-| `paper.md` | Full SoK manuscript (9 sections, 75 references) |
-| `notes/content-audit.md` | Phase 1: Classification of prior README content |
-| `notes/bibliography.md` | Phase 2: Curated 75-reference bibliography by topic |
-| `notes/outline.md` | Phase 3: Detailed section-level outline |
-| `notes/qa-report.md` | Phase 6: Empirical claim audit, neutrality audit, SoK checklist |
-| `figures/prisma-flow.tex` | PRISMA flow diagram (LaTeX/TikZ) |
-| `figures/taxonomy-table.tex` | Grand Taxonomy Table — 5 architectures × 10 dimensions (LaTeX) |
-| `figures/auth-spectrum.tex` | Anonymous-Authentication Spectrum figure (LaTeX/TikZ) |
-
----
-
-## Changelog
-
-### v2.0 — SoK Pivot (May 2026)
-
-**Complete rewrite from predictive/empirical draft to analytical Systematization of Knowledge:**
-
-- **Removed:** All calculus (derivatives, logistic curves, $MC(V)$, $C_{token}(V)$), the 20-IP/500-token PoC, fake engineering-hour estimates (40-60h, etc.), all references to "our PoC" or "observed" failure rates, Appendix C (experimental data), Appendix A (statistical power analysis), three-regime table with numeric multipliers ($3\alpha$, $10\alpha$, $50\alpha$).
-- **Added:** Five-architecture taxonomy including Behavioral Biometrics & Sensor Telemetry and Privacy Pass / PATs as primary pillars; generalized L1–L4 framework with sensor telemetry under L1; dual-axis threat model (Authentication State × Attack Objective) anchored on OWASP OAT + NIST 800-63; temporal constraint analysis (symbolic execution vs. compile rotation); human labor cost floor analysis (CAPTCHA farms); Infostealer/PPI malware economy as bypass for hardware-anchored determinism; Centralization vs. Anonymity Trilemma; PRISMA flow diagram with 75-reference bibliography; three standalone LaTeX/TikZ figures.
-- **Tone:** Shifted from prescriptive/consulting to analytically neutral SoK.
-- **References:** Expanded from ~20 to 75 (30+ from 2021–2025), spanning top-4 security venues, IETF/W3C standards, and peer-reviewed grey literature.
-
-### v1.0 — Initial Draft (2024)
-
-Original predictive/empirical paper with Botguard economic model, L1-L4 layers, and 20-IP PoC. Superseded by v2.0 SoK.
+| `paper.md` | Full self-contained manuscript (8 sections, inline 85-reference bibliography) |
+| `README.md` | This file |
+| `Makefile` | Builds `paper.pdf` from `paper.md` (pandoc, lualatex) |
+| `AGENTS.md` | Working conventions for AI agents operating on this repo |
 
 ---
 
 ## Keywords
 
-Client-side attestation, bot mitigation, JavaScript virtual machine, browser fingerprinting, behavioral biometrics, Privacy Pass, Private Access Tokens, device-bound session credentials, anti-automation economics, systematization of knowledge
+Client-side attestation, VLM-based automation, operator synthesis, browser fingerprinting, behavioral biometrics, Privacy Pass, Private Access Tokens, device-bound session credentials, anti-automation economics, systematization of knowledge
+
+---
+
+## Changelog
+
+### v3.0 — Self-Contained Consolidation (2026)
+
+- Inlined the bibliography (85 references, deduplicated and renumbered) into `paper.md`; removed the external `notes/bibliography.md`.
+- Removed stale planning/review artifacts (outline, QA report, content audit) and orphaned figures that no longer matched the manuscript.
+- Removed machine-local agent-tooling cruft and compiled binaries from version control; collapsed agent context to `AGENTS.md`.
+
+### v2.0 — SoK Pivot (May 2026)
+
+Rewrite from the v1.0 predictive/empirical draft into an analytical two-part SoK: removed fabricated calculus and engineering-hour estimates; expanded the reference base.
+
+### v1.0 — Initial Draft (2024)
+
+Original predictive/empirical draft. Superseded.
 
 ---
 

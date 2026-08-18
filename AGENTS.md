@@ -1,61 +1,24 @@
 # AGENTS.md — google-botguard-security-research
 
-This is an academic Systematization of Knowledge (SoK) paper repository, not a software project. There is no build system, CI, tests, or code.
+This is an academic Systematization of Knowledge (SoK) paper repository. No code, no tests, no CI. The only build target is the compiled PDF.
 
 ## Structure
 
-- **`paper.md`** — single-file manuscript (479 lines, 9 sections)
-- **`notes/bibliography.md`** — complete bibliography (78 references); paper.md defers to it
-- **`notes/outline.md`** — detailed section-level outline
-- **`notes/qa-report.md`** — empirical claim audit, neutrality audit, SoK checklist
-- **`notes/content-audit.md`** — classification of prior README content
-- **`figures/*.tex`** — LaTeX/TikZ figures (prisma-flow, taxonomy-table, auth-spectrum)
-- **`paper_TODO.md`** — authoritative revision tracker: completed revisions and remaining pre-submission tasks
-- **`README.md`** — paper abstract, repository structure, changelog (v1.0 → v2.0 SoK pivot)
+- `paper.md` — the complete, self-contained manuscript (8 sections in two parts, with the full 85-reference bibliography inlined at the end). Canonical deliverable.
+- `README.md` — abstract, build instructions, changelog.
+- `Makefile` — builds `paper.pdf` from `paper.md` via pandoc + lualatex.
 
 ## Workflow
 
-- The manuscript is v2.0 (May 2026 SoK pivot from v1.0 predictive/empirical draft)
-- Fifth revision addressing senior PC member code review; see `paper_TODO.md` for remaining items
-- Bibliography is maintained in `notes/bibliography.md`, not inline in paper.md
-- LaTeX figures are standalone `.tex` files; no compiled PDFs in the repo
-- There are no scripts, Makefiles, or automation — all work is manual editing
+- All edits happen in `paper.md`. References are inline at the bottom — there is no separate bibliography file.
+- `make` produces `paper.pdf`; `make clean` removes it. The PDF is a git-ignored build artifact — do not commit it.
 
-<!-- code-review-graph MCP tools -->
-## MCP Tools: code-review-graph
+## Editing rules
 
-**IMPORTANT: This project has a knowledge graph. ALWAYS use the
-code-review-graph MCP tools BEFORE using Grep/Glob/Read to explore
-the codebase.** The graph is faster, cheaper (fewer tokens), and gives
-you structural context (callers, dependents, test coverage) that file
-scanning cannot.
+- Inline `[N]` citations must match the `**[N]**` entries in the References section. Adding or removing a reference requires renumbering every inline citation.
+- Preserve the two-part structure (Part I: historical retrospective; Part II: VLM/Operator Synthesis analysis).
+- Tone is analytically neutral SoK — no prescriptive "defenders should" language, no fabricated numeric estimates.
 
-### When to use graph tools FIRST
+## Build pitfall
 
-- **Exploring code**: `semantic_search_nodes_tool` or `query_graph_tool` instead of Grep
-- **Understanding impact**: `get_impact_radius_tool` instead of manually tracing imports
-- **Code review**: `detect_changes_tool` + `get_review_context_tool` instead of reading entire files
-- **Finding relationships**: `query_graph_tool` with callers_of/callees_of/imports_of/tests_for
-- **Architecture questions**: `get_architecture_overview_tool` + `list_communities_tool`
-
-Fall back to Grep/Glob/Read **only** when the graph doesn't cover what you need.
-
-### Key Tools
-
-| Tool | Use when |
-| ------ | ---------- |
-| `detect_changes_tool` | Reviewing code changes — gives risk-scored analysis |
-| `get_review_context_tool` | Need source snippets for review — token-efficient |
-| `get_impact_radius_tool` | Understanding blast radius of a change |
-| `get_affected_flows_tool` | Finding which execution paths are impacted |
-| `query_graph_tool` | Tracing callers, callees, imports, tests, dependencies |
-| `semantic_search_nodes_tool` | Finding functions/classes by name or keyword |
-| `get_architecture_overview_tool` | Understanding high-level codebase structure |
-| `refactor_tool` | Planning renames, finding dead code |
-
-### Workflow
-
-1. The graph auto-updates on file changes (via hooks).
-2. Use `detect_changes_tool` for code review.
-3. Use `get_affected_flows_tool` to understand impact.
-4. Use `query_graph_tool` pattern="tests_for" to check coverage.
+The Makefile uses `mainfont="DejaVu Sans"` (not Serif) because it is the only locally installed font carrying the ✓ (U+2713) and ✗ (U+2717) glyphs in the comparison tables. DejaVu Serif lacks them, and luaotfload's `mainfontfallback` mechanism fails to resolve under the current TeX Live — do not reintroduce it.
