@@ -44,6 +44,14 @@ Client-side attestation, VLM-based automation, operator synthesis, browser finge
 
 ## Changelog
 
+### v3.1 — Logic-Check Revisions (2026)
+
+- Added an explicit definition of *input synthesis* and a concrete hypothetical attack scenario to Section 1.4, per logic-check feedback.
+- Replaced the fractional "Tier 2/3" resilience label with three mutually exclusive tiers (1: input-modality-independent/hardware-anchored; 2: degraded, cost-shifted but not eliminated; 3: operationally substituted), and updated all cross-references (Sections 3.2, 3.4, 4.2).
+- Nuanced "sole binding economic constraint" claims: residual detection surfaces (containerization artifacts, orchestration-layer kinematics) are now explicitly acknowledged in Sections 3.2 and 4.2.
+- Qualified Section 5 economic claims (VLM cost-deflation trajectory, proxy-market price bands, state-orchestration net savings) with sourcing caveats; anchored the proxy-market structure to [76].
+- Restored full citation integrity: all 85 bibliography entries are now cited inline at claim-supported locations (previously 32 were uncited orphans).
+
 ### v3.0 — Self-Contained Consolidation (2026)
 
 - Inlined the bibliography (85 references, deduplicated and renumbered) into `paper.md`; removed the external `notes/bibliography.md`.

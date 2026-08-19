@@ -25,3 +25,7 @@ QODER.md
 .windsurfrules
 opencode.jsonc
 .mcp.json
+
+# Private paper positioning/lessons (local only)
+.paper-memory/
+talk/
