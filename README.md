@@ -16,7 +16,7 @@ Client-side anti-automation has evolved through five architecturally distinct pa
 
 ## Manuscript
 
-The complete, self-contained manuscript — including its inline 85-reference bibliography — is in **`paper.md`** (8 sections across two parts).
+The complete, self-contained manuscript — including its inline 95-reference bibliography — is in **`paper.md`** (8 sections across two parts).
 
 ## Build
 
@@ -29,7 +29,7 @@ make clean    # removes paper.pdf
 
 | Path | Description |
 |---|---|
-| `paper.md` | Full self-contained manuscript (8 sections, inline 85-reference bibliography) |
+| `paper.md` | Full self-contained manuscript (8 sections, inline 95-reference bibliography) |
 | `README.md` | This file |
 | `Makefile` | Builds `paper.pdf` from `paper.md` (pandoc, lualatex) |
 | `AGENTS.md` | Working conventions for AI agents operating on this repo |
@@ -43,6 +43,11 @@ Client-side attestation, VLM-based automation, operator synthesis, browser finge
 ---
 
 ## Changelog
+
+### v3.1 — Server-Side Companion Section (2026)
+
+- Added Section 6.5, "The Excluded Chapter: Passive Server-Side Traffic-Artifact Continuity" — a flagged, explicitly-scoped extension past Section 1.2's own server-side exclusion, analyzing the network-layer behavioral metadata Section 4.3 already names as the defender's only recourse once client-side attestation is cryptographically valid but attacker-controlled.
+- Added 10 references (86–95: TLS/TCP/HTTP passive-fingerprinting tooling and standards, NIST SP 800-63B, and two self-citations to the author's own published essays), gathered outside the systematic search documented in Section 3.1 and disclosed as such.
 
 ### v3.0 — Self-Contained Consolidation (2026)
 
