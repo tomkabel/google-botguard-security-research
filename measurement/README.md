@@ -1,8 +1,7 @@
 # Measurement harness (REVISION_PLAN Phase 4)
 
-A harness for the paper's planned §5.6 "Measured costs". It is built and smoke-tested. **No
-measurement data has been collected yet.** Nothing in this directory may be cited as a result
-until the runs described below have actually been done.
+The harness behind paper §5.7 "Measured Costs on a Self-Hosted Testbed" (Tables 5.4, 5.5). Raw logs are
+in `logs/`, generated tables in `results/summary.md`, and the grounding probe in `results/grounding_probe.json`.
 
 ## Ethics scope (binding)
 
@@ -59,8 +58,9 @@ Status on the dev box (2026-09-23): `playwright` (Python) and its Chromium are i
   (`ANTHROPIC_API_KEY` or an `ant auth login` profile).
   - `CU_TOOL=toolset` (default) uses `computer_toolset_20260801`, which is required on `claude-opus-5-5`.
   - `CU_TOOL=legacy` uses `computer_20251124` with beta `computer-use-2025-11-24`.
-- Plan item 2(c) asks for ≥2 VLMs including one open model. Add a second `Adapter` (e.g. a locally
-  served open VLM) with the same `step()` / `results()` contract. **Not implemented yet.**
+- `MeliousAdapter` (`VLM_PROVIDER=melious`, `MELIOUS_MODEL=<id>`, `MELIOUS_API_KEY`) covers any vision model on
+  the Melious OpenAI-compatible API, including open-weights ones. Set `MELIOUS_COORDS=norm1000` for models that
+  answer in 0–1000 normalised coordinates (gemma-4-26b-a4b; see the grounding probe).
 
 ## How to run
 
@@ -71,14 +71,17 @@ python3 testbed/server.py [--verify] &          # http://127.0.0.1:8799
 cd attackers
 python3 a_playwright.py --runs 30 --select dom
 python3 a_playwright.py --runs 30 --select role
-python3 b_osinput.py   --runs 30                # takes over the X display
-ANTHROPIC_MODEL=<id> python3 c_vlm.py --runs 10
-ANTHROPIC_MODEL=<id> python3 d_hybrid.py --runs 10 --start '/turnstile?mode=pass'
-cd .. && python3 analyze.py [--json]
+Xvfb :99 -screen 0 1280x800x24 -nolisten tcp &  # (b)-(d) refuse the live display
+export DISPLAY=:99
+python3 b_osinput.py   --runs 10
+VLM_PROVIDER=melious MELIOUS_MODEL=<id> python3 c_vlm.py --runs 10
+VLM_PROVIDER=melious MELIOUS_MODEL=<id> python3 d_hybrid.py --runs 10 --start '/turnstile?mode=pass'
+cd .. && python3 grounding_probe.py --trials 5  # optional: pick models
+python3 analyze.py [--json | --summary | --check-paper]
 ```
 
-Prices for `$ / success` come from `../analysis/params.json`:
-`{"prices_usd_per_mtok": {"<model id>": {"input": x, "output": y}}}`. Put the verified,
+Prices for cost per success come from `../analysis/params.json`:
+`"prices_usd_per_mtok"` / `"prices_eur_per_mtok"`, each `{"value": {"<model id>": {"input": x, "output": y}}}`. Put the verified,
 dated list prices there. No prices are hard-coded, and an unpriced model shows `-`.
 
 ## Outputs
@@ -86,40 +89,21 @@ dated list prices there. No prices are hard-coded, and an unpriced model shows `
 `logs/runs-<config>.jsonl` holds one line per run: run_id, model, start/end, per-action durations,
 tokens, and error. `logs/server.jsonl` holds the server events. `analyze.py` prints one row per config:
 
-`config  n  pass  honeypot  vendor  run_med_s  act_p50  act_p90  $/success`
+`config  n  pass  honeypot  vendor  run_med_s  act_p50  act_p90  cost/succ`
 
 - **pass**: the server saw `flow_done` for that run. This is authoritative over the attacker's own flag.
 - **honeypot**: the share of runs with ≥1 decoy activation.
 - **vendor**: the share of verified tokens that passed. `-` without `--verify`.
 - **act_p50 / act_p90**: the per-action latency distribution in seconds, excluding browser launch.
-- **$/success**: total LLM spend across all runs divided by the number of successes, so failed runs count.
+- **cost/succ**: total LLM spend across all runs divided by the number of successes, so failed runs count.
 
-## Smoke test done at build time (not data)
+## Results (23 September 2026, paper §5.7)
 
-- `analyze.py --selfcheck` passed.
-- Local server plus config (a), 5 runs each. `--select dom` passed 5/5 with honeypot 5/5.
-  `--select role` passed 5/5 with honeypot 0/5.
-- A Playwright coordinate click on the real button went through the overlay to step 2 with
-  0 honeypot events.
-- `getBoundingClientRect()` of the decoy is 160×40. `get_by_role("button", name="Continue")`
-  found 1 element (the decoy is hidden from the a11y tree).
-- These runs only confirm the wiring. The logs were deleted.
-- (b), (c) and (d) were compile/import-checked only; they were not executed. (b) takes over the
-  display, and (c)/(d) need an API key and incur spend.
-
-## What goes into paper §5.6
-
-1. A table per config (a-dom, a-role, b, c per model, d): pass rate, honeypot trigger rate,
-   median/p90 run time, per-action latency p50/p90, tokens and $ per success. Give n and dates.
-2. Compare per-action latency against published human timings for a comparable flow. Do not
-   compare against single-CAPTCHA solve times (see §3.4 L4).
-3. The honeypot result, stated with its scope. It fires on DOM-reference selection (a-dom) and
-   is by construction invisible to a11y-tree (a-role), keyboard (b) and screenshot-only (c)
-   agents. Report negative results as such.
-4. The hybrid (d) versus pure-VLM (c) cost ratio. This addresses the S&P confound: how much of
-   the cost is the VLM itself and how much is OS-level input.
-5. Limitations:
-   - Test keys give fixed vendor outcomes.
-   - There is no v3 test key.
-   - Only one VLM is wired so far.
-   - There is no human pilot without IRB.
+- 90 runs: a-dom, a-role, b-xdotool 10 each; c-vlm and d-hybrid 10 each for glm-5.3-flash, qwen3.8-27b and
+  gemma-4-26b-a4b (norm1000). (b)–(d) ran on Xvfb displays at 1280×800. Total LLM spend €0.46.
+- `analyze.py --summary` writes `results/summary.md` / `summary.json`; `--check-paper` (run by `make numbers`)
+  asserts that every table row appears verbatim in `paper.md`.
+- Pass = server-side `flow_done`. For d-hybrid the attacker's own flag means "scripted control resumed after
+  the VLM step" and is reported separately (glm 9/10, qwen 0/10, gemma 0/10).
+- Limitations: test keys give fixed vendor outcomes (no v3 test key exists); no human baseline without IRB;
+  xdotool moves the pointer in straight jumps (no kinematics); one provider, one day, list prices in EUR.

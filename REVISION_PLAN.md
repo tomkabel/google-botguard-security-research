@@ -44,10 +44,10 @@ Collected from `paper.md` and the repo (`grep -rn "TODO(author)"`), plus open AU
 | F9 | Missing related work (≥3 boards) | DONE (§2.5; Searles/Bonneau figures verified) — Azad summary = AUTHOR |
 | F10 | PACT built on news/blogs (all 5) | DONE (primary sources) |
 | F11 | Anonymity, ethics, Open Science, AI-use disclosure (USENIX, S&P, Euro) | DONE (Open Science lists artifacts) except AI-use = AUTHOR |
-| F12 | No measurement at all; VLM vs scripted OS-input confound (all 5; S&P fatal) | Harness DONE (`measurement/`, §7.1, no results claimed) — **OPEN**: runs |
+| F12 | No measurement at all; VLM vs scripted OS-input confound (all 5; S&P fatal) | DONE (small): §5.7 Tables 5.4/5.5 — 90 runs, configs (a)–(d), three Melious VLMs incl. open-weights Gemma, N=10/cell; confound isolated ((b) vs (c)). Scale-up, real vendor keys, human baseline OPEN |
 | F13 | Page limit: likely 15–20+ pages (USENIX, S&P) | **OPEN** — Phase 6 (~20.5k words) |
 | F14 | No systematization figure; tables lack per-cell citations; no comparison vs prior surveys (S&P, Euro) | DONE (Fig. cost_shift, per-cell cites, §2.5 table) |
-| F15 | Cognitive honeypot untested (S&P, USENIX, CCS) | Decoy in testbed — OPEN: runs (Phase 4) |
+| F15 | Cognitive honeypot untested (S&P, USENIX, CCS) | DONE: a-dom 10/10 hits, a-role 0/10, OS-input 0/70 (§5.7); holds by construction, stated |
 | F16 | Privacy not central (PoPETs) — only if targeting PETS | N/A (venue = IEEE S&P) |
 | F17 | Hybrid attacker model (S&P) | DONE (Table 5.2 sensitivity) |
 | F18 | Repetition / hedging / prose density (all 5) | Partly DONE — OPEN in Phase 6 |
@@ -100,11 +100,14 @@ Status: 1 DONE (§5.6; device price = AUTHOR) · 2 DONE (Table 5.2) · 3 DONE ·
    so text and tables are generated from one parameter file. Ships as the Open Science artifact.
 - **Done when:** script reproduces every number in §5; Tier 1 has a quantified cost, not an adjective.
 
-## Phase 4 — Minimal ethical measurement (F12, F15) — harness DONE, runs OPEN
+## Phase 4 — Minimal ethical measurement (F12, F15) — DONE at small scale (2026-09-23)
 
-Status: 1 DONE (Turnstile + reCAPTCHA v2 test keys; no v3 test key exists) · 2 DONE for (a)–(d), second/open
-VLM adapter OPEN · 3 instrumented, no data · 4 AUTHOR (IRB) · 5 harness released, ToS noted in README ·
-6 OPEN; meanwhile §7.1 announces the harness and claims no results.
+Status: 1 DONE (Turnstile + reCAPTCHA v2 test keys; no v3 test key exists) · 2 DONE for (a)–(d); Melious adapter,
+3 VLMs (glm-5.3-flash, qwen3.8-27b, open-weights gemma-4-26b-a4b) · 3 DONE: §5.7, `measurement/results/summary.md`,
+`make numbers` asserts tables vs logs; vendor score not measured (test keys) · 4 AUTHOR (IRB) · 5 harness released, ToS noted in README ·
+6 DONE: §5.7 added; Table 5.1 status column and params.json carry measured values; §3.4 L4, §5.2, §7.1,
+abstract, C2, Ethics, Open Science updated. Finding: 5–15 s/step assumption too slow for small VLMs; hybrid hand-back
+worked only for glm (9/10), qwen/gemma 0/10.
 
 Scope strictly to **self-hosted / test-sitekey** targets. No production Google/Botguard endpoints.
 

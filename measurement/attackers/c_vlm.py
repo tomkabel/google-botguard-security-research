@@ -12,11 +12,14 @@ Concrete adapter: AnthropicAdapter (Claude computer use). Env:
   ANTHROPIC_MODEL (required, no default committed), ANTHROPIC_API_KEY or `ant auth login` profile,
   CU_TOOL = toolset (computer_toolset_20260801, GA; required on claude-opus-5-5)
           | legacy (computer_20251124 + beta computer-use-2025-11-24)
+MeliousAdapter (VLM_PROVIDER=melious): OpenAI-compatible chat API at https://api.melious.ai/v1,
+  MELIOUS_MODEL = exact model id, MELIOUS_API_KEY, MELIOUS_COORDS=norm1000 if the model answers
+  in 0-1000 normalised coordinates (see results/grounding_probe.json). One screenshot per call, strict JSON action out.
 Usage: python c_vlm.py [--runs N] [--max-steps 40]
 """
-import argparse, base64, os, shutil, subprocess, time
+import argparse, base64, json, os, re, shutil, subprocess, time
 from common import BASE, Run
-from b_osinput import launch, xdo
+from b_osinput import launch, xdo, window_title
 
 SHOT_W, SHOT_H = 1280, 800  # screenshots are downscaled to this; coordinates are scaled back
 GOAL = ("Complete the web form shown in the browser: fill each step (name 'Test User', email "
@@ -94,14 +97,109 @@ class AnthropicAdapter:
         self.messages.append({"role": "user", "content": content})
 
 
+ACTION_PROMPT = ("You control a web browser through the screenshot below ({w}x{h} pixels, origin top-left).\n"
+                 "Task: {goal}\nActions already taken (oldest first): {hist}\n"
+                 "Reply with exactly ONE JSON object and nothing else, one of:\n"
+                 '{{"action":"click","x":<int>,"y":<int>}}  {{"action":"type","text":"<str>"}}  '
+                 '{{"action":"key","key":"Enter"}}  {{"action":"done"}}\n'
+                 "x,y are pixel coordinates in this screenshot. Click a field before typing into it.")
+
+
+def parse_action(text):
+    """Model reply -> executor action list ([] = done, None = unparseable). Tolerates fences/prose."""
+    text = re.sub(r"<think>.*?</think>", "", text or "", flags=re.S)
+    for m in re.finditer(r"\{[^{}]*\}", text):
+        try:
+            a = json.loads(m.group(0))
+        except ValueError:
+            continue
+        kind = str(a.get("action", "")).lower()
+        if kind == "done":
+            return []
+        if kind == "click":
+            xy = a.get("coordinate") or [a.get("x"), a.get("y")]
+            if all(isinstance(v, (int, float)) for v in xy[:2]):
+                return [{"action": "left_click", "coordinate": [round(xy[0]), round(xy[1])]}]
+        if kind == "type" and isinstance(a.get("text"), str):
+            return [{"action": "type", "text": a["text"]}]
+        if kind == "key":
+            return [{"action": "key", "text": str(a.get("key") or a.get("text") or "Return")}]
+    return None
+
+
+class MeliousAdapter:
+    """Stateless per call: goal + text history of own actions + current screenshot."""
+    URL = "https://api.melious.ai/v1/chat/completions"
+
+    def __init__(self, model=None):
+        import httpx
+        self.http = httpx.Client(timeout=120)
+        self.model = model or os.environ["MELIOUS_MODEL"]
+        self.hist, self.calls = [], []
+        self.norm1000 = os.environ.get("MELIOUS_COORDS") == "norm1000"
+
+    def ask(self, png, prompt, max_tokens=2048):
+        """One chat call; returns (reply text, input tokens, output tokens, latency s)."""
+        import httpx
+        body = {"model": self.model, "temperature": 0, "max_tokens": max_tokens, "messages": [{"role": "user", "content": [
+            {"type": "image_url", "image_url": {"url": "data:image/png;base64," + base64.b64encode(png).decode()}},
+            {"type": "text", "text": prompt}]}]}
+        # retry transport errors and non-200s (Melious intermittently answers gemma image requests with
+        # 400 "malformed" for requests that succeed on resend); failed attempts are logged, latency = successful call
+        for attempt in range(3):
+            t = time.monotonic()
+            try:
+                r = self.http.post(self.URL, headers={"Authorization": f"Bearer {os.environ['MELIOUS_API_KEY']}"}, json=body)
+            except httpx.TransportError as e:
+                self.calls.append({"error": repr(e)[:120]})
+                continue
+            dt = time.monotonic() - t
+            if r.status_code == 200:
+                break
+            self.calls.append({"error": f"HTTP {r.status_code}: {r.text[:80]}"})
+        else:
+            raise RuntimeError("melious: 3 failed attempts")
+        d = r.json()
+        u = d.get("usage") or {}
+        i, o = u.get("prompt_tokens", 0), u.get("completion_tokens", 0)
+        self.calls.append({"latency_s": dt, "input_tokens": i, "output_tokens": o})
+        return d["choices"][0]["message"].get("content") or "", i, o, dt
+
+    def step(self, png, goal):
+        text, i, o, _ = self.ask(png, ACTION_PROMPT.format(w=SHOT_W, h=SHOT_H, goal=goal,
+                                                           hist=json.dumps(self.hist[-12:]) or "none"))
+        acts = parse_action(text)
+        if acts is None:  # unparseable reply: log it and let the loop re-ask with a fresh screenshot
+            self.hist.append({"invalid_reply": text[:80]})
+            return [{"action": "screenshot"}], i, o
+        self.hist += acts
+        if self.norm1000:  # model answers in 0-1000 normalised coordinates (seen for gemma in the probe)
+            acts = [dict(a, coordinate=[round(a["coordinate"][0] * SHOT_W / 1000), round(a["coordinate"][1] * SHOT_H / 1000)])
+                    if "coordinate" in a else a for a in acts]
+        return acts, i, o
+
+    def results(self, png):
+        pass  # stateless: the next step() carries the new screenshot
+
+
+def make_adapter():
+    return MeliousAdapter() if os.environ.get("VLM_PROVIDER") == "melious" else AnthropicAdapter()
+
+
+def model_id():
+    return os.environ.get("MELIOUS_MODEL") if os.environ.get("VLM_PROVIDER") == "melious" else os.environ.get("ANTHROPIC_MODEL")
+
+
 def agent_loop(adapter, run, goal, max_steps, scale):
+    run.r["llm_calls"] = getattr(adapter, "calls", [])  # same list object: survives exceptions
+    run.r["coords"] = "norm1000" if getattr(adapter, "norm1000", False) else "px"
     png = screenshot()
     for _ in range(max_steps):
         actions, i, o = adapter.step(png, goal)
         run.tokens(i, o)
         run.act("llm")
         if not actions:
-            return
+            break
         for a in actions:
             execute(a, scale)
             run.act(a["action"])
@@ -111,16 +209,15 @@ def agent_loop(adapter, run, goal, max_steps, scale):
 
 
 def one_run(max_steps):
-    run = Run("c-vlm", model=os.environ.get("ANTHROPIC_MODEL"))
+    run = Run("c-vlm", model=model_id())
     proc, prof = launch(f"{BASE}/flow/1?run={run.id}")
     try:
         time.sleep(3)
         run.act("launch")
         w, h = screen_size()
-        agent_loop(AnthropicAdapter(), run, GOAL, max_steps, (w / SHOT_W, h / SHOT_H))
+        agent_loop(make_adapter(), run, GOAL, max_steps, (w / SHOT_W, h / SHOT_H))
         # success is decided server-side (flow_done event) in analyze.py; window title is a hint
-        run.r["success"] = subprocess.run(["xdotool", "getactivewindow", "getwindowname"],
-                                          capture_output=True, text=True).stdout.startswith("Done")
+        run.r["success"] = window_title().startswith("Done")
     except Exception as e:
         run.r["error"] = repr(e)
     finally:
@@ -141,5 +238,16 @@ def main():
               r["input_tokens"], r["output_tokens"])
 
 
+def selfcheck():
+    assert parse_action('```json\n{"action":"click","x":120.4,"y":220}\n```') == [{"action": "left_click", "coordinate": [120, 220]}]
+    assert parse_action('<think>{"action":"done"}</think> ok {"action": "type", "text": "Tartu"}') == [{"action": "type", "text": "Tartu"}]
+    assert parse_action('{"action":"key","key":"Enter"}') == [{"action": "key", "text": "Enter"}]
+    assert parse_action('I am done. {"action":"done"}') == [] and parse_action("no json") is None
+    print("selfcheck ok")
+
+
 if __name__ == "__main__":
+    import sys
+    if "--selfcheck" in sys.argv:
+        raise SystemExit(selfcheck())
     main()

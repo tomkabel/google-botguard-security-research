@@ -6,11 +6,11 @@ Env as in c_vlm.py. Usage: python d_hybrid.py [--runs N] [--start /flow/1]
 import argparse, os, re, shutil, time
 from common import BASE, Run
 from b_osinput import launch, window_title, drive_flow
-from c_vlm import AnthropicAdapter, agent_loop, screen_size, SHOT_W, SHOT_H
+from c_vlm import make_adapter, model_id, agent_loop, screen_size, SHOT_W, SHOT_H
 
 
 def one_run(start, delay, max_steps):
-    run = Run("d-hybrid", model=os.environ.get("ANTHROPIC_MODEL"))
+    run = Run("d-hybrid", model=model_id())
     proc, prof = launch(f"{BASE}{start}{'&' if '?' in start else '?'}run={run.id}")
     try:
         time.sleep(3)
@@ -18,7 +18,7 @@ def one_run(start, delay, max_steps):
         m = re.match(r"Step (\d)", window_title())
         if not m:  # unknown page: hand to the VLM until a known step appears
             w, h = screen_size()
-            agent_loop(AnthropicAdapter(), run, "Complete the verification page shown in the browser, submit it, then click "
+            agent_loop(make_adapter(), run, "Complete the verification page shown in the browser, submit it, then click "
                        "'Continue to form' and stop once a page titled 'Step 1' is visible.",
                        max_steps, (w / SHOT_W, h / SHOT_H))
             m = re.match(r"Step (\d)", window_title())

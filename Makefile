@@ -18,3 +18,4 @@ clean:
 .PHONY: numbers
 numbers:
 	python3 analysis/cost_model.py
+	python3 measurement/analyze.py --check-paper

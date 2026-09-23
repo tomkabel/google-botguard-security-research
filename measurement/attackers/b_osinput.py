@@ -12,19 +12,24 @@ from common import BASE, FLOW_ANSWERS, Run
 CHROME = os.environ.get("CHROME", "chromium")
 
 
+# Display safety: (b)-(d) inject OS-level input. Refuse the live desktop unless explicitly allowed;
+# run under Xvfb, e.g. `Xvfb :99 -screen 0 1280x800x24 & DISPLAY=:99 python b_osinput.py`.
 def xdo(*args):
+    assert os.environ.get("DISPLAY") not in (None, "", ":0", ":0.0") or os.environ.get("ALLOW_LIVE_DISPLAY") == "1", \
+        "refusing to inject input into the live display; set DISPLAY to an Xvfb server"
     subprocess.run(["xdotool", *args], check=True)
 
 
 def window_title():
-    return subprocess.run(["xdotool", "getactivewindow", "getwindowname"],
+    return subprocess.run(["xdotool", "getwindowfocus", "getwindowname"],  # works without an EWMH WM (Xvfb)
                           capture_output=True, text=True).stdout.strip()
 
 
 def launch(url):
     prof = tempfile.mkdtemp(prefix="tb-chrome-")
     proc = subprocess.Popen([CHROME, f"--user-data-dir={prof}", "--no-first-run",
-                             "--no-default-browser-check", "--new-window", url],
+                             "--no-default-browser-check", "--window-position=0,0",
+                             "--window-size=1280,800", "--new-window", url],
                             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     return proc, prof
 

@@ -1,0 +1,1509 @@
+{
+ "date": "2026-09-23",
+ "provider": "melious.ai",
+ "viewport": [
+  1280,
+  800
+ ],
+ "pages": [
+  {
+   "page": "/flow/1",
+   "box": {
+    "x": 40,
+    "y": 200,
+    "width": 160,
+    "height": 40
+   }
+  },
+  {
+   "page": "/flow/2",
+   "box": {
+    "x": 40,
+    "y": 200,
+    "width": 160,
+    "height": 40
+   }
+  },
+  {
+   "page": "/flow/3",
+   "box": {
+    "x": 40,
+    "y": 200,
+    "width": 160,
+    "height": 40
+   }
+  },
+  {
+   "page": "/flow/4",
+   "box": {
+    "x": 40,
+    "y": 200,
+    "width": 160,
+    "height": 40
+   }
+  },
+  {
+   "page": "/flow/5",
+   "box": {
+    "x": 40,
+    "y": 200,
+    "width": 160,
+    "height": 40
+   }
+  }
+ ],
+ "results": [
+  {
+   "model": "glm-5.3-flash",
+   "n": 25,
+   "hits": 25,
+   "hit_rate": 1.0,
+   "hit_rate_norm1000": 0.0,
+   "latency_s_median": 0.71,
+   "input_tokens_mean": 1398,
+   "output_tokens_mean": 27,
+   "errors": 0,
+   "trials": [
+    {
+     "page": "/flow/1",
+     "trial": 0,
+     "xy": [
+      119,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 0.837,
+     "input_tokens": 1398,
+     "output_tokens": 27,
+     "reply": null
+    },
+    {
+     "page": "/flow/1",
+     "trial": 1,
+     "xy": [
+      119,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 0.567,
+     "input_tokens": 1398,
+     "output_tokens": 27,
+     "reply": null
+    },
+    {
+     "page": "/flow/1",
+     "trial": 2,
+     "xy": [
+      119,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 0.647,
+     "input_tokens": 1398,
+     "output_tokens": 27,
+     "reply": null
+    },
+    {
+     "page": "/flow/1",
+     "trial": 3,
+     "xy": [
+      119,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 0.574,
+     "input_tokens": 1398,
+     "output_tokens": 27,
+     "reply": null
+    },
+    {
+     "page": "/flow/1",
+     "trial": 4,
+     "xy": [
+      119,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 0.772,
+     "input_tokens": 1398,
+     "output_tokens": 27,
+     "reply": null
+    },
+    {
+     "page": "/flow/2",
+     "trial": 0,
+     "xy": [
+      119,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 1.514,
+     "input_tokens": 1398,
+     "output_tokens": 27,
+     "reply": null
+    },
+    {
+     "page": "/flow/2",
+     "trial": 1,
+     "xy": [
+      119,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 0.884,
+     "input_tokens": 1398,
+     "output_tokens": 27,
+     "reply": null
+    },
+    {
+     "page": "/flow/2",
+     "trial": 2,
+     "xy": [
+      119,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 0.891,
+     "input_tokens": 1398,
+     "output_tokens": 27,
+     "reply": null
+    },
+    {
+     "page": "/flow/2",
+     "trial": 3,
+     "xy": [
+      119,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 0.664,
+     "input_tokens": 1398,
+     "output_tokens": 27,
+     "reply": null
+    },
+    {
+     "page": "/flow/2",
+     "trial": 4,
+     "xy": [
+      119,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 0.572,
+     "input_tokens": 1398,
+     "output_tokens": 27,
+     "reply": null
+    },
+    {
+     "page": "/flow/3",
+     "trial": 0,
+     "xy": [
+      119,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 0.728,
+     "input_tokens": 1398,
+     "output_tokens": 27,
+     "reply": null
+    },
+    {
+     "page": "/flow/3",
+     "trial": 1,
+     "xy": [
+      119,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 0.584,
+     "input_tokens": 1398,
+     "output_tokens": 27,
+     "reply": null
+    },
+    {
+     "page": "/flow/3",
+     "trial": 2,
+     "xy": [
+      119,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 0.579,
+     "input_tokens": 1398,
+     "output_tokens": 27,
+     "reply": null
+    },
+    {
+     "page": "/flow/3",
+     "trial": 3,
+     "xy": [
+      119,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 0.767,
+     "input_tokens": 1398,
+     "output_tokens": 27,
+     "reply": null
+    },
+    {
+     "page": "/flow/3",
+     "trial": 4,
+     "xy": [
+      119,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 0.714,
+     "input_tokens": 1398,
+     "output_tokens": 27,
+     "reply": null
+    },
+    {
+     "page": "/flow/4",
+     "trial": 0,
+     "xy": [
+      119,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 0.813,
+     "input_tokens": 1398,
+     "output_tokens": 27,
+     "reply": null
+    },
+    {
+     "page": "/flow/4",
+     "trial": 1,
+     "xy": [
+      119,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 0.71,
+     "input_tokens": 1398,
+     "output_tokens": 27,
+     "reply": null
+    },
+    {
+     "page": "/flow/4",
+     "trial": 2,
+     "xy": [
+      119,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 0.654,
+     "input_tokens": 1398,
+     "output_tokens": 27,
+     "reply": null
+    },
+    {
+     "page": "/flow/4",
+     "trial": 3,
+     "xy": [
+      119,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 0.578,
+     "input_tokens": 1398,
+     "output_tokens": 27,
+     "reply": null
+    },
+    {
+     "page": "/flow/4",
+     "trial": 4,
+     "xy": [
+      119,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 5.113,
+     "input_tokens": 1398,
+     "output_tokens": 27,
+     "reply": null
+    },
+    {
+     "page": "/flow/5",
+     "trial": 0,
+     "xy": [
+      119,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 0.61,
+     "input_tokens": 1398,
+     "output_tokens": 27,
+     "reply": null
+    },
+    {
+     "page": "/flow/5",
+     "trial": 1,
+     "xy": [
+      119,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 0.591,
+     "input_tokens": 1398,
+     "output_tokens": 27,
+     "reply": null
+    },
+    {
+     "page": "/flow/5",
+     "trial": 2,
+     "xy": [
+      119,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 1.236,
+     "input_tokens": 1398,
+     "output_tokens": 27,
+     "reply": null
+    },
+    {
+     "page": "/flow/5",
+     "trial": 3,
+     "xy": [
+      119,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 9.905,
+     "input_tokens": 1398,
+     "output_tokens": 27,
+     "reply": null
+    },
+    {
+     "page": "/flow/5",
+     "trial": 4,
+     "xy": [
+      119,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 0.674,
+     "input_tokens": 1398,
+     "output_tokens": 27,
+     "reply": null
+    }
+   ]
+  },
+  {
+   "model": "kimi-k2.7-code",
+   "n": 25,
+   "hits": 25,
+   "hit_rate": 1.0,
+   "hit_rate_norm1000": 0.0,
+   "latency_s_median": 3.091,
+   "input_tokens_mean": 1397,
+   "output_tokens_mean": 341.4,
+   "errors": 0,
+   "trials": [
+    {
+     "page": "/flow/1",
+     "trial": 0,
+     "xy": [
+      130,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 2.166,
+     "input_tokens": 1397,
+     "output_tokens": 292,
+     "reply": null
+    },
+    {
+     "page": "/flow/1",
+     "trial": 1,
+     "xy": [
+      130,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 4.527,
+     "input_tokens": 1397,
+     "output_tokens": 374,
+     "reply": null
+    },
+    {
+     "page": "/flow/1",
+     "trial": 2,
+     "xy": [
+      130,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 2.25,
+     "input_tokens": 1397,
+     "output_tokens": 292,
+     "reply": null
+    },
+    {
+     "page": "/flow/1",
+     "trial": 3,
+     "xy": [
+      120,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 1.845,
+     "input_tokens": 1397,
+     "output_tokens": 167,
+     "reply": null
+    },
+    {
+     "page": "/flow/1",
+     "trial": 4,
+     "xy": [
+      120,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 1.858,
+     "input_tokens": 1397,
+     "output_tokens": 167,
+     "reply": null
+    },
+    {
+     "page": "/flow/2",
+     "trial": 0,
+     "xy": [
+      130,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 2.392,
+     "input_tokens": 1397,
+     "output_tokens": 252,
+     "reply": null
+    },
+    {
+     "page": "/flow/2",
+     "trial": 1,
+     "xy": [
+      130,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 2.285,
+     "input_tokens": 1397,
+     "output_tokens": 401,
+     "reply": null
+    },
+    {
+     "page": "/flow/2",
+     "trial": 2,
+     "xy": [
+      120,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 3.092,
+     "input_tokens": 1397,
+     "output_tokens": 340,
+     "reply": null
+    },
+    {
+     "page": "/flow/2",
+     "trial": 3,
+     "xy": [
+      120,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 3.091,
+     "input_tokens": 1397,
+     "output_tokens": 294,
+     "reply": null
+    },
+    {
+     "page": "/flow/2",
+     "trial": 4,
+     "xy": [
+      120,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 5.48,
+     "input_tokens": 1397,
+     "output_tokens": 333,
+     "reply": null
+    },
+    {
+     "page": "/flow/3",
+     "trial": 0,
+     "xy": [
+      130,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 3.289,
+     "input_tokens": 1397,
+     "output_tokens": 290,
+     "reply": null
+    },
+    {
+     "page": "/flow/3",
+     "trial": 1,
+     "xy": [
+      130,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 3.018,
+     "input_tokens": 1397,
+     "output_tokens": 598,
+     "reply": null
+    },
+    {
+     "page": "/flow/3",
+     "trial": 2,
+     "xy": [
+      120,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 3.972,
+     "input_tokens": 1397,
+     "output_tokens": 694,
+     "reply": null
+    },
+    {
+     "page": "/flow/3",
+     "trial": 3,
+     "xy": [
+      130,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 2.87,
+     "input_tokens": 1397,
+     "output_tokens": 336,
+     "reply": null
+    },
+    {
+     "page": "/flow/3",
+     "trial": 4,
+     "xy": [
+      130,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 3.067,
+     "input_tokens": 1397,
+     "output_tokens": 598,
+     "reply": null
+    },
+    {
+     "page": "/flow/4",
+     "trial": 0,
+     "xy": [
+      105,
+      222
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 3.774,
+     "input_tokens": 1397,
+     "output_tokens": 556,
+     "reply": null
+    },
+    {
+     "page": "/flow/4",
+     "trial": 1,
+     "xy": [
+      120,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 1.53,
+     "input_tokens": 1397,
+     "output_tokens": 230,
+     "reply": null
+    },
+    {
+     "page": "/flow/4",
+     "trial": 2,
+     "xy": [
+      120,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 1.731,
+     "input_tokens": 1397,
+     "output_tokens": 230,
+     "reply": null
+    },
+    {
+     "page": "/flow/4",
+     "trial": 3,
+     "xy": [
+      120,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 2.95,
+     "input_tokens": 1397,
+     "output_tokens": 301,
+     "reply": null
+    },
+    {
+     "page": "/flow/4",
+     "trial": 4,
+     "xy": [
+      100,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 9.213,
+     "input_tokens": 1397,
+     "output_tokens": 337,
+     "reply": null
+    },
+    {
+     "page": "/flow/5",
+     "trial": 0,
+     "xy": [
+      120,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 3.928,
+     "input_tokens": 1397,
+     "output_tokens": 307,
+     "reply": null
+    },
+    {
+     "page": "/flow/5",
+     "trial": 1,
+     "xy": [
+      130,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 3.188,
+     "input_tokens": 1397,
+     "output_tokens": 287,
+     "reply": null
+    },
+    {
+     "page": "/flow/5",
+     "trial": 2,
+     "xy": [
+      100,
+      218
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 3.905,
+     "input_tokens": 1397,
+     "output_tokens": 336,
+     "reply": null
+    },
+    {
+     "page": "/flow/5",
+     "trial": 3,
+     "xy": [
+      105,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 3.15,
+     "input_tokens": 1397,
+     "output_tokens": 256,
+     "reply": null
+    },
+    {
+     "page": "/flow/5",
+     "trial": 4,
+     "xy": [
+      120,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 3.475,
+     "input_tokens": 1397,
+     "output_tokens": 267,
+     "reply": null
+    }
+   ]
+  },
+  {
+   "model": "gemma-4-26b-a4b",
+   "n": 25,
+   "hits": 0,
+   "hit_rate": 0.0,
+   "hit_rate_norm1000": 1.0,
+   "latency_s_median": 3.349,
+   "input_tokens_mean": 371,
+   "output_tokens_mean": 388.56,
+   "errors": 0,
+   "trials": [
+    {
+     "page": "/flow/1",
+     "trial": 0,
+     "xy": [
+      93,
+      286
+     ],
+     "hit": false,
+     "hit_norm1000": true,
+     "latency_s": 2.818,
+     "input_tokens": 371,
+     "output_tokens": 267,
+     "reply": null
+    },
+    {
+     "page": "/flow/1",
+     "trial": 1,
+     "xy": [
+      94,
+      287
+     ],
+     "hit": false,
+     "hit_norm1000": true,
+     "latency_s": 2.286,
+     "input_tokens": 371,
+     "output_tokens": 257,
+     "reply": null
+    },
+    {
+     "page": "/flow/1",
+     "trial": 2,
+     "xy": [
+      94,
+      285
+     ],
+     "hit": false,
+     "hit_norm1000": true,
+     "latency_s": 2.809,
+     "input_tokens": 371,
+     "output_tokens": 304,
+     "reply": null
+    },
+    {
+     "page": "/flow/1",
+     "trial": 3,
+     "xy": [
+      93,
+      286
+     ],
+     "hit": false,
+     "hit_norm1000": true,
+     "latency_s": 3.667,
+     "input_tokens": 371,
+     "output_tokens": 347,
+     "reply": null
+    },
+    {
+     "page": "/flow/1",
+     "trial": 4,
+     "xy": [
+      94,
+      287
+     ],
+     "hit": false,
+     "hit_norm1000": true,
+     "latency_s": 1.948,
+     "input_tokens": 371,
+     "output_tokens": 208,
+     "reply": null
+    },
+    {
+     "page": "/flow/2",
+     "trial": 0,
+     "xy": [
+      92,
+      285
+     ],
+     "hit": false,
+     "hit_norm1000": true,
+     "latency_s": 5.694,
+     "input_tokens": 371,
+     "output_tokens": 449,
+     "reply": null
+    },
+    {
+     "page": "/flow/2",
+     "trial": 1,
+     "xy": [
+      92,
+      285
+     ],
+     "hit": false,
+     "hit_norm1000": true,
+     "latency_s": 6.675,
+     "input_tokens": 371,
+     "output_tokens": 273,
+     "reply": null
+    },
+    {
+     "page": "/flow/2",
+     "trial": 2,
+     "xy": [
+      92,
+      285
+     ],
+     "hit": false,
+     "hit_norm1000": true,
+     "latency_s": 3.349,
+     "input_tokens": 371,
+     "output_tokens": 482,
+     "reply": null
+    },
+    {
+     "page": "/flow/2",
+     "trial": 3,
+     "xy": [
+      92,
+      285
+     ],
+     "hit": false,
+     "hit_norm1000": true,
+     "latency_s": 8.758,
+     "input_tokens": 371,
+     "output_tokens": 606,
+     "reply": null
+    },
+    {
+     "page": "/flow/2",
+     "trial": 4,
+     "xy": [
+      93,
+      283
+     ],
+     "hit": false,
+     "hit_norm1000": true,
+     "latency_s": 3.587,
+     "input_tokens": 371,
+     "output_tokens": 210,
+     "reply": null
+    },
+    {
+     "page": "/flow/3",
+     "trial": 0,
+     "xy": [
+      93,
+      286
+     ],
+     "hit": false,
+     "hit_norm1000": true,
+     "latency_s": 3.49,
+     "input_tokens": 371,
+     "output_tokens": 490,
+     "reply": null
+    },
+    {
+     "page": "/flow/3",
+     "trial": 1,
+     "xy": [
+      93,
+      286
+     ],
+     "hit": false,
+     "hit_norm1000": true,
+     "latency_s": 3.894,
+     "input_tokens": 371,
+     "output_tokens": 584,
+     "reply": null
+    },
+    {
+     "page": "/flow/3",
+     "trial": 2,
+     "xy": [
+      93,
+      286
+     ],
+     "hit": false,
+     "hit_norm1000": true,
+     "latency_s": 4.396,
+     "input_tokens": 371,
+     "output_tokens": 475,
+     "reply": null
+    },
+    {
+     "page": "/flow/3",
+     "trial": 3,
+     "xy": [
+      94,
+      285
+     ],
+     "hit": false,
+     "hit_norm1000": true,
+     "latency_s": 2.201,
+     "input_tokens": 371,
+     "output_tokens": 243,
+     "reply": null
+    },
+    {
+     "page": "/flow/3",
+     "trial": 4,
+     "xy": [
+      94,
+      285
+     ],
+     "hit": false,
+     "hit_norm1000": true,
+     "latency_s": 3.197,
+     "input_tokens": 371,
+     "output_tokens": 414,
+     "reply": null
+    },
+    {
+     "page": "/flow/4",
+     "trial": 0,
+     "xy": [
+      93,
+      286
+     ],
+     "hit": false,
+     "hit_norm1000": true,
+     "latency_s": 2.516,
+     "input_tokens": 371,
+     "output_tokens": 308,
+     "reply": null
+    },
+    {
+     "page": "/flow/4",
+     "trial": 1,
+     "xy": [
+      93,
+      285
+     ],
+     "hit": false,
+     "hit_norm1000": true,
+     "latency_s": 2.532,
+     "input_tokens": 371,
+     "output_tokens": 294,
+     "reply": null
+    },
+    {
+     "page": "/flow/4",
+     "trial": 2,
+     "xy": [
+      94,
+      286
+     ],
+     "hit": false,
+     "hit_norm1000": true,
+     "latency_s": 2.792,
+     "input_tokens": 371,
+     "output_tokens": 315,
+     "reply": null
+    },
+    {
+     "page": "/flow/4",
+     "trial": 3,
+     "xy": [
+      93,
+      285
+     ],
+     "hit": false,
+     "hit_norm1000": true,
+     "latency_s": 4.161,
+     "input_tokens": 371,
+     "output_tokens": 577,
+     "reply": null
+    },
+    {
+     "page": "/flow/4",
+     "trial": 4,
+     "xy": [
+      93,
+      285
+     ],
+     "hit": false,
+     "hit_norm1000": true,
+     "latency_s": 3.393,
+     "input_tokens": 371,
+     "output_tokens": 477,
+     "reply": null
+    },
+    {
+     "page": "/flow/5",
+     "trial": 0,
+     "xy": [
+      93,
+      285
+     ],
+     "hit": false,
+     "hit_norm1000": true,
+     "latency_s": 4.69,
+     "input_tokens": 371,
+     "output_tokens": 701,
+     "reply": null
+    },
+    {
+     "page": "/flow/5",
+     "trial": 1,
+     "xy": [
+      93,
+      285
+     ],
+     "hit": false,
+     "hit_norm1000": true,
+     "latency_s": 2.538,
+     "input_tokens": 371,
+     "output_tokens": 254,
+     "reply": null
+    },
+    {
+     "page": "/flow/5",
+     "trial": 2,
+     "xy": [
+      93,
+      284
+     ],
+     "hit": false,
+     "hit_norm1000": true,
+     "latency_s": 3.21,
+     "input_tokens": 371,
+     "output_tokens": 415,
+     "reply": null
+    },
+    {
+     "page": "/flow/5",
+     "trial": 3,
+     "xy": [
+      93,
+      285
+     ],
+     "hit": false,
+     "hit_norm1000": true,
+     "latency_s": 3.531,
+     "input_tokens": 371,
+     "output_tokens": 522,
+     "reply": null
+    },
+    {
+     "page": "/flow/5",
+     "trial": 4,
+     "xy": [
+      93,
+      285
+     ],
+     "hit": false,
+     "hit_norm1000": true,
+     "latency_s": 2.229,
+     "input_tokens": 371,
+     "output_tokens": 242,
+     "reply": null
+    }
+   ]
+  },
+  {
+   "model": "qwen3.8-27b",
+   "n": 25,
+   "hits": 25,
+   "hit_rate": 1.0,
+   "hit_rate_norm1000": 0.0,
+   "latency_s_median": 1.724,
+   "input_tokens_mean": 1066,
+   "output_tokens_mean": 121.2,
+   "errors": 0,
+   "trials": [
+    {
+     "page": "/flow/1",
+     "trial": 0,
+     "xy": [
+      119,
+      219
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 1.931,
+     "input_tokens": 1066,
+     "output_tokens": 123,
+     "reply": null
+    },
+    {
+     "page": "/flow/1",
+     "trial": 1,
+     "xy": [
+      119,
+      219
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 1.727,
+     "input_tokens": 1066,
+     "output_tokens": 123,
+     "reply": null
+    },
+    {
+     "page": "/flow/1",
+     "trial": 2,
+     "xy": [
+      119,
+      219
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 1.717,
+     "input_tokens": 1066,
+     "output_tokens": 123,
+     "reply": null
+    },
+    {
+     "page": "/flow/1",
+     "trial": 3,
+     "xy": [
+      119,
+      219
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 2.031,
+     "input_tokens": 1066,
+     "output_tokens": 123,
+     "reply": null
+    },
+    {
+     "page": "/flow/1",
+     "trial": 4,
+     "xy": [
+      119,
+      219
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 1.711,
+     "input_tokens": 1066,
+     "output_tokens": 123,
+     "reply": null
+    },
+    {
+     "page": "/flow/2",
+     "trial": 0,
+     "xy": [
+      119,
+      219
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 1.689,
+     "input_tokens": 1066,
+     "output_tokens": 120,
+     "reply": null
+    },
+    {
+     "page": "/flow/2",
+     "trial": 1,
+     "xy": [
+      119,
+      219
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 1.674,
+     "input_tokens": 1066,
+     "output_tokens": 120,
+     "reply": null
+    },
+    {
+     "page": "/flow/2",
+     "trial": 2,
+     "xy": [
+      119,
+      219
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 1.674,
+     "input_tokens": 1066,
+     "output_tokens": 120,
+     "reply": null
+    },
+    {
+     "page": "/flow/2",
+     "trial": 3,
+     "xy": [
+      119,
+      219
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 1.706,
+     "input_tokens": 1066,
+     "output_tokens": 120,
+     "reply": null
+    },
+    {
+     "page": "/flow/2",
+     "trial": 4,
+     "xy": [
+      119,
+      219
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 1.719,
+     "input_tokens": 1066,
+     "output_tokens": 120,
+     "reply": null
+    },
+    {
+     "page": "/flow/3",
+     "trial": 0,
+     "xy": [
+      120,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 1.721,
+     "input_tokens": 1066,
+     "output_tokens": 123,
+     "reply": null
+    },
+    {
+     "page": "/flow/3",
+     "trial": 1,
+     "xy": [
+      120,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 1.72,
+     "input_tokens": 1066,
+     "output_tokens": 123,
+     "reply": null
+    },
+    {
+     "page": "/flow/3",
+     "trial": 2,
+     "xy": [
+      120,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 1.839,
+     "input_tokens": 1066,
+     "output_tokens": 123,
+     "reply": null
+    },
+    {
+     "page": "/flow/3",
+     "trial": 3,
+     "xy": [
+      120,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 1.771,
+     "input_tokens": 1066,
+     "output_tokens": 123,
+     "reply": null
+    },
+    {
+     "page": "/flow/3",
+     "trial": 4,
+     "xy": [
+      120,
+      220
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 1.771,
+     "input_tokens": 1066,
+     "output_tokens": 123,
+     "reply": null
+    },
+    {
+     "page": "/flow/4",
+     "trial": 0,
+     "xy": [
+      119,
+      219
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 1.728,
+     "input_tokens": 1066,
+     "output_tokens": 120,
+     "reply": null
+    },
+    {
+     "page": "/flow/4",
+     "trial": 1,
+     "xy": [
+      119,
+      219
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 1.712,
+     "input_tokens": 1066,
+     "output_tokens": 120,
+     "reply": null
+    },
+    {
+     "page": "/flow/4",
+     "trial": 2,
+     "xy": [
+      119,
+      219
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 1.712,
+     "input_tokens": 1066,
+     "output_tokens": 120,
+     "reply": null
+    },
+    {
+     "page": "/flow/4",
+     "trial": 3,
+     "xy": [
+      119,
+      219
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 1.736,
+     "input_tokens": 1066,
+     "output_tokens": 120,
+     "reply": null
+    },
+    {
+     "page": "/flow/4",
+     "trial": 4,
+     "xy": [
+      119,
+      219
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 1.731,
+     "input_tokens": 1066,
+     "output_tokens": 120,
+     "reply": null
+    },
+    {
+     "page": "/flow/5",
+     "trial": 0,
+     "xy": [
+      119,
+      219
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 1.713,
+     "input_tokens": 1066,
+     "output_tokens": 120,
+     "reply": null
+    },
+    {
+     "page": "/flow/5",
+     "trial": 1,
+     "xy": [
+      119,
+      219
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 1.735,
+     "input_tokens": 1066,
+     "output_tokens": 120,
+     "reply": null
+    },
+    {
+     "page": "/flow/5",
+     "trial": 2,
+     "xy": [
+      119,
+      219
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 1.757,
+     "input_tokens": 1066,
+     "output_tokens": 120,
+     "reply": null
+    },
+    {
+     "page": "/flow/5",
+     "trial": 3,
+     "xy": [
+      119,
+      219
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 1.724,
+     "input_tokens": 1066,
+     "output_tokens": 120,
+     "reply": null
+    },
+    {
+     "page": "/flow/5",
+     "trial": 4,
+     "xy": [
+      119,
+      219
+     ],
+     "hit": true,
+     "hit_norm1000": false,
+     "latency_s": 1.779,
+     "input_tokens": 1066,
+     "output_tokens": 120,
+     "reply": null
+    }
+   ]
+  }
+ ]
+}
