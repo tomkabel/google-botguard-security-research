@@ -114,7 +114,7 @@ Scope strictly to **self-hosted / test-sitekey** targets. No production Google/B
 1. Target ≈11–12k words body for a 13-page two-column limit (current ≈18.8k → cut ~35%).
    Cuts: repeated scope/APB caveats (keep one in §1.3), duplicate tier definitions, §5.1 hardware list,
    restated container/kinematics caveats, background already in related work.
-2. Drop the telegraphic style regressions; one claim per sentence; remove "critically/structurally/fundamentally".
+2. One claim per sentence; remove "critically/structurally/fundamentally".
 3. Convert to the venue LaTeX template (IEEEtran / usenix); BibTeX from the reference list;
    measure pages; update `Makefile` to build the template PDF.
 4. Anonymity sweep: repo name, commit metadata in artifacts, self-citations in third person, anonymized artifact URL.
