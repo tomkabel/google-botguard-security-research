@@ -44,7 +44,7 @@ Collected from `paper.md` and the repo (`grep -rn "TODO(author)"`), plus open AU
 | F9 | Missing related work (≥3 boards) | DONE (§2.5; Searles/Bonneau figures verified) — Azad summary = AUTHOR |
 | F10 | PACT built on news/blogs (all 5) | DONE (primary sources) |
 | F11 | Anonymity, ethics, Open Science, AI-use disclosure (USENIX, S&P, Euro) | DONE (Open Science lists artifacts) except AI-use = AUTHOR |
-| F12 | No measurement at all; VLM vs scripted OS-input confound (all 5; S&P fatal) | DONE (small): §5.7 Tables 5.4/5.5 — 90 runs, configs (a)–(d), three Melious VLMs incl. open-weights Gemma, N=10/cell; confound isolated ((b) vs (c)). Scale-up, real vendor keys, human baseline OPEN |
+| F12 | No measurement at all; VLM vs scripted OS-input confound (all 5; S&P fatal) | DONE (small): §5.7 Tables 5.4/5.5 — 70 runs, configs (a)–(d), two Melious VLMs, N=10/cell; confound isolated ((b) vs (c)). Scale-up, real vendor keys, human baseline OPEN |
 | F13 | Page limit: likely 15–20+ pages (USENIX, S&P) | **OPEN** — Phase 6 (~20.5k words) |
 | F14 | No systematization figure; tables lack per-cell citations; no comparison vs prior surveys (S&P, Euro) | DONE (Fig. cost_shift, per-cell cites, §2.5 table) |
 | F15 | Cognitive honeypot untested (S&P, USENIX, CCS) | DONE: a-dom 10/10 hits, a-role 0/10, OS-input 0/70 (§5.7); holds by construction, stated |
@@ -103,11 +103,11 @@ Status: 1 DONE (§5.6; device price = AUTHOR) · 2 DONE (Table 5.2) · 3 DONE ·
 ## Phase 4 — Minimal ethical measurement (F12, F15) — DONE at small scale (2026-09-23)
 
 Status: 1 DONE (Turnstile + reCAPTCHA v2 test keys; no v3 test key exists) · 2 DONE for (a)–(d); Melious adapter,
-3 VLMs (glm-5.3-flash, qwen3.8-27b, open-weights gemma-4-26b-a4b) · 3 DONE: §5.7, `measurement/results/summary.md`,
+2 VLMs (glm-5.3-flash, qwen3.8-27b; Gemma dropped per author, open-weights model OPEN) · 3 DONE: §5.7, `measurement/results/summary.md`,
 `make numbers` asserts tables vs logs; vendor score not measured (test keys) · 4 AUTHOR (IRB) · 5 harness released, ToS noted in README ·
 6 DONE: §5.7 added; Table 5.1 status column and params.json carry measured values; §3.4 L4, §5.2, §7.1,
 abstract, C2, Ethics, Open Science updated. Finding: 5–15 s/step assumption too slow for small VLMs; hybrid hand-back
-worked only for glm (9/10), qwen/gemma 0/10.
+worked only for glm (9/10), qwen 0/10.
 
 Scope strictly to **self-hosted / test-sitekey** targets. No production Google/Botguard endpoints.
 

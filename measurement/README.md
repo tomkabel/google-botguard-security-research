@@ -59,8 +59,7 @@ Status on the dev box (2026-09-23): `playwright` (Python) and its Chromium are i
   - `CU_TOOL=toolset` (default) uses `computer_toolset_20260801`, which is required on `claude-opus-5-5`.
   - `CU_TOOL=legacy` uses `computer_20251124` with beta `computer-use-2025-11-24`.
 - `MeliousAdapter` (`VLM_PROVIDER=melious`, `MELIOUS_MODEL=<id>`, `MELIOUS_API_KEY`) covers any vision model on
-  the Melious OpenAI-compatible API, including open-weights ones. Set `MELIOUS_COORDS=norm1000` for models that
-  answer in 0–1000 normalised coordinates (gemma-4-26b-a4b; see the grounding probe).
+  the Melious OpenAI-compatible API.
 
 ## How to run
 
@@ -99,11 +98,11 @@ tokens, and error. `logs/server.jsonl` holds the server events. `analyze.py` pri
 
 ## Results (23 September 2026, paper §5.7)
 
-- 90 runs: a-dom, a-role, b-xdotool 10 each; c-vlm and d-hybrid 10 each for glm-5.3-flash, qwen3.8-27b and
-  gemma-4-26b-a4b (norm1000). (b)–(d) ran on Xvfb displays at 1280×800. Total LLM spend €0.46.
+- 70 runs: a-dom, a-role, b-xdotool 10 each; c-vlm and d-hybrid 10 each for glm-5.3-flash and qwen3.8-27b.
+  (b)–(d) ran on Xvfb displays at 1280×800. Total LLM spend €0.28. Gemma runs were dropped (not used).
 - `analyze.py --summary` writes `results/summary.md` / `summary.json`; `--check-paper` (run by `make numbers`)
   asserts that every table row appears verbatim in `paper.md`.
 - Pass = server-side `flow_done`. For d-hybrid the attacker's own flag means "scripted control resumed after
-  the VLM step" and is reported separately (glm 9/10, qwen 0/10, gemma 0/10).
+  the VLM step" and is reported separately (glm 9/10, qwen 0/10).
 - Limitations: test keys give fixed vendor outcomes (no v3 test key exists); no human baseline without IRB;
   xdotool moves the pointer in straight jumps (no kinematics); one provider, one day, list prices in EUR.

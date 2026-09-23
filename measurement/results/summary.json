@@ -101,43 +101,6 @@
   "currency": "USD",
   "cost_per_success": 0.0
  },
- "c-vlm / gemma-4-26b-a4b": {
-  "runs": 10,
-  "successes": 10,
-  "pass_rate": 1.0,
-  "honeypot_rate": 0.0,
-  "honeypot_runs": 0,
-  "webdriver_runs": 0,
-  "attacker_flag_runs": 10,
-  "vendor_verify_pass_rate": null,
-  "run_s": {
-   "median": 174.39810037612915,
-   "p90": 379.91844415664673
-  },
-  "action_s": {
-   "p10": 0.10497879981994629,
-   "median": 3.3694491386413574,
-   "p90": 10.443002462387085,
-   "n": 372
-  },
-  "tokens_per_success": {
-   "input": 12319.9,
-   "output": 16947.1
-  },
-  "llm_call_s": {
-   "median": 6.176088836999952,
-   "p90": 10.7100055149931,
-   "n": 191
-  },
-  "llm_calls_per_run": 18.5,
-  "tokens_per_call": {
-   "input": 645.020942408377,
-   "output": 887.282722513089
-  },
-  "spend": 0.09705539999999999,
-  "currency": "EUR",
-  "cost_per_success": 0.009705539999999999
- },
  "c-vlm / glm-5.3-flash": {
   "runs": 10,
   "successes": 10,
@@ -211,43 +174,6 @@
   "spend": 0.13587600000000002,
   "currency": "EUR",
   "cost_per_success": 0.013587600000000002
- },
- "d-hybrid / gemma-4-26b-a4b": {
-  "runs": 10,
-  "successes": 10,
-  "pass_rate": 1.0,
-  "honeypot_rate": 0.0,
-  "honeypot_runs": 0,
-  "webdriver_runs": 0,
-  "attacker_flag_runs": 0,
-  "vendor_verify_pass_rate": null,
-  "run_s": {
-   "median": 158.33949172496796,
-   "p90": 359.1302673816681
-  },
-  "action_s": {
-   "p10": 0.10500621795654297,
-   "median": 3.6792688369750977,
-   "p90": 9.124342441558838,
-   "n": 354
-  },
-  "tokens_per_success": {
-   "input": 11102.1,
-   "output": 14793.0
-  },
-  "llm_call_s": {
-   "median": 5.4491657930002475,
-   "p90": 10.037080665002577,
-   "n": 181
-  },
-  "llm_calls_per_run": 18.0,
-  "tokens_per_call": {
-   "input": 613.3756906077348,
-   "output": 817.292817679558
-  },
-  "spend": 0.08506709999999999,
-  "currency": "EUR",
-  "cost_per_success": 0.008506709999999999
  },
  "d-hybrid / glm-5.3-flash": {
   "runs": 10,

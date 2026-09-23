@@ -813,15 +813,12 @@
 {"run": "c-vlm-e353096d", "page": "/flow/2", "kind": "load", "t_ms": 0.19999998807907104, "webdriver": false, "server_ts": 1790170640.725968}
 {"run": "diag", "kind": "step_submit", "step": 1, "field_len": 0, "server_ts": 1790170676.1402957}
 {"run": "diag", "page": "/flow/2", "kind": "load", "t_ms": 0.19999998807907104, "webdriver": false, "server_ts": 1790170676.1752021}
-{"run": "c-vlm-d073a008", "page": "/flow/1", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790170743.0479293}
-{"run": "c-vlm-d073a008", "page": "/flow/1", "kind": "click", "t_ms": 5667.300000011921, "webdriver": false, "target": "HTML", "trusted": true, "x": 186, "y": 120, "server_ts": 1790170748.7107403}
 {"run": "d-hybrid-aeb919b1", "page": "/turnstile", "kind": "load", "t_ms": 0.4000000059604645, "webdriver": false, "server_ts": 1790170752.252448}
 {"run": "d-hybrid-aeb919b1", "page": "/turnstile", "kind": "click", "t_ms": 2632.7000000178814, "webdriver": false, "target": "submit", "trusted": true, "x": 66, "y": 177, "server_ts": 1790170754.8553798}
 {"run": "d-hybrid-aeb919b1", "kind": "verify", "vendor": "turnstile", "mode": "pass", "token_present": false, "verified": null, "note": "offline (start server with --verify)", "server_ts": 1790170754.899779}
 {"run": "anon", "page": "/verify", "kind": "load", "t_ms": 0.29999998211860657, "webdriver": false, "server_ts": 1790170754.9532385}
 {"run": "anon", "page": "/verify", "kind": "click", "t_ms": 2006.699999988079, "webdriver": false, "target": "next", "trusted": true, "x": 100, "y": 106, "server_ts": 1790170756.9447773}
 {"run": "d-hybrid-aeb919b1", "page": "/flow/1", "kind": "load", "t_ms": 0.19999998807907104, "webdriver": false, "server_ts": 1790170756.9982722}
-{"run": "c-vlm-d073a008", "page": "/flow/1", "kind": "click", "t_ms": 16162.90000000596, "webdriver": false, "target": "real-continue", "trusted": true, "x": 119, "y": 225, "server_ts": 1790170759.20657}
 {"run": "d-hybrid-aeb919b1", "page": "/flow/1", "kind": "click", "t_ms": 3005.699999988079, "webdriver": false, "target": "real-continue", "trusted": true, "x": 0, "y": 0, "server_ts": 1790170759.9978912}
 {"run": "d-hybrid-aeb919b1", "kind": "step_submit", "step": 1, "field_len": 9, "server_ts": 1790170760.0307846}
 {"run": "d-hybrid-aeb919b1", "page": "/flow/2", "kind": "load", "t_ms": 0.29999998211860657, "webdriver": false, "server_ts": 1790170760.0631158}
@@ -838,11 +835,7 @@
 {"run": "d-hybrid-aeb919b1", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790170763.8438456}
 {"run": "d-hybrid-aeb919b1", "kind": "flow_done", "server_ts": 1790170763.8441684}
 {"run": "d-hybrid-aeb919b1", "page": "/flow/done", "kind": "load", "t_ms": 0.4000000059604645, "webdriver": false, "server_ts": 1790170763.9147472}
-{"run": "c-vlm-d073a008", "page": "/flow/1", "kind": "click", "t_ms": 24534.20000001788, "webdriver": false, "target": "HTML", "trusted": true, "x": 186, "y": 120, "server_ts": 1790170767.5773642}
-{"run": "c-vlm-d073a008", "page": "/flow/1", "kind": "click", "t_ms": 33665.30000001192, "webdriver": false, "target": "real-continue", "trusted": true, "x": 119, "y": 225, "server_ts": 1790170776.7119973}
-{"run": "c-vlm-d073a008", "page": "/flow/1", "kind": "click", "t_ms": 40721.90000000596, "webdriver": false, "target": "HTML", "trusted": true, "x": 198, "y": 120, "server_ts": 1790170783.7679636}
 {"run": "d-hybrid-8eb1a245", "page": "/turnstile", "kind": "load", "t_ms": 0.20000001788139343, "webdriver": false, "server_ts": 1790170790.201015}
-{"run": "c-vlm-d073a008", "page": "/flow/1", "kind": "click", "t_ms": 47178.09999999404, "webdriver": false, "target": "HTML", "trusted": true, "x": 186, "y": 120, "server_ts": 1790170790.2216203}
 {"run": "d-hybrid-8eb1a245", "page": "/turnstile", "kind": "click", "t_ms": 3376.4000000059605, "webdriver": false, "target": "submit", "trusted": true, "x": 67, "y": 177, "server_ts": 1790170793.5608103}
 {"run": "d-hybrid-8eb1a245", "kind": "verify", "vendor": "turnstile", "mode": "pass", "token_present": true, "verified": null, "note": "offline (start server with --verify)", "server_ts": 1790170793.6138275}
 {"run": "anon", "page": "/verify", "kind": "load", "t_ms": 0.800000011920929, "webdriver": false, "server_ts": 1790170793.6817715}
@@ -870,7 +863,6 @@
 {"run": "anon", "page": "/verify", "kind": "load", "t_ms": 0.30000001192092896, "webdriver": false, "server_ts": 1790170808.8336046}
 {"run": "anon", "page": "/verify", "kind": "click", "t_ms": 1669.2000000178814, "webdriver": false, "target": "next", "trusted": true, "x": 100, "y": 106, "server_ts": 1790170810.488248}
 {"run": "d-hybrid-afc1392e", "page": "/flow/1", "kind": "load", "t_ms": 0.5, "webdriver": false, "server_ts": 1790170810.5804243}
-{"run": "c-vlm-d073a008", "page": "/flow/1", "kind": "click", "t_ms": 68095.30000001192, "webdriver": false, "target": "f1", "trusted": true, "x": 182, "y": 115, "server_ts": 1790170811.1414907}
 {"run": "d-hybrid-afc1392e", "page": "/flow/1", "kind": "click", "t_ms": 3533.2999999821186, "webdriver": false, "target": "real-continue", "trusted": true, "x": 0, "y": 0, "server_ts": 1790170814.0983832}
 {"run": "d-hybrid-afc1392e", "kind": "step_submit", "step": 1, "field_len": 9, "server_ts": 1790170814.148294}
 {"run": "d-hybrid-afc1392e", "page": "/flow/2", "kind": "load", "t_ms": 0.30000001192092896, "webdriver": false, "server_ts": 1790170814.2069817}
@@ -887,9 +879,6 @@
 {"run": "d-hybrid-afc1392e", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790170817.8875716}
 {"run": "d-hybrid-afc1392e", "kind": "flow_done", "server_ts": 1790170817.887859}
 {"run": "d-hybrid-afc1392e", "page": "/flow/done", "kind": "load", "t_ms": 0.30000001192092896, "webdriver": false, "server_ts": 1790170817.940132}
-{"run": "c-vlm-d073a008", "page": "/flow/1", "kind": "click", "t_ms": 76391.30000001192, "webdriver": false, "target": "real-continue", "trusted": true, "x": 119, "y": 225, "server_ts": 1790170819.4350848}
-{"run": "c-vlm-d073a008", "kind": "step_submit", "step": 1, "field_len": 9, "server_ts": 1790170819.458793}
-{"run": "c-vlm-d073a008", "page": "/flow/2", "kind": "load", "t_ms": 0.19999998807907104, "webdriver": false, "server_ts": 1790170819.4963262}
 {"run": "d-hybrid-04c2a053", "page": "/turnstile", "kind": "load", "t_ms": 0.10000002384185791, "webdriver": false, "server_ts": 1790170820.0921795}
 {"run": "d-hybrid-04c2a053", "page": "/turnstile", "kind": "click", "t_ms": 4638.700000017881, "webdriver": false, "target": "submit", "trusted": true, "x": 67, "y": 177, "server_ts": 1790170824.727619}
 {"run": "d-hybrid-04c2a053", "kind": "verify", "vendor": "turnstile", "mode": "pass", "token_present": true, "verified": null, "note": "offline (start server with --verify)", "server_ts": 1790170824.7724667}
@@ -899,9 +888,6 @@
 {"run": "d-hybrid-04c2a053", "page": "/flow/1", "kind": "click", "t_ms": 3583.2000000178814, "webdriver": false, "target": "real-continue", "trusted": true, "x": 119, "y": 220, "server_ts": 1790170830.4422753}
 {"run": "d-hybrid-04c2a053", "kind": "step_submit", "step": 1, "field_len": 8, "server_ts": 1790170830.469168}
 {"run": "d-hybrid-04c2a053", "page": "/flow/2", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790170830.4913101}
-{"run": "c-vlm-d073a008", "page": "/flow/2", "kind": "click", "t_ms": 11383.800000011921, "webdriver": false, "target": "real-continue", "trusted": true, "x": 115, "y": 225, "server_ts": 1790170830.8698337}
-{"run": "c-vlm-d073a008", "kind": "step_submit", "step": 2, "field_len": 20, "server_ts": 1790170830.9119322}
-{"run": "c-vlm-d073a008", "page": "/flow/3", "kind": "load", "t_ms": 0.30000001192092896, "webdriver": false, "server_ts": 1790170830.9655063}
 {"run": "d-hybrid-04c2a053", "page": "/flow/2", "kind": "click", "t_ms": 4063.300000011921, "webdriver": false, "target": "real-continue", "trusted": true, "x": 119, "y": 220, "server_ts": 1790170834.551221}
 {"run": "d-hybrid-04c2a053", "kind": "step_submit", "step": 2, "field_len": 20, "server_ts": 1790170834.590847}
 {"run": "d-hybrid-04c2a053", "page": "/flow/3", "kind": "load", "t_ms": 0.19999998807907104, "webdriver": false, "server_ts": 1790170834.6293497}
@@ -911,9 +897,6 @@
 {"run": "d-hybrid-04c2a053", "page": "/flow/4", "kind": "click", "t_ms": 3335.5, "webdriver": false, "target": "real-continue", "trusted": true, "x": 119, "y": 220, "server_ts": 1790170841.7757337}
 {"run": "d-hybrid-04c2a053", "kind": "step_submit", "step": 4, "field_len": 5, "server_ts": 1790170841.8209467}
 {"run": "d-hybrid-04c2a053", "page": "/flow/5", "kind": "load", "t_ms": 0.29999998211860657, "webdriver": false, "server_ts": 1790170841.872115}
-{"run": "c-vlm-d073a008", "page": "/flow/3", "kind": "click", "t_ms": 11478.40000000596, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 225, "server_ts": 1790170842.431742}
-{"run": "c-vlm-d073a008", "kind": "step_submit", "step": 3, "field_len": 5, "server_ts": 1790170842.4882753}
-{"run": "c-vlm-d073a008", "page": "/flow/4", "kind": "load", "t_ms": 0.30000001192092896, "webdriver": false, "server_ts": 1790170842.539024}
 {"run": "d-hybrid-04c2a053", "page": "/flow/5", "kind": "click", "t_ms": 3251.199999988079, "webdriver": false, "target": "real-continue", "trusted": true, "x": 119, "y": 220, "server_ts": 1790170845.1118739}
 {"run": "d-hybrid-04c2a053", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790170845.1630676}
 {"run": "d-hybrid-04c2a053", "kind": "flow_done", "server_ts": 1790170845.1633093}
@@ -926,7 +909,6 @@
 {"run": "d-hybrid-04c2a053", "kind": "flow_done", "server_ts": 1790170858.3036933}
 {"run": "d-hybrid-04c2a053", "page": "/flow/done", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790170858.3941174}
 {"run": "d-hybrid-04c2a053", "page": "/flow/5", "kind": "click", "t_ms": 21774.69999998808, "webdriver": false, "target": "real-continue", "trusted": true, "x": 119, "y": 220, "server_ts": 1790170863.6357965}
-{"run": "c-vlm-d073a008", "page": "/flow/4", "kind": "click", "t_ms": 21110.40000000596, "webdriver": false, "target": "HTML", "trusted": true, "x": 202, "y": 120, "server_ts": 1790170863.6396325}
 {"run": "d-hybrid-04c2a053", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790170863.6784708}
 {"run": "d-hybrid-04c2a053", "kind": "flow_done", "server_ts": 1790170863.6787233}
 {"run": "d-hybrid-04c2a053", "page": "/flow/done", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790170863.7276146}
@@ -940,7 +922,6 @@
 {"run": "anon", "page": "/verify", "kind": "load", "t_ms": 0.4000000059604645, "webdriver": false, "server_ts": 1790170873.619805}
 {"run": "anon", "page": "/verify", "kind": "click", "t_ms": 1914.6000000238419, "webdriver": false, "target": "next", "trusted": true, "x": 100, "y": 106, "server_ts": 1790170875.517687}
 {"run": "d-hybrid-84793d85", "page": "/flow/1", "kind": "load", "t_ms": 0.4000000059604645, "webdriver": false, "server_ts": 1790170875.6137402}
-{"run": "c-vlm-d073a008", "page": "/flow/4", "kind": "click", "t_ms": 33289.80000001192, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 225, "server_ts": 1790170875.8231485}
 {"run": "d-hybrid-84793d85", "page": "/flow/1", "kind": "click", "t_ms": 2930.5, "webdriver": false, "target": "real-continue", "trusted": true, "x": 0, "y": 0, "server_ts": 1790170878.5278046}
 {"run": "d-hybrid-84793d85", "kind": "step_submit", "step": 1, "field_len": 9, "server_ts": 1790170878.5746644}
 {"run": "d-hybrid-84793d85", "page": "/flow/2", "kind": "load", "t_ms": 0.3999999761581421, "webdriver": false, "server_ts": 1790170878.6261392}
@@ -983,7 +964,6 @@
 {"run": "d-hybrid-1e61a4f3", "page": "/turnstile", "kind": "click", "t_ms": 2772.2999999821186, "webdriver": false, "target": "submit", "trusted": true, "x": 68, "y": 177, "server_ts": 1790170901.7172394}
 {"run": "d-hybrid-1e61a4f3", "kind": "verify", "vendor": "turnstile", "mode": "pass", "token_present": true, "verified": null, "note": "offline (start server with --verify)", "server_ts": 1790170901.7772474}
 {"run": "anon", "page": "/verify", "kind": "load", "t_ms": 0.5, "webdriver": false, "server_ts": 1790170901.8570123}
-{"run": "c-vlm-d073a008", "page": "/flow/4", "kind": "click", "t_ms": 60745.90000000596, "webdriver": false, "target": "f4", "trusted": true, "x": 211, "y": 115, "server_ts": 1790170903.274593}
 {"run": "anon", "page": "/verify", "kind": "click", "t_ms": 1836.5, "webdriver": false, "target": "next", "trusted": true, "x": 100, "y": 106, "server_ts": 1790170903.679472}
 {"run": "d-hybrid-1e61a4f3", "page": "/flow/1", "kind": "load", "t_ms": 0.5999999940395355, "webdriver": false, "server_ts": 1790170903.815153}
 {"run": "d-hybrid-1e61a4f3", "page": "/flow/1", "kind": "click", "t_ms": 2818, "webdriver": false, "target": "real-continue", "trusted": true, "x": 0, "y": 0, "server_ts": 1790170906.6084728}
@@ -1003,16 +983,12 @@
 {"run": "d-hybrid-1e61a4f3", "kind": "flow_done", "server_ts": 1790170910.4253185}
 {"run": "d-hybrid-1e61a4f3", "page": "/flow/done", "kind": "load", "t_ms": 0.30000001192092896, "webdriver": false, "server_ts": 1790170910.486925}
 {"run": "d-hybrid-48f5fc8b", "page": "/turnstile", "kind": "load", "t_ms": 0.5, "webdriver": false, "server_ts": 1790170914.3189692}
-{"run": "c-vlm-d073a008", "page": "/flow/4", "kind": "click", "t_ms": 72252.30000001192, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 227, "server_ts": 1790170914.784763}
-{"run": "c-vlm-d073a008", "kind": "step_submit", "step": 4, "field_len": 5, "server_ts": 1790170914.8649578}
-{"run": "c-vlm-d073a008", "page": "/flow/5", "kind": "load", "t_ms": 0.30000001192092896, "webdriver": false, "server_ts": 1790170914.9603422}
 {"run": "d-hybrid-48f5fc8b", "page": "/turnstile", "kind": "click", "t_ms": 1749.1000000238419, "webdriver": false, "target": "HTML", "trusted": true, "x": 640, "y": 279, "server_ts": 1790170916.0263107}
 {"run": "d-hybrid-48f5fc8b", "page": "/turnstile", "kind": "click", "t_ms": 3541.9000000059605, "webdriver": false, "target": "submit", "trusted": true, "x": 67, "y": 177, "server_ts": 1790170917.8216627}
 {"run": "d-hybrid-48f5fc8b", "kind": "verify", "vendor": "turnstile", "mode": "pass", "token_present": true, "verified": null, "note": "offline (start server with --verify)", "server_ts": 1790170917.8981433}
 {"run": "anon", "page": "/verify", "kind": "load", "t_ms": 0.29999998211860657, "webdriver": false, "server_ts": 1790170917.9913173}
 {"run": "anon", "page": "/verify", "kind": "click", "t_ms": 1891.5999999940395, "webdriver": false, "target": "next", "trusted": true, "x": 100, "y": 106, "server_ts": 1790170919.8531363}
 {"run": "d-hybrid-48f5fc8b", "page": "/flow/1", "kind": "load", "t_ms": 0.30000001192092896, "webdriver": false, "server_ts": 1790170919.9853141}
-{"run": "c-vlm-d073a008", "page": "/flow/5", "kind": "click", "t_ms": 5970.800000011921, "webdriver": false, "target": "HTML", "trusted": true, "x": 260, "y": 120, "server_ts": 1790170920.910354}
 {"run": "d-hybrid-48f5fc8b", "page": "/flow/1", "kind": "click", "t_ms": 5672.0999999940395, "webdriver": false, "target": "real-continue", "trusted": true, "x": 0, "y": 0, "server_ts": 1790170925.6280975}
 {"run": "d-hybrid-48f5fc8b", "kind": "step_submit", "step": 1, "field_len": 9, "server_ts": 1790170925.6845543}
 {"run": "d-hybrid-48f5fc8b", "page": "/flow/2", "kind": "load", "t_ms": 0.30000001192092896, "webdriver": false, "server_ts": 1790170925.7421076}
@@ -1029,7 +1005,6 @@
 {"run": "d-hybrid-48f5fc8b", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790170929.4133902}
 {"run": "d-hybrid-48f5fc8b", "kind": "flow_done", "server_ts": 1790170929.413732}
 {"run": "d-hybrid-48f5fc8b", "page": "/flow/done", "kind": "load", "t_ms": 0.5, "webdriver": false, "server_ts": 1790170929.4740868}
-{"run": "c-vlm-d073a008", "page": "/flow/5", "kind": "click", "t_ms": 15906.300000011921, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 224, "server_ts": 1790170930.847143}
 {"run": "d-hybrid-97320519", "page": "/turnstile", "kind": "load", "t_ms": 7.5, "webdriver": false, "server_ts": 1790170933.371253}
 {"run": "d-hybrid-97320519", "page": "/turnstile", "kind": "click", "t_ms": 3675.4000000059605, "webdriver": false, "target": "submit", "trusted": true, "x": 66, "y": 177, "server_ts": 1790170937.0047846}
 {"run": "d-hybrid-97320519", "kind": "verify", "vendor": "turnstile", "mode": "pass", "token_present": true, "verified": null, "note": "offline (start server with --verify)", "server_ts": 1790170937.0722644}
@@ -1052,18 +1027,12 @@
 {"run": "d-hybrid-97320519", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790170946.3136175}
 {"run": "d-hybrid-97320519", "kind": "flow_done", "server_ts": 1790170946.313923}
 {"run": "d-hybrid-97320519", "page": "/flow/done", "kind": "load", "t_ms": 0.29999998211860657, "webdriver": false, "server_ts": 1790170946.3700385}
-{"run": "c-vlm-d073a008", "page": "/flow/5", "kind": "click", "t_ms": 31741, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 225, "server_ts": 1790170946.6827023}
-{"run": "c-vlm-d073a008", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790170946.7547967}
-{"run": "c-vlm-d073a008", "kind": "flow_done", "server_ts": 1790170946.7551749}
-{"run": "c-vlm-d073a008", "page": "/flow/done", "kind": "load", "t_ms": 0.4000000059604645, "webdriver": false, "server_ts": 1790170946.8496122}
 {"run": "d-hybrid-5a937256", "page": "/turnstile", "kind": "load", "t_ms": 0.30000001192092896, "webdriver": false, "server_ts": 1790170949.7716146}
-{"run": "c-vlm-fc2a6e66", "page": "/flow/1", "kind": "load", "t_ms": 0.5, "webdriver": false, "server_ts": 1790170953.9017253}
 {"run": "d-hybrid-5a937256", "page": "/turnstile", "kind": "click", "t_ms": 7872.5999999940395, "webdriver": false, "target": "submit", "trusted": true, "x": 67, "y": 177, "server_ts": 1790170957.6378083}
 {"run": "d-hybrid-5a937256", "kind": "verify", "vendor": "turnstile", "mode": "pass", "token_present": true, "verified": null, "note": "offline (start server with --verify)", "server_ts": 1790170957.6868854}
 {"run": "anon", "page": "/verify", "kind": "load", "t_ms": 0.29999998211860657, "webdriver": false, "server_ts": 1790170957.7476425}
 {"run": "anon", "page": "/verify", "kind": "click", "t_ms": 2033.3999999761581, "webdriver": false, "target": "next", "trusted": true, "x": 98, "y": 106, "server_ts": 1790170959.7674284}
 {"run": "d-hybrid-5a937256", "page": "/flow/1", "kind": "load", "t_ms": 0.29999998211860657, "webdriver": false, "server_ts": 1790170959.9111419}
-{"run": "c-vlm-fc2a6e66", "page": "/flow/1", "kind": "click", "t_ms": 7853.9000000059605, "webdriver": false, "target": "HTML", "trusted": true, "x": 819, "y": 199, "server_ts": 1790170961.7360628}
 {"run": "d-hybrid-5a937256", "page": "/flow/1", "kind": "click", "t_ms": 2686.199999988079, "webdriver": false, "target": "real-continue", "trusted": true, "x": 0, "y": 0, "server_ts": 1790170962.564684}
 {"run": "d-hybrid-5a937256", "kind": "step_submit", "step": 1, "field_len": 9, "server_ts": 1790170962.6247585}
 {"run": "d-hybrid-5a937256", "page": "/flow/2", "kind": "load", "t_ms": 0.5, "webdriver": false, "server_ts": 1790170962.691064}
@@ -1076,349 +1045,24 @@
 {"run": "d-hybrid-5a937256", "page": "/flow/4", "kind": "click", "t_ms": 582, "webdriver": false, "target": "real-continue", "trusted": true, "x": 0, "y": 0, "server_ts": 1790170965.8257174}
 {"run": "d-hybrid-5a937256", "kind": "step_submit", "step": 4, "field_len": 5, "server_ts": 1790170965.8979876}
 {"run": "d-hybrid-5a937256", "page": "/flow/5", "kind": "load", "t_ms": 0.5, "webdriver": false, "server_ts": 1790170965.978496}
-{"run": "c-vlm-fc2a6e66", "page": "/flow/1", "kind": "click", "t_ms": 12382.40000000596, "webdriver": false, "target": "f1", "trusted": true, "x": 179, "y": 115, "server_ts": 1790170966.2656634}
 {"run": "d-hybrid-5a937256", "page": "/flow/5", "kind": "click", "t_ms": 399.40000000596046, "webdriver": false, "target": "real-continue", "trusted": true, "x": 0, "y": 0, "server_ts": 1790170966.348331}
 {"run": "d-hybrid-5a937256", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790170966.3954291}
 {"run": "d-hybrid-5a937256", "kind": "flow_done", "server_ts": 1790170966.3957274}
 {"run": "d-hybrid-5a937256", "page": "/flow/done", "kind": "load", "t_ms": 0.30000001192092896, "webdriver": false, "server_ts": 1790170966.4447103}
-{"run": "d-hybrid-25557edb", "page": "/turnstile", "kind": "load", "t_ms": 0.30000001192092896, "webdriver": false, "server_ts": 1790170970.4271128}
-{"run": "d-hybrid-25557edb", "page": "/turnstile", "kind": "click", "t_ms": 6291.9000000059605, "webdriver": false, "target": "BODY", "trusted": true, "x": 70, "y": 97, "server_ts": 1790170976.687143}
-{"run": "c-vlm-fc2a6e66", "page": "/flow/1", "kind": "click", "t_ms": 23216.100000023842, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 224, "server_ts": 1790170977.0985692}
-{"run": "c-vlm-fc2a6e66", "kind": "step_submit", "step": 1, "field_len": 9, "server_ts": 1790170977.1500523}
-{"run": "c-vlm-fc2a6e66", "page": "/flow/2", "kind": "load", "t_ms": 0.30000001192092896, "webdriver": false, "server_ts": 1790170977.2458239}
-{"run": "d-hybrid-25557edb", "page": "/turnstile", "kind": "click", "t_ms": 132119.09999999404, "webdriver": false, "target": "HTML", "trusted": true, "x": 64, "y": 189, "server_ts": 1790172969.1169415}
-{"run": "d-hybrid-25557edb", "page": "/turnstile", "kind": "click", "t_ms": 140024.69999998808, "webdriver": false, "target": "HTML", "trusted": true, "x": 64, "y": 189, "server_ts": 1790172977.0222688}
-{"run": "c-vlm-fc2a6e66", "page": "/flow/2", "kind": "click", "t_ms": 135326.80000001192, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 224, "server_ts": 1790172979.1290963}
-{"run": "c-vlm-fc2a6e66", "kind": "step_submit", "step": 2, "field_len": 20, "server_ts": 1790172979.1523838}
-{"run": "c-vlm-fc2a6e66", "page": "/flow/3", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790172979.1674767}
-{"run": "d-hybrid-25557edb", "page": "/turnstile", "kind": "click", "t_ms": 147343, "webdriver": false, "target": "HTML", "trusted": true, "x": 64, "y": 189, "server_ts": 1790172984.3394387}
-{"run": "d-hybrid-25557edb", "page": "/turnstile", "kind": "click", "t_ms": 156326, "webdriver": false, "target": "submit", "trusted": true, "x": 65, "y": 188, "server_ts": 1790172993.3225126}
-{"run": "d-hybrid-25557edb", "kind": "verify", "vendor": "turnstile", "mode": "pass", "token_present": true, "verified": null, "note": "offline (start server with --verify)", "server_ts": 1790172993.3334985}
 {"run": "anon", "page": "/verify", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790172993.3457158}
-{"run": "c-vlm-fc2a6e66", "page": "/flow/3", "kind": "click", "t_ms": 19132, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 224, "server_ts": 1790172998.2961605}
-{"run": "c-vlm-fc2a6e66", "kind": "step_submit", "step": 3, "field_len": 5, "server_ts": 1790172998.3168492}
-{"run": "c-vlm-fc2a6e66", "page": "/flow/4", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790172998.32906}
 {"run": "anon", "page": "/verify", "kind": "click", "t_ms": 7562.0999999940395, "webdriver": false, "target": "next", "trusted": true, "x": 102, "y": 105, "server_ts": 1790173000.9050534}
-{"run": "d-hybrid-25557edb", "page": "/flow/1", "kind": "load", "t_ms": 0.20000001788139343, "webdriver": false, "server_ts": 1790173000.93015}
-{"run": "c-vlm-fc2a6e66", "page": "/flow/4", "kind": "click", "t_ms": 8207.90000000596, "webdriver": false, "target": "f4", "trusted": true, "x": 202, "y": 117, "server_ts": 1790173006.5352}
-{"run": "d-hybrid-25557edb", "page": "/flow/1", "kind": "click", "t_ms": 11268.300000011921, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 224, "server_ts": 1790173012.194932}
-{"run": "d-hybrid-25557edb", "kind": "step_submit", "step": 1, "field_len": 8, "server_ts": 1790173012.2163763}
-{"run": "d-hybrid-25557edb", "page": "/flow/2", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790173012.2288868}
-{"run": "c-vlm-fc2a6e66", "page": "/flow/4", "kind": "click", "t_ms": 18831, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 224, "server_ts": 1790173017.1584275}
-{"run": "c-vlm-fc2a6e66", "kind": "step_submit", "step": 4, "field_len": 5, "server_ts": 1790173017.1830347}
-{"run": "c-vlm-fc2a6e66", "page": "/flow/5", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790173017.195093}
-{"run": "d-hybrid-25557edb", "page": "/flow/2", "kind": "click", "t_ms": 9860.699999988079, "webdriver": false, "target": "f2", "trusted": true, "x": 164, "y": 107, "server_ts": 1790173022.0871809}
-{"run": "c-vlm-fc2a6e66", "page": "/flow/5", "kind": "click", "t_ms": 8482.5, "webdriver": false, "target": "HTML", "trusted": true, "x": 265, "y": 120, "server_ts": 1790173025.6751692}
-{"run": "d-hybrid-25557edb", "page": "/flow/2", "kind": "click", "t_ms": 21854.19999998808, "webdriver": false, "target": "real-continue", "trusted": true, "x": 113, "y": 225, "server_ts": 1790173034.0814588}
-{"run": "d-hybrid-25557edb", "kind": "step_submit", "step": 2, "field_len": 16, "server_ts": 1790173034.1013408}
-{"run": "d-hybrid-25557edb", "page": "/flow/3", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790173034.1209476}
-{"run": "d-hybrid-25557edb", "page": "/flow/3", "kind": "click", "t_ms": 10485.800000011921, "webdriver": false, "target": "f3", "trusted": true, "x": 150, "y": 115, "server_ts": 1790173044.6004372}
-{"run": "d-hybrid-25557edb", "page": "/flow/3", "kind": "click", "t_ms": 14805.09999999404, "webdriver": false, "target": "f3", "trusted": true, "x": 151, "y": 108, "server_ts": 1790173048.919727}
-{"run": "c-vlm-fc2a6e66", "page": "/flow/5", "kind": "click", "t_ms": 42802.40000000596, "webdriver": false, "target": "f5", "trusted": true, "x": 291, "y": 117, "server_ts": 1790173059.9947662}
-{"run": "d-hybrid-25557edb", "page": "/flow/3", "kind": "click", "t_ms": 27498.19999998808, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 224, "server_ts": 1790173061.612706}
-{"run": "d-hybrid-25557edb", "kind": "step_submit", "step": 3, "field_len": 6, "server_ts": 1790173061.6310823}
-{"run": "d-hybrid-25557edb", "page": "/flow/4", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790173061.643012}
-{"run": "c-vlm-fc2a6e66", "page": "/flow/5", "kind": "click", "t_ms": 48924.19999998808, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 224, "server_ts": 1790173066.1166484}
-{"run": "d-hybrid-25557edb", "page": "/flow/4", "kind": "click", "t_ms": 13524.5, "webdriver": false, "target": "real-continue", "trusted": true, "x": 113, "y": 227, "server_ts": 1790173075.1652737}
-{"run": "d-hybrid-25557edb", "kind": "step_submit", "step": 4, "field_len": 8, "server_ts": 1790173075.1804993}
-{"run": "d-hybrid-25557edb", "page": "/flow/5", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790173075.192092}
-{"run": "c-vlm-fc2a6e66", "page": "/flow/5", "kind": "click", "t_ms": 65506.09999999404, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 224, "server_ts": 1790173082.698567}
-{"run": "c-vlm-fc2a6e66", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790173082.7137365}
-{"run": "c-vlm-fc2a6e66", "kind": "flow_done", "server_ts": 1790173082.713811}
-{"run": "c-vlm-fc2a6e66", "page": "/flow/done", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790173082.7258008}
-{"run": "d-hybrid-25557edb", "page": "/flow/5", "kind": "click", "t_ms": 10095.59999999404, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 224, "server_ts": 1790173085.2857115}
-{"run": "d-hybrid-25557edb", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790173085.2977412}
-{"run": "d-hybrid-25557edb", "kind": "flow_done", "server_ts": 1790173085.2979279}
-{"run": "d-hybrid-25557edb", "page": "/flow/done", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790173085.3110518}
-{"run": "c-vlm-136141bd", "page": "/flow/1", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790173088.037923}
-{"run": "d-hybrid-6f7af58e", "page": "/turnstile", "kind": "load", "t_ms": 0.10000002384185791, "webdriver": false, "server_ts": 1790173093.7657511}
-{"run": "c-vlm-136141bd", "page": "/flow/1", "kind": "click", "t_ms": 10384.299999982119, "webdriver": false, "target": "HTML", "trusted": true, "x": 191, "y": 120, "server_ts": 1790173098.420396}
-{"run": "d-hybrid-6f7af58e", "page": "/turnstile", "kind": "click", "t_ms": 6755.4000000059605, "webdriver": false, "target": "BODY", "trusted": true, "x": 69, "y": 97, "server_ts": 1790173100.5129795}
-{"run": "d-hybrid-6f7af58e", "page": "/turnstile", "kind": "click", "t_ms": 12264, "webdriver": false, "target": "submit", "trusted": true, "x": 64, "y": 188, "server_ts": 1790173106.0215306}
-{"run": "d-hybrid-6f7af58e", "kind": "verify", "vendor": "turnstile", "mode": "pass", "token_present": true, "verified": null, "note": "offline (start server with --verify)", "server_ts": 1790173106.0463865}
 {"run": "anon", "page": "/verify", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790173106.0599961}
-{"run": "c-vlm-136141bd", "page": "/flow/1", "kind": "click", "t_ms": 20621.29999998212, "webdriver": false, "target": "real-continue", "trusted": true, "x": 119, "y": 221, "server_ts": 1790173108.6577942}
-{"run": "c-vlm-136141bd", "page": "/flow/1", "kind": "click", "t_ms": 27359.69999998808, "webdriver": false, "target": "HTML", "trusted": true, "x": 192, "y": 122, "server_ts": 1790173115.3955805}
 {"run": "anon", "page": "/verify", "kind": "click", "t_ms": 11725.5, "webdriver": false, "target": "next", "trusted": true, "x": 104, "y": 109, "server_ts": 1790173117.782158}
-{"run": "d-hybrid-6f7af58e", "page": "/flow/1", "kind": "load", "t_ms": 0.10000002384185791, "webdriver": false, "server_ts": 1790173117.8058338}
-{"run": "d-hybrid-6f7af58e", "page": "/flow/1", "kind": "click", "t_ms": 14348.600000023842, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 223, "server_ts": 1790173132.1503446}
-{"run": "d-hybrid-6f7af58e", "kind": "step_submit", "step": 1, "field_len": 8, "server_ts": 1790173132.1616023}
-{"run": "d-hybrid-6f7af58e", "page": "/flow/2", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790173132.1739547}
-{"run": "c-vlm-136141bd", "page": "/flow/1", "kind": "click", "t_ms": 51275.59999999404, "webdriver": false, "target": "f1", "trusted": true, "x": 186, "y": 116, "server_ts": 1790173139.311416}
-{"run": "d-hybrid-6f7af58e", "page": "/flow/2", "kind": "click", "t_ms": 17082.19999998808, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 223, "server_ts": 1790173149.2538276}
-{"run": "d-hybrid-6f7af58e", "kind": "step_submit", "step": 2, "field_len": 20, "server_ts": 1790173149.277709}
-{"run": "d-hybrid-6f7af58e", "page": "/flow/3", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790173149.2898726}
-{"run": "c-vlm-136141bd", "page": "/flow/1", "kind": "click", "t_ms": 64123, "webdriver": false, "target": "real-continue", "trusted": true, "x": 119, "y": 221, "server_ts": 1790173152.1589916}
-{"run": "c-vlm-136141bd", "kind": "step_submit", "step": 1, "field_len": 9, "server_ts": 1790173152.1795733}
-{"run": "c-vlm-136141bd", "page": "/flow/2", "kind": "load", "t_ms": 0.10000002384185791, "webdriver": false, "server_ts": 1790173152.1919966}
-{"run": "d-hybrid-6f7af58e", "page": "/flow/3", "kind": "click", "t_ms": 4616.799999982119, "webdriver": false, "target": "f3", "trusted": true, "x": 148, "y": 117, "server_ts": 1790173153.903943}
-{"run": "d-hybrid-6f7af58e", "page": "/flow/3", "kind": "click", "t_ms": 13733.399999976158, "webdriver": false, "target": "f3", "trusted": true, "x": 151, "y": 109, "server_ts": 1790173163.0201635}
-{"run": "c-vlm-136141bd", "page": "/flow/2", "kind": "click", "t_ms": 34005.30000001192, "webdriver": false, "target": "real-continue", "trusted": true, "x": 115, "y": 223, "server_ts": 1790173186.1939797}
-{"run": "c-vlm-136141bd", "kind": "step_submit", "step": 2, "field_len": 20, "server_ts": 1790173186.209175}
-{"run": "c-vlm-136141bd", "page": "/flow/3", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790173186.2204704}
-{"run": "d-hybrid-6f7af58e", "page": "/flow/3", "kind": "click", "t_ms": 62450.29999998212, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 223, "server_ts": 1790173211.7371209}
-{"run": "d-hybrid-6f7af58e", "kind": "step_submit", "step": 3, "field_len": 6, "server_ts": 1790173211.7633905}
-{"run": "d-hybrid-6f7af58e", "page": "/flow/4", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790173211.7787836}
-{"run": "d-hybrid-6f7af58e", "page": "/flow/4", "kind": "click", "t_ms": 8511.09999999404, "webdriver": false, "target": "f4", "trusted": true, "x": 204, "y": 119, "server_ts": 1790173220.2869296}
-{"run": "c-vlm-136141bd", "page": "/flow/3", "kind": "click", "t_ms": 34642.19999998808, "webdriver": false, "target": "real-continue", "trusted": true, "x": 119, "y": 224, "server_ts": 1790173220.861641}
-{"run": "c-vlm-136141bd", "kind": "step_submit", "step": 3, "field_len": 5, "server_ts": 1790173220.8774364}
-{"run": "c-vlm-136141bd", "page": "/flow/4", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790173220.8967385}
-{"run": "d-hybrid-6f7af58e", "page": "/flow/4", "kind": "click", "t_ms": 18465.90000000596, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 229, "server_ts": 1790173230.2419956}
-{"run": "d-hybrid-6f7af58e", "kind": "step_submit", "step": 4, "field_len": 8, "server_ts": 1790173230.2647736}
-{"run": "d-hybrid-6f7af58e", "page": "/flow/5", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790173230.2800574}
-{"run": "c-vlm-136141bd", "page": "/flow/4", "kind": "click", "t_ms": 18673.09999999404, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 229, "server_ts": 1790173239.5642962}
-{"run": "c-vlm-136141bd", "kind": "step_submit", "step": 4, "field_len": 5, "server_ts": 1790173239.5740309}
-{"run": "c-vlm-136141bd", "page": "/flow/5", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790173239.585627}
-{"run": "d-hybrid-6f7af58e", "page": "/flow/5", "kind": "click", "t_ms": 11014.5, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 223, "server_ts": 1790173241.2921011}
-{"run": "d-hybrid-6f7af58e", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790173241.3073533}
-{"run": "d-hybrid-6f7af58e", "kind": "flow_done", "server_ts": 1790173241.3074307}
-{"run": "d-hybrid-6f7af58e", "page": "/flow/done", "kind": "load", "t_ms": 0.20000001788139343, "webdriver": false, "server_ts": 1790173241.3189657}
-{"run": "c-vlm-136141bd", "page": "/flow/5", "kind": "click", "t_ms": 22580.30000001192, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 229, "server_ts": 1790173262.164719}
-{"run": "c-vlm-136141bd", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790173262.174984}
-{"run": "c-vlm-136141bd", "kind": "flow_done", "server_ts": 1790173262.1750553}
-{"run": "c-vlm-136141bd", "page": "/flow/done", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790173262.187215}
-{"run": "c-vlm-e6c07990", "page": "/flow/1", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790173265.9725661}
-{"run": "d-hybrid-934584e3", "page": "/turnstile", "kind": "load", "t_ms": 0.10000002384185791, "webdriver": false, "server_ts": 1790173266.7801719}
-{"run": "c-vlm-e6c07990", "page": "/flow/1", "kind": "click", "t_ms": 7091.199999988079, "webdriver": false, "target": "HTML", "trusted": true, "x": 189, "y": 120, "server_ts": 1790173273.0601788}
-{"run": "d-hybrid-934584e3", "page": "/turnstile", "kind": "click", "t_ms": 7964.9000000059605, "webdriver": false, "target": "submit", "trusted": true, "x": 68, "y": 176, "server_ts": 1790173274.7401762}
-{"run": "d-hybrid-934584e3", "kind": "verify", "vendor": "turnstile", "mode": "pass", "token_present": true, "verified": null, "note": "offline (start server with --verify)", "server_ts": 1790173274.7553248}
 {"run": "anon", "page": "/verify", "kind": "load", "t_ms": 0.19999998807907104, "webdriver": false, "server_ts": 1790173274.767422}
 {"run": "anon", "page": "/verify", "kind": "click", "t_ms": 7203, "webdriver": false, "target": "next", "trusted": true, "x": 102, "y": 109, "server_ts": 1790173281.967275}
-{"run": "d-hybrid-934584e3", "page": "/flow/1", "kind": "load", "t_ms": 0.4000000059604645, "webdriver": false, "server_ts": 1790173282.002851}
-{"run": "c-vlm-e6c07990", "page": "/flow/1", "kind": "click", "t_ms": 17633.69999998808, "webdriver": false, "target": "real-continue", "trusted": true, "x": 119, "y": 221, "server_ts": 1790173283.6026313}
-{"run": "d-hybrid-934584e3", "page": "/flow/1", "kind": "click", "t_ms": 11489.90000000596, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 225, "server_ts": 1790173293.4855528}
-{"run": "c-vlm-e6c07990", "page": "/flow/1", "kind": "click", "t_ms": 27517.40000000596, "webdriver": false, "target": "HTML", "trusted": true, "x": 196, "y": 121, "server_ts": 1790173293.4862657}
-{"run": "d-hybrid-934584e3", "kind": "step_submit", "step": 1, "field_len": 8, "server_ts": 1790173293.507391}
-{"run": "d-hybrid-934584e3", "page": "/flow/2", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790173293.522356}
-{"run": "c-vlm-e6c07990", "page": "/flow/1", "kind": "click", "t_ms": 37243.90000000596, "webdriver": false, "target": "real-continue", "trusted": true, "x": 119, "y": 221, "server_ts": 1790173303.2128649}
-{"run": "d-hybrid-934584e3", "page": "/flow/2", "kind": "click", "t_ms": 22402.80000001192, "webdriver": false, "target": "f2", "trusted": true, "x": 166, "y": 109, "server_ts": 1790173315.9218936}
-{"run": "c-vlm-e6c07990", "page": "/flow/1", "kind": "click", "t_ms": 51282.19999998808, "webdriver": false, "target": "HTML", "trusted": true, "x": 195, "y": 121, "server_ts": 1790173317.251077}
-{"run": "d-hybrid-934584e3", "page": "/flow/2", "kind": "click", "t_ms": 36540.80000001192, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 228, "server_ts": 1790173330.06092}
-{"run": "d-hybrid-934584e3", "kind": "step_submit", "step": 2, "field_len": 20, "server_ts": 1790173330.071483}
-{"run": "d-hybrid-934584e3", "page": "/flow/3", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790173330.086398}
-{"run": "c-vlm-e6c07990", "page": "/flow/1", "kind": "click", "t_ms": 68439.29999998212, "webdriver": false, "target": "f1", "trusted": true, "x": 183, "y": 115, "server_ts": 1790173334.40829}
-{"run": "d-hybrid-934584e3", "page": "/flow/3", "kind": "click", "t_ms": 11327.90000000596, "webdriver": false, "target": "f3", "trusted": true, "x": 150, "y": 113, "server_ts": 1790173341.4111888}
-{"run": "c-vlm-e6c07990", "page": "/flow/1", "kind": "click", "t_ms": 79049.09999999404, "webdriver": false, "target": "real-continue", "trusted": true, "x": 119, "y": 221, "server_ts": 1790173345.018215}
-{"run": "c-vlm-e6c07990", "kind": "step_submit", "step": 1, "field_len": 9, "server_ts": 1790173345.0371435}
-{"run": "c-vlm-e6c07990", "page": "/flow/2", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790173345.0502963}
-{"run": "d-hybrid-934584e3", "page": "/flow/3", "kind": "click", "t_ms": 19862.5, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 225, "server_ts": 1790173349.9456587}
-{"run": "d-hybrid-934584e3", "kind": "step_submit", "step": 3, "field_len": 6, "server_ts": 1790173349.9701438}
-{"run": "d-hybrid-934584e3", "page": "/flow/4", "kind": "load", "t_ms": 0.10000002384185791, "webdriver": false, "server_ts": 1790173349.9823353}
-{"run": "c-vlm-e6c07990", "page": "/flow/2", "kind": "click", "t_ms": 13547.700000017881, "webdriver": false, "target": "f2", "trusted": true, "x": 166, "y": 106, "server_ts": 1790173358.5949113}
-{"run": "d-hybrid-934584e3", "page": "/flow/4", "kind": "click", "t_ms": 18918.100000023842, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 229, "server_ts": 1790173368.898148}
-{"run": "d-hybrid-934584e3", "kind": "step_submit", "step": 4, "field_len": 8, "server_ts": 1790173368.9201505}
-{"run": "d-hybrid-934584e3", "page": "/flow/5", "kind": "load", "t_ms": 0.10000002384185791, "webdriver": false, "server_ts": 1790173368.9350138}
-{"run": "c-vlm-e6c07990", "page": "/flow/2", "kind": "click", "t_ms": 23951.5, "webdriver": false, "target": "real-continue", "trusted": true, "x": 119, "y": 221, "server_ts": 1790173368.9988854}
-{"run": "c-vlm-e6c07990", "kind": "step_submit", "step": 2, "field_len": 20, "server_ts": 1790173369.0206733}
-{"run": "c-vlm-e6c07990", "page": "/flow/3", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790173369.0374691}
-{"run": "c-vlm-e6c07990", "page": "/flow/3", "kind": "click", "t_ms": 134023.09999999404, "webdriver": false, "target": "real-continue", "trusted": true, "x": 119, "y": 225, "server_ts": 1790173503.0567265}
-{"run": "c-vlm-e6c07990", "kind": "step_submit", "step": 3, "field_len": 5, "server_ts": 1790173503.091696}
-{"run": "c-vlm-e6c07990", "page": "/flow/4", "kind": "load", "t_ms": 0.10000002384185791, "webdriver": false, "server_ts": 1790173503.1124346}
-{"run": "d-hybrid-934584e3", "page": "/flow/5", "kind": "click", "t_ms": 200925.70000001788, "webdriver": false, "target": "f5", "trusted": true, "x": 257, "y": 119, "server_ts": 1790173569.856871}
-{"run": "d-hybrid-934584e3", "page": "/flow/5", "kind": "click", "t_ms": 212241.90000000596, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 224, "server_ts": 1790173581.1730747}
-{"run": "d-hybrid-934584e3", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790173581.1940885}
-{"run": "d-hybrid-934584e3", "kind": "flow_done", "server_ts": 1790173581.194159}
-{"run": "d-hybrid-934584e3", "page": "/flow/done", "kind": "load", "t_ms": 0.10000002384185791, "webdriver": false, "server_ts": 1790173581.205853}
-{"run": "d-hybrid-934584e3", "page": "/flow/done", "kind": "click", "t_ms": 22436.30000001192, "webdriver": false, "target": "HTML", "trusted": true, "x": 819, "y": 199, "server_ts": 1790173603.6400049}
-{"run": "c-vlm-e6c07990", "page": "/flow/4", "kind": "click", "t_ms": 112506.20000001788, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 221, "server_ts": 1790173615.6134822}
-{"run": "c-vlm-e6c07990", "kind": "step_submit", "step": 4, "field_len": 5, "server_ts": 1790173615.6249833}
-{"run": "c-vlm-e6c07990", "page": "/flow/5", "kind": "load", "t_ms": 0.19999998807907104, "webdriver": false, "server_ts": 1790173615.6368833}
-{"run": "d-hybrid-934584e3", "page": "/flow/done", "kind": "click", "t_ms": 43334.60000002384, "webdriver": false, "target": "HTML", "trusted": true, "x": 819, "y": 199, "server_ts": 1790173624.5385284}
-{"run": "c-vlm-e6c07990", "page": "/flow/5", "kind": "click", "t_ms": 8903.699999988079, "webdriver": false, "target": "f5", "trusted": true, "x": 259, "y": 119, "server_ts": 1790173624.5388284}
-{"run": "d-hybrid-c29b5e2b", "page": "/turnstile", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790173625.9336777}
-{"run": "d-hybrid-c29b5e2b", "page": "/turnstile", "kind": "click", "t_ms": 6785.799999982119, "webdriver": false, "target": "submit", "trusted": true, "x": 68, "y": 182, "server_ts": 1790173632.7136831}
-{"run": "d-hybrid-c29b5e2b", "kind": "verify", "vendor": "turnstile", "mode": "pass", "token_present": true, "verified": null, "note": "offline (start server with --verify)", "server_ts": 1790173632.7251828}
 {"run": "anon", "page": "/verify", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790173632.7402005}
 {"run": "anon", "page": "/verify", "kind": "click", "t_ms": 6914.800000011921, "webdriver": false, "target": "next", "trusted": true, "x": 102, "y": 107, "server_ts": 1790173639.64943}
-{"run": "d-hybrid-c29b5e2b", "page": "/flow/1", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790173639.668965}
-{"run": "c-vlm-e6c07990", "page": "/flow/5", "kind": "click", "t_ms": 26286.399999976158, "webdriver": false, "target": "real-continue", "trusted": true, "x": 119, "y": 221, "server_ts": 1790173641.9210873}
-{"run": "c-vlm-e6c07990", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790173641.9410396}
-{"run": "c-vlm-e6c07990", "kind": "flow_done", "server_ts": 1790173641.9411035}
-{"run": "c-vlm-e6c07990", "page": "/flow/done", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790173641.9526932}
-{"run": "c-vlm-cb0f56ff", "page": "/flow/1", "kind": "load", "t_ms": 0.10000002384185791, "webdriver": false, "server_ts": 1790173645.8481753}
-{"run": "d-hybrid-c29b5e2b", "page": "/flow/1", "kind": "click", "t_ms": 6884.699999988079, "webdriver": false, "target": "f1", "trusted": true, "x": 193, "y": 119, "server_ts": 1790173646.5509875}
-{"run": "c-vlm-cb0f56ff", "page": "/flow/1", "kind": "click", "t_ms": 13301.200000017881, "webdriver": false, "target": "f1", "trusted": true, "x": 196, "y": 119, "server_ts": 1790173659.147555}
-{"run": "d-hybrid-c29b5e2b", "page": "/flow/1", "kind": "click", "t_ms": 26791.19999998808, "webdriver": false, "target": "f1", "trusted": true, "x": 186, "y": 119, "server_ts": 1790173666.457551}
-{"run": "d-hybrid-c29b5e2b", "page": "/flow/1", "kind": "click", "t_ms": 36899.5, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 223, "server_ts": 1790173676.565786}
-{"run": "d-hybrid-c29b5e2b", "kind": "step_submit", "step": 1, "field_len": 8, "server_ts": 1790173676.5914128}
-{"run": "d-hybrid-c29b5e2b", "page": "/flow/2", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790173676.6088479}
-{"run": "c-vlm-cb0f56ff", "page": "/flow/1", "kind": "click", "t_ms": 31417.30000001192, "webdriver": false, "target": "real-continue", "trusted": true, "x": 119, "y": 224, "server_ts": 1790173677.2637627}
-{"run": "c-vlm-cb0f56ff", "kind": "step_submit", "step": 1, "field_len": 9, "server_ts": 1790173677.2803771}
-{"run": "c-vlm-cb0f56ff", "page": "/flow/2", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790173677.2980616}
-{"run": "c-vlm-cb0f56ff", "page": "/flow/2", "kind": "click", "t_ms": 12475.700000017881, "webdriver": false, "target": "f2", "trusted": true, "x": 174, "y": 115, "server_ts": 1790173689.7693145}
-{"run": "c-vlm-cb0f56ff", "page": "/flow/2", "kind": "click", "t_ms": 24555.09999999404, "webdriver": false, "target": "real-continue", "trusted": true, "x": 115, "y": 224, "server_ts": 1790173701.8486989}
-{"run": "c-vlm-cb0f56ff", "kind": "step_submit", "step": 2, "field_len": 20, "server_ts": 1790173701.8726637}
-{"run": "c-vlm-cb0f56ff", "page": "/flow/3", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790173701.8839378}
-{"run": "d-hybrid-c29b5e2b", "page": "/flow/2", "kind": "click", "t_ms": 30262.90000000596, "webdriver": false, "target": "f2", "trusted": true, "x": 166, "y": 107, "server_ts": 1790173706.8669984}
-{"run": "d-hybrid-c29b5e2b", "page": "/flow/2", "kind": "click", "t_ms": 43791.69999998808, "webdriver": false, "target": "real-continue", "trusted": true, "x": 115, "y": 223, "server_ts": 1790173720.3958652}
-{"run": "d-hybrid-c29b5e2b", "kind": "step_submit", "step": 2, "field_len": 16, "server_ts": 1790173720.4078832}
-{"run": "d-hybrid-c29b5e2b", "page": "/flow/3", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790173720.4210122}
-{"run": "c-vlm-cb0f56ff", "page": "/flow/3", "kind": "click", "t_ms": 26190, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 224, "server_ts": 1790173728.071872}
-{"run": "c-vlm-cb0f56ff", "kind": "step_submit", "step": 3, "field_len": 5, "server_ts": 1790173728.0879986}
-{"run": "c-vlm-cb0f56ff", "page": "/flow/4", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790173728.101318}
-{"run": "d-hybrid-c29b5e2b", "page": "/flow/3", "kind": "click", "t_ms": 14718.5, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 223, "server_ts": 1790173735.1372821}
-{"run": "d-hybrid-c29b5e2b", "kind": "step_submit", "step": 3, "field_len": 6, "server_ts": 1790173735.1546135}
-{"run": "d-hybrid-c29b5e2b", "page": "/flow/4", "kind": "load", "t_ms": 0.10000002384185791, "webdriver": false, "server_ts": 1790173735.1662655}
-{"run": "d-hybrid-c29b5e2b", "page": "/flow/4", "kind": "click", "t_ms": 9598.800000011921, "webdriver": false, "target": "f4", "trusted": true, "x": 202, "y": 119, "server_ts": 1790173744.7624245}
-{"run": "d-hybrid-c29b5e2b", "page": "/flow/4", "kind": "click", "t_ms": 20353.40000000596, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 223, "server_ts": 1790173755.5172298}
-{"run": "d-hybrid-c29b5e2b", "kind": "step_submit", "step": 4, "field_len": 8, "server_ts": 1790173755.5368774}
-{"run": "d-hybrid-c29b5e2b", "page": "/flow/5", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790173755.5484765}
-{"run": "c-vlm-cb0f56ff", "page": "/flow/4", "kind": "click", "t_ms": 30993, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 224, "server_ts": 1790173759.0918937}
-{"run": "c-vlm-cb0f56ff", "kind": "step_submit", "step": 4, "field_len": 5, "server_ts": 1790173759.1035638}
-{"run": "c-vlm-cb0f56ff", "page": "/flow/5", "kind": "load", "t_ms": 0.10000002384185791, "webdriver": false, "server_ts": 1790173759.1161034}
-{"run": "d-hybrid-c29b5e2b", "page": "/flow/5", "kind": "click", "t_ms": 15618.09999999404, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 223, "server_ts": 1790173771.1640728}
-{"run": "d-hybrid-c29b5e2b", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790173771.1863284}
-{"run": "d-hybrid-c29b5e2b", "kind": "flow_done", "server_ts": 1790173771.1864028}
-{"run": "d-hybrid-c29b5e2b", "page": "/flow/done", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790173771.1991856}
-{"run": "c-vlm-cb0f56ff", "page": "/flow/5", "kind": "click", "t_ms": 19133.5, "webdriver": false, "target": "f5", "trusted": true, "x": 259, "y": 119, "server_ts": 1790173778.2457256}
-{"run": "c-vlm-cb0f56ff", "page": "/flow/5", "kind": "click", "t_ms": 34701.20000001788, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 224, "server_ts": 1790173793.8134103}
-{"run": "c-vlm-cb0f56ff", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790173793.8357043}
-{"run": "c-vlm-cb0f56ff", "kind": "flow_done", "server_ts": 1790173793.8357742}
-{"run": "c-vlm-cb0f56ff", "page": "/flow/done", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790173793.8485458}
-{"run": "c-vlm-2870c2ad", "page": "/flow/1", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790173799.0473533}
-{"run": "d-hybrid-c29b5e2b", "page": "/flow/done", "kind": "click", "t_ms": 32805.5, "webdriver": false, "target": "done", "trusted": true, "x": 115, "y": 63, "server_ts": 1790173804.0024557}
-{"run": "c-vlm-2870c2ad", "page": "/flow/1", "kind": "click", "t_ms": 6237.800000011921, "webdriver": false, "target": "HTML", "trusted": true, "x": 191, "y": 121, "server_ts": 1790173805.2828329}
-{"run": "d-hybrid-c26c3462", "page": "/turnstile", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790173805.3258963}
-{"run": "d-hybrid-c26c3462", "page": "/turnstile", "kind": "click", "t_ms": 6683.9000000059605, "webdriver": false, "target": "submit", "trusted": true, "x": 70, "y": 187, "server_ts": 1790173812.0064354}
-{"run": "d-hybrid-c26c3462", "kind": "verify", "vendor": "turnstile", "mode": "pass", "token_present": true, "verified": null, "note": "offline (start server with --verify)", "server_ts": 1790173812.0182776}
 {"run": "anon", "page": "/verify", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790173812.0331428}
-{"run": "c-vlm-2870c2ad", "page": "/flow/1", "kind": "click", "t_ms": 18216.70000001788, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 220, "server_ts": 1790173817.2616546}
 {"run": "anon", "page": "/verify", "kind": "click", "t_ms": 8607.5, "webdriver": false, "target": "next", "trusted": true, "x": 104, "y": 108, "server_ts": 1790173820.636874}
-{"run": "d-hybrid-c26c3462", "page": "/flow/1", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790173820.6610858}
-{"run": "c-vlm-2870c2ad", "page": "/flow/1", "kind": "click", "t_ms": 23846.59999999404, "webdriver": false, "target": "HTML", "trusted": true, "x": 182, "y": 123, "server_ts": 1790173822.8918853}
-{"run": "d-hybrid-c26c3462", "page": "/flow/1", "kind": "click", "t_ms": 9629.40000000596, "webdriver": false, "target": "real-continue", "trusted": true, "x": 119, "y": 223, "server_ts": 1790173830.2858355}
-{"run": "d-hybrid-c26c3462", "kind": "step_submit", "step": 1, "field_len": 8, "server_ts": 1790173830.3005698}
-{"run": "d-hybrid-c26c3462", "page": "/flow/2", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790173830.3123085}
-{"run": "d-hybrid-c26c3462", "page": "/flow/2", "kind": "click", "t_ms": 14098.90000000596, "webdriver": false, "target": "real-continue", "trusted": true, "x": 113, "y": 225, "server_ts": 1790173844.4091697}
-{"run": "d-hybrid-c26c3462", "kind": "step_submit", "step": 2, "field_len": 20, "server_ts": 1790173844.422241}
-{"run": "d-hybrid-c26c3462", "page": "/flow/3", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790173844.4342976}
-{"run": "c-vlm-2870c2ad", "page": "/flow/1", "kind": "click", "t_ms": 50785.70000001788, "webdriver": false, "target": "f1", "trusted": true, "x": 179, "y": 119, "server_ts": 1790173849.8310387}
-{"run": "d-hybrid-c26c3462", "page": "/flow/3", "kind": "click", "t_ms": 8052.5999999940395, "webdriver": false, "target": "f3", "trusted": true, "x": 150, "y": 115, "server_ts": 1790173852.4843225}
-{"run": "c-vlm-2870c2ad", "page": "/flow/1", "kind": "click", "t_ms": 65830.40000000596, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 220, "server_ts": 1790173864.876234}
-{"run": "c-vlm-2870c2ad", "kind": "step_submit", "step": 1, "field_len": 9, "server_ts": 1790173864.8899934}
-{"run": "c-vlm-2870c2ad", "page": "/flow/2", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790173864.9100878}
-{"run": "d-hybrid-c26c3462", "page": "/flow/3", "kind": "click", "t_ms": 27134.399999976158, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 223, "server_ts": 1790173871.5662448}
-{"run": "d-hybrid-c26c3462", "kind": "step_submit", "step": 3, "field_len": 6, "server_ts": 1790173871.58226}
-{"run": "d-hybrid-c26c3462", "page": "/flow/4", "kind": "load", "t_ms": 0.10000002384185791, "webdriver": false, "server_ts": 1790173871.5941598}
-{"run": "d-hybrid-c26c3462", "page": "/flow/4", "kind": "click", "t_ms": 6319.200000017881, "webdriver": false, "target": "f4", "trusted": true, "x": 205, "y": 118, "server_ts": 1790173877.9109015}
-{"run": "c-vlm-2870c2ad", "page": "/flow/2", "kind": "click", "t_ms": 18812.79999998212, "webdriver": false, "target": "real-continue", "trusted": true, "x": 114, "y": 227, "server_ts": 1790173883.717733}
-{"run": "c-vlm-2870c2ad", "kind": "step_submit", "step": 2, "field_len": 20, "server_ts": 1790173883.7331161}
-{"run": "c-vlm-2870c2ad", "page": "/flow/3", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790173883.7478983}
-{"run": "d-hybrid-c26c3462", "page": "/flow/4", "kind": "click", "t_ms": 19095.80000001192, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 227, "server_ts": 1790173890.687784}
-{"run": "d-hybrid-c26c3462", "kind": "step_submit", "step": 4, "field_len": 8, "server_ts": 1790173890.6978993}
-{"run": "d-hybrid-c26c3462", "page": "/flow/5", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790173890.7104187}
-{"run": "d-hybrid-c26c3462", "page": "/flow/5", "kind": "click", "t_ms": 7043.0999999940395, "webdriver": false, "target": "HTML", "trusted": true, "x": 262, "y": 121, "server_ts": 1790173897.7509573}
-{"run": "c-vlm-2870c2ad", "page": "/flow/3", "kind": "click", "t_ms": 15433.09999999404, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 224, "server_ts": 1790173899.1771703}
-{"run": "c-vlm-2870c2ad", "kind": "step_submit", "step": 3, "field_len": 5, "server_ts": 1790173899.1978846}
-{"run": "c-vlm-2870c2ad", "page": "/flow/4", "kind": "load", "t_ms": 0.20000001788139343, "webdriver": false, "server_ts": 1790173899.2103817}
-{"run": "d-hybrid-c26c3462", "page": "/flow/5", "kind": "click", "t_ms": 26369.5, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 223, "server_ts": 1790173917.0773306}
-{"run": "c-vlm-2870c2ad", "page": "/flow/4", "kind": "click", "t_ms": 20863, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 220, "server_ts": 1790173920.0692778}
-{"run": "c-vlm-2870c2ad", "kind": "step_submit", "step": 4, "field_len": 5, "server_ts": 1790173920.0807788}
-{"run": "c-vlm-2870c2ad", "page": "/flow/5", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790173920.0938683}
-{"run": "d-hybrid-c26c3462", "page": "/flow/5", "kind": "click", "t_ms": 33356.19999998808, "webdriver": false, "target": "f5", "trusted": true, "x": 262, "y": 115, "server_ts": 1790173924.0638535}
-{"run": "c-vlm-2870c2ad", "page": "/flow/5", "kind": "click", "t_ms": 28144.40000000596, "webdriver": false, "target": "f5", "trusted": true, "x": 264, "y": 119, "server_ts": 1790173948.23531}
-{"run": "d-hybrid-c26c3462", "page": "/flow/5", "kind": "click", "t_ms": 62846.5, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 225, "server_ts": 1790173953.5543664}
-{"run": "d-hybrid-c26c3462", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790173953.5793915}
-{"run": "d-hybrid-c26c3462", "kind": "flow_done", "server_ts": 1790173953.5794666}
-{"run": "d-hybrid-c26c3462", "page": "/flow/done", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790173953.5915775}
-{"run": "c-vlm-2870c2ad", "page": "/flow/5", "kind": "click", "t_ms": 43535.59999999404, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 220, "server_ts": 1790173963.6266398}
-{"run": "c-vlm-2870c2ad", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790173963.6447349}
-{"run": "c-vlm-2870c2ad", "kind": "flow_done", "server_ts": 1790173963.6448035}
-{"run": "c-vlm-2870c2ad", "page": "/flow/done", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790173963.6563208}
-{"run": "c-vlm-e1181765", "page": "/flow/1", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790173969.9379146}
-{"run": "c-vlm-e1181765", "page": "/flow/1", "kind": "click", "t_ms": 9937.90000000596, "webdriver": false, "target": "f1", "trusted": true, "x": 189, "y": 119, "server_ts": 1790173979.8719013}
-{"run": "d-hybrid-6d038d40", "page": "/turnstile", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790173994.9334812}
-{"run": "c-vlm-e1181765", "page": "/flow/1", "kind": "click", "t_ms": 30444.40000000596, "webdriver": false, "target": "real-continue", "trusted": true, "x": 119, "y": 225, "server_ts": 1790174000.3783476}
-{"run": "c-vlm-e1181765", "kind": "step_submit", "step": 1, "field_len": 9, "server_ts": 1790174000.393836}
-{"run": "c-vlm-e1181765", "page": "/flow/2", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790174000.408173}
-{"run": "d-hybrid-6d038d40", "page": "/turnstile", "kind": "click", "t_ms": 7089.5, "webdriver": false, "target": "submit", "trusted": true, "x": 68, "y": 188, "server_ts": 1790174002.0194993}
-{"run": "d-hybrid-6d038d40", "kind": "verify", "vendor": "turnstile", "mode": "pass", "token_present": true, "verified": null, "note": "offline (start server with --verify)", "server_ts": 1790174002.0455048}
 {"run": "anon", "page": "/verify", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790174002.0578675}
-{"run": "c-vlm-e1181765", "page": "/flow/2", "kind": "click", "t_ms": 11016.199999988079, "webdriver": false, "target": "f2", "trusted": true, "x": 173, "y": 111, "server_ts": 1790174011.4200864}
 {"run": "anon", "page": "/verify", "kind": "click", "t_ms": 14246.799999982119, "webdriver": false, "target": "next", "trusted": true, "x": 104, "y": 107, "server_ts": 1790174016.3013191}
-{"run": "d-hybrid-6d038d40", "page": "/flow/1", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790174016.3213313}
-{"run": "c-vlm-e1181765", "page": "/flow/2", "kind": "click", "t_ms": 21654.80000001192, "webdriver": false, "target": "real-continue", "trusted": true, "x": 115, "y": 225, "server_ts": 1790174022.0587347}
-{"run": "c-vlm-e1181765", "kind": "step_submit", "step": 2, "field_len": 20, "server_ts": 1790174022.075101}
-{"run": "c-vlm-e1181765", "page": "/flow/3", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790174022.0881894}
-{"run": "d-hybrid-6d038d40", "page": "/flow/1", "kind": "click", "t_ms": 11478, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 225, "server_ts": 1790174027.8014877}
-{"run": "d-hybrid-6d038d40", "kind": "step_submit", "step": 1, "field_len": 8, "server_ts": 1790174027.8169425}
-{"run": "d-hybrid-6d038d40", "page": "/flow/2", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790174027.8287375}
-{"run": "c-vlm-e1181765", "page": "/flow/3", "kind": "click", "t_ms": 18515.19999998808, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 225, "server_ts": 1790174040.6006925}
-{"run": "c-vlm-e1181765", "kind": "step_submit", "step": 3, "field_len": 5, "server_ts": 1790174040.6249292}
-{"run": "c-vlm-e1181765", "page": "/flow/4", "kind": "load", "t_ms": 0.10000002384185791, "webdriver": false, "server_ts": 1790174040.6364467}
-{"run": "d-hybrid-6d038d40", "page": "/flow/2", "kind": "click", "t_ms": 40116.5, "webdriver": false, "target": "real-continue", "trusted": true, "x": 115, "y": 227, "server_ts": 1790174067.9428606}
-{"run": "d-hybrid-6d038d40", "kind": "step_submit", "step": 2, "field_len": 20, "server_ts": 1790174067.957338}
-{"run": "d-hybrid-6d038d40", "page": "/flow/3", "kind": "load", "t_ms": 0.10000002384185791, "webdriver": false, "server_ts": 1790174067.968987}
-{"run": "c-vlm-e1181765", "page": "/flow/4", "kind": "click", "t_ms": 27714.40000000596, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 225, "server_ts": 1790174068.3488781}
-{"run": "c-vlm-e1181765", "kind": "step_submit", "step": 4, "field_len": 5, "server_ts": 1790174068.3586633}
-{"run": "c-vlm-e1181765", "page": "/flow/5", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790174068.3709104}
-{"run": "d-hybrid-6d038d40", "page": "/flow/3", "kind": "click", "t_ms": 4307.300000011921, "webdriver": false, "target": "f3", "trusted": true, "x": 147, "y": 115, "server_ts": 1790174072.2742813}
-{"run": "c-vlm-e1181765", "page": "/flow/5", "kind": "click", "t_ms": 14834.40000000596, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 225, "server_ts": 1790174083.2030022}
-{"run": "c-vlm-e1181765", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790174083.2231615}
-{"run": "c-vlm-e1181765", "kind": "flow_done", "server_ts": 1790174083.2232296}
-{"run": "c-vlm-e1181765", "page": "/flow/done", "kind": "load", "t_ms": 0.20000001788139343, "webdriver": false, "server_ts": 1790174083.2352214}
-{"run": "d-hybrid-6d038d40", "page": "/flow/3", "kind": "click", "t_ms": 15894, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 223, "server_ts": 1790174083.8613555}
-{"run": "d-hybrid-6d038d40", "kind": "step_submit", "step": 3, "field_len": 6, "server_ts": 1790174083.8731046}
-{"run": "d-hybrid-6d038d40", "page": "/flow/4", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790174083.8860703}
-{"run": "c-vlm-d78e6988", "page": "/flow/1", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790174087.2982233}
-{"run": "c-vlm-d78e6988", "page": "/flow/1", "kind": "click", "t_ms": 6276, "webdriver": false, "target": "f1", "trusted": true, "x": 184, "y": 119, "server_ts": 1790174093.5699532}
-{"run": "d-hybrid-6d038d40", "page": "/flow/4", "kind": "click", "t_ms": 12526.40000000596, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 225, "server_ts": 1790174096.4095988}
-{"run": "d-hybrid-6d038d40", "kind": "step_submit", "step": 4, "field_len": 7, "server_ts": 1790174096.4243352}
-{"run": "d-hybrid-6d038d40", "page": "/flow/5", "kind": "load", "t_ms": 0.19999998807907104, "webdriver": false, "server_ts": 1790174096.436235}
-{"run": "c-vlm-d78e6988", "page": "/flow/1", "kind": "click", "t_ms": 13725.59999999404, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 225, "server_ts": 1790174101.0194685}
-{"run": "c-vlm-d78e6988", "kind": "step_submit", "step": 1, "field_len": 9, "server_ts": 1790174101.0398388}
-{"run": "c-vlm-d78e6988", "page": "/flow/2", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790174101.0519392}
-{"run": "d-hybrid-6d038d40", "page": "/flow/5", "kind": "click", "t_ms": 6214.5, "webdriver": false, "target": "HTML", "trusted": true, "x": 265, "y": 120, "server_ts": 1790174102.647823}
-{"run": "d-hybrid-6d038d40", "page": "/flow/5", "kind": "click", "t_ms": 16240.299999982119, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 225, "server_ts": 1790174112.6737063}
-{"run": "c-vlm-d78e6988", "page": "/flow/2", "kind": "click", "t_ms": 13795.800000011921, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 225, "server_ts": 1790174114.8457859}
-{"run": "c-vlm-d78e6988", "kind": "step_submit", "step": 2, "field_len": 20, "server_ts": 1790174114.858489}
-{"run": "c-vlm-d78e6988", "page": "/flow/3", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790174114.8718362}
-{"run": "d-hybrid-6d038d40", "page": "/flow/5", "kind": "click", "t_ms": 30803.69999998808, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 225, "server_ts": 1790174127.2371027}
-{"run": "d-hybrid-6d038d40", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790174127.2549472}
-{"run": "d-hybrid-6d038d40", "kind": "flow_done", "server_ts": 1790174127.2550194}
-{"run": "d-hybrid-6d038d40", "page": "/flow/done", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790174127.2669303}
-{"run": "d-hybrid-763fa31a", "page": "/turnstile", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790174138.6116974}
-{"run": "c-vlm-d78e6988", "page": "/flow/3", "kind": "click", "t_ms": 29699.79999998212, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 225, "server_ts": 1790174144.5693102}
-{"run": "c-vlm-d78e6988", "kind": "step_submit", "step": 3, "field_len": 5, "server_ts": 1790174144.5879421}
-{"run": "c-vlm-d78e6988", "page": "/flow/4", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790174144.6030786}
-{"run": "d-hybrid-763fa31a", "page": "/turnstile", "kind": "click", "t_ms": 6242.299999982119, "webdriver": false, "target": "submit", "trusted": true, "x": 64, "y": 186, "server_ts": 1790174144.8506927}
-{"run": "d-hybrid-763fa31a", "kind": "verify", "vendor": "turnstile", "mode": "pass", "token_present": true, "verified": null, "note": "offline (start server with --verify)", "server_ts": 1790174144.871095}
 {"run": "anon", "page": "/verify", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790174144.883816}
 {"run": "anon", "page": "/verify", "kind": "click", "t_ms": 6007.5, "webdriver": false, "target": "next", "trusted": true, "x": 102, "y": 107, "server_ts": 1790174150.8880706}
-{"run": "d-hybrid-763fa31a", "page": "/flow/1", "kind": "load", "t_ms": 0.20000001788139343, "webdriver": false, "server_ts": 1790174150.915559}
-{"run": "d-hybrid-763fa31a", "page": "/flow/1", "kind": "click", "t_ms": 10418.700000017881, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 223, "server_ts": 1790174161.3308475}
-{"run": "d-hybrid-763fa31a", "kind": "step_submit", "step": 1, "field_len": 8, "server_ts": 1790174161.3543677}
-{"run": "d-hybrid-763fa31a", "page": "/flow/2", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790174161.367672}
-{"run": "d-hybrid-763fa31a", "page": "/flow/2", "kind": "click", "t_ms": 6113.5, "webdriver": false, "target": "f2", "trusted": true, "x": 173, "y": 107, "server_ts": 1790174167.478429}
-{"run": "d-hybrid-763fa31a", "page": "/flow/2", "kind": "click", "t_ms": 11537.09999999404, "webdriver": false, "target": "f2", "trusted": true, "x": 173, "y": 107, "server_ts": 1790174172.9022532}
-{"run": "c-vlm-d78e6988", "page": "/flow/4", "kind": "click", "t_ms": 30735.5, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 225, "server_ts": 1790174175.3362653}
-{"run": "c-vlm-d78e6988", "kind": "step_submit", "step": 4, "field_len": 5, "server_ts": 1790174175.3552449}
-{"run": "c-vlm-d78e6988", "page": "/flow/5", "kind": "load", "t_ms": 0.10000002384185791, "webdriver": false, "server_ts": 1790174175.3693864}
-{"run": "d-hybrid-763fa31a", "page": "/flow/2", "kind": "click", "t_ms": 21971.5, "webdriver": false, "target": "real-continue", "trusted": true, "x": 113, "y": 220, "server_ts": 1790174183.3366044}
-{"run": "d-hybrid-763fa31a", "kind": "step_submit", "step": 2, "field_len": 16, "server_ts": 1790174183.354771}
-{"run": "d-hybrid-763fa31a", "page": "/flow/3", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790174183.3725073}
-{"run": "c-vlm-d78e6988", "page": "/flow/5", "kind": "click", "t_ms": 14543.90000000596, "webdriver": false, "target": "HTML", "trusted": true, "x": 257, "y": 120, "server_ts": 1790174189.9102817}
-{"run": "d-hybrid-763fa31a", "page": "/flow/3", "kind": "click", "t_ms": 6601.5, "webdriver": false, "target": "f3", "trusted": true, "x": 148, "y": 117, "server_ts": 1790174189.969725}
-{"run": "d-hybrid-763fa31a", "page": "/flow/3", "kind": "click", "t_ms": 16529.40000000596, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 220, "server_ts": 1790174199.9003963}
-{"run": "d-hybrid-763fa31a", "kind": "step_submit", "step": 3, "field_len": 6, "server_ts": 1790174199.9210868}
-{"run": "d-hybrid-763fa31a", "page": "/flow/4", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790174199.93653}
-{"run": "d-hybrid-763fa31a", "page": "/flow/4", "kind": "click", "t_ms": 8198.59999999404, "webdriver": false, "target": "HTML", "trusted": true, "x": 202, "y": 121, "server_ts": 1790174208.132009}
-{"run": "c-vlm-d78e6988", "page": "/flow/5", "kind": "click", "t_ms": 39621.40000000596, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 225, "server_ts": 1790174214.9877245}
-{"run": "d-hybrid-763fa31a", "page": "/flow/4", "kind": "click", "t_ms": 21384.90000000596, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 223, "server_ts": 1790174221.318264}
-{"run": "d-hybrid-763fa31a", "page": "/flow/4", "kind": "click", "t_ms": 28374.09999999404, "webdriver": false, "target": "f4", "trusted": true, "x": 202, "y": 117, "server_ts": 1790174228.3088796}
-{"run": "d-hybrid-763fa31a", "page": "/flow/4", "kind": "click", "t_ms": 42091.40000000596, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 223, "server_ts": 1790174242.025383}
-{"run": "d-hybrid-763fa31a", "kind": "step_submit", "step": 4, "field_len": 8, "server_ts": 1790174242.0385873}
-{"run": "d-hybrid-763fa31a", "page": "/flow/5", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790174242.0549202}
-{"run": "c-vlm-d78e6988", "page": "/flow/5", "kind": "click", "t_ms": 69740.20000001788, "webdriver": false, "target": "HTML", "trusted": true, "x": 257, "y": 120, "server_ts": 1790174245.1074402}
-{"run": "d-hybrid-763fa31a", "page": "/flow/5", "kind": "click", "t_ms": 7969.699999988079, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 220, "server_ts": 1790174250.021148}
-{"run": "d-hybrid-763fa31a", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790174250.033382}
-{"run": "d-hybrid-763fa31a", "kind": "flow_done", "server_ts": 1790174250.0334444}
-{"run": "d-hybrid-763fa31a", "page": "/flow/done", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790174250.0450075}
-{"run": "c-vlm-d78e6988", "page": "/flow/5", "kind": "click", "t_ms": 78757.70000001788, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 225, "server_ts": 1790174254.123946}
-{"run": "c-vlm-d78e6988", "page": "/flow/5", "kind": "click", "t_ms": 99644.20000001788, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 225, "server_ts": 1790174275.0104282}
-{"run": "c-vlm-d78e6988", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790174275.0329509}
-{"run": "c-vlm-d78e6988", "kind": "flow_done", "server_ts": 1790174275.0330288}
-{"run": "c-vlm-d78e6988", "page": "/flow/done", "kind": "load", "t_ms": 0.09999999403953552, "webdriver": false, "server_ts": 1790174275.0449457}
 {"run": "c-vlm-2f2d60bd", "page": "/flow/1", "kind": "load", "t_ms": 0.19999998807907104, "webdriver": false, "server_ts": 1790174278.514586}
 {"run": "d-hybrid-d9d224f5", "page": "/turnstile", "kind": "load", "t_ms": 0.19999998807907104, "webdriver": false, "server_ts": 1790174282.1033552}
 {"run": "c-vlm-2f2d60bd", "page": "/flow/1", "kind": "click", "t_ms": 5331.699999988079, "webdriver": false, "target": "f1", "trusted": true, "x": 187, "y": 118, "server_ts": 1790174283.8423884}
@@ -1445,21 +1089,16 @@
 {"run": "c-vlm-2f2d60bd", "kind": "step_submit", "step": 3, "field_len": 5, "server_ts": 1790174332.4640543}
 {"run": "c-vlm-2f2d60bd", "page": "/flow/4", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790174332.4784732}
 {"run": "d-hybrid-442e253d", "page": "/turnstile", "kind": "load", "t_ms": 0.20000000018626451, "webdriver": false, "server_ts": 1790180742.4700997}
-{"run": "d-hybrid-b869297e", "page": "/turnstile", "kind": "load", "t_ms": 0.20000000018626451, "webdriver": false, "server_ts": 1790180742.4889038}
-{"run": "c-vlm-2ed9f11d", "page": "/flow/1", "kind": "load", "t_ms": 9.900000000372529, "webdriver": false, "server_ts": 1790180742.4896932}
 {"run": "c-vlm-e0c9ad39", "page": "/flow/1", "kind": "load", "t_ms": 0.20000000018626451, "webdriver": false, "server_ts": 1790180742.5253365}
 {"run": "c-vlm-e0c9ad39", "page": "/flow/1", "kind": "click", "t_ms": 3020, "webdriver": false, "target": "f1", "trusted": true, "x": 183, "y": 108, "server_ts": 1790180745.527264}
 {"run": "d-hybrid-442e253d", "page": "/turnstile", "kind": "click", "t_ms": 3418.5999999996275, "webdriver": false, "target": "submit", "trusted": true, "x": 66, "y": 177, "server_ts": 1790180745.8735561}
 {"run": "d-hybrid-442e253d", "kind": "verify", "vendor": "turnstile", "mode": "pass", "token_present": true, "verified": null, "note": "offline (start server with --verify)", "server_ts": 1790180745.8910131}
 {"run": "anon", "page": "/verify", "kind": "load", "t_ms": 0.09999999962747097, "webdriver": false, "server_ts": 1790180745.9111907}
-{"run": "c-vlm-2ed9f11d", "page": "/flow/1", "kind": "click", "t_ms": 5077.0999999996275, "webdriver": false, "target": "f1", "trusted": true, "x": 184, "y": 117, "server_ts": 1790180747.5411015}
 {"run": "c-vlm-e0c9ad39", "page": "/flow/1", "kind": "click", "t_ms": 7158.5, "webdriver": false, "target": "real-continue", "trusted": true, "x": 115, "y": 219, "server_ts": 1790180749.6656635}
 {"run": "c-vlm-e0c9ad39", "kind": "step_submit", "step": 1, "field_len": 9, "server_ts": 1790180749.691457}
 {"run": "c-vlm-e0c9ad39", "page": "/flow/2", "kind": "load", "t_ms": 0.09999999962747097, "webdriver": false, "server_ts": 1790180749.7111125}
 {"run": "anon", "page": "/verify", "kind": "click", "t_ms": 4614.5999999996275, "webdriver": false, "target": "next", "trusted": true, "x": 77, "y": 105, "server_ts": 1790180750.519846}
 {"run": "d-hybrid-442e253d", "page": "/flow/1", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790180750.5543668}
-{"run": "d-hybrid-b869297e", "page": "/turnstile", "kind": "click", "t_ms": 8532.800000000745, "webdriver": false, "target": "submit", "trusted": true, "x": 58, "y": 179, "server_ts": 1790180750.986234}
-{"run": "d-hybrid-b869297e", "kind": "verify", "vendor": "turnstile", "mode": "pass", "token_present": true, "verified": null, "note": "offline (start server with --verify)", "server_ts": 1790180751.0026498}
 {"run": "anon", "page": "/verify", "kind": "load", "t_ms": 0.19999999925494194, "webdriver": false, "server_ts": 1790180751.027981}
 {"run": "c-vlm-e0c9ad39", "page": "/flow/2", "kind": "click", "t_ms": 4743, "webdriver": false, "target": "real-continue", "trusted": true, "x": 93, "y": 218, "server_ts": 1790180754.44951}
 {"run": "c-vlm-e0c9ad39", "kind": "step_submit", "step": 2, "field_len": 20, "server_ts": 1790180754.483719}
@@ -1467,12 +1106,8 @@
 {"run": "d-hybrid-442e253d", "page": "/flow/1", "kind": "click", "t_ms": 5065.299999999814, "webdriver": false, "target": "real-continue", "trusted": true, "x": 93, "y": 219, "server_ts": 1790180755.6178844}
 {"run": "d-hybrid-442e253d", "kind": "step_submit", "step": 1, "field_len": 8, "server_ts": 1790180755.6533346}
 {"run": "d-hybrid-442e253d", "page": "/flow/2", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790180755.6870158}
-{"run": "c-vlm-2ed9f11d", "page": "/flow/1", "kind": "click", "t_ms": 15000.900000000373, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 225, "server_ts": 1790180757.4631026}
-{"run": "c-vlm-2ed9f11d", "kind": "step_submit", "step": 1, "field_len": 9, "server_ts": 1790180757.4851408}
-{"run": "c-vlm-2ed9f11d", "page": "/flow/2", "kind": "load", "t_ms": 0.09999999962747097, "webdriver": false, "server_ts": 1790180757.5030107}
 {"run": "c-vlm-e0c9ad39", "page": "/flow/3", "kind": "click", "t_ms": 4645.899999999441, "webdriver": false, "target": "f3", "trusted": true, "x": 118, "y": 108, "server_ts": 1790180759.1602173}
 {"run": "anon", "page": "/verify", "kind": "click", "t_ms": 8451.699999999255, "webdriver": false, "target": "next", "trusted": true, "x": 102, "y": 107, "server_ts": 1790180759.4748642}
-{"run": "d-hybrid-b869297e", "page": "/flow/1", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790180759.5086472}
 {"run": "d-hybrid-442e253d", "page": "/flow/2", "kind": "click", "t_ms": 5818.4000000003725, "webdriver": false, "target": "real-continue", "trusted": true, "x": 110, "y": 219, "server_ts": 1790180761.4958768}
 {"run": "d-hybrid-442e253d", "kind": "step_submit", "step": 2, "field_len": 20, "server_ts": 1790180761.514952}
 {"run": "d-hybrid-442e253d", "page": "/flow/3", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790180761.5288706}
@@ -1482,9 +1117,6 @@
 {"run": "d-hybrid-442e253d", "page": "/flow/3", "kind": "click", "t_ms": 4824, "webdriver": false, "target": "real-continue", "trusted": true, "x": 93, "y": 219, "server_ts": 1790180766.3510952}
 {"run": "d-hybrid-442e253d", "kind": "step_submit", "step": 3, "field_len": 11, "server_ts": 1790180766.3718686}
 {"run": "d-hybrid-442e253d", "page": "/flow/4", "kind": "load", "t_ms": 0.20000000018626451, "webdriver": false, "server_ts": 1790180766.3944426}
-{"run": "d-hybrid-b869297e", "page": "/flow/1", "kind": "click", "t_ms": 10828.100000000559, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 224, "server_ts": 1790180770.3307004}
-{"run": "d-hybrid-b869297e", "kind": "step_submit", "step": 1, "field_len": 8, "server_ts": 1790180770.3557124}
-{"run": "d-hybrid-b869297e", "page": "/flow/2", "kind": "load", "t_ms": 0.20000000018626451, "webdriver": false, "server_ts": 1790180770.3740988}
 {"run": "d-hybrid-442e253d", "page": "/flow/4", "kind": "click", "t_ms": 4349.0999999996275, "webdriver": false, "target": "real-continue", "trusted": true, "x": 93, "y": 219, "server_ts": 1790180770.736274}
 {"run": "d-hybrid-442e253d", "kind": "step_submit", "step": 4, "field_len": 5, "server_ts": 1790180770.7489314}
 {"run": "d-hybrid-442e253d", "page": "/flow/5", "kind": "load", "t_ms": 0.19999999925494194, "webdriver": false, "server_ts": 1790180770.7630088}
@@ -1495,14 +1127,8 @@
 {"run": "c-vlm-e0c9ad39", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790180777.6363068}
 {"run": "c-vlm-e0c9ad39", "kind": "flow_done", "server_ts": 1790180777.6364334}
 {"run": "c-vlm-e0c9ad39", "page": "/flow/done", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790180777.6542602}
-{"run": "c-vlm-2ed9f11d", "page": "/flow/2", "kind": "click", "t_ms": 20709.39999999944, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 225, "server_ts": 1790180778.2086692}
-{"run": "c-vlm-2ed9f11d", "kind": "step_submit", "step": 2, "field_len": 20, "server_ts": 1790180778.24239}
-{"run": "c-vlm-2ed9f11d", "page": "/flow/3", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790180778.2671502}
 {"run": "d-hybrid-442e253d", "page": "/flow/5", "kind": "click", "t_ms": 7892.799999999814, "webdriver": false, "target": "f5", "trusted": true, "x": 240, "y": 110, "server_ts": 1790180778.656604}
 {"run": "c-vlm-a4fa4e95", "page": "/flow/1", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790180780.3786118}
-{"run": "d-hybrid-b869297e", "page": "/flow/2", "kind": "click", "t_ms": 12764.200000000186, "webdriver": false, "target": "real-continue", "trusted": true, "x": 113, "y": 223, "server_ts": 1790180783.1387181}
-{"run": "d-hybrid-b869297e", "kind": "step_submit", "step": 2, "field_len": 16, "server_ts": 1790180783.1824872}
-{"run": "d-hybrid-b869297e", "page": "/flow/3", "kind": "load", "t_ms": 0.20000000018626451, "webdriver": false, "server_ts": 1790180783.2287893}
 {"run": "d-hybrid-442e253d", "page": "/flow/5", "kind": "click", "t_ms": 12799, "webdriver": false, "target": "real-continue", "trusted": true, "x": 93, "y": 219, "server_ts": 1790180783.5626483}
 {"run": "d-hybrid-442e253d", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790180783.603221}
 {"run": "d-hybrid-442e253d", "kind": "flow_done", "server_ts": 1790180783.6035411}
@@ -1520,18 +1146,12 @@
 {"run": "c-vlm-a4fa4e95", "page": "/flow/3", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790180793.207697}
 {"run": "anon", "page": "/verify", "kind": "click", "t_ms": 4389.399999999441, "webdriver": false, "target": "next", "trusted": true, "x": 77, "y": 105, "server_ts": 1790180797.2444565}
 {"run": "d-hybrid-acd29431", "page": "/flow/1", "kind": "load", "t_ms": 0.09999999962747097, "webdriver": false, "server_ts": 1790180797.2693586}
-{"run": "d-hybrid-b869297e", "page": "/flow/3", "kind": "click", "t_ms": 17196.5, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 221, "server_ts": 1790180800.41918}
-{"run": "d-hybrid-b869297e", "kind": "step_submit", "step": 3, "field_len": 6, "server_ts": 1790180800.4299612}
-{"run": "d-hybrid-b869297e", "page": "/flow/4", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790180800.4443996}
 {"run": "c-vlm-a4fa4e95", "page": "/flow/3", "kind": "click", "t_ms": 7595.5, "webdriver": false, "target": "real-continue", "trusted": true, "x": 117, "y": 219, "server_ts": 1790180800.8001654}
 {"run": "c-vlm-a4fa4e95", "kind": "step_submit", "step": 3, "field_len": 5, "server_ts": 1790180800.8160965}
 {"run": "c-vlm-a4fa4e95", "page": "/flow/4", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790180800.8294919}
 {"run": "d-hybrid-acd29431", "page": "/flow/1", "kind": "click", "t_ms": 4402.799999999814, "webdriver": false, "target": "real-continue", "trusted": true, "x": 93, "y": 219, "server_ts": 1790180801.66957}
 {"run": "d-hybrid-acd29431", "kind": "step_submit", "step": 1, "field_len": 8, "server_ts": 1790180801.6974332}
 {"run": "d-hybrid-acd29431", "page": "/flow/2", "kind": "load", "t_ms": 0.09999999962747097, "webdriver": false, "server_ts": 1790180801.7120545}
-{"run": "c-vlm-2ed9f11d", "page": "/flow/3", "kind": "click", "t_ms": 25699, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 225, "server_ts": 1790180803.961157}
-{"run": "c-vlm-2ed9f11d", "kind": "step_submit", "step": 3, "field_len": 5, "server_ts": 1790180803.9898825}
-{"run": "c-vlm-2ed9f11d", "page": "/flow/4", "kind": "load", "t_ms": 0.20000000018626451, "webdriver": false, "server_ts": 1790180804.0078762}
 {"run": "c-vlm-a4fa4e95", "page": "/flow/4", "kind": "click", "t_ms": 4178.700000000186, "webdriver": false, "target": "real-continue", "trusted": true, "x": 94, "y": 219, "server_ts": 1790180805.0055592}
 {"run": "c-vlm-a4fa4e95", "kind": "step_submit", "step": 4, "field_len": 5, "server_ts": 1790180805.030381}
 {"run": "c-vlm-a4fa4e95", "page": "/flow/5", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790180805.047464}
@@ -1547,7 +1167,6 @@
 {"run": "d-hybrid-acd29431", "kind": "step_submit", "step": 3, "field_len": 11, "server_ts": 1790180812.8949397}
 {"run": "d-hybrid-acd29431", "page": "/flow/4", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790180812.909387}
 {"run": "c-vlm-2df623a5", "page": "/flow/1", "kind": "click", "t_ms": 3862.600000000559, "webdriver": false, "target": "f1", "trusted": true, "x": 180, "y": 108, "server_ts": 1790180815.8314748}
-{"run": "d-hybrid-b869297e", "page": "/flow/4", "kind": "click", "t_ms": 16836.60000000056, "webdriver": false, "target": "f4", "trusted": true, "x": 205, "y": 115, "server_ts": 1790180817.2785032}
 {"run": "d-hybrid-acd29431", "page": "/flow/4", "kind": "click", "t_ms": 4528.0999999996275, "webdriver": false, "target": "real-continue", "trusted": true, "x": 93, "y": 219, "server_ts": 1790180817.4342704}
 {"run": "d-hybrid-acd29431", "kind": "step_submit", "step": 4, "field_len": 5, "server_ts": 1790180817.4463038}
 {"run": "d-hybrid-acd29431", "page": "/flow/5", "kind": "load", "t_ms": 0.09999999962747097, "webdriver": false, "server_ts": 1790180817.4612336}
@@ -1561,12 +1180,6 @@
 {"run": "c-vlm-2df623a5", "page": "/flow/2", "kind": "click", "t_ms": 4460, "webdriver": false, "target": "real-continue", "trusted": true, "x": 94, "y": 219, "server_ts": 1790180824.2648122}
 {"run": "c-vlm-2df623a5", "kind": "step_submit", "step": 2, "field_len": 20, "server_ts": 1790180824.2821817}
 {"run": "c-vlm-2df623a5", "page": "/flow/3", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790180824.2980754}
-{"run": "c-vlm-2ed9f11d", "page": "/flow/4", "kind": "click", "t_ms": 21809.700000000186, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 225, "server_ts": 1790180825.814244}
-{"run": "c-vlm-2ed9f11d", "kind": "step_submit", "step": 4, "field_len": 5, "server_ts": 1790180825.8287668}
-{"run": "c-vlm-2ed9f11d", "page": "/flow/5", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790180825.842819}
-{"run": "d-hybrid-b869297e", "page": "/flow/4", "kind": "click", "t_ms": 28023.200000000186, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 224, "server_ts": 1790180828.4659235}
-{"run": "d-hybrid-b869297e", "kind": "step_submit", "step": 4, "field_len": 8, "server_ts": 1790180828.493191}
-{"run": "d-hybrid-b869297e", "page": "/flow/5", "kind": "load", "t_ms": 0.20000000018626451, "webdriver": false, "server_ts": 1790180828.521078}
 {"run": "d-hybrid-a2cfe1b7", "page": "/turnstile", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790180828.6568143}
 {"run": "c-vlm-2df623a5", "page": "/flow/3", "kind": "click", "t_ms": 7253.899999999441, "webdriver": false, "target": "real-continue", "trusted": true, "x": 117, "y": 219, "server_ts": 1790180831.548217}
 {"run": "c-vlm-2df623a5", "kind": "step_submit", "step": 3, "field_len": 5, "server_ts": 1790180831.5629177}
@@ -1583,15 +1196,10 @@
 {"run": "c-vlm-2df623a5", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790180840.578099}
 {"run": "c-vlm-2df623a5", "kind": "flow_done", "server_ts": 1790180840.5782518}
 {"run": "c-vlm-2df623a5", "page": "/flow/done", "kind": "load", "t_ms": 0.09999999962747097, "webdriver": false, "server_ts": 1790180840.6052256}
-{"run": "d-hybrid-b869297e", "page": "/flow/5", "kind": "click", "t_ms": 12629.300000000745, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 224, "server_ts": 1790180841.1453373}
-{"run": "d-hybrid-b869297e", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790180841.175436}
-{"run": "d-hybrid-b869297e", "kind": "flow_done", "server_ts": 1790180841.1755817}
-{"run": "d-hybrid-b869297e", "page": "/flow/done", "kind": "load", "t_ms": 0.09999999962747097, "webdriver": false, "server_ts": 1790180841.207003}
 {"run": "d-hybrid-a2cfe1b7", "page": "/flow/1", "kind": "click", "t_ms": 4465.700000000186, "webdriver": false, "target": "real-continue", "trusted": true, "x": 94, "y": 214, "server_ts": 1790180842.5411525}
 {"run": "d-hybrid-a2cfe1b7", "kind": "step_submit", "step": 1, "field_len": 8, "server_ts": 1790180842.5964882}
 {"run": "d-hybrid-a2cfe1b7", "page": "/flow/2", "kind": "load", "t_ms": 0.20000000018626451, "webdriver": false, "server_ts": 1790180842.6303937}
 {"run": "c-vlm-f582e5e0", "page": "/flow/1", "kind": "load", "t_ms": 0.19999999925494194, "webdriver": false, "server_ts": 1790180843.872559}
-{"run": "c-vlm-2ed9f11d", "page": "/flow/5", "kind": "click", "t_ms": 18699.900000000373, "webdriver": false, "target": "HTML", "trusted": true, "x": 260, "y": 121, "server_ts": 1790180844.539622}
 {"run": "c-vlm-f582e5e0", "page": "/flow/1", "kind": "click", "t_ms": 3224.2999999998137, "webdriver": false, "target": "f1", "trusted": true, "x": 183, "y": 109, "server_ts": 1790180847.0920134}
 {"run": "d-hybrid-a2cfe1b7", "page": "/flow/2", "kind": "click", "t_ms": 5869.9000000003725, "webdriver": false, "target": "real-continue", "trusted": true, "x": 94, "y": 218, "server_ts": 1790180848.4883525}
 {"run": "d-hybrid-a2cfe1b7", "kind": "step_submit", "step": 2, "field_len": 20, "server_ts": 1790180848.5116568}
@@ -1599,37 +1207,28 @@
 {"run": "c-vlm-f582e5e0", "page": "/flow/1", "kind": "click", "t_ms": 7442.5, "webdriver": false, "target": "real-continue", "trusted": true, "x": 94, "y": 219, "server_ts": 1790180851.3102684}
 {"run": "c-vlm-f582e5e0", "kind": "step_submit", "step": 1, "field_len": 9, "server_ts": 1790180851.337175}
 {"run": "c-vlm-f582e5e0", "page": "/flow/2", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790180851.3632205}
-{"run": "d-hybrid-b720042e", "page": "/turnstile", "kind": "load", "t_ms": 0.09999999962747097, "webdriver": false, "server_ts": 1790180851.612162}
 {"run": "d-hybrid-a2cfe1b7", "page": "/flow/3", "kind": "click", "t_ms": 5092.0999999996275, "webdriver": false, "target": "real-continue", "trusted": true, "x": 94, "y": 218, "server_ts": 1790180853.6151578}
 {"run": "d-hybrid-a2cfe1b7", "kind": "step_submit", "step": 3, "field_len": 11, "server_ts": 1790180853.6321042}
 {"run": "d-hybrid-a2cfe1b7", "page": "/flow/4", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790180853.6485443}
 {"run": "c-vlm-f582e5e0", "page": "/flow/2", "kind": "click", "t_ms": 4798.4000000003725, "webdriver": false, "target": "real-continue", "trusted": true, "x": 94, "y": 219, "server_ts": 1790180856.1536198}
 {"run": "c-vlm-f582e5e0", "kind": "step_submit", "step": 2, "field_len": 20, "server_ts": 1790180856.185041}
 {"run": "c-vlm-f582e5e0", "page": "/flow/3", "kind": "load", "t_ms": 0.09999999962747097, "webdriver": false, "server_ts": 1790180856.2029295}
-{"run": "c-vlm-2ed9f11d", "page": "/flow/5", "kind": "click", "t_ms": 31101.299999999814, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 225, "server_ts": 1790180856.941228}
 {"run": "d-hybrid-a2cfe1b7", "page": "/flow/4", "kind": "click", "t_ms": 4468.4000000003725, "webdriver": false, "target": "real-continue", "trusted": true, "x": 94, "y": 218, "server_ts": 1790180858.113436}
 {"run": "d-hybrid-a2cfe1b7", "kind": "step_submit", "step": 4, "field_len": 5, "server_ts": 1790180858.1313276}
 {"run": "d-hybrid-a2cfe1b7", "page": "/flow/5", "kind": "load", "t_ms": 0.09999999962747097, "webdriver": false, "server_ts": 1790180858.1448753}
-{"run": "d-hybrid-b720042e", "page": "/turnstile", "kind": "click", "t_ms": 7514.399999999441, "webdriver": false, "target": "submit", "trusted": true, "x": 68, "y": 185, "server_ts": 1790180859.1178315}
-{"run": "d-hybrid-b720042e", "kind": "verify", "vendor": "turnstile", "mode": "pass", "token_present": true, "verified": null, "note": "offline (start server with --verify)", "server_ts": 1790180859.131257}
 {"run": "anon", "page": "/verify", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790180859.1471567}
 {"run": "c-vlm-f582e5e0", "page": "/flow/3", "kind": "click", "t_ms": 6844.5, "webdriver": false, "target": "f3", "trusted": true, "x": 140, "y": 108, "server_ts": 1790180863.0409784}
 {"run": "d-hybrid-a2cfe1b7", "page": "/flow/5", "kind": "click", "t_ms": 6163.899999999441, "webdriver": false, "target": "real-continue", "trusted": true, "x": 94, "y": 218, "server_ts": 1790180864.3072417}
 {"run": "d-hybrid-a2cfe1b7", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790180864.3324049}
 {"run": "d-hybrid-a2cfe1b7", "kind": "flow_done", "server_ts": 1790180864.3325338}
 {"run": "d-hybrid-a2cfe1b7", "page": "/flow/done", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790180864.3478868}
-{"run": "c-vlm-2ed9f11d", "page": "/flow/5", "kind": "click", "t_ms": 40730.60000000056, "webdriver": false, "target": "f5", "trusted": true, "x": 260, "y": 117, "server_ts": 1790180866.5707655}
 {"run": "c-vlm-f582e5e0", "page": "/flow/3", "kind": "click", "t_ms": 10826.200000000186, "webdriver": false, "target": "f3", "trusted": true, "x": 140, "y": 108, "server_ts": 1790180867.0222867}
 {"run": "anon", "page": "/verify", "kind": "click", "t_ms": 8374.899999999441, "webdriver": false, "target": "next", "trusted": true, "x": 104, "y": 109, "server_ts": 1790180867.5186298}
-{"run": "d-hybrid-b720042e", "page": "/flow/1", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790180867.5550883}
 {"run": "c-vlm-f582e5e0", "page": "/flow/3", "kind": "click", "t_ms": 12946.5, "webdriver": false, "target": "f3", "trusted": true, "x": 140, "y": 108, "server_ts": 1790180869.1435876}
 {"run": "d-hybrid-85b8a05c", "page": "/turnstile", "kind": "load", "t_ms": 0.19999999925494194, "webdriver": false, "server_ts": 1790180869.4245152}
 {"run": "d-hybrid-85b8a05c", "page": "/turnstile", "kind": "click", "t_ms": 3769.899999999441, "webdriver": false, "target": "submit", "trusted": true, "x": 62, "y": 177, "server_ts": 1790180873.1905437}
 {"run": "d-hybrid-85b8a05c", "kind": "verify", "vendor": "turnstile", "mode": "pass", "token_present": true, "verified": null, "note": "offline (start server with --verify)", "server_ts": 1790180873.2116985}
 {"run": "anon", "page": "/verify", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790180873.2268927}
-{"run": "d-hybrid-b720042e", "page": "/flow/1", "kind": "click", "t_ms": 9190, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 224, "server_ts": 1790180876.7412584}
-{"run": "d-hybrid-b720042e", "kind": "step_submit", "step": 1, "field_len": 8, "server_ts": 1790180876.7744246}
-{"run": "d-hybrid-b720042e", "page": "/flow/2", "kind": "load", "t_ms": 0.20000000018626451, "webdriver": false, "server_ts": 1790180876.8012598}
 {"run": "anon", "page": "/verify", "kind": "click", "t_ms": 4402.799999999814, "webdriver": false, "target": "next", "trusted": true, "x": 77, "y": 105, "server_ts": 1790180877.6309626}
 {"run": "d-hybrid-85b8a05c", "page": "/flow/1", "kind": "load", "t_ms": 0.20000000018626451, "webdriver": false, "server_ts": 1790180877.703322}
 {"run": "c-vlm-f582e5e0", "page": "/flow/3", "kind": "click", "t_ms": 22866.89999999944, "webdriver": false, "target": "real-continue", "trusted": true, "x": 94, "y": 219, "server_ts": 1790180879.0636816}
@@ -1641,17 +1240,9 @@
 {"run": "c-vlm-f582e5e0", "page": "/flow/4", "kind": "click", "t_ms": 4684, "webdriver": false, "target": "real-continue", "trusted": true, "x": 94, "y": 219, "server_ts": 1790180883.7823892}
 {"run": "c-vlm-f582e5e0", "kind": "step_submit", "step": 4, "field_len": 5, "server_ts": 1790180883.7966871}
 {"run": "c-vlm-f582e5e0", "page": "/flow/5", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790180883.8135242}
-{"run": "c-vlm-2ed9f11d", "page": "/flow/5", "kind": "click", "t_ms": 58535.700000000186, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 225, "server_ts": 1790180884.375804}
-{"run": "c-vlm-2ed9f11d", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790180884.3999374}
-{"run": "c-vlm-2ed9f11d", "kind": "flow_done", "server_ts": 1790180884.4000566}
-{"run": "c-vlm-2ed9f11d", "page": "/flow/done", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790180884.4198413}
 {"run": "d-hybrid-85b8a05c", "page": "/flow/2", "kind": "click", "t_ms": 6633.100000000559, "webdriver": false, "target": "real-continue", "trusted": true, "x": 94, "y": 218, "server_ts": 1790180889.1713505}
 {"run": "d-hybrid-85b8a05c", "kind": "step_submit", "step": 2, "field_len": 20, "server_ts": 1790180889.1985426}
 {"run": "d-hybrid-85b8a05c", "page": "/flow/3", "kind": "load", "t_ms": 0.09999999962747097, "webdriver": false, "server_ts": 1790180889.2242472}
-{"run": "c-vlm-105ded43", "page": "/flow/1", "kind": "load", "t_ms": 0.09999999962747097, "webdriver": false, "server_ts": 1790180889.7566142}
-{"run": "d-hybrid-b720042e", "page": "/flow/2", "kind": "click", "t_ms": 14221.700000000186, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 223, "server_ts": 1790180891.0163183}
-{"run": "d-hybrid-b720042e", "kind": "step_submit", "step": 2, "field_len": 16, "server_ts": 1790180891.0472002}
-{"run": "d-hybrid-b720042e", "page": "/flow/3", "kind": "load", "t_ms": 0.20000000018626451, "webdriver": false, "server_ts": 1790180891.079447}
 {"run": "c-vlm-f582e5e0", "page": "/flow/5", "kind": "click", "t_ms": 10576.400000000373, "webdriver": false, "target": "real-continue", "trusted": true, "x": 115, "y": 219, "server_ts": 1790180894.38977}
 {"run": "d-hybrid-85b8a05c", "page": "/flow/3", "kind": "click", "t_ms": 5168.5, "webdriver": false, "target": "real-continue", "trusted": true, "x": 94, "y": 218, "server_ts": 1790180894.3922687}
 {"run": "c-vlm-f582e5e0", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790180894.4111748}
@@ -1659,48 +1250,31 @@
 {"run": "d-hybrid-85b8a05c", "kind": "step_submit", "step": 3, "field_len": 11, "server_ts": 1790180894.4119775}
 {"run": "c-vlm-f582e5e0", "page": "/flow/done", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790180894.4391801}
 {"run": "d-hybrid-85b8a05c", "page": "/flow/4", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790180894.4399211}
-{"run": "d-hybrid-b720042e", "page": "/flow/3", "kind": "click", "t_ms": 4913.100000000559, "webdriver": false, "target": "f3", "trusted": true, "x": 151, "y": 114, "server_ts": 1790180895.9808693}
-{"run": "c-vlm-105ded43", "page": "/flow/1", "kind": "click", "t_ms": 6391.200000000186, "webdriver": false, "target": "f1", "trusted": true, "x": 183, "y": 118, "server_ts": 1790180896.1297312}
 {"run": "c-vlm-9eb6af24", "page": "/flow/1", "kind": "load", "t_ms": 0.20000000018626451, "webdriver": false, "server_ts": 1790180898.3581002}
 {"run": "d-hybrid-85b8a05c", "page": "/flow/4", "kind": "click", "t_ms": 5455.600000000559, "webdriver": false, "target": "real-continue", "trusted": true, "x": 94, "y": 218, "server_ts": 1790180899.8888116}
 {"run": "d-hybrid-85b8a05c", "kind": "step_submit", "step": 4, "field_len": 5, "server_ts": 1790180899.9245253}
 {"run": "d-hybrid-85b8a05c", "page": "/flow/5", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790180899.9763007}
 {"run": "c-vlm-9eb6af24", "page": "/flow/1", "kind": "click", "t_ms": 3047.7999999998137, "webdriver": false, "target": "f1", "trusted": true, "x": 183, "y": 109, "server_ts": 1790180901.3854866}
-{"run": "c-vlm-105ded43", "page": "/flow/1", "kind": "click", "t_ms": 15138.200000000186, "webdriver": false, "target": "real-continue", "trusted": true, "x": 119, "y": 225, "server_ts": 1790180904.8812907}
-{"run": "c-vlm-105ded43", "kind": "step_submit", "step": 1, "field_len": 9, "server_ts": 1790180904.9103956}
-{"run": "c-vlm-105ded43", "page": "/flow/2", "kind": "load", "t_ms": 0.2999999998137355, "webdriver": false, "server_ts": 1790180904.9421737}
 {"run": "c-vlm-9eb6af24", "page": "/flow/1", "kind": "click", "t_ms": 7407.5, "webdriver": false, "target": "real-continue", "trusted": true, "x": 94, "y": 219, "server_ts": 1790180905.7449617}
 {"run": "c-vlm-9eb6af24", "kind": "step_submit", "step": 1, "field_len": 9, "server_ts": 1790180905.7769284}
 {"run": "c-vlm-9eb6af24", "page": "/flow/2", "kind": "load", "t_ms": 0.20000000018626451, "webdriver": false, "server_ts": 1790180905.8133755}
-{"run": "d-hybrid-b720042e", "page": "/flow/3", "kind": "click", "t_ms": 15750.700000000186, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 224, "server_ts": 1790180906.8227465}
-{"run": "d-hybrid-b720042e", "kind": "step_submit", "step": 3, "field_len": 6, "server_ts": 1790180906.8687289}
-{"run": "d-hybrid-b720042e", "page": "/flow/4", "kind": "load", "t_ms": 0.20000000018626451, "webdriver": false, "server_ts": 1790180906.9232576}
 {"run": "d-hybrid-85b8a05c", "page": "/flow/5", "kind": "click", "t_ms": 8212.700000000186, "webdriver": false, "target": "f5", "trusted": true, "x": 258, "y": 109, "server_ts": 1790180908.1772885}
 {"run": "c-vlm-9eb6af24", "page": "/flow/2", "kind": "click", "t_ms": 5192.600000000559, "webdriver": false, "target": "real-continue", "trusted": true, "x": 94, "y": 219, "server_ts": 1790180911.0026093}
 {"run": "c-vlm-9eb6af24", "kind": "step_submit", "step": 2, "field_len": 20, "server_ts": 1790180911.062302}
 {"run": "c-vlm-9eb6af24", "page": "/flow/3", "kind": "load", "t_ms": 0.20000000018626451, "webdriver": false, "server_ts": 1790180911.1132772}
-{"run": "d-hybrid-b720042e", "page": "/flow/4", "kind": "click", "t_ms": 5129.100000000559, "webdriver": false, "target": "f4", "trusted": true, "x": 205, "y": 119, "server_ts": 1790180912.0424004}
 {"run": "d-hybrid-85b8a05c", "page": "/flow/5", "kind": "click", "t_ms": 13824, "webdriver": false, "target": "real-continue", "trusted": true, "x": 94, "y": 218, "server_ts": 1790180913.7868595}
 {"run": "d-hybrid-85b8a05c", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790180913.8349767}
 {"run": "d-hybrid-85b8a05c", "kind": "flow_done", "server_ts": 1790180913.8351445}
 {"run": "d-hybrid-85b8a05c", "page": "/flow/done", "kind": "load", "t_ms": 0.09999999962747097, "webdriver": false, "server_ts": 1790180913.868865}
 {"run": "c-vlm-9eb6af24", "page": "/flow/3", "kind": "click", "t_ms": 5982.5, "webdriver": false, "target": "f3", "trusted": true, "x": 145, "y": 109, "server_ts": 1790180917.0697012}
 {"run": "d-hybrid-9a088f4a", "page": "/turnstile", "kind": "load", "t_ms": 0.2999999998137355, "webdriver": false, "server_ts": 1790180921.2099597}
-{"run": "d-hybrid-b720042e", "page": "/flow/4", "kind": "click", "t_ms": 15676, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 228, "server_ts": 1790180922.5876324}
-{"run": "d-hybrid-b720042e", "kind": "step_submit", "step": 4, "field_len": 8, "server_ts": 1790180922.6222088}
-{"run": "d-hybrid-b720042e", "page": "/flow/5", "kind": "load", "t_ms": 0.20000000018626451, "webdriver": false, "server_ts": 1790180922.65068}
 {"run": "d-hybrid-9a088f4a", "page": "/turnstile", "kind": "click", "t_ms": 3217.7000000001863, "webdriver": false, "target": "submit", "trusted": true, "x": 62, "y": 178, "server_ts": 1790180924.41426}
 {"run": "d-hybrid-9a088f4a", "kind": "verify", "vendor": "turnstile", "mode": "pass", "token_present": true, "verified": null, "note": "offline (start server with --verify)", "server_ts": 1790180924.4298453}
 {"run": "anon", "page": "/verify", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790180924.4517574}
 {"run": "c-vlm-9eb6af24", "page": "/flow/3", "kind": "click", "t_ms": 13413.700000000186, "webdriver": false, "target": "f3", "trusted": true, "x": 145, "y": 109, "server_ts": 1790180924.4980798}
-{"run": "c-vlm-105ded43", "page": "/flow/2", "kind": "click", "t_ms": 20993.900000000373, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 220, "server_ts": 1790180925.928357}
-{"run": "c-vlm-105ded43", "kind": "step_submit", "step": 2, "field_len": 20, "server_ts": 1790180925.9494076}
-{"run": "c-vlm-105ded43", "page": "/flow/3", "kind": "load", "t_ms": 0.19999999925494194, "webdriver": false, "server_ts": 1790180925.9791589}
 {"run": "anon", "page": "/verify", "kind": "click", "t_ms": 4685.100000000559, "webdriver": false, "target": "next", "trusted": true, "x": 77, "y": 105, "server_ts": 1790180929.132497}
 {"run": "d-hybrid-9a088f4a", "page": "/flow/1", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790180929.1908145}
 {"run": "c-vlm-9eb6af24", "page": "/flow/3", "kind": "click", "t_ms": 18476.5, "webdriver": false, "target": "f3", "trusted": true, "x": 145, "y": 109, "server_ts": 1790180929.5614083}
-{"run": "d-hybrid-b720042e", "page": "/flow/5", "kind": "click", "t_ms": 8191.9000000003725, "webdriver": false, "target": "f5", "trusted": true, "x": 262, "y": 119, "server_ts": 1790180930.8366842}
-{"run": "c-vlm-105ded43", "page": "/flow/3", "kind": "click", "t_ms": 8234.899999999441, "webdriver": false, "target": "f3", "trusted": true, "x": 151, "y": 117, "server_ts": 1790180934.205553}
 {"run": "d-hybrid-9a088f4a", "page": "/flow/1", "kind": "click", "t_ms": 5098.5, "webdriver": false, "target": "real-continue", "trusted": true, "x": 94, "y": 218, "server_ts": 1790180934.2797272}
 {"run": "d-hybrid-9a088f4a", "kind": "step_submit", "step": 1, "field_len": 8, "server_ts": 1790180934.2966073}
 {"run": "d-hybrid-9a088f4a", "page": "/flow/2", "kind": "load", "t_ms": 0.20000000018626451, "webdriver": false, "server_ts": 1790180934.3160846}
@@ -1710,16 +1284,9 @@
 {"run": "d-hybrid-9a088f4a", "page": "/flow/2", "kind": "click", "t_ms": 5779.700000000186, "webdriver": false, "target": "real-continue", "trusted": true, "x": 127, "y": 220, "server_ts": 1790180940.091986}
 {"run": "d-hybrid-9a088f4a", "kind": "step_submit", "step": 2, "field_len": 20, "server_ts": 1790180940.120731}
 {"run": "d-hybrid-9a088f4a", "page": "/flow/3", "kind": "load", "t_ms": 0.19999999925494194, "webdriver": false, "server_ts": 1790180940.1473007}
-{"run": "d-hybrid-b720042e", "page": "/flow/5", "kind": "click", "t_ms": 18544.099999999627, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 224, "server_ts": 1790180941.1884322}
-{"run": "d-hybrid-b720042e", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790180941.2131062}
-{"run": "d-hybrid-b720042e", "kind": "flow_done", "server_ts": 1790180941.2132115}
-{"run": "d-hybrid-b720042e", "page": "/flow/done", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790180941.233142}
 {"run": "d-hybrid-9a088f4a", "page": "/flow/3", "kind": "click", "t_ms": 4828.5, "webdriver": false, "target": "real-continue", "trusted": true, "x": 94, "y": 218, "server_ts": 1790180944.9668431}
 {"run": "d-hybrid-9a088f4a", "kind": "step_submit", "step": 3, "field_len": 11, "server_ts": 1790180944.9896104}
 {"run": "d-hybrid-9a088f4a", "page": "/flow/4", "kind": "load", "t_ms": 0.09999999962747097, "webdriver": false, "server_ts": 1790180945.0030744}
-{"run": "c-vlm-105ded43", "page": "/flow/3", "kind": "click", "t_ms": 19127.699999999255, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 225, "server_ts": 1790180945.0981803}
-{"run": "c-vlm-105ded43", "kind": "step_submit", "step": 3, "field_len": 5, "server_ts": 1790180945.1234882}
-{"run": "c-vlm-105ded43", "page": "/flow/4", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790180945.1381414}
 {"run": "c-vlm-9eb6af24", "page": "/flow/4", "kind": "click", "t_ms": 12667.5, "webdriver": false, "target": "real-continue", "trusted": true, "x": 94, "y": 219, "server_ts": 1790180947.2468953}
 {"run": "c-vlm-9eb6af24", "kind": "step_submit", "step": 4, "field_len": 5, "server_ts": 1790180947.260265}
 {"run": "c-vlm-9eb6af24", "page": "/flow/5", "kind": "load", "t_ms": 0.19999999925494194, "webdriver": false, "server_ts": 1790180947.276898}
@@ -1737,10 +1304,6 @@
 {"run": "c-vlm-88e84b9d", "page": "/flow/1", "kind": "load", "t_ms": 0.09999999962747097, "webdriver": false, "server_ts": 1790180957.9970806}
 {"run": "c-vlm-88e84b9d", "page": "/flow/1", "kind": "click", "t_ms": 3659.5999999996275, "webdriver": false, "target": "f1", "trusted": true, "x": 152, "y": 107, "server_ts": 1790180961.649916}
 {"run": "d-hybrid-e4011e03", "page": "/turnstile", "kind": "load", "t_ms": 0.20000000018626451, "webdriver": false, "server_ts": 1790180962.29744}
-{"run": "c-vlm-105ded43", "page": "/flow/4", "kind": "click", "t_ms": 17310.900000000373, "webdriver": false, "target": "real-continue", "trusted": true, "x": 116, "y": 225, "server_ts": 1790180962.450574}
-{"run": "c-vlm-105ded43", "kind": "step_submit", "step": 4, "field_len": 5, "server_ts": 1790180962.4745495}
-{"run": "c-vlm-105ded43", "page": "/flow/5", "kind": "load", "t_ms": 0.20000000018626451, "webdriver": false, "server_ts": 1790180962.504083}
-{"run": "d-hybrid-3445f9a2", "page": "/turnstile", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790180964.0465238}
 {"run": "c-vlm-88e84b9d", "page": "/flow/1", "kind": "click", "t_ms": 7715.399999999441, "webdriver": false, "target": "real-continue", "trusted": true, "x": 94, "y": 219, "server_ts": 1790180965.7067144}
 {"run": "c-vlm-88e84b9d", "kind": "step_submit", "step": 1, "field_len": 9, "server_ts": 1790180965.7565463}
 {"run": "c-vlm-88e84b9d", "page": "/flow/2", "kind": "load", "t_ms": 0.20000000018626451, "webdriver": false, "server_ts": 1790180965.7915843}
@@ -1752,33 +1315,22 @@
 {"run": "c-vlm-88e84b9d", "kind": "step_submit", "step": 2, "field_len": 20, "server_ts": 1790180970.4590676}
 {"run": "d-hybrid-e4011e03", "page": "/flow/1", "kind": "load", "t_ms": 0.20000000018626451, "webdriver": false, "server_ts": 1790180970.4703338}
 {"run": "c-vlm-88e84b9d", "page": "/flow/3", "kind": "load", "t_ms": 0.09999999962747097, "webdriver": false, "server_ts": 1790180970.478129}
-{"run": "d-hybrid-3445f9a2", "page": "/turnstile", "kind": "click", "t_ms": 8579.100000000559, "webdriver": false, "target": "submit", "trusted": true, "x": 64, "y": 183, "server_ts": 1790180972.6056697}
-{"run": "d-hybrid-3445f9a2", "kind": "verify", "vendor": "turnstile", "mode": "pass", "token_present": true, "verified": null, "note": "offline (start server with --verify)", "server_ts": 1790180972.6228309}
 {"run": "anon", "page": "/verify", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790180972.63979}
 {"run": "d-hybrid-e4011e03", "page": "/flow/1", "kind": "click", "t_ms": 4383, "webdriver": false, "target": "real-continue", "trusted": true, "x": 93, "y": 219, "server_ts": 1790180974.8473456}
 {"run": "d-hybrid-e4011e03", "kind": "step_submit", "step": 1, "field_len": 8, "server_ts": 1790180974.861338}
 {"run": "d-hybrid-e4011e03", "page": "/flow/2", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790180974.8743918}
 {"run": "c-vlm-88e84b9d", "page": "/flow/3", "kind": "click", "t_ms": 4438.799999999814, "webdriver": false, "target": "f3", "trusted": true, "x": 118, "y": 107, "server_ts": 1790180974.9115806}
-{"run": "c-vlm-105ded43", "page": "/flow/5", "kind": "click", "t_ms": 12902.200000000186, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 225, "server_ts": 1790180975.3969202}
-{"run": "c-vlm-105ded43", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790180975.4072475}
-{"run": "c-vlm-105ded43", "kind": "flow_done", "server_ts": 1790180975.4073195}
-{"run": "c-vlm-105ded43", "page": "/flow/done", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790180975.4209685}
 {"run": "anon", "page": "/verify", "kind": "click", "t_ms": 4832.600000000559, "webdriver": false, "target": "next", "trusted": true, "x": 102, "y": 107, "server_ts": 1790180977.4685764}
-{"run": "d-hybrid-3445f9a2", "page": "/flow/1", "kind": "load", "t_ms": 0.09999999962747097, "webdriver": false, "server_ts": 1790180977.4949267}
 {"run": "c-vlm-88e84b9d", "page": "/flow/3", "kind": "click", "t_ms": 8812.399999999441, "webdriver": false, "target": "f3", "trusted": true, "x": 147, "y": 109, "server_ts": 1790180979.2848248}
 {"run": "d-hybrid-e4011e03", "page": "/flow/2", "kind": "click", "t_ms": 6077.600000000559, "webdriver": false, "target": "real-continue", "trusted": true, "x": 93, "y": 219, "server_ts": 1790180980.9497757}
 {"run": "d-hybrid-e4011e03", "kind": "step_submit", "step": 2, "field_len": 20, "server_ts": 1790180980.971795}
 {"run": "d-hybrid-e4011e03", "page": "/flow/3", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790180980.9868443}
-{"run": "d-hybrid-3445f9a2", "page": "/flow/1", "kind": "click", "t_ms": 5393.399999999441, "webdriver": false, "target": "f1", "trusted": true, "x": 186, "y": 119, "server_ts": 1790180982.8846428}
 {"run": "d-hybrid-e4011e03", "page": "/flow/3", "kind": "click", "t_ms": 4608.4000000003725, "webdriver": false, "target": "real-continue", "trusted": true, "x": 93, "y": 219, "server_ts": 1790180985.5924652}
 {"run": "d-hybrid-e4011e03", "kind": "step_submit", "step": 3, "field_len": 11, "server_ts": 1790180985.6098}
 {"run": "d-hybrid-e4011e03", "page": "/flow/4", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790180985.624367}
 {"run": "d-hybrid-e4011e03", "page": "/flow/4", "kind": "click", "t_ms": 4878.5, "webdriver": false, "target": "real-continue", "trusted": true, "x": 93, "y": 219, "server_ts": 1790180990.5007634}
 {"run": "d-hybrid-e4011e03", "kind": "step_submit", "step": 4, "field_len": 5, "server_ts": 1790180990.5216348}
 {"run": "d-hybrid-e4011e03", "page": "/flow/5", "kind": "load", "t_ms": 0.09999999962747097, "webdriver": false, "server_ts": 1790180990.5348237}
-{"run": "d-hybrid-3445f9a2", "page": "/flow/1", "kind": "click", "t_ms": 14766.700000000186, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 223, "server_ts": 1790180992.2573009}
-{"run": "d-hybrid-3445f9a2", "kind": "step_submit", "step": 1, "field_len": 8, "server_ts": 1790180992.271685}
-{"run": "d-hybrid-3445f9a2", "page": "/flow/2", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790180992.2878768}
 {"run": "d-hybrid-e4011e03", "page": "/flow/5", "kind": "click", "t_ms": 4367.699999999255, "webdriver": false, "target": "real-continue", "trusted": true, "x": 93, "y": 219, "server_ts": 1790180994.8994458}
 {"run": "d-hybrid-e4011e03", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790180994.9246511}
 {"run": "d-hybrid-e4011e03", "kind": "flow_done", "server_ts": 1790180994.9247448}
@@ -1800,9 +1352,6 @@
 {"run": "c-vlm-0505a4e6", "page": "/flow/1", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790181006.8186355}
 {"run": "anon", "page": "/verify", "kind": "click", "t_ms": 4395.5, "webdriver": false, "target": "next", "trusted": true, "x": 77, "y": 105, "server_ts": 1790181007.4573753}
 {"run": "d-hybrid-866179af", "page": "/flow/1", "kind": "load", "t_ms": 0.20000000018626451, "webdriver": false, "server_ts": 1790181007.497465}
-{"run": "d-hybrid-3445f9a2", "page": "/flow/2", "kind": "click", "t_ms": 16473.299999999814, "webdriver": false, "target": "real-continue", "trusted": true, "x": 113, "y": 223, "server_ts": 1790181008.7561936}
-{"run": "d-hybrid-3445f9a2", "kind": "step_submit", "step": 2, "field_len": 16, "server_ts": 1790181008.7704785}
-{"run": "d-hybrid-3445f9a2", "page": "/flow/3", "kind": "load", "t_ms": 0.19999999925494194, "webdriver": false, "server_ts": 1790181008.7854335}
 {"run": "c-vlm-0505a4e6", "page": "/flow/1", "kind": "click", "t_ms": 3456.0999999996275, "webdriver": false, "target": "f1", "trusted": true, "x": 183, "y": 108, "server_ts": 1790181010.269271}
 {"run": "d-hybrid-866179af", "page": "/flow/1", "kind": "click", "t_ms": 4410.300000000745, "webdriver": false, "target": "real-continue", "trusted": true, "x": 93, "y": 218, "server_ts": 1790181011.9018683}
 {"run": "d-hybrid-866179af", "kind": "step_submit", "step": 1, "field_len": 8, "server_ts": 1790181011.9238207}
@@ -1810,9 +1359,6 @@
 {"run": "c-vlm-0505a4e6", "page": "/flow/1", "kind": "click", "t_ms": 7538.399999999441, "webdriver": false, "target": "real-continue", "trusted": true, "x": 94, "y": 219, "server_ts": 1790181014.35231}
 {"run": "c-vlm-0505a4e6", "kind": "step_submit", "step": 1, "field_len": 9, "server_ts": 1790181014.3854904}
 {"run": "c-vlm-0505a4e6", "page": "/flow/2", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790181014.4179056}
-{"run": "d-hybrid-3445f9a2", "page": "/flow/3", "kind": "click", "t_ms": 8559.799999999814, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 223, "server_ts": 1790181017.3416922}
-{"run": "d-hybrid-3445f9a2", "kind": "step_submit", "step": 3, "field_len": 6, "server_ts": 1790181017.3598807}
-{"run": "d-hybrid-3445f9a2", "page": "/flow/4", "kind": "load", "t_ms": 0.20000000018626451, "webdriver": false, "server_ts": 1790181017.378047}
 {"run": "d-hybrid-866179af", "page": "/flow/2", "kind": "click", "t_ms": 5611.699999999255, "webdriver": false, "target": "real-continue", "trusted": true, "x": 93, "y": 218, "server_ts": 1790181017.5479207}
 {"run": "d-hybrid-866179af", "kind": "step_submit", "step": 2, "field_len": 20, "server_ts": 1790181017.5782669}
 {"run": "d-hybrid-866179af", "page": "/flow/3", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790181017.5974653}
@@ -1825,9 +1371,6 @@
 {"run": "d-hybrid-866179af", "page": "/flow/4", "kind": "click", "t_ms": 4933.600000000559, "webdriver": false, "target": "real-continue", "trusted": true, "x": 93, "y": 218, "server_ts": 1790181027.1395528}
 {"run": "d-hybrid-866179af", "kind": "step_submit", "step": 4, "field_len": 5, "server_ts": 1790181027.1692677}
 {"run": "d-hybrid-866179af", "page": "/flow/5", "kind": "load", "t_ms": 0.09999999962747097, "webdriver": false, "server_ts": 1790181027.2145917}
-{"run": "d-hybrid-3445f9a2", "page": "/flow/4", "kind": "click", "t_ms": 10300.200000000186, "webdriver": false, "target": "real-continue", "trusted": true, "x": 115, "y": 231, "server_ts": 1790181027.6768143}
-{"run": "d-hybrid-3445f9a2", "kind": "step_submit", "step": 4, "field_len": 8, "server_ts": 1790181027.7058363}
-{"run": "d-hybrid-3445f9a2", "page": "/flow/5", "kind": "load", "t_ms": 0.20000000018626451, "webdriver": false, "server_ts": 1790181027.7357028}
 {"run": "c-vlm-0505a4e6", "page": "/flow/3", "kind": "click", "t_ms": 8717.399999999441, "webdriver": false, "target": "real-continue", "trusted": true, "x": 117, "y": 219, "server_ts": 1790181027.9657044}
 {"run": "c-vlm-0505a4e6", "kind": "step_submit", "step": 3, "field_len": 5, "server_ts": 1790181027.9983969}
 {"run": "c-vlm-0505a4e6", "page": "/flow/4", "kind": "load", "t_ms": 0.09999999962747097, "webdriver": false, "server_ts": 1790181028.02778}
@@ -1844,10 +1387,6 @@
 {"run": "d-hybrid-866179af", "kind": "flow_done", "server_ts": 1790181037.9462934}
 {"run": "d-hybrid-866179af", "page": "/flow/done", "kind": "load", "t_ms": 0, "webdriver": false, "server_ts": 1790181037.9680052}
 {"run": "c-vlm-e173d24f", "page": "/flow/1", "kind": "load", "t_ms": 0.20000000018626451, "webdriver": false, "server_ts": 1790181041.32152}
-{"run": "d-hybrid-3445f9a2", "page": "/flow/5", "kind": "click", "t_ms": 14123, "webdriver": false, "target": "real-continue", "trusted": true, "x": 118, "y": 223, "server_ts": 1790181041.8504095}
-{"run": "d-hybrid-3445f9a2", "kind": "step_submit", "step": 5, "field_len": 3, "server_ts": 1790181041.8746703}
-{"run": "d-hybrid-3445f9a2", "kind": "flow_done", "server_ts": 1790181041.8748102}
-{"run": "d-hybrid-3445f9a2", "page": "/flow/done", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790181041.8960617}
 {"run": "c-vlm-e173d24f", "page": "/flow/1", "kind": "click", "t_ms": 3821.7000000001863, "webdriver": false, "target": "f1", "trusted": true, "x": 152, "y": 107, "server_ts": 1790181045.1381757}
 {"run": "d-hybrid-f03a9fcf", "page": "/turnstile", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790181046.0294282}
 {"run": "c-vlm-e173d24f", "page": "/flow/1", "kind": "click", "t_ms": 8113.700000000186, "webdriver": false, "target": "real-continue", "trusted": true, "x": 94, "y": 219, "server_ts": 1790181049.4326675}
@@ -1856,7 +1395,6 @@
 {"run": "d-hybrid-f03a9fcf", "page": "/turnstile", "kind": "click", "t_ms": 3924.7000000001863, "webdriver": false, "target": "submit", "trusted": true, "x": 66, "y": 177, "server_ts": 1790181049.9475212}
 {"run": "d-hybrid-f03a9fcf", "kind": "verify", "vendor": "turnstile", "mode": "pass", "token_present": true, "verified": null, "note": "offline (start server with --verify)", "server_ts": 1790181049.9693084}
 {"run": "anon", "page": "/verify", "kind": "load", "t_ms": 0.10000000055879354, "webdriver": false, "server_ts": 1790181049.9850874}
-{"run": "d-hybrid-3445f9a2", "page": "/flow/done", "kind": "click", "t_ms": 9097.400000000373, "webdriver": false, "target": "HTML", "trusted": true, "x": 819, "y": 199, "server_ts": 1790181050.9891398}
 {"run": "anon", "page": "/verify", "kind": "click", "t_ms": 4104.4000000003725, "webdriver": false, "target": "next", "trusted": true, "x": 77, "y": 105, "server_ts": 1790181054.085524}
 {"run": "d-hybrid-f03a9fcf", "page": "/flow/1", "kind": "load", "t_ms": 0.09999999962747097, "webdriver": false, "server_ts": 1790181054.1165714}
 {"run": "c-vlm-e173d24f", "page": "/flow/2", "kind": "click", "t_ms": 4789.5, "webdriver": false, "target": "real-continue", "trusted": true, "x": 94, "y": 219, "server_ts": 1790181054.2681456}

@@ -170,8 +170,11 @@ def main():
     m = analyze(runs, events, prices)
     if a.check_paper:
         paper = open(os.path.join(here, "..", "paper.md")).read()
-        missing = [l for l in summary_md(m).splitlines() if l.startswith("| ") and l not in paper]
-        assert not missing, f"paper.md §5.7 out of sync with logs: {missing}"
+        rows = [l for l in summary_md(m).splitlines() if l.startswith("| ")]
+        missing = [l for l in rows if l not in paper]
+        # reverse direction: a measured-looking row in the paper that the logs no longer produce
+        stale = [l for l in paper.splitlines() if l.startswith(("| a-", "| b-", "| c-vlm", "| d-hybrid")) and l not in rows]
+        assert not missing and not stale, f"paper.md §5.7 out of sync with logs: missing={missing} stale={stale}"
         return print("paper check OK: every measured row appears verbatim in paper.md")
     if a.summary:
         res = os.path.join(here, "results")

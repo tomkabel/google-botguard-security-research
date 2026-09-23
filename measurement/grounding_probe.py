@@ -12,7 +12,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "att
 from common import BASE  # local-only guard
 from c_vlm import MeliousAdapter, parse_action
 
-MODELS = ["glm-5.3-flash", "kimi-k2.7-code", "gemma-4-26b-a4b", "qwen3.8-27b"]
+MODELS = ["glm-5.3-flash", "kimi-k2.7-code", "qwen3.8-27b"]
 PROMPT = ('This is a {w}x{h} pixel browser screenshot. Where would you click to press the "Continue" button? '
           'Reply with exactly one JSON object and nothing else: {{"action":"click","x":<int>,"y":<int>}}')
 
@@ -44,7 +44,6 @@ def probe(model, shots, trials):
                 a = parse_action(text)
                 xy = a[0]["coordinate"] if a and a[0].get("coordinate") else None
                 rows.append({"page": s["page"], "trial": t, "xy": xy, "hit": bool(xy and hit(xy, s["box"])),
-                             "hit_norm1000": bool(xy and hit([xy[0] * 1.28, xy[1] * 0.8], s["box"])),
                              "latency_s": round(dt, 3), "input_tokens": i, "output_tokens": o,
                              "reply": None if xy else text[:120]})
             except Exception as e:
@@ -52,7 +51,6 @@ def probe(model, shots, trials):
     ok = [r for r in rows if "latency_s" in r]
     return {"model": model, "n": len(rows), "hits": sum(r["hit"] for r in rows),
             "hit_rate": sum(r["hit"] for r in rows) / len(rows),
-            "hit_rate_norm1000": sum(r.get("hit_norm1000", False) for r in rows) / len(rows),
             "latency_s_median": statistics.median(r["latency_s"] for r in ok) if ok else None,
             "input_tokens_mean": statistics.mean(r["input_tokens"] for r in ok) if ok else None,
             "output_tokens_mean": statistics.mean(r["output_tokens"] for r in ok) if ok else None,
@@ -74,7 +72,7 @@ def main():
     os.makedirs(os.path.dirname(path), exist_ok=True)
     json.dump(out, open(path, "w"), indent=1)
     for r in sorted(res, key=lambda r: (-r["hit_rate"], r["latency_s_median"] or 1e9)):
-        print(f"{r['model']:<18} hit {r['hits']}/{r['n']} (norm1000 {r['hit_rate_norm1000']:.2f})  p50 {r['latency_s_median']}s  "
+        print(f"{r['model']:<18} hit {r['hits']}/{r['n']}  p50 {r['latency_s_median']}s  "
               f"tok in/out {r['input_tokens_mean']}/{r['output_tokens_mean']}  err {r['errors']}")
 
 

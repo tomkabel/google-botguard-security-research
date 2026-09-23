@@ -13,8 +13,7 @@ Concrete adapter: AnthropicAdapter (Claude computer use). Env:
   CU_TOOL = toolset (computer_toolset_20260801, GA; required on claude-opus-5-5)
           | legacy (computer_20251124 + beta computer-use-2025-11-24)
 MeliousAdapter (VLM_PROVIDER=melious): OpenAI-compatible chat API at https://api.melious.ai/v1,
-  MELIOUS_MODEL = exact model id, MELIOUS_API_KEY, MELIOUS_COORDS=norm1000 if the model answers
-  in 0-1000 normalised coordinates (see results/grounding_probe.json). One screenshot per call, strict JSON action out.
+  MELIOUS_MODEL = exact model id, MELIOUS_API_KEY. One screenshot per call, strict JSON action out.
 Usage: python c_vlm.py [--runs N] [--max-steps 40]
 """
 import argparse, base64, json, os, re, shutil, subprocess, time
@@ -136,7 +135,6 @@ class MeliousAdapter:
         self.http = httpx.Client(timeout=120)
         self.model = model or os.environ["MELIOUS_MODEL"]
         self.hist, self.calls = [], []
-        self.norm1000 = os.environ.get("MELIOUS_COORDS") == "norm1000"
 
     def ask(self, png, prompt, max_tokens=2048):
         """One chat call; returns (reply text, input tokens, output tokens, latency s)."""
@@ -144,8 +142,8 @@ class MeliousAdapter:
         body = {"model": self.model, "temperature": 0, "max_tokens": max_tokens, "messages": [{"role": "user", "content": [
             {"type": "image_url", "image_url": {"url": "data:image/png;base64," + base64.b64encode(png).decode()}},
             {"type": "text", "text": prompt}]}]}
-        # retry transport errors and non-200s (Melious intermittently answers gemma image requests with
-        # 400 "malformed" for requests that succeed on resend); failed attempts are logged, latency = successful call
+        # retry transport errors and non-200s (Melious intermittently answers image requests with 400
+        # "malformed" for requests that succeed on resend); failed attempts are logged, latency = successful call
         for attempt in range(3):
             t = time.monotonic()
             try:
@@ -173,9 +171,6 @@ class MeliousAdapter:
             self.hist.append({"invalid_reply": text[:80]})
             return [{"action": "screenshot"}], i, o
         self.hist += acts
-        if self.norm1000:  # model answers in 0-1000 normalised coordinates (seen for gemma in the probe)
-            acts = [dict(a, coordinate=[round(a["coordinate"][0] * SHOT_W / 1000), round(a["coordinate"][1] * SHOT_H / 1000)])
-                    if "coordinate" in a else a for a in acts]
         return acts, i, o
 
     def results(self, png):
@@ -192,7 +187,6 @@ def model_id():
 
 def agent_loop(adapter, run, goal, max_steps, scale):
     run.r["llm_calls"] = getattr(adapter, "calls", [])  # same list object: survives exceptions
-    run.r["coords"] = "norm1000" if getattr(adapter, "norm1000", False) else "px"
     png = screenshot()
     for _ in range(max_steps):
         actions, i, o = adapter.step(png, goal)
