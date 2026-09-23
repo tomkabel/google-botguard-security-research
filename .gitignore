@@ -29,3 +29,7 @@ opencode.jsonc
 # Private paper positioning/lessons (local only)
 .paper-memory/
 talk/
+
+# Python / measurement run output
+__pycache__/
+measurement/logs/

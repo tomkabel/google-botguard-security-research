@@ -14,3 +14,7 @@ paper.pdf: paper.md
 .PHONY: clean
 clean:
 	rm -f paper.pdf
+
+.PHONY: numbers
+numbers:
+	python3 analysis/cost_model.py

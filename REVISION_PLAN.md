@@ -3,10 +3,29 @@
 Consolidates every finding from the five mock review boards (IEEE S&P, USENIX Sec '27, ACM CCS '27,
 IEEE EuroS&P, PoPETs '27; all **Reject**, 1.5–2/5) and tracks it to a final fix.
 
-Status legend: **DONE** = fixed in `c7288da` (text-only pass) · **VERIFY** = fixed but rests on
+Status legend: **DONE** = fixed in the working tree · **VERIFY** = fixed but rests on
 unchecked facts · **OPEN** = not yet addressed · **AUTHOR** = needs author input/decision.
 
-Baseline after `c7288da`: ~18.8k words, 109 refs, no figures, markdown only.
+Baseline after `c7288da`: ~18.8k words, 109 refs, no figures. Current (2026-09-23, uncommitted):
+~20.5k words, 117 refs, 1 figure, `analysis/` + `measurement/` artifacts. Decisions taken:
+venue = IEEE S&P 2027 SoK (`docs/venue.md`); L1–L4 = Path B (public-source synthesis, no own RE).
+
+## TODO(author) — everything that needs a human
+
+Collected from `paper.md` and the repo (`grep -rn "TODO(author)"`), plus open AUTHOR items:
+
+1. `paper.md` §5 Table 5.1, proxy row: Bright Data price page [97] unreachable (DNS-blocked);
+   re-verify "from $5.88/GB" from another network and archive it. Same in `analysis/params.json`
+   (`proxy_commodity`, marked UNVERIFIED) and `docs/fact-check.md`.
+2. `paper.md` §5.6 + `analysis/params.json` `tier1_device_price`: cite a dated used-market price
+   snapshot for a PAT-capable iPhone ($100–$300 is an assumption).
+3. `docs/fact-check.md`: check Azad et al. [51] one-line summary against the DIMVA 2020 abstract.
+4. `paper.md` "Use of AI Tools": placeholder text, fill per IEEE S&P 2027 policy.
+5. Confirm the original literature-search date ("August 2026", §3.1).
+6. Measurement (Phase 4): run the harness (`measurement/README.md`), incl. a second VLM (open
+   model) adapter; any human pilot needs an IRB/ethics determination first.
+7. Archive/screenshot URLs for the four price pages [94–97] (fact-check "Blocked").
+8. Length: cut ~20.5k → ~11–12k words and move to the IEEEtran template (Phase 6).
 
 ---
 
@@ -14,29 +33,32 @@ Baseline after `c7288da`: ~18.8k words, 109 refs, no figures, markdown only.
 
 | # | Finding (boards raising it) | Status |
 |---|---|---|
-| F1 | L1–L4 attributed to [24], which never mentions Botguard (all 5) | DONE (recast as own model) — needs Phase 2 evidence |
-| F2 | Tier 1 "resilient" is a category error; device farms ignored (all 5) | DONE (reframed) — needs Phase 3 cost analysis |
-| F3 | Protocol errors: PAT attester/issuer, DBSC owner/export, PST, SDK proxies, iOS consent, unlinkability (all 5) | DONE / VERIFY |
-| F4 | §5 formula & arithmetic errors, unsourced prices (all 5) | DONE; prices partly VERIFY |
+| F1 | L1–L4 attributed to [24], which never mentions Botguard (all 5) | DONE — Path B evidence table in §3.4 (documented/inferred/hypothesized per layer) |
+| F2 | Tier 1 "resilient" is a category error; device farms ignored (all 5) | DONE — reframed + §5.6 device-farm cost per clearance token |
+| F3 | Protocol errors: PAT attester/issuer, DBSC owner/export, PST, SDK proxies, iOS consent, unlinkability (all 5) | DONE (DBSC registration-time key capture caveat added, §6.1) |
+| F4 | §5 formula & arithmetic errors, unsourced prices (all 5) | DONE (script-generated) — Bright Data price = AUTHOR |
 | F5 | Self-contradictions: Axis C, profile aging, "arms race moot" (all 5) | DONE |
 | F6 | Leftover revision-response text, phantom cross-refs (all 5) | DONE |
-| F7 | Citation misuse ([67],[68],[71],[42],[73–75],[49], secondary 99.8%) (all 5) | DONE |
-| F8 | §3.1 methodology not systematic; corpus = reference list (all 5) | Partly DONE (honest wording) — OPEN: real protocol + coding sheet |
-| F9 | Missing related work (≥3 boards) | DONE (§2.5) — VERIFY summaries |
+| F7 | Citation misuse ([67],[68],[71],[42],[73–75],[49], secondary 99.8%) (all 5) | DONE (PPI price now matches Caballero et al.) |
+| F8 | §3.1 methodology not systematic; corpus = reference list (all 5) | DONE (dated rerun, `docs/corpus.csv`, coded vs background) — OPEN: second screener / κ |
+| F9 | Missing related work (≥3 boards) | DONE (§2.5; Searles/Bonneau figures verified) — Azad summary = AUTHOR |
 | F10 | PACT built on news/blogs (all 5) | DONE (primary sources) |
-| F11 | Anonymity, ethics, Open Science, AI-use disclosure (USENIX, S&P, Euro) | DONE except AI-use = AUTHOR |
-| F12 | No measurement at all; VLM vs scripted OS-input confound (all 5; S&P fatal) | **OPEN** — Phase 4 |
-| F13 | Page limit: likely 15–20+ pages (USENIX, S&P) | **OPEN** — Phase 6 |
-| F14 | No systematization figure; tables lack per-cell citations; no comparison vs prior surveys (S&P, Euro) | **OPEN** — Phase 5 |
-| F15 | Cognitive honeypot untested (S&P, USENIX, CCS) | Redesigned — OPEN: test in Phase 4 |
-| F16 | Privacy not central (PoPETs) — only if targeting PETS | AUTHOR (venue choice) |
-| F17 | Hybrid attacker model (S&P) | DONE (qualitative) — OPEN: sensitivity table |
+| F11 | Anonymity, ethics, Open Science, AI-use disclosure (USENIX, S&P, Euro) | DONE (Open Science lists artifacts) except AI-use = AUTHOR |
+| F12 | No measurement at all; VLM vs scripted OS-input confound (all 5; S&P fatal) | Harness DONE (`measurement/`, §7.1, no results claimed) — **OPEN**: runs |
+| F13 | Page limit: likely 15–20+ pages (USENIX, S&P) | **OPEN** — Phase 6 (~20.5k words) |
+| F14 | No systematization figure; tables lack per-cell citations; no comparison vs prior surveys (S&P, Euro) | DONE (Fig. cost_shift, per-cell cites, §2.5 table) |
+| F15 | Cognitive honeypot untested (S&P, USENIX, CCS) | Decoy in testbed — OPEN: runs (Phase 4) |
+| F16 | Privacy not central (PoPETs) — only if targeting PETS | N/A (venue = IEEE S&P) |
+| F17 | Hybrid attacker model (S&P) | DONE (Table 5.2 sensitivity) |
 | F18 | Repetition / hedging / prose density (all 5) | Partly DONE — OPEN in Phase 6 |
-| F19 | Ethics of Botguard RE if L1–L4 came from own analysis (S&P, PETS) | AUTHOR |
+| F19 | Ethics of Botguard RE if L1–L4 came from own analysis (S&P, PETS) | DONE (Path B; Ethics section states no RE) |
 
 ---
 
-## Phase 1 — Decisions and verification debt (≈2 days, blocks everything)
+## Phase 1 — Decisions and verification debt — mostly DONE
+
+Status: 1 DONE (IEEE S&P) · 2 DONE (Path B) · 3 AUTHOR · 4 AUTHOR · 5 DONE (`docs/venue.md`) ·
+6 DONE except Bright Data, Azad, archive URLs (AUTHOR; see `docs/fact-check.md`).
 
 1. **AUTHOR: choose the primary venue.** Recommendation: IEEE S&P or EuroS&P SoK track (security
    framing already fits). PoPETs only if you commit to Phase 5b privacy reframing. Record choice here.
@@ -53,7 +75,7 @@ Baseline after `c7288da`: ~18.8k words, 109 refs, no figures, markdown only.
    - Restore local Firecrawl (`asus:3002`) — agents fell back to WebSearch.
    - **Done when:** every factual sentence in §2–§6 maps to a checked source; list kept in `docs/fact-check.md`.
 
-## Phase 2 — Ground the L1–L4 model (F1, F19) (≈1 week)
+## Phase 2 — Ground the L1–L4 model (F1, F19) — DONE (Path B)
 
 - **Path A (own RE):** add §3.4.1 "Analysis method": Botguard script versions/dates collected, tooling,
   what was observed per layer, what was inferred; ToS/legal basis; disclosure to Google (date);
@@ -63,7 +85,9 @@ Baseline after `c7288da`: ~18.8k words, 109 refs, no figures, markdown only.
   Remove any layer detail that has no public source.
 - **Done when:** no L1–L4 sentence lacks either a citation or an explicit "we hypothesize".
 
-## Phase 3 — Strengthen the analytical core (F2, F4, F17) (≈1 week)
+## Phase 3 — Strengthen the analytical core (F2, F4, F17) — DONE
+
+Status: 1 DONE (§5.6; device price = AUTHOR) · 2 DONE (Table 5.2) · 3 DONE · 4 DONE (`make numbers`).
 
 1. **Tier 1 device-acquisition cost model** (new §5.x): cost per valid clearance token =
    (device price amortized + farm ops) / (tokens per device per rate-limit window). Parameters from
@@ -76,7 +100,11 @@ Baseline after `c7288da`: ~18.8k words, 109 refs, no figures, markdown only.
    so text and tables are generated from one parameter file. Ships as the Open Science artifact.
 - **Done when:** script reproduces every number in §5; Tier 1 has a quantified cost, not an adjective.
 
-## Phase 4 — Minimal ethical measurement (F12, F15) (≈2–3 weeks) — biggest verdict lever
+## Phase 4 — Minimal ethical measurement (F12, F15) — harness DONE, runs OPEN
+
+Status: 1 DONE (Turnstile + reCAPTCHA v2 test keys; no v3 test key exists) · 2 DONE for (a)–(d), second/open
+VLM adapter OPEN · 3 instrumented, no data · 4 AUTHOR (IRB) · 5 harness released, ToS noted in README ·
+6 OPEN; meanwhile §7.1 announces the harness and claims no results.
 
 Scope strictly to **self-hosted / test-sitekey** targets. No production Google/Botguard endpoints.
 
@@ -96,7 +124,9 @@ Scope strictly to **self-hosted / test-sitekey** targets. No production Google/B
 - **If skipped:** retitle claims as hypotheses and move measurement to §7.1 as an explicit open problem;
   expect reviewers to still call it a position paper.
 
-## Phase 5 — Systematization quality (F8, F14, F16) (≈1 week)
+## Phase 5 — Systematization quality (F8, F14, F16) — DONE except second screener
+
+Status: 1 DONE (single screener; κ OPEN) · 2 DONE · 3 DONE · 4 DONE · 5b N/A.
 
 1. **§3.1 real protocol:** rerun the dated query; keep a screening log (`docs/corpus.csv`: id, source,
    stage, include/exclude reason, coded dimensions). Separate coded corpus from background refs in text.
@@ -109,7 +139,7 @@ Scope strictly to **self-hosted / test-sitekey** targets. No production Google/B
 5b. **(PoPETs only)** make privacy the research question: linkability/metadata exposure per mechanism,
    attester/issuer knowledge table, fingerprinting data collected per type; retitle §7.4 accordingly.
 
-## Phase 6 — Length, prose, format (F13, F18) (≈3–4 days)
+## Phase 6 — Length, prose, format (F13, F18) — OPEN
 
 1. Target ≈11–12k words body for a 13-page two-column limit (current ≈18.8k → cut ~35%).
    Cuts: repeated scope/APB caveats (keep one in §1.3), duplicate tier definitions, §5.1 hardware list,
@@ -119,7 +149,7 @@ Scope strictly to **self-hosted / test-sitekey** targets. No production Google/B
    measure pages; update `Makefile` to build the template PDF.
 4. Anonymity sweep: repo name, commit metadata in artifacts, self-citations in third person, anonymized artifact URL.
 
-## Phase 7 — Pre-submission gate (≈2 days)
+## Phase 7 — Pre-submission gate — OPEN (reference check + `make numbers` pass today)
 
 1. Re-run all five `sok-review-*` agents on the final PDF/markdown; every remaining "fatal/high" item
    must be fixed or explicitly argued in the paper.
