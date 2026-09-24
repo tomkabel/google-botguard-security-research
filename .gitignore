@@ -32,3 +32,6 @@ talk/
 
 # Python / measurement run output
 __pycache__/
+
+# LaTeX build dir
+build/

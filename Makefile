@@ -1,21 +1,22 @@
-PDF_ENGINE ?= lualatex
+# paper.pdf: IEEE S&P submission build (IEEEtran compsoc, see docs/venue.md).
+# ieee/ieee.lua maps the markdown structure onto IEEEtran; ieee/template.tex maps the Unicode
+# symbols used in the text (✓ ✗ ∼ × € …) for pdflatex.
+paper.pdf: paper.md ieee/ieee.lua ieee/template.tex figures/cost_shift.pdf
+	mkdir -p build
+	pandoc paper.md -o build/paper.tex --lua-filter ieee/ieee.lua --template ieee/template.tex --syntax-highlighting=none
+	cd build && pdflatex -interaction=nonstopmode -halt-on-error paper.tex >/dev/null && pdflatex -interaction=nonstopmode -halt-on-error paper.tex >/dev/null
+	cp build/paper.pdf paper.pdf
+	@python3 ieee/pages.py build/paper.pdf
 
-# Body font is DejaVu Sans (not Serif) because it is the only locally
-# installed font carrying the ✓ (U+2713) and ✗ (U+2717) glyphs used in the
-# comparison tables. DejaVu Serif lacks them, and luaotfload's
-# `mainfontfallback` mechanism fails to resolve the fallback under the
-# current TeX Live, so the fallback approach no longer builds.
-paper.pdf: paper.md
-	pandoc paper.md -o paper.pdf --pdf-engine=$(PDF_ENGINE) \
-		-V geometry:margin=1in -V fontsize=11pt \
-		-V mainfont="DejaVu Sans" \
-		-V monofont="DejaVu Sans Mono"
-
-.PHONY: clean
+.PHONY: clean numbers artifact
 clean:
-	rm -f paper.pdf
+	rm -rf paper.pdf build/paper.* build/artifact.zip
 
-.PHONY: numbers
 numbers:
 	python3 analysis/cost_model.py
 	python3 measurement/analyze.py --check-paper
+
+# Anonymized artifact: tracked files only; HEAD^{tree} so the zip carries no commit id, history or author metadata.
+artifact:
+	mkdir -p build
+	git archive --format=zip -o build/artifact.zip HEAD^{tree} analysis measurement figures ieee docs/corpus.csv paper.md Makefile

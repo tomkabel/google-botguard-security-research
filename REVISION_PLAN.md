@@ -142,7 +142,13 @@ Status: 1 DONE (single screener; κ OPEN) · 2 DONE · 3 DONE · 4 DONE · 5b N/
 5b. **(PoPETs only)** make privacy the research question: linkability/metadata exposure per mechanism,
    attester/issuer knowledge table, fingerprinting data collected per type; retitle §7.4 accordingly.
 
-## Phase 6 — Length, prose, format (F13, F18) — OPEN
+## Phase 6 — Length, prose, format (F13, F18) — DONE 2026-09-24
+
+Status: body cut 19.3k → ≈10.9k words; IEEEtran compsoc build (`make paper.pdf`, `ieee/`), body = 13 pages,
+17 total, References start p.14 (`ieee/pages.py` prints this). References renumbered in citation order,
+5 uncited dropped (`analysis/check_refs.py`). Ethics / Open Science / AI use moved to appendices after the
+references. Anonymity: `make artifact` exports HEAD^{tree} (no commit id/history). OPEN (author): anonymized
+repository URL; BibTeX conversion not done (pandoc emits the reference list as text, IEEE-style numbering).
 
 1. Target ≈11–12k words body for a 13-page two-column limit (current ≈18.8k → cut ~35%).
    Cuts: repeated scope/APB caveats (keep one in §1.3), duplicate tier definitions, §5.1 hardware list,
