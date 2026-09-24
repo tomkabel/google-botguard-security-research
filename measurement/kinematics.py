@@ -8,9 +8,11 @@ Domain shift handling: Balabit is remote-desktop data (client timestamps, ~60 Hz
 the input rate. Both are resampled by linear interpolation onto one 50 Hz grid before any feature is computed,
 so sample count measures duration on a common clock rather than device event rate. Pixels are not rescaled.
 
-Classifier: scikit-learn is not installed, so a transparent threshold rule
-    bot  iff  samples < N  or  straightness > S
-with (N, S) chosen by grid search on training users, reported on held-out users.
+Two classifiers, both fitted on training users and reported on held-out users:
+  rule: bot iff samples < N or straightness > S, grid-searched against straight/teleport synthetic bots.
+  logreg: logistic regression on the full feature vector (numpy Newton/IRLS; scikit-learn is not installable here,
+          PEP 668), against a harder bot class: minimum-jerk paths with bow and jitter that copy the paired human's
+          duration and pre-click pause. Threshold = 90% TPR on held-out min-jerk bots.
 """
 import csv, glob, math, os, random
 import numpy as np
@@ -92,6 +94,57 @@ def synthetic_bot(seg, rng):
     return {"pts": pts, "t_down": pts[-1][0] + pause}
 
 
+def minjerk_bot(seg, rng):
+    """Harder bot for the learned classifier: minimum-jerk path between the human segment's endpoints with a random
+    lateral bow and Gaussian jitter (sigma 0.5-2 px), 60 Hz, with the paired human's duration and pre-click pause.
+    Same generator family as attackers/e_smooth.py, so scoring e-smooth traces with it is an in-distribution test."""
+    (t0, x0, y0), (t1, x1, y1) = seg["pts"][0], seg["pts"][-1]
+    T, d = max(t1 - t0, 2 / 60), math.hypot(x1 - x0, y1 - y0)
+    ux, uy = ((x1 - x0) / d, (y1 - y0) / d) if d else (0, 0)
+    bow, sd, n = rng.gauss(0, 0.06) * d, rng.uniform(0.5, 2.0), max(2, int(T * 60))
+    pts = []
+    for i in range(n + 1):
+        tau = i / n
+        s = 10 * tau ** 3 - 15 * tau ** 4 + 6 * tau ** 5
+        lat = bow * math.sin(math.pi * s)
+        jx, jy = (rng.gauss(0, sd), rng.gauss(0, sd)) if 0 < i < n else (0, 0)
+        pts.append((t0 + tau * T, round(x0 + s * (x1 - x0) - uy * lat + jx), round(y0 + s * (y1 - y0) + ux * lat + jy)))
+    return {"pts": pts, "t_down": pts[-1][0] + seg["t_down"] - seg["pts"][-1][0]}
+
+
+LOG_FEATURES = [k for k in FEATURES if k != "straightness"]
+
+
+def vec(f):
+    """Feature vector for the logistic regression: log1p of the heavy-tailed features, log(1 - straightness)."""
+    return [math.log1p(max(f[k], 0.0)) for k in LOG_FEATURES] + [math.log(1 - min(f["straightness"], 1.0) + 1e-4)]
+
+
+def fit_logreg(X, y, lam=1.0, iters=30):
+    """L2-regularised logistic regression by Newton/IRLS on standardised X. Returns {mu, sd, w} (w[-1] = bias)."""
+    X, y = np.asarray(X, float), np.asarray(y, float)
+    mu, sd = X.mean(0), X.std(0) + 1e-9
+    Z = np.c_[(X - mu) / sd, np.ones(len(X))]
+    w = np.zeros(Z.shape[1])
+    for _ in range(iters):
+        p = 0.5 * (1 + np.tanh(Z @ w / 2))  # overflow-free sigmoid
+        H = (Z * (p * (1 - p))[:, None]).T @ Z + lam * np.eye(len(w))
+        w -= np.linalg.solve(H, Z.T @ (p - y) + lam * w)
+    return {"mu": mu.tolist(), "sd": sd.tolist(), "w": w.tolist()}
+
+
+def score(fs, clf):
+    """Log-odds of 'bot' for feature dicts."""
+    X = (np.array([vec(f) for f in fs], float).reshape(len(fs), -1) - clf["mu"]) / clf["sd"]
+    return X @ np.array(clf["w"][:-1]) + clf["w"][-1]
+
+
+def auc(pos, neg):
+    """ROC AUC = P(score_bot > score_human), ties count 1/2."""
+    neg = np.sort(neg)
+    return float(np.mean(np.searchsorted(neg, pos, "left") + np.searchsorted(neg, pos, "right")) / 2 / len(neg))
+
+
 def is_bot(f, rule):
     return f["samples"] < rule["N"] or f["straightness"] > rule["S"]
 
@@ -111,18 +164,29 @@ def fit_rule(X, y):
 
 
 def train(balabit_root, seed=0):
-    rng = random.Random(seed)
+    rng, rng_mj = random.Random(seed), random.Random(seed + 1)  # separate stream keeps the rule's bots unchanged
     users = load_balabit(balabit_root)
     split = {"train": ([], []), "test": ([], [])}
+    mj = {"train": [], "test": []}
     for u, segs in sorted(users.items()):
-        X, y = split["test" if u in TEST_USERS else "train"]
+        part = "test" if u in TEST_USERS else "train"
+        X, y = split[part]
         for s in segs:
             f = features(s)
             if f["travel_px"] < MIN_TRAVEL:
                 continue
             X.append(f), y.append(0)
             X.append(features(synthetic_bot(s, rng))), y.append(1)
+            mj[part].append(features(minjerk_bot(s, rng_mj)))
     rule = fit_rule(*split["train"])
+    Xh = [f for f, t in zip(*split["train"]) if t == 0]
+    clf = fit_logreg([vec(f) for f in Xh + mj["train"]], [0] * len(Xh) + [1] * len(mj["train"]))
+    hum_t = [f for f, t in zip(*split["test"]) if t == 0]
+    sh, sb = score(hum_t, clf), score(mj["test"], clf)
+    clf["threshold"] = float(np.quantile(sb, 0.10))  # flag iff log-odds >= threshold: 90% TPR on held-out bots
+    clf.update(features=LOG_FEATURES + ["straightness"], auc=auc(sb, sh), test_bot_tpr=float(np.mean(sb >= clf["threshold"])),
+               test_human_fpr=float(np.mean(sh >= clf["threshold"])), n_train=len(Xh) + len(mj["train"]),
+               n_test=len(hum_t) + len(mj["test"]))
     Xt, yt = split["test"]
     pred = [is_bot(f, rule) for f in Xt]
     hum = [p for p, t in zip(pred, yt) if t == 0]
@@ -132,6 +196,7 @@ def train(balabit_root, seed=0):
             "n_train": len(split["train"][1]), "n_test": len(yt),
             "test_accuracy": float(np.mean([p == bool(t) for p, t in zip(pred, yt)])),
             "test_human_flagged": float(np.mean(hum)), "test_bot_flagged": float(np.mean(bot)),
+            "classifier": clf, "_test_mj": mj["test"],
             "_test_human": [f for f, t in zip(Xt, yt) if t == 0], "_test_bot": [f for f, t in zip(Xt, yt) if t == 1]}
 
 
@@ -147,9 +212,10 @@ def browser_segments(kin_lines):
     return out
 
 
-def summarize(fs, rule):
+def summarize(fs, rule, clf=None):
     med = lambda k: float(np.median([f[k] for f in fs])) if fs else None
-    return {"movements": len(fs), "flagged_bot": sum(is_bot(f, rule) for f in fs),
+    extra = {"flagged_clf": int(np.sum(score(fs, clf) >= clf["threshold"])) if fs else 0} if clf else {}
+    return {"movements": len(fs), "flagged_bot": sum(is_bot(f, rule) for f in fs), **extra,
             **{f"median_{k}": med(k) for k in ("samples", "straightness", "duration_s", "pause_s", "v_std")}}
 
 
@@ -173,3 +239,14 @@ def selfcheck():
     rng = random.Random(1)
     b = [features(synthetic_bot(arc, rng)) for _ in range(20)]
     assert all(is_bot(f, {"N": 3, "S": 0.99}) for f in b), b
+    assert abs(auc(np.array([2.0, 3.0]), np.array([1.0, 2.0])) - 0.875) < 1e-12  # (1 + 0.5 + 1 + 1) / 4
+    # logreg separates wavy human-like arcs from min-jerk paths on the same endpoints
+    rng = random.Random(2)
+    hum = [{"pts": [(i / 60, 400 * i / 40 + 30 * math.sin(i / 3 + k) + rng.gauss(0, 3), 50 * math.sin(math.pi * i / 40 + k))
+                    for i in range(41)], "t_down": 41 / 60 + 0.2} for k in range(40)]
+    X = [features(h) for h in hum] + [features(minjerk_bot(h, rng)) for h in hum]
+    clf = fit_logreg([vec(f) for f in X], [0] * 40 + [1] * 40)
+    s = score(X, clf)
+    assert auc(s[40:], s[:40]) > 0.95, auc(s[40:], s[:40])
+    mb = minjerk_bot(hum[0], rng)
+    assert mb["pts"][0][1:] == (round(hum[0]["pts"][0][1]), round(hum[0]["pts"][0][2])) and abs(mb["t_down"] - hum[0]["t_down"]) < 1e-9

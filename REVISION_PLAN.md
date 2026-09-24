@@ -210,16 +210,16 @@ kimi-k3 introduced in §5.7 and [ref Melious]; App. B artifact list (Tables 5.4�
 Open, needs new work (ranked by how many boards named it):
 1. **Real detector** (4/5): real Turnstile / reCAPTCHA v3 sitekeys on an author-owned domain (vendor ToS check), configs a–e,
    report scores incl. nulls. AUTHOR (accounts, ToS).
-2. **Table 5.6 power + confound** (4/5): N ≥ 5–10 per cell with CIs; add a text-only LLM agent reading the accessibility tree
+2. **DONE 2026-09-24** — N = 6 per cell with Wilson CIs; VLM 50/54, scripts 12–18/54, text-only a11y-tree LLM 54/54 (vision not needed on labelled forms; it matters for where input enters); a-dom repair = 18 changed lines. Original: **Table 5.6 power + confound** (4/5): N ≥ 5–10 per cell with CIs; add a text-only LLM agent reading the accessibility tree
    (isolates vision from language reasoning); log script-repair time per variant. Doable in the harness (~€0.2).
-3. **Learned kinematic detector** (4/5): BeCAPTCHA-Mouse-style feature classifier vs min-jerk + noise, ROC/FPR (needs
+3. **DONE 2026-09-24** — numpy logistic regression (sklearn blocked by PEP 668), AUC 0.998, 0.2% human FPR; flags 35% of min-jerk agent paths, 0% of pointer jumps; the rule is the mirror image. Original: **Learned kinematic detector** (4/5): BeCAPTCHA-Mouse-style feature classifier vs min-jerk + noise, ROC/FPR (needs
    scikit-learn or a small numpy model).
 4. **Human check of LLM screening/coding** (5/5): human codes all ~24 Type I–V includes + 20% random sample; report
    human–LLM κ; log supplementary queries. AUTHOR.
 5. **DONE 2026-09-24 (decision-picker: retitle; demote C1)** — title now "SoK: Where Input Enters — Client-Side Anti-Automation When AI Agents Drive Unmodified Browsers"; abstract, §1.1, §1.2 (C1 = injection axis + measurement, C2 = centralization, C3 = generic VM model), §8 reframed. Original item: **Framing/title** (4/5): data say detection follows the injection point; VLM adds cross-site generalisation.
    AUTHOR decision before registration (Nov 10): retitle around Axis C / "per-site cost", demote C1 (grey-literature L1–L4)
    below C2/C3. Suggested: "SoK: Where Input Enters — Client-Side Anti-Automation When Agents Drive Unmodified Browsers".
-6. **C3 evidence** (3/5): count deployed PAT issuers, PST issuer registrations, PACT participants; trilemma as a table
+6. **DONE 2026-09-24** — `docs/c3-evidence.md`; Table 6.1 trilemma (8 schemes), PST registry 1/9 unexpired, attester counts per the rate-limit draft ("a bounded set of Attesters"), WEI/Play Integrity/App Attest precedents. Original: **C3 evidence** (3/5): count deployed PAT issuers, PST issuer registrations, PACT participants; trilemma as a table
    of which scheme meets (i)–(iii); add WEI / Play Integrity / App Attest as precedent.
 7. Venue: **decided (decision-picker, escalated): S&P 2027 Cycle 2, abstract Nov 10, paper Nov 17.** CFP check: a rejected paper waits one year from submission, so the author-only items 1 (real sitekeys) and 4 (human coding) should land before Nov 17. Decisions are logged in `.decisions.log`.
 

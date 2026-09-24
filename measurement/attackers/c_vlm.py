@@ -142,11 +142,11 @@ class MeliousAdapter:
         self.hist, self.calls = [], []
 
     def ask(self, png, prompt, max_tokens=2048):
-        """One chat call; returns (reply text, input tokens, output tokens, latency s)."""
+        """One chat call; returns (reply text, input tokens, output tokens, latency s). png=None: text only (t_a11y)."""
         import httpx
+        img = [{"type": "image_url", "image_url": {"url": "data:image/png;base64," + base64.b64encode(png).decode()}}] if png else []
         body = {"model": self.model, "temperature": 0, "max_tokens": max_tokens, "messages": [{"role": "user", "content": [
-            {"type": "image_url", "image_url": {"url": "data:image/png;base64," + base64.b64encode(png).decode()}},
-            {"type": "text", "text": prompt}]}]}
+            *img, {"type": "text", "text": prompt}]}]}
         # retry transport errors and non-200s (Melious intermittently answers image requests with 400
         # "malformed" for requests that succeed on resend); failed attempts are logged, latency = successful call
         for attempt in range(6):

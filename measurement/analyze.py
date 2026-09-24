@@ -10,7 +10,7 @@ model's price currency. `--summary` writes results/summary.md + results/summary.
 Experiment B (logs/xsite/, cross-site variants) and Experiment A (logs/kinematics.jsonl scored by the
 kinematics.py detector trained on Balabit in data/) when their inputs exist.
 """
-import argparse, glob, json, os, statistics, sys
+import argparse, glob, json, math, os, statistics, sys
 from collections import defaultdict
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))  # kinematics.py
@@ -31,6 +31,15 @@ def pct(xs, q):
         return None
     xs = sorted(xs)
     return xs[min(len(xs) - 1, int(round(q * (len(xs) - 1))))]
+
+
+def wilson(k, n, z=1.96):
+    """Wilson score 95% interval for k successes in n runs."""
+    if not n:
+        return None
+    p, d = k / n, 1 + z * z / n
+    c, h = (p + z * z / (2 * n)) / d, z * math.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / d
+    return max(0.0, c - h), min(1.0, c + h)
 
 
 def analyze(runs, events, prices):
@@ -179,12 +188,51 @@ def xsite_md(x, desc):
     return "\n".join(lines) + "\n\n" + "\n".join(notes) + "\n"
 
 
+def agent_totals(cells):
+    """Per agent: base-form cell, v1-v9 successes/runs, Wilson CI, cost per success (v1-v9 spend / successes)."""
+    base, var = cells.get(0, cells.get("0")), [c for v, c in cells.items() if str(v) != "0"]
+    s, n, sp = sum(c["successes"] for c in var), sum(c["runs"] for c in var), sum(c["spend"] for c in var)
+    return {"base": base, "successes": s, "runs": n, "ci95": wilson(s, n), "cost_per_success": sp / s if sp and s else None}
+
+
+def ci_str(ci):
+    return f"{ci[0]:.0%}–{ci[1]:.0%}" if ci else "–"
+
+
+def xsite_agents_md(x):
+    lines = ["| Agent | Base form | Variants v1–v9 | 95% CI (Wilson) | Cost per success |", "|---|---|---|---|---|"]
+    for a in sorted(x):
+        t = agent_totals(x[a])
+        b = f"{t['base']['successes']}/{t['base']['runs']}" if t["base"] else "–"
+        cost = f"€{t['cost_per_success']:.4f}" if t["cost_per_success"] else "–"
+        lines.append(f"| {a} | {b} | {t['successes']}/{t['runs']} | {ci_str(t['ci95'])} | {cost} |")
+    return "\n".join(lines) + "\n"
+
+
+def repair(runs, events, prices):
+    """a-dom with hand-adapted selectors (logs/repair): lines changed per variant and server-side passes."""
+    lines = {r.get("variant", 0): r["lines_changed"] for r in runs}
+    cells = xsite(runs, events, prices).get("a-dom-adapted", {})
+    return {"lines_changed": {v: lines[v] for v in sorted(lines)}, "cells": cells}
+
+
+def repair_md(rp):
+    vs = sorted(rp["lines_changed"])
+    lc, cells = rp["lines_changed"], rp["cells"]
+    return "\n".join([
+        "| Variant | " + " | ".join(f"v{v}" for v in vs) + " | Total |", "|---" * (len(vs) + 2) + "|",
+        "| Lines changed (vs base a-dom script) | " + " | ".join(str(lc[v]) for v in vs) + f" | {sum(lc.values())} |",
+        "| Adapted a-dom passes (server) | " + " | ".join(f"{cells[v]['successes']}/{cells[v]['runs']}" for v in vs)
+        + f" | {sum(c['successes'] for c in cells.values())}/{sum(c['runs'] for c in cells.values())} |"]) + "\n"
+
+
 KIN_LABELS = {"a-role": "(a) Playwright CDP click (a-role)", "a-dom": "(a) Playwright el.click() (a-dom)",
-              "b-mouse": "(b) scripted xdotool, pointer jumps", "e-smooth": "(e) smoothed OS input, min-jerk"}
+              "b-mouse": "(b) scripted xdotool, pointer jumps", "e-smooth": "(e) smoothed OS input, min-jerk",
+              "t-a11y / glm-5.3-flash": "(t) text-only LLM on accessibility tree, Playwright click"}
 
 
 def kin_scores(model, kin_lines, runs):
-    """Apply the trained rule to browser movements, grouped per agent (config / model)."""
+    """Apply the trained rule and the logistic classifier to browser movements, grouped per agent (config / model)."""
     import kinematics as K
     agent = {r["run_id"]: agent_key(r) for r in runs}
     groups = defaultdict(list)
@@ -192,52 +240,72 @@ def kin_scores(model, kin_lines, runs):
         if run in agent and segs:  # keyboard-only / el.click() agents produce no pointer movement
             groups[agent[run]] += [K.features(s) for s in segs]
     label = lambda a: KIN_LABELS.get(a) or (f"(c) VLM agent, {a.partition(' / ')[2]}" if a.startswith("c-vlm") else a)
-    out = {"Balabit human, held-out users": K.summarize(model["_test_human"], model["rule"]),
-           "Synthetic straight/teleport, held-out": K.summarize(model["_test_bot"], model["rule"])}
+    rule, clf = model["rule"], model["classifier"]
+    out = {"Balabit human, held-out users": K.summarize(model["_test_human"], rule, clf),
+           "Synthetic straight/teleport, held-out": K.summarize(model["_test_bot"], rule, clf),
+           "Synthetic min-jerk, held-out": K.summarize(model["_test_mj"], rule, clf)}
     for a in sorted(groups, key=label):
-        out[label(a)] = K.summarize(groups[a], model["rule"])
+        out[label(a)] = K.summarize(groups[a], rule, clf)
     return out
 
 
 def kin_md(model, scores):
     f = lambda v, s: "–" if v is None else s.format(v)
-    lines = ["| Movement source | Movements | Flagged as bot | Median samples (50 Hz) | Median straightness | Median duration (s) |",
-             "|---|---|---|---|---|---|"]
+    lines = ["| Movement source | Movements | Flagged as bot (rule) | Flagged (classifier) | Median samples (50 Hz) "
+             "| Median straightness | Median duration (s) |", "|---|---|---|---|---|---|---|"]
     for k, s in scores.items():
         share = s["flagged_bot"] / s["movements"] if s["movements"] else None
-        lines.append(f"| {k} | {s['movements']} | {s['flagged_bot']} ({f(share, '{:.0%}')}) | {f(s['median_samples'], '{:g}')} "
+        cshare = s["flagged_clf"] / s["movements"] if s["movements"] else None
+        lines.append(f"| {k} | {s['movements']} | {s['flagged_bot']} ({f(share, '{:.0%}')}) | {s['flagged_clf']} ({f(cshare, '{:.0%}')}) "
+                     f"| {f(s['median_samples'], '{:g}')} "
                      f"| {f(s['median_straightness'], '{:.3f}')} | {f(s['median_duration_s'], '{:.2f}')} |")
     r = model["rule"]
     cond = (f"samples < {r['N']} or " if r["N"] > 1 else "") + f"straightness > {r['S']}"
     lines += ["", f"- Rule (grid search over samples < N or straightness > S): bot iff {cond}; fitted on Balabit users "
               f"{', '.join(model['train_users'])} (n = {model['n_train']}), held-out accuracy {model['test_accuracy']:.1%} on users "
               f"{', '.join(model['test_users'])} (n = {model['n_test']}; humans flagged {model['test_human_flagged']:.1%}, "
-              f"synthetic bots flagged {model['test_bot_flagged']:.1%})."]
+              f"synthetic bots flagged {model['test_bot_flagged']:.1%}).",
+              f"- Classifier: logistic regression (numpy Newton/IRLS, L2) on {', '.join(model['classifier']['features'])}; "
+              f"bot class = min-jerk paths with bow and jitter, paired human duration and pause (same generator family as "
+              f"e-smooth, so the (e) row is in-distribution). Held-out ROC AUC {model['classifier']['auc']:.4f}; at the "
+              f"threshold for {model['classifier']['test_bot_tpr']:.0%} TPR on held-out min-jerk bots, held-out humans "
+              f"flagged {model['classifier']['test_human_fpr']:.2%} (n = {model['classifier']['n_test']})."]
     return "\n".join(lines) + "\n"
 
 
 PAPER_AGENT = {"a-dom": "Scripted, DOM selectors (a-dom)", "a-role": "Scripted, accessibility role (a-role)",
                "b-xdotool": "Scripted, xdotool keyboard (b)"}
+PAPER_T = "Text-only LLM on accessibility tree, {} (t)"
 PAPER_KIN = {"Balabit human, held-out users": "Balabit humans, held-out users",
              "Synthetic straight/teleport, held-out": "Synthetic straight or teleport moves",
              "(a) Playwright CDP click (a-role)": "Playwright CDP click (a-role)",
              "(b) scripted xdotool, pointer jumps": "Scripted xdotool pointer jumps (b)",
-             "(e) smoothed OS input, min-jerk": "Smoothed min-jerk OS input (e)"}
+             "(e) smoothed OS input, min-jerk": "Smoothed min-jerk OS input (e)",
+             "Synthetic min-jerk, held-out": "Synthetic min-jerk moves (classifier bot class)",
+             "(t) text-only LLM on accessibility tree, Playwright click": "Text-only LLM, Playwright click (t)"}
 
 
 def paper_extra_md(js):
-    """Compact rows of paper Tables 5.6 (Experiment B) and 5.7 (Experiment A), from results/summary.json."""
+    """Compact rows of paper Tables 5.6 (Experiment B, plus a-dom repair effort) and 5.7 (Experiment A), from
+    results/summary.json. Labels avoid the `| a-` / `| b-` / `| c-vlm` / `| d-hybrid` prefixes of the stale check."""
     rows = []
     for a, cells in js.get("experiment_b_xsite", {}).get("cells", {}).items():
-        base, var = cells.get("0"), [c for v, c in cells.items() if v != "0"]
-        s, n, sp = sum(c["successes"] for c in var), sum(c["runs"] for c in var), sum(c["spend"] for c in var)
-        label = PAPER_AGENT.get(a) or f"VLM agent, {a.partition(' / ')[2]} (c)"
-        b = f"{base['successes']}/{base['runs']}" if base else "–"
-        cost = f"€{sp / s:.4f}" if sp and s else "–"
-        rows.append(f"| {label} | {b} | {s}/{n} | {cost} |")
+        t = agent_totals(cells)
+        cfg, _, model = a.partition(" / ")
+        label = PAPER_AGENT.get(a) or (PAPER_T.format(model) if cfg == "t-a11y" else f"VLM agent, {model} (c)")
+        b = f"{t['base']['successes']}/{t['base']['runs']}" if t["base"] else "–"
+        cost = f"€{t['cost_per_success']:.4f}" if t["cost_per_success"] else "–"
+        rows.append(f"| {label} | {b} | {t['successes']}/{t['runs']} | {ci_str(t['ci95'])} | {cost} |")
+    rp = js.get("experiment_b_repair")
+    if rp:
+        lc = rp["lines_changed"]
+        # prose phrase in §5.7, checked verbatim like the table rows
+        rows.append(f"{sum(lc.values())} changed lines over {len(lc)} variants "
+                    f"({min(lc.values())}–{max(lc.values())} per variant)")
     for k, v in js.get("experiment_a_kinematics", {}).get("scores", {}).items():
         label = PAPER_KIN.get(k) or f"VLM agent, {k.rpartition(', ')[2]} (c)"
-        rows.append(f"| {label} | {v['movements']:,} | {v['flagged_bot'] / v['movements']:.0%} |")
+        rows.append(f"| {label} | {v['movements']:,} | {v['flagged_bot'] / v['movements']:.0%} "
+                    f"| {v['flagged_clf'] / v['movements']:.0%} |")
     return rows
 
 
@@ -293,8 +361,14 @@ def selfcheck():
     assert c["webdriver_runs"] == 0 and c["attacker_flag_runs"] == 1
     ex = {"experiment_b_xsite": {"cells": {"c-vlm / m": {"0": {"successes": 1, "runs": 1, "spend": 0.1},
                                                          "3": {"successes": 1, "runs": 2, "spend": 0.5}}}},
-          "experiment_a_kinematics": {"scores": {"(c) VLM agent, m": {"movements": 1234, "flagged_bot": 1234}}}}
-    assert paper_extra_md(ex) == ["| VLM agent, m (c) | 1/1 | 1/2 | €0.5000 |", "| VLM agent, m (c) | 1,234 | 100% |"], paper_extra_md(ex)
+          "experiment_b_repair": {"lines_changed": {"1": 0, "3": 5}},
+          "experiment_a_kinematics": {"scores": {"(c) VLM agent, m": {"movements": 1234, "flagged_bot": 1234, "flagged_clf": 617}}}}
+    assert paper_extra_md(ex) == ["| VLM agent, m (c) | 1/1 | 1/2 | 9%–91% | €0.5000 |", "5 changed lines over 2 variants (0–5 per variant)",
+                                  "| VLM agent, m (c) | 1,234 | 100% | 50% |"], paper_extra_md(ex)
+    lo, hi = wilson(17, 18)
+    assert abs(lo - 0.742) < 0.001 and abs(hi - 0.990) < 0.001, (lo, hi)
+    assert wilson(0, 0) is None and wilson(0, 5)[0] == 0.0 and wilson(5, 5)[1] == 1.0
+    assert xsite_agents_md(x).splitlines()[2] == "| b-xdotool | – | 0/1 | 0%–79% | – |", xsite_agents_md(x)
     print("selfcheck ok")
 
 
@@ -337,6 +411,13 @@ def main():
             js["experiment_b_xsite"] = {"variants": {k: v["desc"] for k, v in VARIANTS.items()}, "cells": x}
             md += "\n## Experiment B: cross-site generalisation (pass = server flow_done with all answers correct)\n\n"
             md += xsite_md(x, {k: v["desc"] for k, v in VARIANTS.items()})
+            md += "\n### Per agent (v1–v9 pooled; 95% Wilson interval; cost per success = v1–v9 spend / v1–v9 successes)\n\n"
+            md += xsite_agents_md(x)
+        rruns = read_runs(os.path.join(a.logs, "repair"))
+        if rruns:  # Experiment B script repair: a-dom with per-variant adapted selectors
+            rp = repair(rruns, events, prices)
+            js["experiment_b_repair"] = rp
+            md += "\n### Script repair: a-dom selectors adapted per variant (lines changed, not minutes)\n\n" + repair_md(rp)
         kin = os.path.join(a.logs, "kinematics.jsonl")
         balabit = os.path.join(here, "data", "Mouse-Dynamics-Challenge")
         if os.path.exists(kin) and os.path.isdir(balabit):  # Experiment A
