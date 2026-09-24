@@ -35,3 +35,9 @@ __pycache__/
 
 # LaTeX build dir
 build/
+
+# screening cache (abstracts, raw screener output)
+analysis/cache/
+
+# Third-party datasets (Balabit mouse dynamics; cloned, never committed)
+measurement/data/

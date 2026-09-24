@@ -13,7 +13,7 @@
   "f_example": {"value": 0.2, "unit": "fraction of steps using the VLM", "status": "assumption", "source": "-"},
   "vlm_step_latency": {"value": [5, 15], "unit": "seconds per perception-action cycle", "status": "assumption (no public per-step figure; consistent with OSWorld-Human, arXiv:2506.16042)", "measured": "0.77-1.45 s median per call, two small VLMs (measurement/results/summary.json, 2026-09-23; paper §5.7)", "source": "-"},
   "script_step_latency": {"value": 0.5, "unit": "seconds per scripted step", "status": "assumption", "measured": "0.47 s median per xdotool action (measurement/results/summary.json, 2026-09-23; paper §5.7)", "source": "-"},
-  "proxy_commodity": {"value": [2.50, 6.00], "unit": "USD/GB", "status": "UNVERIFIED (Bright Data page unreachable 2026-09-23; earlier-recorded from 5.88/GB); TODO(author)", "source": "[97]"},
+  "proxy_commodity": {"value": [2.50, 8.00], "unit": "USD/GB", "status": "verified: list $5-$8/GB; $2.50/GB floor needs the largest plan plus a 3-month 50% coupon", "source": "Bright Data residential pricing, Wayback 20260924054801 (live page DNS-blocked)"},
   "proxy_premium": {"value": [10, 15], "unit": "USD/GB", "status": "assumption", "source": "-"},
   "proxy_dedicated": {"value": [25, 50], "unit": "USD/GB", "status": "assumption", "source": "-"},
   "captcha_farm": {"value": [0.50, 2.00], "unit": "USD per 1,000 solves", "status": "verified (cited)", "source": "[17]"},
@@ -21,13 +21,13 @@
   "sweep_p_success": {"value": [0.4, 0.7, 0.9], "unit": "probability", "status": "sweep", "source": "-"},
   "sweep_n": {"value": 10, "unit": "actions per attempt in the hybrid table", "status": "assumption", "source": "-"},
 
-  "tier1_device_price": {"value": [100, 300], "unit": "USD per used PAT-capable Apple device (iPhone)", "status": "assumption (used-market listings could not be retrieved programmatically)", "source": "TODO(author): cite a dated used-market price snapshot"},
+  "tier1_device_price": {"value": [100, 300], "unit": "USD per used PAT-capable Apple device (iPhone)", "status": "verified range: Swappa asking prices, iPhone XR from $103, SE2 avg $105, iPhone 11 avg $188, iPhone 13 avg $286 (Jul-Aug 2026)", "source": "Swappa via Wayback 20260708190037 and 20260812144427"},
   "tier1_device_life": {"value": [12, 24], "unit": "months of amortisation", "status": "assumption", "source": "-"},
   "tier1_ops_per_device_month": {"value": [9.3, 48.8], "unit": "USD per device per month (proxy/SIM, power, management)", "status": "vendor-reported (anti-detect vendor blog, 10-device farm monthly total / 10); not independently verified", "source": "[100]"},
   "tier1_cloud_mac_hourly": {"value": 0.65, "unit": "USD/hour, AWS EC2 mac2.metal on-demand, 24 h minimum", "status": "verified (price aggregator + AWS 24 h minimum rule); whether PAT issuance works on EC2 Mac hosts is unverified", "source": "[101]"},
   "tier1_rate_limit_sweep": {"value": [1, 10, 100, 1000], "unit": "clearance tokens per device per origin per day", "status": "assumption (Apple does not publish attester/issuer rate limits; RFC 9577-style rate-limited issuance leaves the limit to the issuer)", "source": "[10]"},
   "ppi_price": {"value": [7, 180], "unit": "USD per 1,000 installs (Windows, 2011; Asia low end, US/UK high end)", "status": "verified", "source": "[74]"},
   "prices_usd_per_mtok": {"value": {"claude-sonnet-4-6": {"input": 3.00, "output": 15.00}, "gpt-5": {"input": 1.25, "output": 10.00}, "gemini-2.5-computer-use-preview-10-2025": {"input": 1.25, "output": 10.00}}, "unit": "USD per 1M LLM tokens, keyed by API model id (used by measurement/analyze.py)", "status": "verified", "source": "[94,95,96]"},
-  "prices_eur_per_mtok": {"value": {"glm-5.3-flash": {"input": 0.10, "output": 0.40}, "kimi-k2.7-code": {"input": 0.70, "output": 3.50}, "qwen3.8-27b": {"input": 0.40, "output": 2.40}}, "unit": "EUR per 1M LLM tokens, keyed by Melious API model id (used by measurement/analyze.py)", "status": "verified", "source": "melious.ai/hub/models/<model id> pages, accessed 2026-09-23"},
+  "prices_eur_per_mtok": {"value": {"glm-5.3-flash": {"input": 0.10, "output": 0.40}, "kimi-k2.7-code": {"input": 0.70, "output": 3.50}, "qwen3.8-27b": {"input": 0.40, "output": 2.40}, "kimi-k3": {"input": 2.80, "output": 14.00}}, "unit": "EUR per 1M LLM tokens, keyed by Melious API model id (used by measurement/analyze.py)", "status": "verified", "source": "melious.ai/hub/models/<model id> pages, accessed 2026-09-23 (glm-5.3-flash, qwen3.8-27b, kimi-k2.7-code); melious.ai/hub/models/kimi-k3, accessed 2026-09-24"},
   "account_price": {"value": [10, 200], "unit": "USD per 1,000 fraudulent Twitter accounts (2012-13)", "status": "verified", "source": "[49]"}
 }

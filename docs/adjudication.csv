@@ -1,0 +1,47 @@
+id,decision,category,reason
+arXiv:2602.19514v1,include,E,Measures agent-to-human labor market for authentication circumvention; CAPTCHA-farm analogue
+arXiv:1103.6219v2,exclude,-,"CAPTCHA used for password strengthening, not anti-automation; no evaluation"
+arXiv:1305.7485v1,exclude,-,CAPTCHA in graphical passwords against spyware; not web bot defence
+arXiv:1810.10939v3,exclude,-,Evades Twitter-bot and website-fingerprinting classifiers; both out of scope
+arXiv:1812.11894v1,include,A,"Reports state-of-the-art CAPTCHA recognition, an ML solver evaluation"
+arXiv:2402.06087v1,exclude,-,Graph kernel ML method; no bot detection or anti-automation
+arXiv:2408.07892v4,exclude,-,Policy analysis of personhood credentials; no empirical evaluation
+s2:00df213d4dd7345b162902d758ac7ae7d7154d1a,include,A,Title only; automated image CAPTCHA solver
+doi:10.1145/1772690.1772742,exclude,-,Search-log bot classification; CAPTCHA only used for labels
+doi:10.1007/978-981-10-8360-0_23,exclude,-,"Title only; no client-side anti-automation evident, bot sense unclear"
+doi:10.1109/ACCESS.2026.3714741,include,M,"Device battery-trace screening of emulated Sybil registrations, evaluated vs GANs"
+doi:10.1109/WAINA.2016.97,exclude,-,CAPTCHA design proposal; abstract reports no evaluation
+doi:10.26438/ijcse/v7i3.6067,include,M,Title only (abstract is journal boilerplate); evaluates text CAPTCHA security
+s2:28a292db1c894c95bd6597d653392d5501436511,include,M,Title only; analyses CAPTCHA design and implementation shortcomings
+doi:10.5121/ijci.2026.150207,exclude,-,Framework proposal for calligraphic CAPTCHA; no evaluation reported
+doi:10.1088/1674-1056/adfefb,include,A,"Evaluates CNN on CAPTCHA recognition, 92.6% accuracy"
+doi:10.1109/BWCCA.2012.81,exclude,-,Text CAPTCHA design proposal; abstract reports no evaluation
+doi:10.1109/ICBCTIS64495.2024.00046,exclude,-,"Fingerprinting for attacker tracing, not bot detection"
+s2:60cf16e9f140c246f20b665a49a130206c81d576,include,A,Title only; deep-learning evaluation of CAPTCHA designs
+doi:10.1109/ICWS72778.2026.00143,include,A,"Attack abusing CAPTCHA token verification; measured on 45 sites, five providers"
+doi:10.1109/ICAECT63952.2025.10958889,exclude,-,Honeyword and video CAPTCHA proposal; no evaluation reported
+s2:6e47dc89a4bd5b3836ee52401e5a76100575804e,exclude,-,Title only; no client-side mechanism indicated
+doi:10.1109/MLSD58227.2023.10303955,exclude,-,"Browser fingerprinting for user identification, not bot detection"
+doi:10.1007/s00138-020-01160-8,include,A,"Title only; character CAPTCHA recognition system, i.e. a solver"
+doi:10.1016/J.PROCS.2021.04.036,exclude,-,"Cross-device user tracking, not bot detection"
+doi:10.1109/ICETET.2010.126,include,A,"Segmentation and recognition CAPTCHA solver, 88% accuracy"
+doi:10.1109/SEAMS.2012.6224398,exclude,-,Server-side DoS filtering; CAPTCHA only an incidental fallback
+doi:10.1007/978-3-642-33448-1_7,include,M,Title only; economic evaluation of interactive audio challenges securing services
+s2:9f21e5e305efd49a5011c11fa4bf9ff83214dbad,include,A,Title only; breaks a visual CAPTCHA
+doi:10.1109/SEAMS.2015.18,exclude,-,"Fingerprint randomisation against tracking, not bot-detection evasion"
+doi:10.1007/b136509,exclude,-,"Proceedings volume, not a single research item"
+s2:af33e9cb9768bad01a2941ffb0549405276cf28a,include,M,Title only; image-text fusion CAPTCHA mechanism
+s2:b19c2aa855c247461d9caa48ea94b0b39d650001,include,E,title-only exclusion corrected on full text: covers CAPTCHA-solving and account markets
+s2:b1fdd1cb90330e0885ead385f49104c905e1ef69,include,M,Title only; solver-resistant challenge-response mechanism
+doi:10.4018/jwp.2012040105,include,M,User study evaluating CAPTCHA and reCAPTCHA usability
+s2:c047387be87f9c84c034d50c0608f31d2686e642,include,E,Title only; outsourced human labor behind web service abuse
+s2:ca69bc4ff6dcfbf4952083b84f3a503de389ccc1,include,A,Title only; vision-based interaction past CAPTCHA cloaking
+doi:10.1109/WETICE.2007.176,exclude,-,"Grid portal description; CAPTCHA incidental, no evaluation"
+doi:10.1145/1953005.1953008,include,M,Large-scale CAPTCHA usability evaluation via game input logs
+doi:10.1007/978-3-642-41485-5_13,exclude,-,"Title only; VoIP anti-SPIT, outside the web"
+doi:10.26634/jse.19.3.21701,exclude,-,Price tracker; CAPTCHA bypass incidental and not evaluated
+doi:10.1007/978-3-319-75193-1_60,exclude,-,"Title only; generic OCR, no CAPTCHA or anti-automation stated"
+doi:10.1109/ICPR48806.2021.9412914,exclude,-,"Adversarial attacks on scene text recognisers, not CAPTCHAs"
+doi:10.1109/FMLDS67896.2025.00135,exclude,-,"LLM pentesting; CAPTCHA only incidental, needed human help"
+doi:10.61819/jnhfb.v14i3.18,exclude,-,Method guide for survey fraud; no evaluation
+doi:10.2196/60184,exclude,-,Survey-fraud experience report; no systematic mechanism or attack evaluation

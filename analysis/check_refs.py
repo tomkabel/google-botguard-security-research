@@ -58,10 +58,12 @@ def renumber(text):
     sub = lambda m: "[" + compress(new[n] for n in expand(m.group(1))) + "]"
     blocks = {int(m.group(1)): m for m in ENTRY.finditer(refs)}
     starts = sorted(m.start() for m in blocks.values())
-    chunk = {n: refs[m.start():next((s for s in starts if s > m.start()), len(refs))].strip() for n, m in blocks.items()}
+    # an entry runs to the next entry; drop separator lines ("---") so they don't travel with the last entry
+    chunk = {n: re.sub(r"\n+-{3,}\s*$", "", refs[m.start():next((s for s in starts if s > m.start()), len(refs))].strip())
+             for n, m in blocks.items()}
     head = refs[:starts[0]]
     entries = [ENTRY.sub(f"**[{new[o]}]**", chunk[o], count=1) for o in order]
-    return CITE.sub(sub, body) + head + "\n\n".join(entries) + "\n" + CITE.sub(sub, app)
+    return CITE.sub(sub, body) + head + "\n\n".join(entries) + ("\n\n---\n" if app else "\n") + CITE.sub(sub, app)
 
 
 def selfcheck():
@@ -71,6 +73,8 @@ def selfcheck():
     r = renumber(t)
     assert r.startswith("x [1] y [1, 2] z [3]") and "**[1]** A." in r and "**[2]** B." in r and "C." not in r, r
     assert check(r)[2:5] == ([], [], [])
+    r2 = renumber("x [2]\n## References\n\n**[2]** B.\n\n---\n\n## Appendix A\nsee [2]\n")
+    assert "**[1]** B.\n\n---\n\n## Appendix A\nsee [1]" in r2 and r2.count("---") == 1, r2
 
 
 if __name__ == "__main__":

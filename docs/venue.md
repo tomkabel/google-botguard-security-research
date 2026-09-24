@@ -37,6 +37,11 @@ Event: 48th IEEE S&P, May 17-20, 2027, Montreal, Canada.
 - Suggested wording for editorial use: "Generative AI was used for editorial purposes in this manuscript, and all outputs were inspected by the authors to ensure accuracy and originality."
 - The criteria are Accuracy and Originality (authors are responsible for the literature review), Transparency, and Responsibility.
 
+### Re-check 2026-09-24 (see `docs/fact-check.md`, Phase 8)
+- Appendices after the references are allowed but count toward the 5-page / 18-page budget; reviewers need not read them.
+- Open question: whether SoK references are excluded only from the 13-page body or also from the 18-page total. Ask the PC chairs if the bibliography grows.
+- Generative AI used *in the methodology or as an object of study* (our §3.1 screening, §5.7 VLM agents) must be detailed in the paper (Transparency) with limitations, and the footprint justified: why generative AI was necessary, model size, how query volume was minimised, which hardware (Responsibility). Non-compliance is grounds for desk rejection. Appendix C covers this.
+
 ## Artifacts and open science
 > "Papers are strongly encouraged to provide artifact repositories that are anonymized ... Artifact repositories must not be updated after the paper deadline has passed."
 

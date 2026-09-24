@@ -1,0 +1,15 @@
+id,code,reason
+arXiv:2306.07543v1,ECON,study of CAPTCHA-solving services
+arXiv:2510.02418v2,OTHER,web-agent capability benchmark; Part II attacker background
+arXiv:1911.07649v4,III,sensor-based human attestation on mobile
+arXiv:2512.16223v1,CAPTCHA,new CAPTCHA design
+arXiv:2603.18071v4,II,engineering report on evading platform anti-bot limits
+doi:10.1109/ACCESS.2026.3714741,III,sensor traces against emulated devices
+doi:10.63619/ijai4s.v1i2.001,II,crawler evading anti-crawling fingerprinting
+doi:10.14419/h8f10w38,I,in-page deception traps for AI-driven bots (cf. L3 honeypot)
+doi:10.1109/CSCloud/EdgeCom.2018.00013,ECON,game-theoretic machine vs human solver economics
+doi:10.1109/WICT.2012.6409078,CAPTCHA,crawler defences centred on CAPTCHA
+doi:10.1109/AIxDKE67294.2026.00021,OTHER,web-agent survey; Part II attacker background
+doi:10.1109/ICISESSC68634.2026.11542654,II,transactional risk scoring of scalper bots
+doi:10.1109/INFCOMW.2010.5466663,I,proof-of-work challenge in the client
+doi:10.1109/eurosp53844.2022.00050,CAPTCHA,RL solver for behavioural CAPTCHA
