@@ -1,16 +1,16 @@
-# SoK: Client-Side Anti-Automation Under VLM-Based Attack — From Probabilistic Forgery to Operator Synthesis
+# SoK: Where Input Enters — Client-Side Anti-Automation When AI Agents Drive Unmodified Browsers
 
 ---
 
 **Authors:** Anonymous submission
 
-**Keywords:** Client-side attestation, VLM-based automation, operator synthesis, browser fingerprinting, behavioral biometrics, Privacy Pass, Private Access Tokens, device-bound session credentials, anti-automation economics, systematization of knowledge
+**Keywords:** Client-side anti-automation, input injection, VLM agents, computer-use agents, browser fingerprinting, behavioral biometrics, Privacy Pass, Private Access Tokens, attestation centralization, systematization of knowledge
 
 ---
 
 ## Abstract
 
-Client-side anti-automation assumes that a bot must subvert the browser it runs in. Vision-Language Model (VLM) computer-use agents break that assumption: they perceive the rendered page and inject OS-level input into an unmodified browser, an attack vector we call Operator Synthesis. We systematize five defense paradigms, from point-in-time VM attestation to hardware-anchored session binding, and propose an L1–L4 analytical model of Botguard-style VMs to explain why their cost-imposing layers lose force when the attacker no longer touches the runtime. We then give a caveated cost-accounting exercise based on VLM inference pricing, proxy supply, and state orchestration, and test it on a small self-hosted testbed. Two small VLMs completed a five-field flow at 1–2 s per call and €0.0019–€0.0136 per success, far below our frontier-model assumptions; for the cheaper model the whole flow cost about as much as one human CAPTCHA solve. On unseen form variants the VLM agent kept succeeding where scripts failed, while a kinematic detector flagged both alike. Hardware-anchored schemes are not VLM-resilient; they are indifferent to input modality and move attacker cost to acquiring real enrolled devices and accounts. Finally, we document how attestation dependence concentrates trust in a few platform vendors and issuers, and outline open problems.
+Client-side anti-automation assumes that a bot runs inside, or instruments, the browser it drives. We argue that the property that decides detection is where input enters: inside the browser runtime (Environmental Forgery) or at the operating system, into an unmodified browser (Operator Synthesis). OS-level input is old; vision-language-model (VLM) agents make it cheap on every site. We systematize five defense paradigms along this axis, give a caveated cost-accounting exercise, and test it on a self-hosted testbed. In-runtime and kinematic signals separated how input was injected, not whether a VLM chose it: a straightness rule flagged scripted and VLM pointer jumps alike and missed a textbook smoothed path. What the VLM added was generalisation: on nine unseen form variants it passed 17 of 18 runs where base-form scripts passed at most 6. Two small open-weights VLMs acted in 1–2 s per call, and the cheaper one finished a five-field flow for about the price of one human CAPTCHA solve. Hardware-anchored attestation is indifferent to input modality; it moves attacker cost to real devices and accounts and concentrates trust in a few vendors and issuers.
 
 ---
 
@@ -20,15 +20,15 @@ Client-side anti-automation assumes that a bot must subvert the browser it runs 
 
 Client-side anti-automation terminology is fractured. "Bot detection" may mean a point-in-time VM executing encrypted bytecode (Google Botguard), a long-term behavioral scoring engine (reCAPTCHA v3), or a hardware-attestation protocol (Apple Private Access Tokens) [1, 2]. "Fingerprinting" can denote passive environmental introspection, active behavioral telemetry, or cryptographic token issuance [3, 4]. This imprecision obstructs comparative analysis.
 
-Since 2024, computer-use agents such as OpenAI's Operator [5] and research agents such as WebVoyager [6] drive an unmodified browser from outside it, using screenshots. We call this attack vector *Operator Synthesis* and use it as the organising lens. We first analyse what probabilistic client-side defenses were built to detect (Section 3), then ask which of their properties survive when the attacker never touches the browser runtime (Sections 4–6).
+Since 2024, computer-use agents such as OpenAI's Operator [5] and research agents such as WebVoyager [6] drive an unmodified browser from outside it, using screenshots. We call this attack vector *Operator Synthesis*. It is not new in kind (xdotool-style OS input predates VLMs), but VLMs remove the per-site script, so where input enters becomes the organising lens. We first analyse what probabilistic client-side defenses were built to detect (Section 3), then ask which of their properties survive when the attacker never touches the browser runtime (Sections 4–6).
 
 ### 1.2 Contributions
 
-**C1 — An L1–L4 Analytical Model of VM Attestation (Section 3.4).** No primary technical description of Botguard's internals is public. We propose a four-layer model, synthesised from public descriptions of Botguard-style VMs [7] and the obfuscation literature [8], as a diagnostic lens for *why* VM-based attestation loses cost-imposing force under Operator Synthesis.
+**C1 — Injection Point as the Organising Axis, With Measured Costs (Sections 4–5).** We classify attacks by where input enters (Axis C) and show which defense signals survive each. We estimate attacker costs from observable market data and extend the conjunctive cost framework to the VLM attacker's state-isolation requirements. A self-hosted measurement (Section 5.7) refutes the latency assumption for fast small models, puts the cheaper model's whole-flow cost at the price of one human CAPTCHA solve, and shows what the VLM adds: on nine unseen form variants it passed 17/18 runs where base-form scripts passed at most 6/18, while a kinematic rule flagged both alike.
 
-**C2 — A Cost-Accounting Exercise for VLM-Driven Attacks (Section 5).** We estimate attacker costs from observable market data and extend the conjunctive cost framework to the VLM attacker's state-isolation requirements. A self-hosted measurement (Section 5.7) refutes the latency assumption for fast small models, puts the cheaper model's whole-flow cost at the price of one human CAPTCHA solve, and shows what the VLM adds: on nine unseen form variants it passed 17/18 runs where base-form scripts passed at most 6/18, while a kinematic rule flagged both alike.
+**C2 — Attestation Market Centralization Analysis (Section 6).** Building on the centralization tension in anonymous token issuance [7, 8], we analyse who holds the roots of trust (Apple, third-party issuers, Google, passkey synchronisers). This dependency turns the "Anonymous Authentication Gap" into an economic and governance centralization problem, which the 2026 PACT initiative [9] extends to issuer judgment (Section 6.4).
 
-**C3 — Attestation Market Centralization Analysis (Section 6).** Building on the centralization tension in anonymous token issuance [9, 10], we analyse who holds the roots of trust (Apple, third-party issuers, Google, passkey synchronisers). This dependency turns the "Anonymous Authentication Gap" into an economic and governance centralization problem, which the 2026 PACT initiative [11] extends to issuer judgment (Section 6.4).
+**C3 — An Analytical Model of Point-in-Time VM Attestation (Section 3.4).** We propose a four-layer model of generic point-in-time VM challenges, synthesised from the obfuscation literature [10] and public descriptions of Botguard-style VMs [11], its best-documented (mostly grey-literature) instance, as a diagnostic lens for *why* VM-based attestation loses cost-imposing force under Operator Synthesis.
 
 ### 1.3 Threat Model and Scope
 
@@ -71,39 +71,39 @@ We define **input synthesis** as the translation of a VLM's output into OS-level
 
 ### 2.1 A Brief History of Client-Side Anti-Automation
 
-Server-side heuristics gave way to text, image and audio CAPTCHAs [15, 16]. By 2014 a deep network solved the hardest reCAPTCHA text challenges with 99.8% accuracy [18]. JavaScript challenges and reCAPTCHA v2's checkbox (December 2014) [19] followed, then JavaScript VMs executing obfuscated bytecode (Google Botguard, later Kasada) [7, 20]. Since 2020 the field has diversified into behavioral telemetry, biometrics and sensor telemetry [21–23], anonymous attestation (Privacy Pass, PATs, PACT) [1, 4, 11, 24], and hardware-anchored sessions (DBSC) [25, 26]. From 2025, VLMs solve generalized CAPTCHAs [27, 28].
+Server-side heuristics gave way to text, image and audio CAPTCHAs [15, 16]. By 2014 a deep network solved the hardest reCAPTCHA text challenges with 99.8% accuracy [17]. JavaScript challenges and reCAPTCHA v2's checkbox (December 2014) [18] followed, then JavaScript VMs executing obfuscated bytecode (Google Botguard, later Kasada) [11, 19]. Since 2020 the field has diversified into behavioral telemetry, biometrics and sensor telemetry [20–22], anonymous attestation (Privacy Pass, PATs, PACT) [1, 4, 9, 23], and hardware-anchored sessions (DBSC) [24, 25]. From 2025, VLMs solve generalized CAPTCHAs [26, 27].
 
 ### 2.2 From CAPTCHAs to JavaScript VMs
 
-VM-based attestation shifts the proof from *humanness* to *environmental integrity*: the runtime, DOM, WebGL and timer APIs must behave as in a legitimate browser [3, 7]. Laperdrix et al. [3] catalog this surface; later work measured it at scale [29–31] and spoofed single dimensions [32]. The weakness is a failure of *complete mediation* [33]: the check runs in an environment the attacker controls.
+VM-based attestation shifts the proof from *humanness* to *environmental integrity*: the runtime, DOM, WebGL and timer APIs must behave as in a legitimate browser [3, 11]. Laperdrix et al. [3] catalog this surface; later work measured it at scale [28–30] and spoofed single dimensions [31]. The weakness is a failure of *complete mediation* [32]: the check runs in an environment the attacker controls.
 
 ### 2.3 From Probabilistic Scoring to Hardware-Anchored Determinism
 
-Probabilistic defenses produce confidence scores from noisy sensor data [34]. Deterministic defenses (FIDO2/WebAuthn, DBSC) prove hardware key possession [12, 35] but require prior enrollment and cannot screen anonymous traffic [12]. Privacy Pass [36] and Apple PATs [1] bridge this "Anonymous Authentication Gap" cryptographically [4, 37, 38], at the cost of vendor centralization (§6). PACT [11] attests personhood or account standing through *issuer judgment* rather than hardware [39, 40].
+Probabilistic defenses produce confidence scores from noisy sensor data [33]. Deterministic defenses (FIDO2/WebAuthn, DBSC) prove hardware key possession [12, 34] but require prior enrollment and cannot screen anonymous traffic [12]. Privacy Pass [35] and Apple PATs [1] bridge this "Anonymous Authentication Gap" cryptographically [4, 36, 37], at the cost of vendor centralization (§6). PACT [9] attests personhood or account standing through *issuer judgment* rather than hardware [38, 39].
 
 ### 2.4 The Economics-of-Security Lens
 
-Anderson and Moore framed security as an economic problem [41], extended to policy [42] and cybercrime costs [43]. Herley and Florêncio [44] argued that credential markets are lemon markets whose advertised prices overstate attacker returns; we apply this caution to the prices in §5. Client-side defenses operate under a *forgery model*: attacker cost is set by market prices (proxies, human labor, GPU compute, malware infections), not by a security parameter. Bulk fraudulent-account merchants price CAPTCHA and verification costs into their product [45].
+Anderson and Moore framed security as an economic problem [40], extended to policy [41] and cybercrime costs [42]. Herley and Florêncio [43] argued that credential markets are lemon markets whose advertised prices overstate attacker returns; we apply this caution to the prices in §5. Client-side defenses operate under a *forgery model*: attacker cost is set by market prices (proxies, human labor, GPU compute, malware infections), not by a security parameter. Bulk fraudulent-account merchants price CAPTCHA and verification costs into their product [44].
 
 ### 2.5 Related Work
 
-*Bot detection.* Honeysite and deployment studies characterise bot fingerprints [46, 47]. Commercial anti-bot services stop basic scripted bots on most sites but are bypassed on up to 82% of them by automating less common real browsers [48]; fingerprint-based crawler blocking misses bots that alter a few attributes [49]. Picasso attests device class via canvas rendering [7]. These works mostly target Environmental Forgery; none measures what an attacker that leaves the browser untouched still pays.
+*Bot detection.* Honeysite and deployment studies characterise bot fingerprints [45, 46]. Commercial anti-bot services stop basic scripted bots on most sites but are bypassed on up to 82% of them by automating less common real browsers [47]; fingerprint-based crawler blocking misses bots that alter a few attributes [48]. Picasso attests device class via canvas rendering [11]. These works mostly target Environmental Forgery; none measures what an attacker that leaves the browser untouched still pays.
 
-*CAPTCHA breaking.* reCAPTCHA's image challenges and checkbox risk analysis fell [50], and Searles et al. [51] compare human and bot performance at scale.
+*CAPTCHA breaking.* reCAPTCHA's image challenges and checkbox risk analysis fell [49], and Searles et al. [50] compare human and bot performance at scale.
 
-*Computer-use agents.* Benchmarks [14, 52–54] track agents acting on real web and desktop environments. Attacks on these agents [55, 56] are potential defender tools against Operator Synthesis.
+*Computer-use agents.* Benchmarks [14, 51–53] track agents acting on real web and desktop environments. Attacks on these agents [54, 55] are potential defender tools against Operator Synthesis.
 
-*Authenticating good bots.* IETF Web Bot Auth lets well-behaved agents opt in to cryptographic identification [57, 58].
+*Authenticating good bots.* IETF Web Bot Auth lets well-behaved agents opt in to cryptographic identification [56, 57].
 
-*Comparative evaluation.* Our tiered evaluation follows Bonneau et al.'s benefit matrix [59].
+*Comparative evaluation.* Our tiered evaluation follows Bonneau et al.'s benefit matrix [58].
 
 | Work | Coverage | Threat model | Evaluation | Claims challenged |
 |------|----------|--------------|------------|-------------------|
 | Laperdrix et al. [3] | Browser fingerprinting: attributes, uses, defences | Tracker/fingerprinter versus user privacy; bot detection is one application | Literature survey | None directly; we treat fingerprint-based detection as one layer (L1a) that Operator Synthesis sidesteps |
 | Guerar et al. [16] | 20 years of CAPTCHA designs and attacks | ML solvers and human farms against CAPTCHA challenges | Literature survey and taxonomy | That CAPTCHA hardness sets the bar: we argue the challenge is no longer the binding cost |
-| Rokicki et al. [60] | JavaScript timers and timing attacks in browsers | Microarchitectural and side-channel attacks from web content | SoK with experimental timer analysis | None; we build on it for L4 chronometric checks |
-| Searles et al. [51] | Modern CAPTCHAs in live deployment | Human users and automated solvers | User study (1,400 participants, 14,000 CAPTCHAs solved) and bot comparison | We extend its bot-versus-human finding from solvers to full-browser VLM agents |
-| Bonneau et al. [59] | Password-replacement schemes | Authentication attacks | Benefit matrix: 35 schemes rated on 25 usability, deployability and security benefits | Not challenged; we reuse its comparative-matrix method |
+| Rokicki et al. [59] | JavaScript timers and timing attacks in browsers | Microarchitectural and side-channel attacks from web content | SoK with experimental timer analysis | None; we build on it for L4 chronometric checks |
+| Searles et al. [50] | Modern CAPTCHAs in live deployment | Human users and automated solvers | User study (1,400 participants, 14,000 CAPTCHAs solved) and bot comparison | We extend its bot-versus-human finding from solvers to full-browser VLM agents |
+| Bonneau et al. [58] | Password-replacement schemes | Authentication attacks | Benefit matrix: 35 schemes rated on 25 usability, deployability and security benefits | Not challenged; we reuse its comparative-matrix method |
 | This SoK | Client-side anti-automation Types I–V, 2010–2026 | APB with Operator Synthesis (Axis C) as the primary lens | Mechanism matrix, tier assignment, structured cost accounting | The design assumption of Types I–III (§3.2) that automation runs inside or instruments the browser |
 
 Table: Comparison with the closest surveys and SoKs.
@@ -116,11 +116,11 @@ Table: Comparison with the closest surveys and SoKs.
 
 The original search is not PRISMA-replicable, and one team member classified the §3.2–§3.4 corpus. The logged rerun below was double-screened by two LLMs; no human screened it.
 
-**Sources.** IEEE Xplore, ACM Digital Library, arXiv, Google Scholar, IETF Datatracker, W3C Technical Reports. The original pass (before May 2026, when the earliest committed draft already describes it) kept no log, so on 23 September 2026 we re-ran the main query on the two sources with a scriptable API: arXiv (74 hits) and Semantic Scholar (443 hits). DBLP's bot challenge blocked scripted clients. This gives 517 records and 444 unique titles, logged in `docs/corpus.csv` with their script (`analysis/literature_search.py`). Two LLM screeners from different vendors (glm-5.3-flash, mistral-small-4; temperature 0, blind to each other) screened all 444 titles and abstracts (110 on title alone) against the criteria below: Cohen's κ = 0.79, raw agreement 0.90. A third reader (Claude) adjudicated the 46 disagreements; one title-only exclusion of a cited paper was corrected on full text. 195 records were included, 7 of them already cited ([17, 27, 28, 50, 61–63]). Both models then coded the includes into our taxonomy (κ = 0.76; 14 adjudicated): 162 CAPTCHA designs or solvers, 8 Type II, 8 Type III, 3 Type I, 3 Type IV, 2 Type V, 7 economics, and 2 web-agent capability studies. None needed a new class, but the main query mostly retrieves CAPTCHA work; the Type I–V literature came from supplementary queries and snowballing. The 188 new includes are coded at Type level from abstracts only (`docs/corpus.csv`, `analysis/screen_corpus.py`).
+**Sources.** IEEE Xplore, ACM Digital Library, arXiv, Google Scholar, IETF Datatracker, W3C Technical Reports. The original pass (before May 2026, when the earliest committed draft already describes it) kept no log, so on 23 September 2026 we re-ran the main query on the two sources with a scriptable API: arXiv (74 hits) and Semantic Scholar (443 hits). DBLP's bot challenge blocked scripted clients. This gives 517 records and 444 unique titles, logged in `docs/corpus.csv` with their script (`analysis/literature_search.py`). Two LLM screeners from different vendors (glm-5.3-flash, mistral-small-4; temperature 0, blind to each other) screened all 444 titles and abstracts (110 on title alone) against the criteria below: Cohen's κ = 0.79, raw agreement 0.90. A third reader (Claude) adjudicated the 46 disagreements; one title-only exclusion of a cited paper was corrected on full text. 195 records were included, 7 of them already cited ([26, 27, 49, 60–63]). Both models then coded the includes into our taxonomy (κ = 0.76; 14 adjudicated): 162 CAPTCHA designs or solvers, 8 Type II, 8 Type III, 3 Type I, 3 Type IV, 2 Type V, 7 economics, and 2 web-agent capability studies. None needed a new class, but the main query mostly retrieves CAPTCHA work; the Type I–V literature came from supplementary queries and snowballing. The 188 new includes are coded at Type level from abstracts only (`docs/corpus.csv`, `analysis/screen_corpus.py`).
 
 **Query.** `("bot mitigation" OR "bot detection" OR "anti-automation" OR "browser fingerprinting" OR CAPTCHA) AND (attestation OR cost OR economics OR architecture OR "CAPTCHA solving" OR "vision-language model" OR VLM OR "web agent" OR "computer-use agent" OR "GUI agent")`. Supplementary queries covered PATs, Privacy Pass, DBSC, behavioural biometrics, deobfuscation, and proxy and pay-per-install economics, then backward and forward snowballing.
 
-**Inclusion and exclusion.** An item enters the *coded corpus* (classified into Types I–V and L1–L4) if it documents a client-side mechanism that imposes cost on automated clients, in peer-reviewed work, an IETF/W3C document, or grey literature corroborated by a second independent source. Production deployment is normally required; undeployed proposals (PACT [11, 39]) are included and marked as proposals because they define Type IV's direction. We exclude unevaluated theoretical proposals, server-side-only defences (WAFs, TLS fingerprinting), and marketing without mechanism detail.
+**Inclusion and exclusion.** An item enters the *coded corpus* (classified into Types I–V and L1–L4) if it documents a client-side mechanism that imposes cost on automated clients, in peer-reviewed work, an IETF/W3C document, or grey literature corroborated by a second independent source. Production deployment is normally required; undeployed proposals (PACT [9, 38]) are included and marked as proposals because they define Type IV's direction. We exclude unevaluated theoretical proposals, server-side-only defences (WAFs, TLS fingerprinting), and marketing without mechanism detail.
 
 **Coded corpus versus background.** Other references are background: economics framing, historical works, protocol RFCs, and agent/VLM papers characterising the Part II attacker. The original pass and snowballing were not logged, so we give no PRISMA-style numbers beyond the rerun counts above.
 
@@ -132,15 +132,15 @@ We classify by primary mechanism: Execution (probing the runtime), Telemetry (pa
 
 | System | Execution | Telemetry | Cryptographic Binding | Primary Mechanism |
 |--------|-----------|-----------|----------------------|-------------------|
-| Google Botguard | ✓ [7] | ✓ —† | | Execution (collects L1b sensor telemetry) |
-| Turnstile | ✓ [20] | ✓ [20] | | Execution |
+| Google Botguard | ✓ [11] | ✓ —† | | Execution (collects L1b sensor telemetry) |
+| Turnstile | ✓ [19] | ✓ [19] | | Execution |
 | reCAPTCHA v3 | ✓ —† | ✓ —† | | Telemetry (with Execution auxiliary) |
 | DataDome | | ✓ [64] | | Telemetry |
 | Arkose Labs | ✓ —† | ✓ —† | | Telemetry |
 | Apple PATs | | | ✓ [1] | Cryptographic Binding |
-| Privacy Pass | | | ✓ [4, 36] | Cryptographic Binding (redemption only; the 2018 deployment used a solved CAPTCHA as the issuance attester [36]) |
-| DBSC | | | ✓ [25, 26] | Cryptographic Binding |
-| Passkeys/WebAuthn | | | ✓ [35] | Cryptographic Binding |
+| Privacy Pass | | | ✓ [4, 35] | Cryptographic Binding (redemption only; the 2018 deployment used a solved CAPTCHA as the issuance attester [35]) |
+| DBSC | | | ✓ [24, 25] | Cryptographic Binding |
+| Passkeys/WebAuthn | | | ✓ [34] | Cryptographic Binding |
 
 Table: Mechanism matrix. "—†" = no public mechanism-level source; empty = undocumented, not absent (authors' assessment).
 
@@ -148,39 +148,39 @@ Table: Mechanism matrix. "—†" = no public mechanism-level source; empty = un
 
 **Type II: Stateful Behavioral Telemetry.** Persistent-identifier profiles score interaction cadence over weeks to months. Cost: proxy, aged profile and anti-detect license [66, 67]; the ceiling is profile-aging latency. Operator Synthesis removes only the need to forge behaviour *within* an aged profile. Examples: reCAPTCHA v3, DataDome, Human Security (PerimeterX).
 
-**Type III: Behavioral Biometrics & Sensor Telemetry.** Measures mouse kinematics, click timing, touch pressure and accelerometer data [21, 68–72]. Cost under Environmental Forgery: `min(Cost_ML_Inference, Cost_Human_Labor)`, with CAPTCHA-solving farms at ∼$1/1K challenges [17] setting the floor. VLMs output coordinates, not trajectories (§1.4), so naive interpolation leaves L1b leverage (Tier 2, §4.2).
+**Type III: Behavioral Biometrics & Sensor Telemetry.** Measures mouse kinematics, click timing, touch pressure and accelerometer data [20, 68–72]. Cost under Environmental Forgery: `min(Cost_ML_Inference, Cost_Human_Labor)`, with CAPTCHA-solving farms at ∼$1/1K challenges [60] setting the floor. VLMs output coordinates, not trajectories (§1.4), so naive interpolation leaves L1b leverage (Tier 2, §4.2).
 
-**Type IV: Platform/OS-Level Anonymous Attestation (Privacy Pass / PATs / PACT).** Anonymous tokens from a platform or third-party issuer. With a hardware anchor (Secure Enclave/TPM, per-device rate limits [10]), key extraction is prohibitive but proxying through PPI-compromised devices is viable [73, 74]. With a contextual anchor such as account standing (PACT [11, 39]), the Sybil problem moves from device scarcity to credential scarcity (§4.2–4.3). The hardware variant is Tier 1 because cost moves to real enrolled devices, not because it resists VLMs. Examples: Apple PATs, Cloudflare/Fastly Privacy Pass issuance, PACT (proposed).
+**Type IV: Platform/OS-Level Anonymous Attestation (Privacy Pass / PATs / PACT).** Anonymous tokens from a platform or third-party issuer. With a hardware anchor (Secure Enclave/TPM, per-device rate limits [8]), key extraction is prohibitive but proxying through PPI-compromised devices is viable [73, 74]. With a contextual anchor such as account standing (PACT [9, 38]), the Sybil problem moves from device scarcity to credential scarcity (§4.2–4.3). The hardware variant is Tier 1 because cost moves to real enrolled devices, not because it resists VLMs. Examples: Apple PATs, Cloudflare/Fastly Privacy Pass issuance, PACT (proposed).
 
-**Type V: Hardware-Anchored Determinism (DBSC, FIDO2/Passkeys).** DBSC binds a session cookie to a non-exportable device key [25, 26] and counters cookie theft, not automation. Cost: real enrolled devices or accounts, e.g. PPI-compromised hosts at $30–$200/month per botnet subscription [74]. Inapplicable to anonymous traffic [12]. Examples: Google DBSC, W3C WebAuthn, Passkeys.
+**Type V: Hardware-Anchored Determinism (DBSC, FIDO2/Passkeys).** DBSC binds a session cookie to a non-exportable device key [24, 25] and counters cookie theft, not automation. Cost: real enrolled devices or accounts, e.g. PPI-compromised hosts at $30–$200/month per botnet subscription [74]. Inapplicable to anonymous traffic [12]. Examples: Google DBSC, W3C WebAuthn, Passkeys.
 
 ### 3.3 Hybrid Production Systems
 
-Turnstile's VM delivers telemetry to a behavioral scoring engine (Types I and II) [20], DataDome fuses Type II profiles with Type III biometrics [64], and Arkose Labs escalates to visual challenges when Type II/III scoring is inconclusive. We classify each by its *binding structural ceiling*, the constraint that limits adversary throughput; for Turnstile, IP reputation (Execution).
+Turnstile's VM delivers telemetry to a behavioral scoring engine (Types I and II) [19], DataDome fuses Type II profiles with Type III biometrics [64], and Arkose Labs escalates to visual challenges when Type II/III scoring is inconclusive. We classify each by its *binding structural ceiling*, the constraint that limits adversary throughput; for Turnstile, IP reputation (Execution).
 
 ### 3.4 The L1–L4 Diagnostic Framework
 
-L1–L4 is this paper's analytical model, synthesised from public sources (Path B): Google publishes no Botguard specification, and we did not reverse-engineer it. Our sources are Google's Picasso protocol [7]; Sivakorn et al.'s black-box study of reCAPTCHA [63]; grey-literature (GL) write-ups of the Botguard VM [75–78], which are single-author, unreviewed, version-specific and partly contradictory; and the fingerprinting, timer and obfuscation literature [3, 8, 60, 79]. It models point-in-time VM attestation, not one vendor's implementation.
+L1–L4 is this paper's analytical model, synthesised from public sources (Path B): Google publishes no Botguard specification, and we did not reverse-engineer it. Our sources are Google's Picasso protocol [11]; Sivakorn et al.'s black-box study of reCAPTCHA [63]; grey-literature (GL) write-ups of the Botguard VM [75–78], which are single-author, unreviewed, version-specific and partly contradictory; and the fingerprinting, timer and obfuscation literature [3, 10, 59, 79]. It models point-in-time VM attestation, not one vendor's implementation.
 
-- **L1a (Static Environmental Introspection).** Documented: reCAPTCHA renders a fixed canvas composition and compares the result against the declared User-Agent, escalating to a harder challenge on mismatch [63]; Picasso generalises this into server-seeded device-class challenges [7]. The Search-interstitial VM contains no plaintext fingerprint property names [76], so coverage varies by deployment. We hypothesize that containerised deployment at scale leaks anomalies (missing fonts, inconsistent WebGL), moving cost to container evasion (§4.1).
-- **L1b (Dynamic Sensor Telemetry).** Documented: the VM reads real input events [76]. Kinematic scoring is claimed [77], but Sivakorn et al. found mouse timing and movement did not affect the risk score [63]; we treat it as inferred [21, 71]. We hypothesize that naive interpolation of VLM coordinates leaves detectable artifacts (§1.4).
+- **L1a (Static Environmental Introspection).** Documented: reCAPTCHA renders a fixed canvas composition and compares the result against the declared User-Agent, escalating to a harder challenge on mismatch [63]; Picasso generalises this into server-seeded device-class challenges [11]. The Search-interstitial VM contains no plaintext fingerprint property names [76], so coverage varies by deployment. We hypothesize that containerised deployment at scale leaks anomalies (missing fonts, inconsistent WebGL), moving cost to container evasion (§4.1).
+- **L1b (Dynamic Sensor Telemetry).** Documented: the VM reads real input events [76]. Kinematic scoring is claimed [77], but Sivakorn et al. found mouse timing and movement did not affect the risk score [63]; we treat it as inferred [20, 71]. We hypothesize that naive interpolation of VLM coordinates leaves detectable artifacts (§1.4).
 - **L2 (Code Obfuscation, Polymorphism).** Documented: a custom bytecode VM with encrypted registers and runtime-loaded self-modifying opcodes [75], per-load keystream-encrypted bytecode [76], and a script URL and token-cipher constant that change each rotation [77]. BgUtils runs the VM as a black box [78], and a VLM never inspects bytecode: T_RE ≈ 0 at the VM level; application-level workflow RE remains (§5.5).
-- **L3 (Execution Traps).** Documented: an "anti-logger" that patches getters so `console.log` or logpoints perturb VM state [75], and a `Function.prototype.toString` anti-hook probe [76]. Under OpSyn nothing is hooked, so the traps never fire. We hypothesize a perceptual *cognitive honeypot*: a decoy with non-zero `getBoundingClientRect()` size and `opacity: 0.01` in a `pointer-events: none` overlay that DOM-grounded agents such as SeeAct [80] may select, as in hidden-element attacks [55, 56]. It is narrow: screenshot-only agents (e.g. CogAgent [81]) never see it, `aria-hidden` hides it from accessibility-tree agents, and DOM-versus-screenshot cross-checks defeat it.
+- **L3 (Execution Traps).** Documented: an "anti-logger" that patches getters so `console.log` or logpoints perturb VM state [75], and a `Function.prototype.toString` anti-hook probe [76]. Under OpSyn nothing is hooked, so the traps never fire. We hypothesize a perceptual *cognitive honeypot*: a decoy with non-zero `getBoundingClientRect()` size and `opacity: 0.01` in a `pointer-events: none` overlay that DOM-grounded agents such as SeeAct [80] may select, as in hidden-element attacks [54, 55]. It is narrow: screenshot-only agents (e.g. CogAgent [81]) never see it, `aria-hidden` hides it from accessibility-tree agents, and DOM-versus-screenshot cross-checks defeat it.
 - **L4 (Chronometric Integrity).** Documented: the VM compares `performance.now()` and `Date.now()` to detect breakpoints and folds the result into the seed selecting the next bytecode byte, silently diverting execution under debugging [75]; `performance.now` also appears in the interstitial's signal set [76]. A second-scale extension of L4 (Section 5.2) needs slow inference: at 5–15 s per action an agent flow accumulates latency a human does not, but two small VLMs measured 0.77–1.45 s median per call (Section 5.7). What remains is regularity, not magnitude, and we claim no fixed ratio.
 
 | Layer | Claimed mechanism | Public source(s) | Claim strength |
 |-------|-------------------|------------------|----------------|
-| L1a | Canvas render vs. declared UA consistency | Sivakorn et al. BH Asia 2016 [63]; Picasso [7] | Documented (reCAPTCHA, 2016) |
+| L1a | Canvas render vs. declared UA consistency | Sivakorn et al. BH Asia 2016 [63]; Picasso [11] | Documented (reCAPTCHA, 2016) |
 | L1a | Broad `navigator`/WebGL fingerprinting in the VM | [3] (general); contradicted for Search interstitial by GL [76] | Inferred; deployment-dependent |
 | L1a | Container anomalies under OpSyn | — | Hypothesized |
 | L1b | Real input-event collection | GL [76] | Documented (GL) |
-| L1b | Mouse-kinematic scoring | GL claim [77]; null result [63]; [21, 71] (general) | Inferred; contested |
+| L1b | Mouse-kinematic scoring | GL claim [77]; null result [63]; [20, 71] (general) | Inferred; contested |
 | L1b | Interpolation artifacts in VLM orchestration | — | Hypothesized |
 | L2 | Custom bytecode VM, encrypted registers, self-modifying opcodes | GL [75, 76] | Documented (GL) |
 | L2 | Script/cipher rotation | GL [77] | Documented (GL, one version) |
 | L2 | VM executable as black box | GL [78] | Documented (GL) |
 | L3 | Anti-logger, `toString` anti-hook probe | GL [75, 76] | Documented (GL) |
-| L3 | Cognitive honeypot vs. DOM-grounded agents | [55, 56, 80] (agent attacks) | Hypothesized |
+| L3 | Cognitive honeypot vs. DOM-grounded agents | [54, 55, 80] (agent attacks) | Hypothesized |
 | L4 | Timing-based anti-debug feeding the VM seed | GL [75] | Documented (GL) |
 | L4 | Second-scale inference-latency signal | Section 5.2 | Hypothesized; refuted for small VLMs (§5.7) |
 
@@ -198,7 +198,7 @@ Table: Cost-type shift per L1–L4 layer. EF = Environmental Forgery; OpSyn = Op
 
 ### 3.5 The Temporal Arms Race
 
-Point-in-time VMs rely on a race between the defender's rotation lifetime `T_Life` and the attacker's per-build reverse-engineering time `T_RE`. For Botguard, grey literature reports a hand-built token generator valid for only one bytecode sample [75, 77]; the rotation interval is not public. Automated deobfuscation [8, 82–84] and learned code models [85, 86] lowered `T_RE`, and hardening such as Loki [79] responded; that `T_RE` was approaching `T_Life` is our inference, not a measurement. Under Operator Synthesis the VM runs as a black box [78], so software-only obfuscation imposes no VM-level cost (L2 above).
+Point-in-time VMs rely on a race between the defender's rotation lifetime `T_Life` and the attacker's per-build reverse-engineering time `T_RE`. For Botguard, grey literature reports a hand-built token generator valid for only one bytecode sample [75, 77]; the rotation interval is not public. Automated deobfuscation [10, 82–84] and learned code models [85, 86] lowered `T_RE`, and hardening such as Loki [79] responded; that `T_RE` was approaching `T_Life` is our inference, not a measurement. Under Operator Synthesis the VM runs as a black box [78], so software-only obfuscation imposes no VM-level cost (L2 above).
 
 ---
 
@@ -237,15 +237,15 @@ We place each type in one of three tiers by how much pre-VLM defense cost surviv
 
 **Type III (Behavioral Biometrics & Sensor Telemetry) → Tier 2.** The VLM does not produce the trajectory between coordinates; an orchestration layer does (Section 1.4). L1b retains leverage only against poor orchestration: our straightness rule flagged every pointer jump but no textbook minimum-jerk path (§5.7), so closing the gap costs little against naive detectors; learned detectors are untested.
 
-**Type IV (Anonymous Attestation / PATs) → Tier 1, hardware-anchored variant only.** The attestation binds to an enrolled device and account, not to input modality. A VLM operating a real attested device (e.g., an iPhone in a device farm driven through screen capture and OS-level input) obtains valid tokens. Tier 1 is therefore not VLM resilience. Cost moves to device and account acquisition, and per-device throughput is bounded by attester rate limits [10]. Key extraction is a separate, costlier chain [74]. Software-anchored variants do not qualify: PACT [11] binds attestation to issuer judgment of account standing, so the unit of scarcity becomes the credentialed account (Sections 4.3, 6.4). PACT treats the browser as a trusted user-agent [39], and its draft threat model lets attackers "control a number of Clients" [88], e.g. a copied or compromised profile.
+**Type IV (Anonymous Attestation / PATs) → Tier 1, hardware-anchored variant only.** The attestation binds to an enrolled device and account, not to input modality. A VLM operating a real attested device (e.g., an iPhone in a device farm driven through screen capture and OS-level input) obtains valid tokens. Tier 1 is therefore not VLM resilience. Cost moves to device and account acquisition, and per-device throughput is bounded by attester rate limits [8]. Key extraction is a separate, costlier chain [74]. Software-anchored variants do not qualify: PACT [9] binds attestation to issuer judgment of account standing, so the unit of scarcity becomes the credentialed account (Sections 4.3, 6.4). PACT treats the browser as a trusted user-agent [38], and its draft threat model lets attackers "control a number of Clients" [88], e.g. a copied or compromised profile.
 
 **Type V (Hardware-Anchored Determinism / DBSC, passkeys) → Tier 1.** Proof of possession of a hardware-bound key is independent of input modality, so a VLM driving the enrolled device passes. DBSC counters cookie theft, not automation. Passkeys authenticate an account holder, not a human operator.
 
 | Tier | Definition | Types | Mechanism |
 |------|------------|-------|-----------------------|
-| 1 | Input-modality-independent; cost moves to real enrolled devices/accounts | Type IV (PATs, hardware-anchored) [1, 10], Type V (DBSC/Passkeys) [25, 35] | A VLM driving a real enrolled device passes (binding is to the key, not the input modality [1, 25, 35]). Attacker cost = device/account acquisition (device farms) —†; throughput bounded by attester rate limits [10]. Key extraction is a separate chain (Section 4.3) [73, 74]. |
-| 2 | Degraded — cost-shifted but not eliminated | Type I (VM Attestation), Type III (Behavioral Biometrics) | Detection premise substantially weakened at the cognitive level [27, 28, 62]; residual costs from container-evasion artifacts (Type I) —† or kinematic-orchestration quality (Type III) [22, 68, 69] remain |
-| 3 | Substituted — original constraint met by a purchasable substitute | Type II (Stateful Telemetry) | Aging still required but bought (aged profiles, accounts, real devices) rather than waited out [45, 67]; state-orchestration infrastructure cost —† replaces the anti-detect browser license [66, 67] |
+| 1 | Input-modality-independent; cost moves to real enrolled devices/accounts | Type IV (PATs, hardware-anchored) [1, 8], Type V (DBSC/Passkeys) [24, 34] | A VLM driving a real enrolled device passes (binding is to the key, not the input modality [1, 24, 34]). Attacker cost = device/account acquisition (device farms) —†; throughput bounded by attester rate limits [8]. Key extraction is a separate chain (Section 4.3) [73, 74]. |
+| 2 | Degraded — cost-shifted but not eliminated | Type I (VM Attestation), Type III (Behavioral Biometrics) | Detection premise substantially weakened at the cognitive level [26, 27, 62]; residual costs from container-evasion artifacts (Type I) —† or kinematic-orchestration quality (Type III) [21, 68, 69] remain |
+| 3 | Substituted — original constraint met by a purchasable substitute | Type II (Stateful Telemetry) | Aging still required but bought (aged profiles, accounts, real devices) rather than waited out [44, 67]; state-orchestration infrastructure cost —† replaces the anti-detect browser license [66, 67] |
 
 Table: Tier assignment under Operator Synthesis. Bracketed numbers source each cell claim; "—†" marks the authors' assessment. The tier placements are the authors' synthesis.
 
@@ -253,7 +253,7 @@ Table: Tier assignment under Operator Synthesis. Bracketed numbers source each c
 
 ### 4.3 What Survives: Tier 1 Architectures and Their Limits
 
-**PATs (Type IV): the real-device ceiling.** The cheapest bypass needs no compromise. The attacker drives real enrolled devices in a device farm, or relays challenges to genuine devices. Cost per token is acquisition amortised over the tokens each device obtains under the attester's per-device rate limits [10]. For the costlier device-compromise route, pay-per-install (PPI) services sold installs at $7–$180 per 1,000 (2011 Windows prices) [73]. No comparable public prices exist for PAT-capable Apple devices (§5.6).
+**PATs (Type IV): the real-device ceiling.** The cheapest bypass needs no compromise. The attacker drives real enrolled devices in a device farm, or relays challenges to genuine devices. Cost per token is acquisition amortised over the tokens each device obtains under the attester's per-device rate limits [8]. For the costlier device-compromise route, pay-per-install (PPI) services sold installs at $7–$180 per 1,000 (2011 Windows prices) [73]. No comparable public prices exist for PAT-capable Apple devices (§5.6).
 
 SDK-based residential proxy networks (Bright Data, the former Hola network) are not a PAT bypass. They relay traffic through consenting users' devices [89] and supply IP reputation (§5.3), not attestation.
 
@@ -275,7 +275,7 @@ PATs plus DBSC do not solve anti-automation, for three reasons.
 
 **3. PATs create a two-tier accessibility surface.** PAT-only anti-automation effectively requires an Apple device (iOS 16+/macOS Ventura+). Android and most desktop users fall back to other challenges, which shifts friction onto users without Apple devices.
 
-**The software-anchor response.** PACT [11] opens issuance: "Any entity or organization may provide credentials" [91]. This addresses reason 1 only by multiplying security-critical parties. It worsens reason 2: each Moderator picks its Anchors, with no accreditation or audit regime (§6.4) [88, 94]. Reason 3 stays open: its designers ask how "anyone in the world can get a useable anchor" [94].
+**The software-anchor response.** PACT [9] opens issuance: "Any entity or organization may provide credentials" [91]. This addresses reason 1 only by multiplying security-critical parties. It worsens reason 2: each Moderator picks its Anchors, with no accreditation or audit regime (§6.4) [88, 94]. Reason 3 stays open: its designers ask how "anyone in the world can get a useable anchor" [94].
 
 ---
 
@@ -293,7 +293,7 @@ PATs plus DBSC do not solve anti-automation, for three reasons.
 | Frontier VLM output price `p_out` | $5.00–$20.00 per M LLM tokens | verified: $10 (GPT-5, Gemini 2.5 CU), $15 (Sonnet 4.6); range ends assumption |
 | LLM tokens per action | ∼1,000 in / ∼500 out | assumption; measured 1,269–1,586 in / 24–142 out per call (§5.7) |
 | Actions per clearance token `n` | 5–10 | assumption; pure VLM needed 11–18 calls (§5.7) |
-| Per-attempt success `P` | 0.4–0.7 | assumption, informed by [6, 14, 27] |
+| Per-attempt success `P` | 0.4–0.7 | assumption, informed by [6, 14, 26] |
 | Residential proxy, commodity | ∼$2.50–$8/GB | verified: list $5–$8/GB, $2.50 under a 3-month promotion [98] |
 | Residential proxy, premium / dedicated | ∼$10–$50/GB | assumption |
 | VLM latency per perception–action step | 5–15 s | assumption (consistent with [99]); small VLMs measured 0.77–1.45 s median per call (§5.7) |
@@ -342,7 +342,7 @@ Table: Table 5.2 — Hybrid-attacker sensitivity (illustrative; parameters in Ta
 C_effective = C / P(success),   where C = C_inference + C_replan
 ```
 
-`C_replan` counts only the extra re-planning LLM tokens, since `1/P(success)` already counts the retry. The multiplier is 1.67× at `P(success)` = 0.6 [6, 14, 27] and 2.5× at 0.4. With `C` = $0.05, `P(success)` = 0.4 gives $0.05/0.4 = $0.125 per clearance token and 0.7 gives $0.05/0.7 ≈ $0.071, a change of ≈ 43%. Defenses that raise perceptual ambiguity (dynamic layouts, canvas rendering, adversarial-noise overlays) should therefore raise `C_effective`.
+`C_replan` counts only the extra re-planning LLM tokens, since `1/P(success)` already counts the retry. The multiplier is 1.67× at `P(success)` = 0.6 [6, 14, 26] and 2.5× at 0.4. With `C` = $0.05, `P(success)` = 0.4 gives $0.05/0.4 = $0.125 per clearance token and 0.7 gives $0.05/0.7 ≈ $0.071, a change of ≈ 43%. Defenses that raise perceptual ambiguity (dynamic layouts, canvas rendering, adversarial-noise overlays) should therefore raise `C_effective`.
 
 ### 5.2 The Latency Cost
 
@@ -374,7 +374,7 @@ Cost_bypass_OS = Cost_residential_proxy + Cost_session_isolation + Cost_VLM_infe
 
 ### 5.4 Human Labor as a Cost Reference
 
-Under Environmental Forgery, CAPTCHA farms [17] and click-farm labor [100] set the global cost floor. Human labor and VLM inference are substitutes, so the attacker pays `min(C_VLM, C_human)`. Solving services charge roughly $0.50–$2.00 per 1,000 solves [17], i.e. $0.0005–$0.002 each, below one VLM action at frontier prices (§5.1). Yet the cheaper measured model completed a whole five-field flow for €0.0010–€0.0019 per success (§5.7), the price of one human solve at these (2010) rates; the other model cost 7–27× more. Labor is therefore no longer a floor below VLM inference for simple flows, though a fair comparison needs current solver prices for equal-scope flows. VLM list prices fell repeatedly in 2023–2026 (GPT-5 launched at half GPT-4o's input price [95]). The VLM changes scaling, not substitutability: labor scales with headcount, VLM throughput with API quota.
+Under Environmental Forgery, CAPTCHA farms [60] and click-farm labor [100] set the global cost floor. Human labor and VLM inference are substitutes, so the attacker pays `min(C_VLM, C_human)`. Solving services charge roughly $0.50–$2.00 per 1,000 solves [60], i.e. $0.0005–$0.002 each, below one VLM action at frontier prices (§5.1). Yet the cheaper measured model completed a whole five-field flow for €0.0010–€0.0019 per success (§5.7), the price of one human solve at these (2010) rates; the other model cost 7–27× more. Labor is therefore no longer a floor below VLM inference for simple flows, though a fair comparison needs current solver prices for equal-scope flows. VLM list prices fell repeatedly in 2023–2026 (GPT-5 launched at half GPT-4o's input price [95]). The VLM changes scaling, not substitutability: labor scales with headcount, VLM throughput with API quota.
 
 ### 5.5 The Temporal Arms Race: T_RE ≈ 0 at the VM Level
 
@@ -395,9 +395,9 @@ Tier 1 (Types IV and V, §4.2) is indifferent to input modality, so the attacker
 C_token = (D / L + O) / (R × 30)
 ```
 
-where `D` is the device price, `L` the amortisation period in months, `O` farm operations (mobile proxy or SIM, power, management) per device-month, and `R` the clearance tokens per device per origin per day (a per-origin limit needs the rate-limited issuance extension [10]; under a per-issuer limit `R` is shared across origins). Account cost would add to `D`.
+where `D` is the device price, `L` the amortisation period in months, `O` farm operations (mobile proxy or SIM, power, management) per device-month, and `R` the clearance tokens per device per origin per day (a per-origin limit needs the rate-limited issuance extension [8]; under a per-issuer limit `R` is shared across origins). Account cost would add to `D`.
 
-**Parameters.** `D` = $100–$300 spans Swappa asking prices for used PAT-capable iPhones (iPhone XR from $103; SE 2nd gen $105, iPhone 11 $188, iPhone 13 $286 on average, July–August 2026 [101]); `L` = 12–24 months is an assumption. `O` = $9.30–$48.80 comes from an anti-detect vendor's 10-device phone-farm breakdown [102] (vendor-reported, Android-oriented, unverified). Owned-device cost is therefore $13.47–$73.80 per device-month. A rented AWS EC2 `mac2.metal` host lists at $0.65/hour with a 24-hour minimum [103], i.e. $468 per month; whether PAT issuance works on it is unverified. Apple does not publish `R`, and the issuance design [10] leaves it to the issuer, so we sweep it.
+**Parameters.** `D` = $100–$300 spans Swappa asking prices for used PAT-capable iPhones (iPhone XR from $103; SE 2nd gen $105, iPhone 11 $188, iPhone 13 $286 on average, July–August 2026 [101]); `L` = 12–24 months is an assumption. `O` = $9.30–$48.80 comes from an anti-detect vendor's 10-device phone-farm breakdown [102] (vendor-reported, Android-oriented, unverified). Owned-device cost is therefore $13.47–$73.80 per device-month. A rented AWS EC2 `mac2.metal` host lists at $0.65/hour with a 24-hour minimum [103], i.e. $468 per month; whether PAT issuance works on it is unverified. Apple does not publish `R`, and the issuance design [8] leaves it to the issuer, so we sweep it.
 
 | Rate limit (tokens/device/origin/day) | Owned used iPhone, low | Owned used iPhone, high | Rented cloud Mac |
 |---|---|---|---|
@@ -410,7 +410,7 @@ Table: Table 5.3 — Tier 1 (PAT) cost per clearance token vs. per-device rate l
 
 At `R` = 1 a farmed token costs $0.45–$2.46, above most Table 5.2 costs per success and far above the measured small-VLM costs (§5.7). At `R` ≥ 100 it drops below one cent, comparable to CAPTCHA-farm labor (§5.4). A strict limit also caps legitimate high-frequency users.
 
-**Alternative acquisition paths.** Pay-per-install cost $7–$180 per 1,000 installs, i.e. $0.007–$0.18 per install [73], at 2011 Windows prices; PAT-capable Apple installs are likely far dearer. Where the issuer admits on account standing (PACT-style anchors, §6.4), bulk fraudulent accounts sold for $10–$200 per 1,000, i.e. $0.01–$0.20 per account [45] (Twitter, 2012–13). In every path the ceiling is a market price divided by an issuer-controlled rate limit.
+**Alternative acquisition paths.** Pay-per-install cost $7–$180 per 1,000 installs, i.e. $0.007–$0.18 per install [73], at 2011 Windows prices; PAT-capable Apple installs are likely far dearer. Where the issuer admits on account standing (PACT-style anchors, §6.4), bulk fraudulent accounts sold for $10–$200 per 1,000, i.e. $0.01–$0.20 per account [44] (Twitter, 2012–13). In every path the ceiling is a market price divided by an issuer-controlled rate limit.
 
 ### 5.7 Measured Costs on a Self-Hosted Testbed
 
@@ -481,13 +481,13 @@ Industry work over 2024–2026 advanced along three tracks: DBSC, passkeys, and 
 
 ### 6.1 DBSC and the Session-Hijacking Threat Model
 
-DBSC [25, 26, 106] is a Google/Chrome-led protocol that binds session cookies to a non-exportable key held in a TPM (or equivalent secure hardware). No vendor attestation server is involved. Non-exportability protects the key only after registration: malware present during session registration may be able to extract it, although Chrome rates such attacks as considerably harder and more detectable [106]. DBSC targets session hijacking (NIST 800-63 Authenticated/ATO quadrant [12]). It is an anti-cookie-theft mechanism, not an anti-automation mechanism, and says nothing about whether a fresh anonymous session is driven by a human or a VLM.
+DBSC [24, 25, 106] is a Google/Chrome-led protocol that binds session cookies to a non-exportable key held in a TPM (or equivalent secure hardware). No vendor attestation server is involved. Non-exportability protects the key only after registration: malware present during session registration may be able to extract it, although Chrome rates such attacks as considerably harder and more detectable [106]. DBSC targets session hijacking (NIST 800-63 Authenticated/ATO quadrant [12]). It is an anti-cookie-theft mechanism, not an anti-automation mechanism, and says nothing about whether a fresh anonymous session is driven by a human or a VLM.
 
 For the infostealer economy [73, 74, 107, 108], DBSC changes what stolen material is worth. Exfiltrated cookies expire quickly once replayed off-device, so the attacker must keep malware resident and use the key on the infected machine. The economic ceiling moves from the price of a stolen cookie log to the price of persistent on-device access (botnet rental and residency). That ceiling is higher and scales with compromised devices, not stolen logs.
 
 ### 6.2 Passkeys and the Credential-Phishing Threat Model
 
-Passkeys (FIDO2/WebAuthn [35]) bind credentials to the relying party's origin, which defeats credential phishing for the passkey itself. Deployments that keep phishable fallback factors remain exposed to real-time phishing by downgrade [109]. Most consumer deployments use the attestation conveyance "none", so the relying party learns that a credential exists, not what hardware holds it. Centralization sits in the synchronization fabric (Apple iCloud Keychain, Google Password Manager, Microsoft), not in a per-authentication root of trust. Only 4.4% of authenticators carry Level 2+ certification offering malware resistance [93]. Browser extensions can reach message-integrity gaps [92], and timing side channels in authenticator behavior [110] erode the assumption of unobservable key operations.
+Passkeys (FIDO2/WebAuthn [34]) bind credentials to the relying party's origin, which defeats credential phishing for the passkey itself. Deployments that keep phishable fallback factors remain exposed to real-time phishing by downgrade [109]. Most consumer deployments use the attestation conveyance "none", so the relying party learns that a credential exists, not what hardware holds it. Centralization sits in the synchronization fabric (Apple iCloud Keychain, Google Password Manager, Microsoft), not in a per-authentication root of trust. Only 4.4% of authenticators carry Level 2+ certification offering malware resistance [93]. Browser extensions can reach message-integrity gaps [92], and timing side channels in authenticator behavior [110] erode the assumption of unobservable key operations.
 
 ### 6.3 The Attestation Market Centralization Problem
 
@@ -496,20 +496,20 @@ Against Operator Synthesis, the defenses that still impose cost on anonymous tra
 **Where trust concentrates.** We use RFC 9576 roles [4]: the *Attester* vouches for the client, the *Issuer* signs the token, the *Origin* redeems it.
 
 - **Apple PATs:** Apple is the Attester, using device attestation on iOS 16+ and macOS Ventura+ [1]. Third-party Issuers such as Cloudflare and Fastly sign RSA blind-signature tokens. Apple's attester "can also perform rate-limiting" [1] but publishes no per-device limits. Concentration is in the attester role.
-- **Private State Tokens:** a Chrome API [24] in which *registered third-party issuers* (not Google) issue VOPRF-based tokens. Google's October 2025 Privacy Sandbox update retired most Sandbox APIs but stated that Private State Tokens will be maintained [111]. Concentration is in the browser vendor's issuer registration.
-- **PACT** [11]: adds no hardware root; it concentrates the judgement of which parties may vouch that a person is present (§6.4).
+- **Private State Tokens:** a Chrome API [23] in which *registered third-party issuers* (not Google) issue VOPRF-based tokens. Google's October 2025 Privacy Sandbox update retired most Sandbox APIs but stated that Private State Tokens will be maintained [111]. Concentration is in the browser vendor's issuer registration.
+- **PACT** [9]: adds no hardware root; it concentrates the judgement of which parties may vouch that a person is present (§6.4).
 
-**The centralization–anonymity–bot-resistance tension.** Constructions such as [9, 10] make issuance unlinkable and rate-limited but do not analyze market structure. Consider three goals: (i) redemptions unlinkable to identities, (ii) bounded per-client token supply, and (iii) no small set of trusted parties. A scheme meeting (i) and (ii) must rate-limit on something the issuer can count without identifying the user. In deployed systems, that is a device key attested by a platform vendor or an account held with a large first party. Goal (ii) therefore pulls toward attesters that already hold a large, Sybil-resistant population, and deployed systems have relaxed (iii). This is not an impossibility result: threshold issuance, zero-knowledge proofs of personhood, and decentralized issuer networks are feasible in principle. The open question is whether any can reach a Sybil-resistant population at platform-vendor scale, and what pricing power, exclusion risk, and lock-in follow if none can.
+**The centralization–anonymity–bot-resistance tension.** Constructions such as [7, 8] make issuance unlinkable and rate-limited but do not analyze market structure. Consider three goals: (i) redemptions unlinkable to identities, (ii) bounded per-client token supply, and (iii) no small set of trusted parties. A scheme meeting (i) and (ii) must rate-limit on something the issuer can count without identifying the user. In deployed systems, that is a device key attested by a platform vendor or an account held with a large first party. Goal (ii) therefore pulls toward attesters that already hold a large, Sybil-resistant population, and deployed systems have relaxed (iii). This is not an impossibility result: threshold issuance, zero-knowledge proofs of personhood, and decentralized issuer networks are feasible in principle. The open question is whether any can reach a Sybil-resistant population at platform-vendor scale, and what pricing power, exclusion risk, and lock-in follow if none can.
 
 **The ad-tech context.** Browser vendors that run ad platforms shape both stateful identifiers and the attestation APIs that replace them. Chrome announced in 2024 and confirmed in 2025 that it will not deprecate third-party cookies [111], so pressure on Type II state comes mainly from Safari ITP, Firefox Total Cookie Protection, and regulation (§7.4).
 
 ### 6.4 PACT: Software Anchors and Issuer Judgment
 
-On June 22, 2026, Cloudflare announced **Private Access Control Tokens (PACT)** with Mozilla, Google, Microsoft, and Shopify: a protocol, to be standardized, that lets "sites with strong knowledge of 'personhood'" issue anonymous tokens the browser presents to other sites [11]. PACT builds on Privacy Pass (RFC 9576 [4]), with W3C Anti-Fraud Community Group design work since December 2025 [112]. It is a proposal with no deployment timeline, specified in an individual, Informational IETF draft (MoLE) [40, 88].
+On June 22, 2026, Cloudflare announced **Private Access Control Tokens (PACT)** with Mozilla, Google, Microsoft, and Shopify: a protocol, to be standardized, that lets "sites with strong knowledge of 'personhood'" issue anonymous tokens the browser presents to other sites [9]. PACT builds on Privacy Pass (RFC 9576 [4]), with W3C Anti-Fraud Community Group design work since December 2025 [112]. It is a proposal with no deployment timeline, specified in an individual, Informational IETF draft (MoLE) [39, 88].
 
-**The software-anchor turn.** PACT breaks with the hardware anchor behind Type IV's Tier 1 classification (§4.2), where Apple PATs anchor the Attester's knowledge in device posture [1]. PACT accepts *software or contextual anchors*: "a subscription, an account in good standing, or a verified phone number" [40]. This relocates the Sybil problem: the attacker's unit of scarcity becomes a credentialed account. Bulk registration, credential stuffing, stolen session tokens, and cheap subscriptions are automatable inputs to token farming [88, 90]. The browser acts as trusted user-agent, mediating credential storage, issuer selection, challenge budgets, and token conversion [39]. Under Operator Synthesis it is not a trust anchor: an operator may control the profile, the device, or both. Redemption hides which Anchor endorsed the client [40, 88]. That is the privacy property, and its price is that a Moderator cannot tell a strong Anchor from a weak one, so a token is worth only its issuer's admission process.
+**The software-anchor turn.** PACT breaks with the hardware anchor behind Type IV's Tier 1 classification (§4.2), where Apple PATs anchor the Attester's knowledge in device posture [1]. PACT accepts *software or contextual anchors*: "a subscription, an account in good standing, or a verified phone number" [39]. This relocates the Sybil problem: the attacker's unit of scarcity becomes a credentialed account. Bulk registration, credential stuffing, stolen session tokens, and cheap subscriptions are automatable inputs to token farming [88, 90]. The browser acts as trusted user-agent, mediating credential storage, issuer selection, challenge budgets, and token conversion [38]. Under Operator Synthesis it is not a trust anchor: an operator may control the profile, the device, or both. Redemption hides which Anchor endorsed the client [39, 88]. That is the privacy property, and its price is that a Moderator cannot tell a strong Anchor from a weak one, so a token is worth only its issuer's admission process.
 
-**The issuer-judgment problem.** Each site nominates one Moderator, which picks the Anchors it trusts [40, 88]. Shared Moderators carry "a centralisation risk" [40]; [11] pitches "PACT on Cloudflare's network". Rudis argues that as adoption spreads, a missing token carries information, so tokens become mandatory without anyone deciding it; traffic with no issuer relationship (scanners, archival crawlers, RSS readers, Tor users) becomes suspect [113]. The designers intend a fallback to today's challenges [40]. The draft has no Anchor accreditation or audit; Anchor feedback is a "TODO" [88]. Access starts "at the strength of the weakest" Anchor [40], and until Anchor governance is specified PACT inherits that posture [88]. A token proves only that *some* trusted Anchor vouched, not that a personhood check occurred. Account-standing anchors favor lasting platform relationships, and "a paid subscription costs an attacker the same as a real user" [40]. PACT targets agentic traffic [11]; agents may use the user's Credential, and the user agent must tell them apart [88].
+**The issuer-judgment problem.** Each site nominates one Moderator, which picks the Anchors it trusts [39, 88]. Shared Moderators carry "a centralisation risk" [39]; [9] pitches "PACT on Cloudflare's network". Rudis argues that as adoption spreads, a missing token carries information, so tokens become mandatory without anyone deciding it; traffic with no issuer relationship (scanners, archival crawlers, RSS readers, Tor users) becomes suspect [113]. The designers intend a fallback to today's challenges [39]. The draft has no Anchor accreditation or audit; Anchor feedback is a "TODO" [88]. Access starts "at the strength of the weakest" Anchor [39], and until Anchor governance is specified PACT inherits that posture [88]. A token proves only that *some* trusted Anchor vouched, not that a personhood check occurred. Account-standing anchors favor lasting platform relationships, and "a paid subscription costs an attacker the same as a real user" [39]. PACT targets agentic traffic [9]; agents may use the user's Credential, and the user agent must tell them apart [88].
 
 ---
 
@@ -517,7 +517,7 @@ On June 22, 2026, Cloudflare announced **Private Access Control Tokens (PACT)** 
 
 ### 7.1 Closing the Empirical Gap in VLM Attack Economics
 
-VLM agents solve production CAPTCHAs [27], and VLM-aware benchmarks [62] and training pipelines [28] exist. Missing are industrial-scale measurements of throughput, session continuity across proxy pools, and proxy market elasticity.
+VLM agents solve production CAPTCHAs [26], and VLM-aware benchmarks [62] and training pipelines [27] exist. Missing are industrial-scale measurements of throughput, session continuity across proxy pools, and proxy market elasticity.
 
 Our §5.7 harness is a first step; next are real vendor keys registered for localhost where terms allow, kinematically realistic input, a consented human baseline, and frontier computer-use models.
 
@@ -525,7 +525,7 @@ Our §5.7 harness is a first step; next are real vendor keys registered for loca
 
 Tier 1 is modality-indifferent (§4.2) but carries the dependencies of §6.
 
-- **Decentralized anonymous attestation:** zero-knowledge proofs of personhood, threshold or distributed-VOPRF issuer networks, and hardware-backed attestation without OS-vendor dependency. For PACT, Anchor-hiding, which grew out of aggregating-issuer and IssuerHide designs [39, 114], is now a draft goal [88], but openness rests on per-Moderator Anchor choice, not distributed issuance.
+- **Decentralized anonymous attestation:** zero-knowledge proofs of personhood, threshold or distributed-VOPRF issuer networks, and hardware-backed attestation without OS-vendor dependency. For PACT, Anchor-hiding, which grew out of aggregating-issuer and IssuerHide designs [38, 114], is now a draft goal [88], but openness rests on per-Moderator Anchor choice, not distributed issuance.
 - **Physical-presence challenges:** liveness detection or ambient sensor fusion that a VLM in a virtual machine cannot satisfy. The countermeasure is incentivized proxying: SDK-based proxy networks (§4.3) pay the device owner in in-app rewards to satisfy the challenge. This adds latency and reward cost, so such challenges need threat modeling against human relay.
 - **Cross-modal consistency:** checking that camera, microphone, touchscreen, and accelerometer data fit one physical environment, which a VLM in a VM cannot easily fake.
 
@@ -545,7 +545,7 @@ Type II needs persistent client state, which privacy law and browser tracking pr
 
 Under the APB threat model, three insights follow.
 
-1. **Probabilistic client-side defenses lose their top-tier premise.** Against a VLM driving an unmodified browser, VM attestation, behavioral telemetry, and biometrics no longer see forgery; the cost shifts to orchestration rather than vanishing (§3.4, §4.2). On our testbed, in-runtime and kinematic signals separated how input was injected, not who chose it; what the VLM added was passing unseen forms without per-site scripts (§5.7).
+1. **Detection follows where input enters, not who chooses it.** On our testbed, in-runtime and kinematic signals separated CDP automation from OS-level input, and scripted from smoothed pointer paths, but never VLM from script; what the VLM added was passing unseen forms without per-site scripts (§5.7). Against top-tier attackers, probabilistic defenses therefore lose their premise and cost shifts to orchestration (§3.4, §4.2).
 2. **Hardware anchors move cost; they do not end the contest.** Tier 1 is indifferent to input modality. Its ceiling is the price of real enrolled devices or accounts divided by an issuer-controlled rate limit (§5.6).
 3. **The open problem is who controls web trust.** Attestation narrows the Anonymous Authentication Gap by concentrating trust in a few attesters and issuers (§6.3–§6.4); decentralized alternatives remain open.
 
@@ -565,15 +565,15 @@ Under the APB threat model, three insights follow.
 
 **[6]** H. He, W. Yao, K. Ma, W. Yu, Y. Dai, H. Zhang, D. Cai, and D. S. Weld. "WebVoyager: Building an End-to-End Web Agent with Multimodal Models." In *Proc. Annual Meeting of the Association for Computational Linguistics (ACL)*, 2024.
 
-**[7]** E. Bursztein, A. Malyshev, T. Pietraszek, and K. Thomas. "Picasso: Lightweight Device Class Fingerprinting for Web Clients." In *Proc. 6th Workshop on Security and Privacy in Smartphones and Mobile Devices (SPSM '16)*, pp. 93–102. ACM, 2016. DOI: 10.1145/2994459.2994467.
+**[7]** B. Kreuter, T. Lepoint, M. Orrù, and M. Raykova. "Anonymous Tokens with Private Metadata Bit." In *Advances in Cryptology — CRYPTO 2020*, pp. 308–336. Springer, 2020. DOI: 10.1007/978-3-030-56784-2_11.
 
-**[8]** S. Schrittwieser, S. Katzenbeisser, J. Kinder, G. Merzdovnik, and E. Weippl. "Protecting Software through Obfuscation: Can It Keep Pace with Progress in Code Analysis?" *ACM Comput. Surv.*, Vol. 49, No. 1, Article 4, pp. 1–37, 2016. DOI: 10.1145/2886012.
+**[8]** H. Chu, K. Do, S. Faller, and L. Hanzlik. "On the Security of Rate-limited Privacy Pass." In *Proc. ACM Conference on Computer and Communications Security (CCS)*, 2023. ePrint: 2023/1805.
 
-**[9]** B. Kreuter, T. Lepoint, M. Orrù, and M. Raykova. "Anonymous Tokens with Private Metadata Bit." In *Advances in Cryptology — CRYPTO 2020*, pp. 308–336. Springer, 2020. DOI: 10.1007/978-3-030-56784-2_11.
+**[9]** Cloudflare, Inc. "Cloudflare Collaborates With Leading Browsers to Develop a Privacy-First Protocol for the Global Internet." Press release, June 22, 2026. URL: https://www.cloudflare.com/press/press-releases/2026/cloudflare-collaborates-with-leading-browsers-to-develop-a-privacy-first-protocol-for-the-global-internet/.
 
-**[10]** H. Chu, K. Do, S. Faller, and L. Hanzlik. "On the Security of Rate-limited Privacy Pass." In *Proc. ACM Conference on Computer and Communications Security (CCS)*, 2023. ePrint: 2023/1805.
+**[10]** S. Schrittwieser, S. Katzenbeisser, J. Kinder, G. Merzdovnik, and E. Weippl. "Protecting Software through Obfuscation: Can It Keep Pace with Progress in Code Analysis?" *ACM Comput. Surv.*, Vol. 49, No. 1, Article 4, pp. 1–37, 2016. DOI: 10.1145/2886012.
 
-**[11]** Cloudflare, Inc. "Cloudflare Collaborates With Leading Browsers to Develop a Privacy-First Protocol for the Global Internet." Press release, June 22, 2026. URL: https://www.cloudflare.com/press/press-releases/2026/cloudflare-collaborates-with-leading-browsers-to-develop-a-privacy-first-protocol-for-the-global-internet/.
+**[11]** E. Bursztein, A. Malyshev, T. Pietraszek, and K. Thomas. "Picasso: Lightweight Device Class Fingerprinting for Web Clients." In *Proc. 6th Workshop on Security and Privacy in Smartphones and Mobile Devices (SPSM '16)*, pp. 93–102. ACM, 2016. DOI: 10.1145/2994459.2994467.
 
 **[12]** P. A. Grassi et al. "Digital Identity Guidelines." *NIST Special Publication 800-63-3*, 2017.
 
@@ -585,93 +585,93 @@ Under the APB threat model, three insights follow.
 
 **[16]** M. Guerar, L. Verderame, M. Migliardi, F. Palmieri, and A. Merlo. "Gotta CAPTCHA 'Em All: A Survey of 20 Years of the Human-or-Computer Dilemma." *ACM Comput. Surv.*, Vol. 54, No. 9, Article 192, pp. 1–33, 2021. DOI: 10.1145/3477142.
 
-**[17]** M. Motoyama, K. Levchenko, C. Kanich, D. McCoy, G. M. Voelker, and S. Savage. "Re: CAPTCHAs—Understanding CAPTCHA-Solving Services in an Economic Context." In *Proc. USENIX Security Symposium*, 2010.
+**[17]** I. J. Goodfellow, Y. Bulatov, J. Ibarz, S. Arnoud, and V. Shet. "Multi-digit Number Recognition from Street View Imagery using Deep Convolutional Neural Networks." In *Proc. International Conference on Learning Representations (ICLR)*, 2014. arXiv:1312.6082.
 
-**[18]** I. J. Goodfellow, Y. Bulatov, J. Ibarz, S. Arnoud, and V. Shet. "Multi-digit Number Recognition from Street View Imagery using Deep Convolutional Neural Networks." In *Proc. International Conference on Learning Representations (ICLR)*, 2014. arXiv:1312.6082.
+**[18]** V. Shet. "Are You a Robot? Introducing 'No CAPTCHA reCAPTCHA'." *Google Security Blog*, December 3, 2014. URL: https://security.googleblog.com/2014/12/are-you-robot-introducing-no-captcha.html.
 
-**[19]** V. Shet. "Are You a Robot? Introducing 'No CAPTCHA reCAPTCHA'." *Google Security Blog*, December 3, 2014. URL: https://security.googleblog.com/2014/12/are-you-robot-introducing-no-captcha.html.
+**[19]** Cloudflare, Inc. "Bot Management Technical Documentation." *Cloudflare Docs*, 2023–2024.
 
-**[20]** Cloudflare, Inc. "Bot Management Technical Documentation." *Cloudflare Docs*, 2023–2024.
+**[20]** A. Acien, A. Morales, J. Fierrez, R. Vera-Rodriguez, and O. Delgado-Mohatar. "BeCAPTCHA: Behavioral Bot Detection using Touchscreen and Mobile Sensors benchmarked on HuMIdb." *Engineering Applications of Artificial Intelligence*, Vol. 98, 104058, 2021. DOI: 10.1016/j.engappai.2020.104058.
 
-**[21]** A. Acien, A. Morales, J. Fierrez, R. Vera-Rodriguez, and O. Delgado-Mohatar. "BeCAPTCHA: Behavioral Bot Detection using Touchscreen and Mobile Sensors benchmarked on HuMIdb." *Engineering Applications of Artificial Intelligence*, Vol. 98, 104058, 2021. DOI: 10.1016/j.engappai.2020.104058.
+**[21]** A. Acien, A. Morales, J. Fierrez, and R. Vera-Rodriguez. "BeCAPTCHA-Mouse: Synthetic Mouse Trajectories and Improved Bot Detection." *Pattern Recognition*, Vol. 127, 108643, 2022. DOI: 10.1016/j.patcog.2022.108643.
 
-**[22]** A. Acien, A. Morales, J. Fierrez, and R. Vera-Rodriguez. "BeCAPTCHA-Mouse: Synthetic Mouse Trajectories and Improved Bot Detection." *Pattern Recognition*, Vol. 127, 108643, 2022. DOI: 10.1016/j.patcog.2022.108643.
+**[22]** H. Fereidooni et al. "AuthentiSense: A Scalable Behavioral Biometrics Authentication Scheme using Few-Shot Learning for Mobile Platforms." In *Proc. Network and Distributed System Security Symposium (NDSS)*, 2023. DOI: 10.14722/ndss.2023.23194.
 
-**[23]** H. Fereidooni et al. "AuthentiSense: A Scalable Behavioral Biometrics Authentication Scheme using Few-Shot Learning for Mobile Platforms." In *Proc. Network and Distributed System Security Symposium (NDSS)*, 2023. DOI: 10.14722/ndss.2023.23194.
+**[23]** WICG. "Private State Token API." *WICG Community Group Draft*. URL: https://wicg.github.io/trust-token-api/.
 
-**[24]** WICG. "Private State Token API." *WICG Community Group Draft*. URL: https://wicg.github.io/trust-token-api/.
+**[24]** D. Rubery and K. Monsen, Eds. "Device Bound Session Credentials (DBSC)." *W3C Web Application Security Working Group / WICG*, 2024. URL: https://w3c.github.io/webappsec-dbsc/.
 
-**[25]** D. Rubery and K. Monsen, Eds. "Device Bound Session Credentials (DBSC)." *W3C Web Application Security Working Group / WICG*, 2024. URL: https://w3c.github.io/webappsec-dbsc/.
+**[25]** Google Chrome Security Team. "Fighting Cookie Theft Using Device Bound Sessions." *Chromium Blog*, 2 April 2024. URL: https://blog.google/chromium/fighting-cookie-theft-using-device/.
 
-**[26]** Google Chrome Security Team. "Fighting Cookie Theft Using Device Bound Sessions." *Chromium Blog*, 2 April 2024. URL: https://blog.google/chromium/fighting-cookie-theft-using-device/.
+**[26]** X. Teoh, Y. Lin, S. Li, R. Liu, A. Sollomoni, Y. Harel, and J. S. Dong. "Are CAPTCHAs Still Bot-hard? Generalized Visual CAPTCHA Solving with Agentic Vision Language Model." In *Proc. USENIX Security Symposium*, 2025. URL: https://www.usenix.org/conference/usenixsecurity25/presentation/teoh.
 
-**[27]** X. Teoh, Y. Lin, S. Li, R. Liu, A. Sollomoni, Y. Harel, and J. S. Dong. "Are CAPTCHAs Still Bot-hard? Generalized Visual CAPTCHA Solving with Agentic Vision Language Model." In *Proc. USENIX Security Symposium*, 2025. URL: https://www.usenix.org/conference/usenixsecurity25/presentation/teoh.
+**[27]** Y. Chen, H. Zhai, C. Wang, R. Yang, L. Zhang, G. Wang, et al. "CAPTCHA Solving for Native GUI Agents: Automated Reasoning-Action Data Generation and Self-Corrective Training." arXiv:2603.23559, 2026. URL: https://arxiv.org/abs/2603.23559.
 
-**[28]** Y. Chen, H. Zhai, C. Wang, R. Yang, L. Zhang, G. Wang, et al. "CAPTCHA Solving for Native GUI Agents: Automated Reasoning-Action Data Generation and Self-Corrective Training." arXiv:2603.23559, 2026. URL: https://arxiv.org/abs/2603.23559.
+**[28]** A. Gómez-Boix, P. Laperdrix, and B. Baudry. "Hiding in the Crowd: An Analysis of the Effectiveness of Browser Fingerprinting at Large Scale." In *Proc. The Web Conference (WWW)*, pp. 309–318, 2018. DOI: 10.1145/3178876.3186097.
 
-**[29]** A. Gómez-Boix, P. Laperdrix, and B. Baudry. "Hiding in the Crowd: An Analysis of the Effectiveness of Browser Fingerprinting at Large Scale." In *Proc. The Web Conference (WWW)*, pp. 309–318, 2018. DOI: 10.1145/3178876.3186097.
+**[29]** S. Wu, P. Sun, Y. Zhao, and Y. Cao. "Him of Many Faces: Characterizing Billion-scale Adversarial and Benign Browser Fingerprints on Commercial Websites." In *Proc. Network and Distributed System Security Symposium (NDSS)*, 2023. DOI: 10.14722/ndss.2023.24394.
 
-**[30]** S. Wu, P. Sun, Y. Zhao, and Y. Cao. "Him of Many Faces: Characterizing Billion-scale Adversarial and Benign Browser Fingerprints on Commercial Websites." In *Proc. Network and Distributed System Security Symposium (NDSS)*, 2023. DOI: 10.14722/ndss.2023.24394.
+**[30]** N. Andriamilanto, T. Allard, G. Le Guelvouit, and A. Garel. "A Large-scale Empirical Analysis of Browser Fingerprints Properties for Web Authentication." *ACM Trans. Web*, Vol. 16, No. 1, Article 1, pp. 1–62, 2022. DOI: 10.1145/3478026.
 
-**[31]** N. Andriamilanto, T. Allard, G. Le Guelvouit, and A. Garel. "A Large-scale Empirical Analysis of Browser Fingerprints Properties for Web Authentication." *ACM Trans. Web*, Vol. 16, No. 1, Article 1, pp. 1–62, 2022. DOI: 10.1145/3478026.
+**[31]** Z. Liu, P. Shrestha, and N. Saxena. "Gummy Browsers: Targeted Browser Spoofing against State-of-the-Art Fingerprinting Techniques." In *Proc. International Conference on Applied Cryptography and Network Security (ACNS)*, June 2022. arXiv: 2110.10129.
 
-**[32]** Z. Liu, P. Shrestha, and N. Saxena. "Gummy Browsers: Targeted Browser Spoofing against State-of-the-Art Fingerprinting Techniques." In *Proc. International Conference on Applied Cryptography and Network Security (ACNS)*, June 2022. arXiv: 2110.10129.
+**[32]** J. H. Saltzer and M. D. Schroeder. "The Protection of Information in Computer Systems." *Proc. IEEE*, Vol. 63, No. 9, pp. 1278–1308, 1975.
 
-**[33]** J. H. Saltzer and M. D. Schroeder. "The Protection of Information in Computer Systems." *Proc. IEEE*, Vol. 63, No. 9, pp. 1278–1308, 1975.
+**[33]** X. Lin, P. Ilia, S. Solanki, and J. Polakis. "Phish in Sheep's Clothing: Exploring the Authentication Pitfalls of Browser Fingerprinting." In *Proc. USENIX Security Symposium*, 2022.
 
-**[34]** X. Lin, P. Ilia, S. Solanki, and J. Polakis. "Phish in Sheep's Clothing: Exploring the Authentication Pitfalls of Browser Fingerprinting." In *Proc. USENIX Security Symposium*, 2022.
+**[34]** J. Hodges, J.C. Jones, M.B. Jones, A. Kumar, and E. Lundberg, Eds. "Web Authentication: An API for Accessing Public Key Credentials, Level 2." *W3C Recommendation*, 8 April 2021. URL: https://www.w3.org/TR/2021/REC-webauthn-2-20210408/.
 
-**[35]** J. Hodges, J.C. Jones, M.B. Jones, A. Kumar, and E. Lundberg, Eds. "Web Authentication: An API for Accessing Public Key Credentials, Level 2." *W3C Recommendation*, 8 April 2021. URL: https://www.w3.org/TR/2021/REC-webauthn-2-20210408/.
+**[35]** A. Davidson, I. Goldberg, N. Sullivan, G. Tankersley, and F. Valsorda. "Privacy Pass: Bypassing Internet Challenges Anonymously." *Proc. on Privacy Enhancing Technologies (PoPETs)*, Vol. 2018, No. 3, pp. 164–180, 2018. DOI: 10.1515/popets-2018-0026.
 
-**[36]** A. Davidson, I. Goldberg, N. Sullivan, G. Tankersley, and F. Valsorda. "Privacy Pass: Bypassing Internet Challenges Anonymously." *Proc. on Privacy Enhancing Technologies (PoPETs)*, Vol. 2018, No. 3, pp. 164–180, 2018. DOI: 10.1515/popets-2018-0026.
+**[36]** T. Pauly, S. Valdez, and C. A. Wood. "The Privacy Pass HTTP Authentication Scheme." *RFC 9577*, IETF, June 2024. DOI: 10.17487/RFC9577.
 
-**[37]** T. Pauly, S. Valdez, and C. A. Wood. "The Privacy Pass HTTP Authentication Scheme." *RFC 9577*, IETF, June 2024. DOI: 10.17487/RFC9577.
+**[37]** S. Celi, A. Davidson, S. Valdez, and C. A. Wood. "Privacy Pass Issuance Protocols." *RFC 9578*, IETF, June 2024. DOI: 10.17487/RFC9578.
 
-**[38]** S. Celi, A. Davidson, S. Valdez, and C. A. Wood. "Privacy Pass Issuance Protocols." *RFC 9578*, IETF, June 2024. DOI: 10.17487/RFC9578.
+**[38]** antifraudcg/pact. "Design Proposal for PACT via ACTs with Aggregating Issuers." GitHub Issue #6, March 30, 2026. URL: https://github.com/antifraudcg/pact/issues/6
 
-**[39]** antifraudcg/pact. "Design Proposal for PACT via ACTs with Aggregating Issuers." GitHub Issue #6, March 30, 2026. URL: https://github.com/antifraudcg/pact/issues/6
+**[39]** D. Jackson. "PACT: Anonymous Credentials for the Web." *Mozilla Hacks*, June 23, 2026. URL: https://hacks.mozilla.org/2026/06/pact-anonymous-credentials-for-the-web/. Accessed September 24, 2026.
 
-**[40]** D. Jackson. "PACT: Anonymous Credentials for the Web." *Mozilla Hacks*, June 23, 2026. URL: https://hacks.mozilla.org/2026/06/pact-anonymous-credentials-for-the-web/. Accessed September 24, 2026.
+**[40]** R. Anderson and T. Moore. "The Economics of Information Security." *Science*, Vol. 314, No. 5799, pp. 610–613, 2006. DOI: 10.1126/science.1130992.
 
-**[41]** R. Anderson and T. Moore. "The Economics of Information Security." *Science*, Vol. 314, No. 5799, pp. 610–613, 2006. DOI: 10.1126/science.1130992.
+**[41]** T. Moore. "The Economics of Cybersecurity: Principles and Policy Options." *Int. J. Crit. Infrastruct. Prot.*, Vol. 3, No. 3, pp. 103–117, 2010. DOI: 10.1016/j.ijcip.2010.10.002.
 
-**[42]** T. Moore. "The Economics of Cybersecurity: Principles and Policy Options." *Int. J. Crit. Infrastruct. Prot.*, Vol. 3, No. 3, pp. 103–117, 2010. DOI: 10.1016/j.ijcip.2010.10.002.
+**[42]** R. Anderson et al. "Measuring the Cost of Cybercrime." In R. Böhme (Ed.), *The Economics of Information Security and Privacy*, pp. 265–300. Springer, 2013. DOI: 10.1007/978-3-642-39498-0_12.
 
-**[43]** R. Anderson et al. "Measuring the Cost of Cybercrime." In R. Böhme (Ed.), *The Economics of Information Security and Privacy*, pp. 265–300. Springer, 2013. DOI: 10.1007/978-3-642-39498-0_12.
+**[43]** C. Herley and D. Florêncio. "Nobody Sells Gold for the Price of Silver: Dishonesty, Uncertainty and the Underground Economy." In *Proc. Workshop on the Economics of Information Security (WEIS)*, June 2009. Published in T. Moore, D. Pym, and C. Ioannidis (Eds.), *Economics of Information Security and Privacy*, pp. 33–53. Springer, 2010. DOI: 10.1007/978-1-4419-6967-5_3.
 
-**[44]** C. Herley and D. Florêncio. "Nobody Sells Gold for the Price of Silver: Dishonesty, Uncertainty and the Underground Economy." In *Proc. Workshop on the Economics of Information Security (WEIS)*, June 2009. Published in T. Moore, D. Pym, and C. Ioannidis (Eds.), *Economics of Information Security and Privacy*, pp. 33–53. Springer, 2010. DOI: 10.1007/978-1-4419-6967-5_3.
+**[44]** K. Thomas, D. McCoy, C. Grier, A. Kolcz, and V. Paxson. "Trafficking Fraudulent Accounts: The Role of the Underground Market in Twitter Spam and Abuse." In *Proc. USENIX Security Symposium*, 2013.
 
-**[45]** K. Thomas, D. McCoy, C. Grier, A. Kolcz, and V. Paxson. "Trafficking Fraudulent Accounts: The Role of the Underground Market in Twitter Spam and Abuse." In *Proc. USENIX Security Symposium*, 2013.
+**[45]** X. Li, B. A. Azad, A. Rahmati, and N. Nikiforakis. "Good Bot, Bad Bot: Characterizing Automated Browsing Activity." In *Proc. IEEE Symposium on Security and Privacy (S&P)*, 2021. DOI: 10.1109/SP40001.2021.00079.
 
-**[46]** X. Li, B. A. Azad, A. Rahmati, and N. Nikiforakis. "Good Bot, Bad Bot: Characterizing Automated Browsing Activity." In *Proc. IEEE Symposium on Security and Privacy (S&P)*, 2021. DOI: 10.1109/SP40001.2021.00079.
+**[46]** H. Jonker, B. Krumnow, and G. Vlot. "Fingerprint Surface-Based Detection of Web Bot Detectors." In *Proc. ESORICS*, LNCS Vol. 11736, 2019. DOI: 10.1007/978-3-030-29962-0_28.
 
-**[47]** H. Jonker, B. Krumnow, and G. Vlot. "Fingerprint Surface-Based Detection of Web Bot Detectors." In *Proc. ESORICS*, LNCS Vol. 11736, 2019. DOI: 10.1007/978-3-030-29962-0_28.
+**[47]** B. A. Azad, O. Starov, P. Laperdrix, and N. Nikiforakis. "Web Runner 2049: Evaluating Third-Party Anti-bot Services." In *Proc. DIMVA*, LNCS Vol. 12223, 2020. DOI: 10.1007/978-3-030-52683-2_7.
 
-**[48]** B. A. Azad, O. Starov, P. Laperdrix, and N. Nikiforakis. "Web Runner 2049: Evaluating Third-Party Anti-bot Services." In *Proc. DIMVA*, LNCS Vol. 12223, 2020. DOI: 10.1007/978-3-030-52683-2_7.
+**[48]** A. Vastel, W. Rudametkin, R. Rouvoy, and X. Blanc. "FP-Crawlers: Studying the Resilience of Browser Fingerprinting to Block Crawlers." In *Proc. NDSS Workshop on Measurements, Attacks, and Defenses for the Web (MADWeb)*, 2020. DOI: 10.14722/madweb.2020.23010.
 
-**[49]** A. Vastel, W. Rudametkin, R. Rouvoy, and X. Blanc. "FP-Crawlers: Studying the Resilience of Browser Fingerprinting to Block Crawlers." In *Proc. NDSS Workshop on Measurements, Attacks, and Defenses for the Web (MADWeb)*, 2020. DOI: 10.14722/madweb.2020.23010.
+**[49]** S. Sivakorn, I. Polakis, and A. D. Keromytis. "I Am Robot: (Deep) Learning to Break Semantic Image CAPTCHAs." In *Proc. IEEE European Symposium on Security and Privacy (EuroS&P)*, 2016. DOI: 10.1109/EuroSP.2016.37.
 
-**[50]** S. Sivakorn, I. Polakis, and A. D. Keromytis. "I Am Robot: (Deep) Learning to Break Semantic Image CAPTCHAs." In *Proc. IEEE European Symposium on Security and Privacy (EuroS&P)*, 2016. DOI: 10.1109/EuroSP.2016.37.
+**[50]** A. Searles, Y. Nakatsuka, E. Ozturk, A. Paverd, G. Tsudik, and A. Enkoji. "An Empirical Study & Evaluation of Modern CAPTCHAs." In *Proc. USENIX Security Symposium*, pp. 3081–3097, 2023. URL: https://www.usenix.org/conference/usenixsecurity23/presentation/searles.
 
-**[51]** A. Searles, Y. Nakatsuka, E. Ozturk, A. Paverd, G. Tsudik, and A. Enkoji. "An Empirical Study & Evaluation of Modern CAPTCHAs." In *Proc. USENIX Security Symposium*, pp. 3081–3097, 2023. URL: https://www.usenix.org/conference/usenixsecurity23/presentation/searles.
+**[51]** S. Zhou et al. "WebArena: A Realistic Web Environment for Building Autonomous Agents." In *Proc. International Conference on Learning Representations (ICLR)*, 2024. arXiv:2307.13854.
 
-**[52]** S. Zhou et al. "WebArena: A Realistic Web Environment for Building Autonomous Agents." In *Proc. International Conference on Learning Representations (ICLR)*, 2024. arXiv:2307.13854.
+**[52]** J. Y. Koh et al. "VisualWebArena: Evaluating Multimodal Agents on Realistic Visual Web Tasks." In *Proc. Annual Meeting of the Association for Computational Linguistics (ACL)*, 2024. arXiv:2401.13649.
 
-**[53]** J. Y. Koh et al. "VisualWebArena: Evaluating Multimodal Agents on Realistic Visual Web Tasks." In *Proc. Annual Meeting of the Association for Computational Linguistics (ACL)*, 2024. arXiv:2401.13649.
+**[53]** T. Xie et al. "OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments." In *Advances in Neural Information Processing Systems (NeurIPS), Datasets and Benchmarks Track*, 2024. arXiv:2404.07972.
 
-**[54]** T. Xie et al. "OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments." In *Advances in Neural Information Processing Systems (NeurIPS), Datasets and Benchmarks Track*, 2024. arXiv:2404.07972.
+**[54]** Y. Zhang, T. Yu, and D. Yang. "Attacking Vision-Language Computer Agents via Pop-ups." In *Proc. 63rd Annual Meeting of the ACL (Long Papers)*, pp. 8387–8401, 2025. URL: https://aclanthology.org/2025.acl-long.411/.
 
-**[55]** Y. Zhang, T. Yu, and D. Yang. "Attacking Vision-Language Computer Agents via Pop-ups." In *Proc. 63rd Annual Meeting of the ACL (Long Papers)*, pp. 8387–8401, 2025. URL: https://aclanthology.org/2025.acl-long.411/.
+**[55]** Z. Liao, L. Mo, C. Xu, M. Kang, J. Zhang, C. Xiao, Y. Tian, B. Li, and H. Sun. "EIA: Environmental Injection Attack on Generalist Web Agents for Privacy Leakage." In *Proc. International Conference on Learning Representations (ICLR)*, 2025. arXiv:2409.11295.
 
-**[56]** Z. Liao, L. Mo, C. Xu, M. Kang, J. Zhang, C. Xiao, Y. Tian, B. Li, and H. Sun. "EIA: Environmental Injection Attack on Generalist Web Agents for Privacy Leakage." In *Proc. International Conference on Learning Representations (ICLR)*, 2025. arXiv:2409.11295.
+**[56]** A. Backman, J. Richer, and M. Sporny. "HTTP Message Signatures." *RFC 9421*, IETF, February 2024. DOI: 10.17487/RFC9421.
 
-**[57]** A. Backman, J. Richer, and M. Sporny. "HTTP Message Signatures." *RFC 9421*, IETF, February 2024. DOI: 10.17487/RFC9421.
+**[57]** IETF Web Bot Auth (webbotauth) Working Group. Charter and working documents. URL: https://datatracker.ietf.org/wg/webbotauth/about/.
 
-**[58]** IETF Web Bot Auth (webbotauth) Working Group. Charter and working documents. URL: https://datatracker.ietf.org/wg/webbotauth/about/.
+**[58]** J. Bonneau, C. Herley, P. C. van Oorschot, and F. Stajano. "The Quest to Replace Passwords: A Framework for Comparative Evaluation of Web Authentication Schemes." In *Proc. IEEE Symposium on Security and Privacy (S&P)*, pp. 553–567, 2012. DOI: 10.1109/SP.2012.44.
 
-**[59]** J. Bonneau, C. Herley, P. C. van Oorschot, and F. Stajano. "The Quest to Replace Passwords: A Framework for Comparative Evaluation of Web Authentication Schemes." In *Proc. IEEE Symposium on Security and Privacy (S&P)*, pp. 553–567, 2012. DOI: 10.1109/SP.2012.44.
+**[59]** T. Rokicki, C. Maurice, and P. Laperdrix. "SoK: In Search of Lost Time: A Review of JavaScript Timers in Browsers." In *Proc. IEEE European Symposium on Security and Privacy (EuroS&P)*, 2021. DOI: 10.1109/EuroSP51992.2021.00039.
 
-**[60]** T. Rokicki, C. Maurice, and P. Laperdrix. "SoK: In Search of Lost Time: A Review of JavaScript Timers in Browsers." In *Proc. IEEE European Symposium on Security and Privacy (EuroS&P)*, 2021. DOI: 10.1109/EuroSP51992.2021.00039.
+**[60]** M. Motoyama, K. Levchenko, C. Kanich, D. McCoy, G. M. Voelker, and S. Savage. "Re: CAPTCHAs—Understanding CAPTCHA-Solving Services in an Economic Context." In *Proc. USENIX Security Symposium*, 2010.
 
 **[61]** K. Thomas et al. "Framing Dependencies Introduced by Underground Commoditization." In *Proc. Workshop on the Economics of Information Security (WEIS)*, 2015.
 

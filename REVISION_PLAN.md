@@ -216,12 +216,12 @@ Open, needs new work (ranked by how many boards named it):
    scikit-learn or a small numpy model).
 4. **Human check of LLM screening/coding** (5/5): human codes all ~24 Type I–V includes + 20% random sample; report
    human–LLM κ; log supplementary queries. AUTHOR.
-5. **Framing/title** (4/5): data say detection follows the injection point; VLM adds cross-site generalisation.
+5. **DONE 2026-09-24 (decision-picker: retitle; demote C1)** — title now "SoK: Where Input Enters — Client-Side Anti-Automation When AI Agents Drive Unmodified Browsers"; abstract, §1.1, §1.2 (C1 = injection axis + measurement, C2 = centralization, C3 = generic VM model), §8 reframed. Original item: **Framing/title** (4/5): data say detection follows the injection point; VLM adds cross-site generalisation.
    AUTHOR decision before registration (Nov 10): retitle around Axis C / "per-site cost", demote C1 (grey-literature L1–L4)
    below C2/C3. Suggested: "SoK: Where Input Enters — Client-Side Anti-Automation When Agents Drive Unmodified Browsers".
 6. **C3 evidence** (3/5): count deployed PAT issuers, PST issuer registrations, PACT participants; trilemma as a table
    of which scheme meets (i)–(iii); add WEI / Play Integrity / App Attest as precedent.
-7. Venue-specific: other venues need their CFP and template (USENIX/CCS/PoPETs boards); S&P remains the target.
+7. Venue: **decided (decision-picker, escalated): S&P 2027 Cycle 2, abstract Nov 10, paper Nov 17.** CFP check: a rejected paper waits one year from submission, so the author-only items 1 (real sitekeys) and 4 (human coding) should land before Nov 17. Decisions are logged in `.decisions.log`.
 
 ---
 
