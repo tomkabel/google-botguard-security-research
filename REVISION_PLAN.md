@@ -198,6 +198,31 @@ date for the original pass is contradicted by the repo history.
 | W1–W5 status | DONE 2026-09-24 | | W1 facts (`docs/fact-check.md`), W2 PACT (`docs/pact-sources.md`), W3 screening (`analysis/screen_corpus.py`, `docs/screening.md`, κ 0.79/0.76), W4 Experiments A/B (§5.7 Tables 5.6/5.7, €0.87), W5 integration (§7.4 legal moved to App. D; body 13 pages; all checks pass) |
 | W6 | Author-only | author | IRB/human baseline; real sitekeys on own domain (vendor ToS); anonymized repository URL (Anonymous GitHub login); confirm AI-use text and the search date; human read-through; submission tag |
 
+
+## Phase 9 — Round-3 reviews (2026-09-24): weak reject ×5, "careful and honest, not yet competitive"
+
+Fixed now (text): §5.6 false "above every VLM cost" claim; §4.2 Type III and §3.4 L4 rows reconciled with Tables 5.6/5.7;
+§3.1 "double-screened by two LLMs; no human" wording; human-solver comparison scoped (2010 prices, equal-scope caveat);
+§4.4 PAT attester wording; §6.4 Anchor-hiding as privacy property; DMA "may extend"; misattributed [3]/[44] removed;
+kimi-k3 introduced in §5.7 and [ref Melious]; App. B artifact list (Tables 5.4–5.7, screening) and TODO removed
+(URL goes in the submission form); App. A notes LLM API received abstracts and Balabit consent status; App. C N per table.
+
+Open, needs new work (ranked by how many boards named it):
+1. **Real detector** (4/5): real Turnstile / reCAPTCHA v3 sitekeys on an author-owned domain (vendor ToS check), configs a–e,
+   report scores incl. nulls. AUTHOR (accounts, ToS).
+2. **Table 5.6 power + confound** (4/5): N ≥ 5–10 per cell with CIs; add a text-only LLM agent reading the accessibility tree
+   (isolates vision from language reasoning); log script-repair time per variant. Doable in the harness (~€0.2).
+3. **Learned kinematic detector** (4/5): BeCAPTCHA-Mouse-style feature classifier vs min-jerk + noise, ROC/FPR (needs
+   scikit-learn or a small numpy model).
+4. **Human check of LLM screening/coding** (5/5): human codes all ~24 Type I–V includes + 20% random sample; report
+   human–LLM κ; log supplementary queries. AUTHOR.
+5. **Framing/title** (4/5): data say detection follows the injection point; VLM adds cross-site generalisation.
+   AUTHOR decision before registration (Nov 10): retitle around Axis C / "per-site cost", demote C1 (grey-literature L1–L4)
+   below C2/C3. Suggested: "SoK: Where Input Enters — Client-Side Anti-Automation When Agents Drive Unmodified Browsers".
+6. **C3 evidence** (3/5): count deployed PAT issuers, PST issuer registrations, PACT participants; trilemma as a table
+   of which scheme meets (i)–(iii); add WEI / Play Integrity / App Attest as precedent.
+7. Venue-specific: other venues need their CFP and template (USENIX/CCS/PoPETs boards); S&P remains the target.
+
 ---
 
 ## Order and critical path
