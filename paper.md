@@ -10,7 +10,7 @@
 
 ## Abstract
 
-Client-side anti-automation assumes that a bot must subvert the browser it runs in. Vision-Language Model (VLM) computer-use agents break that assumption: they perceive the rendered page and inject OS-level input into an unmodified browser, an attack vector we call Operator Synthesis. We systematize five defense paradigms, from point-in-time VM attestation to hardware-anchored session binding, and propose an L1–L4 analytical model of Botguard-style VMs to explain why their cost-imposing layers lose force when the attacker no longer touches the runtime. We then give a caveated cost-accounting exercise based on VLM inference pricing, proxy supply, and state orchestration, and check its token, latency, and hybrid assumptions on a small self-hosted testbed with two VLMs. Hardware-anchored schemes are not VLM-resilient; they are indifferent to input modality and move attacker cost to acquiring real enrolled devices and accounts. Finally, we document how attestation dependence concentrates trust in a few platform vendors and issuers, and outline open problems.
+Client-side anti-automation assumes that a bot must subvert the browser it runs in. Vision-Language Model (VLM) computer-use agents break that assumption: they perceive the rendered page and inject OS-level input into an unmodified browser, an attack vector we call Operator Synthesis. We systematize five defense paradigms, from point-in-time VM attestation to hardware-anchored session binding, and propose an L1–L4 analytical model of Botguard-style VMs to explain why their cost-imposing layers lose force when the attacker no longer touches the runtime. We then give a caveated cost-accounting exercise based on VLM inference pricing, proxy supply, and state orchestration, and test it on a small self-hosted testbed. Two small VLMs completed a five-field flow at 1–2 s per call and €0.0019–€0.0136 per success, far below our frontier-model assumptions and close to the per-challenge price of human solvers. Hardware-anchored schemes are not VLM-resilient; they are indifferent to input modality and move attacker cost to acquiring real enrolled devices and accounts. Finally, we document how attestation dependence concentrates trust in a few platform vendors and issuers, and outline open problems.
 
 ---
 
@@ -26,15 +26,15 @@ Since 2024, computer-use agents such as OpenAI's Operator [5] and research agent
 
 **C1 — An L1–L4 Analytical Model of VM Attestation (Section 3.4).** No primary technical description of Botguard's internals is public. We propose a four-layer model, synthesised from public descriptions of Botguard-style VMs [7] and the obfuscation literature [8], as a diagnostic lens for *why* VM-based attestation loses cost-imposing force under Operator Synthesis.
 
-**C2 — A Cost-Accounting Exercise for VLM-Driven Attacks (Section 5).** We estimate attacker costs from observable market data and extend the conjunctive cost framework to the VLM attacker's state-isolation requirements. A self-hosted measurement (Section 5.7; 70 runs, two VLMs) checks the token, latency, and hybrid assumptions.
+**C2 — A Cost-Accounting Exercise for VLM-Driven Attacks (Section 5).** We estimate attacker costs from observable market data and extend the conjunctive cost framework to the VLM attacker's state-isolation requirements. A self-hosted measurement (Section 5.7; 70 runs, two VLMs) refutes the latency assumption for fast small models and puts their cost per success near human-solver prices.
 
 **C3 — Attestation Market Centralization Analysis (Section 6).** Building on the centralization tension in anonymous token issuance [9, 10], we analyse who holds the roots of trust (Apple, third-party issuers, Google, passkey synchronisers). This dependency turns the "Anonymous Authentication Gap" into an economic and governance centralization problem, which the 2026 PACT initiative [11] extends to issuer judgment (Section 6.4).
 
 ### 1.3 Threat Model and Scope
 
-**Scope.** We cover client-side anti-automation mechanisms in web browsers. Purely server-side defenses (WAF, TLS fingerprinting, DDoS scrubbing, rate limiting) are excluded because they operate under different economic models. Part I covers 2010–2024. Part II covers Operator Synthesis as it emerged in 2024–2025 and its implications for 2026–2028 defense research.
+**Scope.** We cover client-side anti-automation mechanisms in web browsers. Purely server-side defenses (WAF, TLS fingerprinting, rate limiting) are out of scope except where client-side schemes depend on them (§4.3, §5.3). Part I covers 2010–2024; Part II covers Operator Synthesis from 2024.
 
-**Adversary tiers and the APB.** (1) **Commodity Bot:** basic scraper scripts, `curl`, standard headless browsers, low-scale Puppeteer. (2) **Sophisticated Automation (Middle Tier):** Puppeteer/Playwright farms with residential proxies, anti-detect browsers, and aged profiles. This tier bypasses probabilistic defenses through engineering investment rather than VLM inference, at costs dominated by proxy subscriptions ($500–$5,000/month per operator) and anti-detect licensing ($30–$300/month per operator). The probabilistic defenses of 2010–2024 face significant pressure from this tier alone (Section 4.2). (3) **Advanced Persistent Bot (APB):** highly-resourced adversaries using VLMs, custom orchestration, and industrial-scale proxy infrastructure, whose costs are dominated by VLM inference. VLMs amplify the middle tier's degradation of these defenses rather than causing it de novo. Every claim of "degradation" in this paper should be read this way: a defense may be substantially degraded for APBs (and less so for the middle tier) while remaining economically viable against Commodity Bots.
+**Adversary tiers and the APB.** (1) **Commodity Bot:** basic scraper scripts, `curl`, standard headless browsers, low-scale Puppeteer. (2) **Sophisticated Automation (Middle Tier):** Puppeteer/Playwright farms with residential proxies, anti-detect browsers, and aged profiles. This tier bypasses probabilistic defenses through engineering investment rather than VLM inference, at costs dominated by proxy subscriptions and anti-detect licences (illustratively $500–$5,000 and $30–$300 per operator-month; our assumption). The probabilistic defenses of 2010–2024 face significant pressure from this tier alone (Section 4.2). (3) **Advanced Persistent Bot (APB):** highly-resourced adversaries using VLMs, custom orchestration, and industrial-scale proxy infrastructure, whose costs are dominated by VLM inference. VLMs amplify the middle tier's degradation of these defenses rather than causing it. Every claim of "degradation" means: degraded for APBs, less so for the middle tier, still viable against Commodity Bots.
 
 **Three axes.** Axis C is the primary lens.
 
@@ -49,7 +49,7 @@ Since 2024, computer-use agents such as OpenAI's Operator [5] and research agent
 | **Scraping / Resource Exhaustion** | Quadrant I: Point-in-Time VM, Behavioral Biometrics, Compute-Bound Challenges (auxiliary) [13] | Quadrant III: Session-bound rate limiting, quota enforcement |
 | **Account Takeover / Fraud** | Quadrant II: Stateful Telemetry (login risk scoring), Platform Anonymous Attestation (PATs) [13] | Quadrant IV: Hardware-Anchored Determinism (DBSC, Passkeys, WebAuthn) [12] |
 
-Table: Axis A/B quadrants in NIST 800-63 terminology [12, 13].
+Table: Axis A/B quadrants (authentication state per NIST SP 800-63-3 [12], threats per OWASP [13]).
 
 Axis C cuts across all four quadrants. OS-level input injection is not new: xdotool, AutoHotkey, and PyAutoGUI long predate VLMs. The VLM adds perception and cross-site generalisation, so the attacker needs no per-site scripts or selectors and OS-level injection becomes cheap at scale. Detection then moves to other layers (container artifacts, input kinematics, inference cadence; Sections 4.1 and 5.2).
 
@@ -106,7 +106,7 @@ Anderson and Moore framed security as an economic problem [41], extended to poli
 | Rokicki et al. [60] | JavaScript timers and timing attacks in browsers | Microarchitectural and side-channel attacks from web content | SoK with experimental timer analysis | None; we build on it for L4 chronometric checks |
 | Searles et al. [51] | Modern CAPTCHAs in live deployment | Human users and automated solvers | User study (1,400 participants, 14,000 CAPTCHAs solved) and bot comparison | We extend its bot-versus-human finding from solvers to full-browser VLM agents |
 | Bonneau et al. [59] | Password-replacement schemes | Authentication attacks | Benefit matrix: 35 schemes rated on 25 usability, deployability and security benefits | Not challenged; we reuse its comparative-matrix method |
-| This SoK | Client-side anti-automation Types I–V, 2010–2026 | APB with Operator Synthesis (Axis C) as the primary lens | Mechanism matrix, tier assignment, structured cost accounting | That client-side detection raises attacker cost regardless of input modality |
+| This SoK | Client-side anti-automation Types I–V, 2010–2026 | APB with Operator Synthesis (Axis C) as the primary lens | Mechanism matrix, tier assignment, structured cost accounting | The design assumption of Types I–III (§3.2) that automation runs inside or instruments the browser |
 
 Table: Comparison with the closest surveys and SoKs.
 
@@ -116,7 +116,7 @@ Table: Comparison with the closest surveys and SoKs.
 
 ### 3.1 Literature Search
 
-The search is structured but not PRISMA-replicable. One author did all searching, screening and coding, with no second screener, so the classifications in §3.2–§3.4 are one analyst's judgement.
+The search is structured but not PRISMA-replicable. A single team member did all searching, screening and coding, with no second screener, so the classifications in §3.2–§3.4 are one analyst's judgement.
 
 **Sources.** IEEE Xplore, ACM Digital Library, arXiv, Google Scholar, IETF Datatracker, W3C Technical Reports. The original pass (August 2026) kept no log, so on 23 September 2026 we re-ran the main query on the two sources with a scriptable API: arXiv (74 hits) and Semantic Scholar (443 hits). DBLP's bot challenge blocked scripted clients. This gives 517 records and 444 unique titles, logged in `docs/corpus.csv` with their script (`analysis/literature_search.py`). Only 7 of the 444 match a cited work ([17, 27, 28, 50, 61–63]); the other 437 are logged as *not screened*. The coded corpus thus came mostly from supplementary queries and snowballing. Screening the rerun set is open work.
 
@@ -126,7 +126,7 @@ The search is structured but not PRISMA-replicable. One author did all searching
 
 **Coded corpus versus background.** Other references are background: economics framing, historical works, protocol RFCs, and agent/VLM papers characterising the Part II attacker. The original pass and snowballing were not logged, so we give no PRISMA-style numbers beyond the rerun counts above.
 
-**Post-hoc additions and grey literature.** Snowballing and announcements added recent work (agentic web navigation, SDK-based residential proxies, PACT, 2025–2026 VLM CAPTCHA-solving measurements) and a selection bias toward work the author knew. Single-vendor claims are flagged.
+**Post-hoc additions and grey literature.** Snowballing and announcements added recent work (agentic web navigation, SDK-based residential proxies, PACT, 2025–2026 VLM CAPTCHA-solving measurements) and a selection bias toward work the authors knew. Single-vendor claims are flagged.
 
 ### 3.2 Five Architectural Types by Mechanism
 
@@ -168,7 +168,7 @@ L1–L4 is this paper's analytical model, synthesised from public sources (Path 
 - **L1b (Dynamic Sensor Telemetry).** Documented: the VM reads real input events [76]. Kinematic scoring is claimed [77], but Sivakorn et al. found mouse timing and movement did not affect the risk score [63]; we treat it as inferred [21, 71]. We hypothesize that naive interpolation of VLM coordinates leaves detectable artifacts (§1.4).
 - **L2 (Code Obfuscation, Polymorphism).** Documented: a custom bytecode VM with encrypted registers and runtime-loaded self-modifying opcodes [75], per-load keystream-encrypted bytecode [76], and a script URL and token-cipher constant that change each rotation [77]. BgUtils runs the VM as a black box [78], and a VLM never inspects bytecode: T_RE ≈ 0 at the VM level; application-level workflow RE remains (§5.5).
 - **L3 (Execution Traps).** Documented: an "anti-logger" that patches getters so `console.log` or logpoints perturb VM state [75], and a `Function.prototype.toString` anti-hook probe [76]. Under OpSyn nothing is hooked, so the traps never fire. We hypothesize a perceptual *cognitive honeypot*: a decoy with non-zero `getBoundingClientRect()` size and `opacity: 0.01` in a `pointer-events: none` overlay that DOM-grounded agents such as SeeAct [80] may select, as in hidden-element attacks [55, 56]. It is narrow: screenshot-only agents (e.g. CogAgent [81]) never see it, `aria-hidden` hides it from accessibility-tree agents, and DOM-versus-screenshot cross-checks defeat it.
-- **L4 (Chronometric Integrity).** Documented: the VM compares `performance.now()` and `Date.now()` to detect breakpoints and folds the result into the seed selecting the next bytecode byte, silently diverting execution under debugging [75]; `performance.now` also appears in the interstitial's signal set [76]. We hypothesize that L4 extends to the second scale (Section 5.2): at an assumed 5–15 s of inference per action (Table 5.1; 0.77–1.45 s median per call measured for two small VLMs, Section 5.7), a multi-step agent flow accumulates latency a human does not. Single-CAPTCHA human times (2–5 s) are not a like-for-like baseline, and we claim no fixed ratio.
+- **L4 (Chronometric Integrity).** Documented: the VM compares `performance.now()` and `Date.now()` to detect breakpoints and folds the result into the seed selecting the next bytecode byte, silently diverting execution under debugging [75]; `performance.now` also appears in the interstitial's signal set [76]. A second-scale extension of L4 (Section 5.2) needs slow inference: at 5–15 s per action an agent flow accumulates latency a human does not, but two small VLMs measured 0.77–1.45 s median per call (Section 5.7). What remains is regularity, not magnitude, and we claim no fixed ratio.
 
 | Layer | Claimed mechanism | Public source(s) | Claim strength |
 |-------|-------------------|------------------|----------------|
@@ -271,11 +271,11 @@ Farmed or relayed attestations are valid and indistinguishable at the attestatio
 
 PATs plus DBSC do not solve anti-automation, for three reasons.
 
-**1. PATs require platform coordination.** RFC 9576 [4] separates the *attester* and *issuer* roles. For deployed PATs, Apple is the attester and Cloudflare and Fastly are issuers. Google and Microsoft operate no equivalent attester. An origin therefore cannot deploy PATs alone.
+**1. PATs require platform coordination.** RFC 9576 [4] separates the *attester* and *issuer* roles so that, absent collusion, the party that learns the client's identity does not learn which origin requested the token. For deployed PATs, Apple is the only attester and Cloudflare and Fastly are issuers, so this privacy property comes with a deployment dependency: origins cannot obtain attestation for clients whose platform vendor runs no attester, and Google and Microsoft run none.
 
 **2. PATs shift the trust problem.** The defender must trust the attester's device and account checks and the issuer's policy over probabilistic detection. That is an economic and political judgment, not a technical guarantee. The attester is a single vendor whose incentives may diverge from the origin's.
 
-**3. PATs create a two-tier accessibility surface.** PAT-only anti-automation effectively requires an Apple device (iOS 16+/macOS Ventura+). Android and most desktop users fall back to other challenges, which is regressive.
+**3. PATs create a two-tier accessibility surface.** PAT-only anti-automation effectively requires an Apple device (iOS 16+/macOS Ventura+). Android and most desktop users fall back to other challenges, which shifts friction onto users without Apple devices.
 
 **The software-anchor response.** PACT [11] extends issuance to any party that "knows something about the user" [11, 39]. This addresses reason 1 only by multiplying security-critical parties. It worsens reason 2, as no issuer accreditation, revocation or audit regime has been specified (§6.4) [11, 88]. It worsens reason 3, as unbanked, low-income and anonymity-seeking users may lack a usable issuer [40].
 
@@ -311,7 +311,7 @@ C_inference = Σ_{i=1..n} (t_in,i × p_in + t_out,i × p_out)
 
 with `t_in,i` / `t_out,i` the LLM tokens at step `i` and prices from Table 5.1.
 
-**Per-attempt cost.** At Table 5.1 values one action costs $0.00125–$0.005 + $0.0025–$0.01 = **$0.00375–$0.015**, and 10 actions cost $0.0375–$0.15. This is a lower bound: screenshots often exceed 1,000 input LLM tokens, and re-sending prior screenshots makes cost roughly quadratic in `n`.
+**Per-attempt cost.** At Table 5.1 values one action costs $0.00125–$0.005 + $0.0025–$0.01 = **$0.00375–$0.015**, and 10 actions cost $0.0375–$0.15. These are frontier-price scenarios. Measured small-VLM calls used more input (1,269–1,586) but far less output (24–142 LLM tokens) than assumed (§5.7); re-sending prior screenshots would make cost roughly quadratic in `n`.
 
 **Hybrid attackers** call the VLM only on the fraction `f` of steps needing perception or recovery and script the rest:
 
@@ -321,7 +321,7 @@ C_inference,hybrid ≈ f × C_inference + (1 − f) × n × c_script
 
 where `c_script` ≈ 0. At `f` = 0.2 the per-attempt cost falls five-fold, so the pure-VLM figures are an upper bound.
 
-**Sensitivity.** Table 5.2 sweeps `f` and `P(success)` for a 10-step flow at Sonnet 4.6 prices [94]. "Accumulated" context re-sends every prior screenshot; "none" prunes history. Latency assumes 10 s per VLM step and 0.5 s per scripted step (`analysis/cost_model.py`).
+**Sensitivity.** Table 5.2 sweeps `f` and `P(success)` for a 10-step flow at Sonnet 4.6 prices [94], a frontier-model scenario; the small models of §5.7 cost 7×–320× less per success. "Accumulated" context re-sends every prior screenshot; "none" prunes history. Latency assumes 10 s per VLM step and 0.5 s per scripted step (`analysis/cost_model.py`).
 
 | `f` | Context | Cost/attempt | Cost/success, P=0.4 | Cost/success, P=0.7 | Cost/success, P=0.9 | Latency/attempt |
 |---|---|---|---|---|---|---|
@@ -336,7 +336,7 @@ where `c_script` ≈ 0. At `f` = 0.2 the per-attempt cost falls five-fold, so th
 
 Table: Table 5.2 — Hybrid-attacker sensitivity (illustrative; parameters in Table 5.1).
 
-`f` moves cost per success (≈$0.01 to $0.60) more than `P(success)` does: `f` = 0.1 at `P` = 0.4 is cheaper than pure VLM at `P` = 0.9. Context accumulation matters only at `f` ≥ 0.5. At `f` ≤ 0.3 an attempt takes 14–34 s, inside the human range for a multi-step form.
+`f` moves cost per success (≈$0.01 to $0.60) more than `P(success)` does: `f` = 0.1 at `P` = 0.4 is cheaper than pure VLM at `P` = 0.9. Context accumulation matters only at `f` ≥ 0.5. At `f` ≤ 0.3 an attempt takes 14–34 s, inside the human range for a multi-step form; at the measured 1–2 s per call every row would be.
 
 **Failure rates.** With independent per-attempt success `P(success)`, the expected cost per clearance token is:
 
@@ -348,11 +348,11 @@ C_effective = C / P(success),   where C = C_inference + C_replan
 
 ### 5.2 The Latency Cost
 
-Table 5.1 assumes 5–15 s per perception–action cycle, or 25–150 seconds per attempt over 5–10 actions. We found no public per-step figure for commercial computer-use models; OSWorld-Human attributes 75–94% of agent latency to planning and reflection calls [96]. Measured small VLMs are far faster (§5.7).
+Table 5.1 assumes 5–15 s per perception–action cycle, or 25–150 seconds per attempt over 5–10 actions. We found no public per-step figure for commercial computer-use models; OSWorld-Human attributes 75–94% of agent latency to planning and reflection calls [96].
 
-1. **Chronometric heuristics (L4).** Without instrumentation, L4 sees only per-action latency, and VLM session duration overlaps the human range (passive VM challenges take equal time for both). VLM per-action latency is only more regular, bounded below by inference time. As a hard rule, timing flags slow, distracted, and assistive-technology users, and attackers can add random delays.
+1. **Chronometric heuristics (L4).** Without instrumentation, L4 sees only per-action latency, and VLM session duration overlaps the human range (passive VM challenges take equal time for both). At the measured 1–2 s per action (§5.7), VLM latency differs from human latency only in regularity. As a hard rule, timing flags slow, distracted, and assistive-technology users, and attackers can add random delays.
 
-2. **Session timeout risk.** Challenge windows typically last 1–5 minutes, and a 10-step flow at 15 s per step takes 150 s. A timed-out session spends inference budget without producing a clearance token.
+2. **Session timeout risk.** Challenge windows typically last 1–5 minutes, and a 10-step flow at 15 s per step takes 150 s, but measured small-VLM flows took 26–44 s (§5.7). Timeouts therefore bind only on slow, reasoning-heavy models.
 
 Timeouts enter through `P(success)`, not a separate term:
 
@@ -374,9 +374,9 @@ Cost_bypass_OS = Cost_residential_proxy + Cost_session_isolation + Cost_VLM_infe
 
 `Cost_session_isolation` covers per-session browser containers, storage persistence, and profile rotation. Net savings are plausibly positive, but no public pricing permits a direct comparison (§7.1).
 
-### 5.4 Human Labor as the Global Cost Floor
+### 5.4 Human Labor as a Cost Reference
 
-Under Environmental Forgery, CAPTCHA farms [17] and click-farm labor [97] set the global cost floor. Human labor and VLM inference are substitutes, so the attacker pays `min(C_VLM, C_human)`. Solving services charge roughly $0.50–$2.00 per 1,000 solves [17], i.e. $0.0005–$0.002 each, below $0.00375–$0.015 per VLM action. VLM list prices fell repeatedly in 2023–2026 (GPT-5 launched at half GPT-4o's input price [92]), while labor prices are comparatively stable. The VLM changes scaling, not substitutability: labor scales with headcount, VLM throughput with API quota.
+Under Environmental Forgery, CAPTCHA farms [17] and click-farm labor [97] set the global cost floor. Human labor and VLM inference are substitutes, so the attacker pays `min(C_VLM, C_human)`. Solving services charge roughly $0.50–$2.00 per 1,000 solves [17], i.e. $0.0005–$0.002 each, below one VLM action at frontier prices (§5.1). Yet the cheaper measured model completed a whole five-field flow for €0.0010–€0.0019 per success (§5.7), comparable to one human solve, so labor no longer sets a floor below VLM inference for simple flows. VLM list prices fell repeatedly in 2023–2026 (GPT-5 launched at half GPT-4o's input price [92]). The VLM changes scaling, not substitutability: labor scales with headcount, VLM throughput with API quota.
 
 ### 5.5 The Temporal Arms Race: T_RE ≈ 0 at the VM Level
 
@@ -397,7 +397,7 @@ Tier 1 (Types IV and V, §4.2) is indifferent to input modality, so the attacker
 C_token = (D / L + O) / (R × 30)
 ```
 
-where `D` is the device price, `L` the amortisation period in months, `O` farm operations (mobile proxy or SIM, power, management) per device-month, and `R` the clearance tokens per device per origin per day. Account cost would add to `D`.
+where `D` is the device price, `L` the amortisation period in months, `O` farm operations (mobile proxy or SIM, power, management) per device-month, and `R` the clearance tokens per device per origin per day (a per-origin limit needs the rate-limited issuance extension [10]; under a per-issuer limit `R` is shared across origins). Account cost would add to `D`.
 
 **Parameters.** `D` = $100–$300 for a used PAT-capable iPhone and `L` = 12–24 months are assumptions (TODO(author): cite a dated used-market price snapshot). `O` = $9.30–$48.80 comes from an anti-detect vendor's 10-device phone-farm breakdown [98] (vendor-reported, Android-oriented, unverified). Owned-device cost is therefore $13.47–$73.80 per device-month. A rented AWS EC2 `mac2.metal` host lists at $0.65/hour with a 24-hour minimum [99], i.e. $468 per month; whether PAT issuance works on it is unverified. Apple does not publish `R`, and the issuance design [10] leaves it to the issuer, so we sweep it.
 
@@ -443,7 +443,7 @@ Table: Table 5.5 — VLM cost (median calls per run; cost per success = spend ÷
 
 **Latency.** Median VLM call latency was 0.77–1.45 s, far below the assumed 5–15 s. The faster model's per-action latency was regular (p50 1.40 s, p90 1.89 s; §5.2) but, at 1–2 s, overlaps plausible human form-filling. Pure-agent runs took 26.3–44.1 s (median) against 7.0 s scripted, inside the 1–5 minute challenge windows of §5.2. The 5–15 s assumption, and the L4 and timeout arguments built on it, therefore do not hold for fast small models. Frontier models that reason at length remain unmeasured.
 
-**Tokens and cost.** Input was 1,269–1,586 LLM tokens per call (assumed ∼1,000). Output was 24–142 (assumed ∼500), because the prompt asks for one JSON action. The pure agent needed 11–18 calls (median; assumed 5–10) because it clicks, types, and submits separately. Cost per success was €0.0019–€0.0136, roughly 9× to 300× below the pure-VLM row of Table 5.2 ($0.117–$0.600, ignoring EUR/USD). Per-token prices and the stateless prompt explain the gap, not fewer steps.
+**Tokens and cost.** Input was 1,269–1,586 LLM tokens per call (assumed ∼1,000). Output was 24–142 (assumed ∼500), because the prompt asks for one JSON action. The pure agent needed 11–18 calls (median; assumed 5–10) because it clicks, types, and submits separately. Cost per success was €0.0019–€0.0136, 7× to 320× below the pure-VLM row of Table 5.2 ($0.117–$0.600) at any EUR/USD rate between 1.0 and 1.2. Per-token prices and the stateless prompt explain the gap, not fewer steps.
 
 **Hybrid hand-back is model-dependent.** With `glm-5.3-flash` the hybrid cut VLM calls from 11 to 3.5 per run, cost per success from €0.0019 to €0.0010, and run time from 26.3 s to 15.0 s, resuming scripted control in 9/10 runs. `qwen3.8-27b` never handed back (0/10): it ignored the instruction to stop at the first form page, so its hybrid row is a pure-VLM run plus an interstitial. One of its runs stalled on the first form page. The low-`f` region of Table 5.2 thus assumes a hand-off the attacker must engineer and verify per model.
 
@@ -476,7 +476,7 @@ Against Operator Synthesis, the defenses that still impose cost on anonymous tra
 - **DBSC:** not an anonymous-attestation scheme (§6.1), so we exclude it.
 - **PACT:** a cross-browser proposal (June 2026) by Cloudflare with Mozilla, Google, Microsoft, and Shopify [11]. It adds no hardware root; it concentrates the judgement of which parties may vouch that a person is present (§6.4).
 
-**The centralization–anonymity–bot-resistance tension (informal argument).** Constructions such as [9, 10] make issuance unlinkable and rate-limited but do not analyze market structure. Consider three goals: (i) redemptions unlinkable to identities, (ii) bounded per-client token supply, and (iii) no small set of trusted parties. A scheme meeting (i) and (ii) must rate-limit on something the issuer can count without identifying the user. In deployed systems, that is a device key attested by a platform vendor or an account held with a large first party. Goal (ii) therefore pulls toward attesters that already hold a large, Sybil-resistant population, which is a concentrated market by definition. Deployed systems have relaxed (iii). This is not an impossibility result: threshold issuance, zero-knowledge proofs of personhood, and decentralized issuer networks are feasible in principle. The open question is whether any of them can reach a Sybil-resistant population at platform-vendor scale, and what pricing power, exclusion risk, and lock-in follow if none can.
+**The centralization–anonymity–bot-resistance tension (informal argument).** Constructions such as [9, 10] make issuance unlinkable and rate-limited but do not analyze market structure. Consider three goals: (i) redemptions unlinkable to identities, (ii) bounded per-client token supply, and (iii) no small set of trusted parties. A scheme meeting (i) and (ii) must rate-limit on something the issuer can count without identifying the user. In deployed systems, that is a device key attested by a platform vendor or an account held with a large first party. Goal (ii) therefore pulls toward attesters that already hold a large, Sybil-resistant population, which today means a few platform vendors or large first parties. Deployed systems have relaxed (iii). This is not an impossibility result: threshold issuance, zero-knowledge proofs of personhood, and decentralized issuer networks are feasible in principle. The open question is whether any of them can reach a Sybil-resistant population at platform-vendor scale, and what pricing power, exclusion risk, and lock-in follow if none can.
 
 **The ad-tech context.** Browser vendors that run ad platforms shape both stateful identifiers and the attestation APIs that replace them. Chrome announced in 2024 and confirmed in 2025 that it will not deprecate third-party cookies [106], so pressure on Type II state comes mainly from Safari ITP, Firefox Total Cookie Protection, and regulation (§7.4).
 
@@ -500,15 +500,15 @@ As a first step the artifact includes the self-hosted harness of §5.7 (localhos
 
 ### 7.2 VLM-Resilient Attestation Primitives
 
-Tier 1 architectures (Section 4.2) survive Operator Synthesis but carry the dependencies of Section 6. Three directions follow.
+Tier 1 architectures are indifferent to input modality (Section 4.2) but carry the dependencies of Section 6. Three directions follow.
 
 - **Decentralized anonymous attestation:** zero-knowledge proofs of personhood, threshold or distributed-VOPRF issuer networks, and hardware-backed attestation without OS-vendor dependency. For PACT, aggregating-issuer and IssuerHide designs [39, 108] would mitigate initial-issuer metadata exposure, but they remain options rather than defaults, and no decentralized issuer network has been specified [11, 88].
 - **Physical-presence challenges:** liveness detection or ambient sensor fusion that a VLM in a virtual machine cannot satisfy. The countermeasure is incentivized proxying: SDK-based proxy networks (§4.3) pay the device owner in in-app rewards to satisfy the challenge. This adds latency, reward cost, and coordination but does not make bypass free. Such challenges therefore need threat modeling against human relay, not only autonomous VLM operation.
-- **Cross-modal consistency:** checking that camera, microphone, touchscreen, and accelerometer data fit one physical environment, which a VLM in a VM cannot easily maintain because it does not control all sensor channels.
+- **Cross-modal consistency:** checking that camera, microphone, touchscreen, and accelerometer data fit one physical environment, which a VLM in a VM cannot easily fake.
 
 ### 7.3 Standardized Benchmarking ("Bot-Bench")
 
-No standardized testbed exists for evaluating defenses under Operator Synthesis. Evaluations rely on grey-hat reverse engineering or small PoCs that compile rotation invalidates. A reproducible, vendor-neutral harness with known human/VLM ground truth is needed. BehavePassDB [109] is a partial template but ignores VLM interaction patterns. MCA-Bench [62] is VLM-aware but covers only CAPTCHAs.
+Evaluations under Operator Synthesis rely on grey-hat reverse engineering or small PoCs that compile rotation invalidates; a vendor-neutral harness with known human/VLM ground truth is needed. BehavePassDB [109] is a partial template but ignores VLM interaction patterns. MCA-Bench [62] is VLM-aware but covers only CAPTCHAs.
 
 Such a benchmark must also measure false positives. L4 latency profiles, kinematics, and typing cadence differ for users of screen readers, switch access, voice control, eye-tracking, and other assistive technologies, and for older or motor-impaired users. Tighter thresholds against VLM-driven input shift cost onto these users as challenge escalation or lock-out. That cost is rarely reported and should be a first-class metric.
 
@@ -520,17 +520,17 @@ Type II needs persistent client state to accumulate profile age, and that state 
 
 **Two separate pressures.** Stateful mitigation faces (1) *legal* limits, which leave room for security processing, and (2) *technical* limits imposed unilaterally by browsers, which partition or expire state regardless of purpose and erode profile age even where processing is lawful. The second weakens Type II most, mainly on Safari and Firefox, since Chrome kept third-party cookies (§6.3).
 
-**Competition law.** Where browser and OS vendors both restrict independent state and supply the replacing attestation APIs (§6.3), the *Digital Markets Act* [113] applies. Its Art. 6(7) interoperability obligation on the designated gatekeepers Alphabet and Apple (with a strictly-necessary integrity exception) gives a basis for asking whether attestation APIs and issuer registration are offered on fair, reasonable, and non-discriminatory terms. Its application to anti-abuse attestation is open.
+**Competition law.** Where browser and OS vendors both restrict independent state and supply the replacing attestation APIs (§6.3), the *Digital Markets Act* [113] applies. Art. 6(7) obliges the designated gatekeepers Alphabet and Apple to offer free-of-charge, effective interoperability with features accessed or controlled via the operating system, subject to strictly necessary integrity measures. That covers OS-level attestation APIs; browser-level APIs and issuer registration may fall outside it. Its application to anti-abuse attestation is open.
 
 ---
 
 ## 8. Conclusion
 
-Under the APB threat model, Operator Synthesis moves each layer's cost from browser-instrumentation forgery to systems-integration engineering. Three insights follow.
+Under the APB threat model, three insights follow.
 
-1. **Probabilistic client-side defenses lose their top-tier premise.** Against a VLM driving an unmodified browser, VM attestation, behavioral telemetry, and biometrics no longer see forgery; the cost shifts to orchestration rather than vanishing (§3.4, §4.2). Our testbed shows the same split on a small scale: in-runtime signals separated CDP automation from OS-level input and were blind to whether a VLM drove it (§5.7). The defenses keep value against commodity automation.
+1. **Probabilistic client-side defenses lose their top-tier premise.** Against a VLM driving an unmodified browser, VM attestation, behavioral telemetry, and biometrics no longer see forgery; the cost shifts to orchestration rather than vanishing (§3.4, §4.2). On our testbed, in-runtime signals separated CDP automation from OS-level input but not VLM from scripted input (§5.7).
 2. **Hardware anchors move cost; they do not end the contest.** Tier 1 is indifferent to input modality. Its ceiling is the price of real enrolled devices or accounts divided by an issuer-controlled rate limit (§5.6).
-3. **The open problem is who controls web trust.** Attestation narrows the Anonymous Authentication Gap by concentrating trust in a few attesters and issuers, and PACT contests even the hardware anchor (§6.4). The field needs decentralized, privacy-preserving attestation that does not depend on a vendor oligopoly.
+3. **The open problem is who controls web trust.** Attestation narrows the Anonymous Authentication Gap by concentrating trust in a few attesters and issuers (§6.3–§6.4); decentralized alternatives remain open.
 
 ---
 
@@ -766,7 +766,7 @@ Under the APB threat model, Operator Synthesis moves each layer's cost from brow
 
 ## Appendix A: Ethics Considerations
 
-This paper is a systematization based on public sources and analytical reasoning. We performed no live attacks against production services, did not attempt to bypass any deployed anti-automation system, and performed no reverse engineering of Botguard for this paper; the L1–L4 model is our own synthesis from published descriptions and the obfuscation literature. The cost-accounting exercise (§5) is dual-use: a defender can use it to identify where cost is imposed, and an attacker could use it to prioritise effort. We judge the marginal uplift to be low, because every parameter is drawn from public pricing and published research and the analysis contains no bypass technique, tooling, or target-specific detail. Named companies and products are discussed only on the basis of their public documentation, announcements, and peer-reviewed or publicly reported analyses. The measurements in §5.7 ran only against our own testbed bound to localhost, with vendor test keys; the only external service involved was a commercial LLM API used under its ordinary terms. No human subjects took part.
+This paper is a systematization based on public sources and analytical reasoning. We performed no live attacks against production services, did not attempt to bypass any deployed anti-automation system, and performed no reverse engineering of Botguard for this paper; the L1–L4 model is our own synthesis from published descriptions and the obfuscation literature. The cost-accounting exercise (§5) is dual-use: a defender can use it to identify where cost is imposed, and an attacker could use it to prioritise effort. We judge the marginal uplift to be low, because every parameter is drawn from public pricing and published research and the analysis contains no target-specific bypass technique. The released harness drives generic form-filling agents only against its own testbed: a guard refuses non-local targets, and the only vendor widget it loads uses a documented test key. Named companies and products are discussed only on the basis of their public documentation, announcements, and peer-reviewed or publicly reported analyses. The measurements in §5.7 ran only against our own testbed bound to localhost, with vendor test keys; the only external service involved was a commercial LLM API used under its ordinary terms. No human subjects took part.
 
 ## Appendix B: Open Science
 

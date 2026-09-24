@@ -36,16 +36,16 @@ Collected from `paper.md` and the repo (`grep -rn "TODO(author)"`), plus open AU
 | F1 | L1–L4 attributed to [24], which never mentions Botguard (all 5) | DONE — Path B evidence table in §3.4 (documented/inferred/hypothesized per layer) |
 | F2 | Tier 1 "resilient" is a category error; device farms ignored (all 5) | DONE — reframed + §5.6 device-farm cost per clearance token |
 | F3 | Protocol errors: PAT attester/issuer, DBSC owner/export, PST, SDK proxies, iOS consent, unlinkability (all 5) | DONE (DBSC registration-time key capture caveat added, §6.1) |
-| F4 | §5 formula & arithmetic errors, unsourced prices (all 5) | DONE (script-generated) — Bright Data price = AUTHOR |
+| F4 | §5 formula & arithmetic errors, unsourced prices (all 5) | PARTIAL — arithmetic script-generated; §5 now reconciled with §5.7 measurements (Table 5.2 = frontier scenario). Bright Data + used-iPhone prices = AUTHOR |
 | F5 | Self-contradictions: Axis C, profile aging, "arms race moot" (all 5) | DONE |
 | F6 | Leftover revision-response text, phantom cross-refs (all 5) | DONE |
 | F7 | Citation misuse ([67],[68],[71],[42],[73–75],[49], secondary 99.8%) (all 5) | DONE (PPI price now matches Caballero et al.) |
-| F8 | §3.1 methodology not systematic; corpus = reference list (all 5) | DONE (dated rerun, `docs/corpus.csv`, coded vs background) — OPEN: second screener / κ |
+| F8 | §3.1 methodology not systematic; corpus = reference list (all 5) | PARTIAL — dated rerun logged, but 437/444 records unscreened, single screener. OPEN: screen all, second screener on ≥20% with κ (all 5 boards, round 2: high/fatal) |
 | F9 | Missing related work (≥3 boards) | DONE (§2.5; Searles/Bonneau figures verified) — Azad summary = AUTHOR |
-| F10 | PACT built on news/blogs (all 5) | DONE (primary sources) |
+| F10 | PACT built on news/blogs (all 5) | PARTIAL — §6.4 still leans on blogs [40], [88]. OPEN: re-source to antifraudcg/pact repo [39, 107, 108] or attribute as commentary (round 2: high) |
 | F11 | Anonymity, ethics, Open Science, AI-use disclosure (USENIX, S&P, Euro) | DONE (Open Science lists artifacts) except AI-use = AUTHOR |
-| F12 | No measurement at all; VLM vs scripted OS-input confound (all 5; S&P fatal) | DONE (small): §5.7 Tables 5.4/5.5 — 70 runs, configs (a)–(d), two Melious VLMs, N=10/cell; confound isolated ((b) vs (c)). Scale-up, real vendor keys, human baseline OPEN |
-| F13 | Page limit: likely 15–20+ pages (USENIX, S&P) | **OPEN** — Phase 6 (~20.5k words) |
+| F12 | No measurement at all; VLM vs scripted OS-input confound (all 5; S&P fatal) | DONE (small): §5.7 Tables 5.4/5.5 — 70 runs, configs (a)–(d), two Melious VLMs, N=10/cell; but no detector ran, so (b) vs (c) is not a detection result. OPEN: frontier CU model, mouse-dynamics classifier, real sitekeys on own domain if ToS allow, human baseline (round 2: high) |
+| F13 | Page limit: likely 15–20+ pages (USENIX, S&P) | DONE — IEEEtran body 13 pages (Phase 6) |
 | F14 | No systematization figure; tables lack per-cell citations; no comparison vs prior surveys (S&P, Euro) | DONE (Fig. cost_shift, per-cell cites, §2.5 table) |
 | F15 | Cognitive honeypot untested (S&P, USENIX, CCS) | DONE: a-dom 10/10 hits, a-role 0/10, OS-input 0/70 (§5.7); holds by construction, stated |
 | F16 | Privacy not central (PoPETs) — only if targeting PETS | N/A (venue = IEEE S&P) |
@@ -158,7 +158,21 @@ repository URL; BibTeX conversion not done (pandoc emits the reference list as t
    measure pages; update `Makefile` to build the template PDF.
 4. Anonymity sweep: repo name, commit metadata in artifacts, self-citations in third person, anonymized artifact URL.
 
-## Phase 7 — Pre-submission gate — OPEN (reference check + `make numbers` pass today)
+## Phase 7 — Pre-submission gate — round 2 run 2026-09-24, OPEN
+
+Round-2 mock reviews (all five boards; verdicts reject/weak reject): consensus items and status.
+- DONE (text): §3.4 L4, §5.1, §5.2, §5.4, abstract, C2 reconciled with §5.7 (latency refuted for fast small
+  models; small-model cost near human-solver price); §4.4 attester/issuer privacy rationale; §5.6 `R`
+  per-origin caveat; DMA Art. 6(7) scope; §3.1 singular-author leak; App. A dual-use vs harness; §2.5
+  challenged claim attributed to Types I–III design; EUR/USD ratio stated as a rate band.
+- Automated: `make numbers` (cost model + measured tables), `analysis/check_refs.py` (113/113, citation
+  order), link check (38/39 OK; Bright Data unreachable = known TODO), dictionary spell check (clean).
+- OPEN (new work): F8 screening + κ; F12 detector-bearing measurement (frontier CU model, kinematic
+  classifier, cross-site generalisation: scripted vs VLM on unseen forms); F10 re-sourcing.
+- OPEN (author): TODO(author) placeholders (Table 5.1 proxy, §5.6 device price, App. B URL), App. C AI-use
+  text; confirm S&P 2027 rules for appendices after references; human read-through; tag.
+- Framing risk raised by 3 boards: data show the split is injection point, not VLM. Thesis now leans on
+  Axis C; measuring VLM cross-site generalisation would support the title.
 
 1. Re-run all five `sok-review-*` agents on the final PDF/markdown; every remaining "fatal/high" item
    must be fixed or explicitly argued in the paper.
