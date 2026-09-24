@@ -7,14 +7,14 @@ Usage: python a_playwright.py [--runs N] [--select dom|role] [--headed]
 """
 import argparse
 from playwright.sync_api import sync_playwright
-from common import BASE, FLOW_ANSWERS, Run
+from common import BASE, FLOW, FLOW_ANSWERS, Run
 
 
 def one_run(browser, select):
     run = Run(f"a-{select}")
     page = browser.new_page()
     try:
-        page.goto(f"{BASE}/flow/1?run={run.id}")
+        page.goto(f"{BASE}{FLOW}/1?run={run.id}")
         run.act("goto")
         for i, ans in enumerate(FLOW_ANSWERS, 1):
             page.fill(f"#f{i}", ans)

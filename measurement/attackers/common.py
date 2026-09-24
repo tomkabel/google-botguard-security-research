@@ -5,10 +5,15 @@ Record: {run_id, config, model, start, end, success, actions:[{t, kind, dur_s}],
 """
 import json, os, time, uuid
 
-LOGDIR = os.path.join(os.path.dirname(__file__), "..", "logs")
+# RUN_LOG_DIR keeps experiment runs (logs/xsite, logs/kin) out of the base tables (logs/runs-*.jsonl).
+LOGDIR = os.environ.get("RUN_LOG_DIR") or os.path.join(os.path.dirname(__file__), "..", "logs")
 BASE = os.environ.get("TESTBED_URL", "http://127.0.0.1:8799")
 # Hard scope guard: attackers only ever target the local testbed.
 assert BASE.startswith(("http://127.0.0.1", "http://localhost")), "testbed must be local"
+# Experiment B: FLOW_PREFIX=/v/<k> points an unmodified agent at variant k (flow at {BASE}{FLOW}/1).
+PREFIX = os.environ.get("FLOW_PREFIX", "")
+assert PREFIX == "" or PREFIX.startswith("/v/"), "FLOW_PREFIX must be /v/<k>"
+FLOW = f"{PREFIX}/flow"
 FLOW_ANSWERS = ["Test User", "test@example.invalid", "Tartu", "50090", "YES"]
 
 
@@ -17,6 +22,8 @@ class Run:
         self.r = {"run_id": f"{config}-{uuid.uuid4().hex[:8]}", "config": config, "model": model,
                   "start": time.time(), "actions": [], "input_tokens": 0, "output_tokens": 0,
                   "success": False, "error": None}
+        if PREFIX:
+            self.r["variant"] = int(PREFIX.split("/")[2])
         self._t = time.time()
 
     @property

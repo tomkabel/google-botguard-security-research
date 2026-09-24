@@ -14,16 +14,21 @@ Concrete adapter: AnthropicAdapter (Claude computer use). Env:
           | legacy (computer_20251124 + beta computer-use-2025-11-24)
 MeliousAdapter (VLM_PROVIDER=melious): OpenAI-compatible chat API at https://api.melious.ai/v1,
   MELIOUS_MODEL = exact model id, MELIOUS_API_KEY. One screenshot per call, strict JSON action out.
+VLM_GOAL=generic: goal lists the five data values only (Experiment B); FLOW_PREFIX, RUN_LOG_DIR: see common.py.
 Usage: python c_vlm.py [--runs N] [--max-steps 40]
 """
 import argparse, base64, json, os, re, shutil, subprocess, time
-from common import BASE, Run
+from common import BASE, FLOW, Run
 from b_osinput import launch, xdo, window_title
 
 SHOT_W, SHOT_H = 1280, 800  # screenshots are downscaled to this; coordinates are scaled back
 GOAL = ("Complete the web form shown in the browser: fill each step (name 'Test User', email "
         "'test@example.invalid', city 'Tartu', postal code '50090', confirmation 'YES') and press "
         "Continue until a 'Thank you' page appears. Then stop.")
+# Experiment B (VLM_GOAL=generic): the data values only, nothing about labels, buttons or the end page.
+GENERIC_GOAL = ("Fill in and submit the multi-step web form shown in the browser using these details: "
+                "name: Test User; email: test@example.invalid; city: Tartu; postal code: 50090; "
+                "confirmation: YES. Stop when the form is complete.")
 
 
 def screen_size():
@@ -144,7 +149,9 @@ class MeliousAdapter:
             {"type": "text", "text": prompt}]}]}
         # retry transport errors and non-200s (Melious intermittently answers image requests with 400
         # "malformed" for requests that succeed on resend); failed attempts are logged, latency = successful call
-        for attempt in range(3):
+        for attempt in range(6):
+            if attempt and self.calls and ("429" in self.calls[-1].get("error", "") or "HTTP 5" in self.calls[-1].get("error", "")):
+                time.sleep(5 * attempt)  # rate limit / server error: back off (added 2026-09-24 after HTTP 429s)
             t = time.monotonic()
             try:
                 r = self.http.post(self.URL, headers={"Authorization": f"Bearer {os.environ['MELIOUS_API_KEY']}"}, json=body)
@@ -156,7 +163,7 @@ class MeliousAdapter:
                 break
             self.calls.append({"error": f"HTTP {r.status_code}: {r.text[:80]}"})
         else:
-            raise RuntimeError("melious: 3 failed attempts")
+            raise RuntimeError("melious: 6 failed attempts")
         d = r.json()
         u = d.get("usage") or {}
         i, o = u.get("prompt_tokens", 0), u.get("completion_tokens", 0)
@@ -204,12 +211,13 @@ def agent_loop(adapter, run, goal, max_steps, scale):
 
 def one_run(max_steps):
     run = Run("c-vlm", model=model_id())
-    proc, prof = launch(f"{BASE}/flow/1?run={run.id}")
+    proc, prof = launch(f"{BASE}{FLOW}/1?run={run.id}")
     try:
         time.sleep(3)
         run.act("launch")
         w, h = screen_size()
-        agent_loop(make_adapter(), run, GOAL, max_steps, (w / SHOT_W, h / SHOT_H))
+        goal = GENERIC_GOAL if os.environ.get("VLM_GOAL") == "generic" else GOAL
+        agent_loop(make_adapter(), run, goal, max_steps, (w / SHOT_W, h / SHOT_H))
         # success is decided server-side (flow_done event) in analyze.py; window title is a hint
         run.r["success"] = window_title().startswith("Done")
     except Exception as e:

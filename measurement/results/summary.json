@@ -248,5 +248,539 @@
   "spend": 0.1128276,
   "currency": "EUR",
   "cost_per_success": 0.0125364
+ },
+ "experiment_b_xsite": {
+  "variants": {
+   "1": "reworded labels",
+   "2": "German labels/title, button 'Weiter'",
+   "3": "randomised ids/names",
+   "4": "optional decoy field placed first",
+   "5": "two fields per page, reordered",
+   "6": "icon button placed above the field",
+   "7": "dropdown for city",
+   "8": "checkbox for confirmation",
+   "9": "combined: German, random ids, decoy field, button above, dropdown, checkbox"
+  },
+  "cells": {
+   "a-dom": {
+    "0": {
+     "runs": 2,
+     "successes": 2,
+     "honeypot_runs": 2,
+     "furthest_step_median": 5.0,
+     "vlm_calls_median": 0.0,
+     "run_s_median": 1.4974989891052246,
+     "spend": 0.0
+    },
+    "1": {
+     "runs": 2,
+     "successes": 2,
+     "honeypot_runs": 2,
+     "furthest_step_median": 5.0,
+     "vlm_calls_median": 0.0,
+     "run_s_median": 1.4932365417480469,
+     "spend": 0.0
+    },
+    "2": {
+     "runs": 2,
+     "successes": 0,
+     "honeypot_runs": 0,
+     "furthest_step_median": 0.0,
+     "vlm_calls_median": 0.0,
+     "run_s_median": 30.247666120529175,
+     "spend": 0.0
+    },
+    "3": {
+     "runs": 2,
+     "successes": 0,
+     "honeypot_runs": 0,
+     "furthest_step_median": 0.0,
+     "vlm_calls_median": 0.0,
+     "run_s_median": 30.126713037490845,
+     "spend": 0.0
+    },
+    "4": {
+     "runs": 2,
+     "successes": 2,
+     "honeypot_runs": 2,
+     "furthest_step_median": 5.0,
+     "vlm_calls_median": 0.0,
+     "run_s_median": 1.0192513465881348,
+     "spend": 0.0
+    },
+    "5": {
+     "runs": 2,
+     "successes": 0,
+     "honeypot_runs": 2,
+     "furthest_step_median": 0.0,
+     "vlm_calls_median": 0.0,
+     "run_s_median": 30.23933255672455,
+     "spend": 0.0
+    },
+    "6": {
+     "runs": 2,
+     "successes": 0,
+     "honeypot_runs": 0,
+     "furthest_step_median": 0.0,
+     "vlm_calls_median": 0.0,
+     "run_s_median": 30.168611526489258,
+     "spend": 0.0
+    },
+    "7": {
+     "runs": 2,
+     "successes": 0,
+     "honeypot_runs": 2,
+     "furthest_step_median": 2.0,
+     "vlm_calls_median": 0.0,
+     "run_s_median": 0.46907365322113037,
+     "spend": 0.0
+    },
+    "8": {
+     "runs": 2,
+     "successes": 0,
+     "honeypot_runs": 2,
+     "furthest_step_median": 4.0,
+     "vlm_calls_median": 0.0,
+     "run_s_median": 0.8627653121948242,
+     "spend": 0.0
+    },
+    "9": {
+     "runs": 2,
+     "successes": 0,
+     "honeypot_runs": 0,
+     "furthest_step_median": 0.0,
+     "vlm_calls_median": 0.0,
+     "run_s_median": 30.122528314590454,
+     "spend": 0.0
+    }
+   },
+   "a-role": {
+    "0": {
+     "runs": 2,
+     "successes": 2,
+     "honeypot_runs": 0,
+     "furthest_step_median": 5.0,
+     "vlm_calls_median": 0.0,
+     "run_s_median": 1.0751674175262451,
+     "spend": 0.0
+    },
+    "1": {
+     "runs": 2,
+     "successes": 2,
+     "honeypot_runs": 0,
+     "furthest_step_median": 5.0,
+     "vlm_calls_median": 0.0,
+     "run_s_median": 1.091518759727478,
+     "spend": 0.0
+    },
+    "2": {
+     "runs": 2,
+     "successes": 0,
+     "honeypot_runs": 0,
+     "furthest_step_median": 0.0,
+     "vlm_calls_median": 0.0,
+     "run_s_median": 30.26136064529419,
+     "spend": 0.0
+    },
+    "3": {
+     "runs": 2,
+     "successes": 0,
+     "honeypot_runs": 0,
+     "furthest_step_median": 0.0,
+     "vlm_calls_median": 0.0,
+     "run_s_median": 30.095410466194153,
+     "spend": 0.0
+    },
+    "4": {
+     "runs": 2,
+     "successes": 2,
+     "honeypot_runs": 0,
+     "furthest_step_median": 5.0,
+     "vlm_calls_median": 0.0,
+     "run_s_median": 0.8010509014129639,
+     "spend": 0.0
+    },
+    "5": {
+     "runs": 2,
+     "successes": 0,
+     "honeypot_runs": 0,
+     "furthest_step_median": 0.0,
+     "vlm_calls_median": 0.0,
+     "run_s_median": 30.2469801902771,
+     "spend": 0.0
+    },
+    "6": {
+     "runs": 2,
+     "successes": 0,
+     "honeypot_runs": 0,
+     "furthest_step_median": 0.0,
+     "vlm_calls_median": 0.0,
+     "run_s_median": 30.16599953174591,
+     "spend": 0.0
+    },
+    "7": {
+     "runs": 2,
+     "successes": 0,
+     "honeypot_runs": 0,
+     "furthest_step_median": 2.0,
+     "vlm_calls_median": 0.0,
+     "run_s_median": 0.828421950340271,
+     "spend": 0.0
+    },
+    "8": {
+     "runs": 2,
+     "successes": 0,
+     "honeypot_runs": 0,
+     "furthest_step_median": 4.0,
+     "vlm_calls_median": 0.0,
+     "run_s_median": 0.7947639226913452,
+     "spend": 0.0
+    },
+    "9": {
+     "runs": 2,
+     "successes": 0,
+     "honeypot_runs": 0,
+     "furthest_step_median": 0.0,
+     "vlm_calls_median": 0.0,
+     "run_s_median": 30.09907078742981,
+     "spend": 0.0
+    }
+   },
+   "b-xdotool": {
+    "0": {
+     "runs": 2,
+     "successes": 2,
+     "honeypot_runs": 0,
+     "furthest_step_median": 5.0,
+     "vlm_calls_median": 0.0,
+     "run_s_median": 7.076805233955383,
+     "spend": 0.0
+    },
+    "1": {
+     "runs": 2,
+     "successes": 2,
+     "honeypot_runs": 0,
+     "furthest_step_median": 5.0,
+     "vlm_calls_median": 0.0,
+     "run_s_median": 6.323505282402039,
+     "spend": 0.0
+    },
+    "2": {
+     "runs": 2,
+     "successes": 0,
+     "honeypot_runs": 0,
+     "furthest_step_median": 0.0,
+     "vlm_calls_median": 0.0,
+     "run_s_median": 15.121849656105042,
+     "spend": 0.0
+    },
+    "3": {
+     "runs": 2,
+     "successes": 2,
+     "honeypot_runs": 0,
+     "furthest_step_median": 5.0,
+     "vlm_calls_median": 0.0,
+     "run_s_median": 6.123652935028076,
+     "spend": 0.0
+    },
+    "4": {
+     "runs": 2,
+     "successes": 0,
+     "honeypot_runs": 0,
+     "furthest_step_median": 0.0,
+     "vlm_calls_median": 0.0,
+     "run_s_median": 17.341885209083557,
+     "spend": 0.0
+    },
+    "5": {
+     "runs": 2,
+     "successes": 0,
+     "honeypot_runs": 0,
+     "furthest_step_median": 0.0,
+     "vlm_calls_median": 0.0,
+     "run_s_median": 17.273797631263733,
+     "spend": 0.0
+    },
+    "6": {
+     "runs": 2,
+     "successes": 2,
+     "honeypot_runs": 0,
+     "furthest_step_median": 5.0,
+     "vlm_calls_median": 0.0,
+     "run_s_median": 6.150920033454895,
+     "spend": 0.0
+    },
+    "7": {
+     "runs": 2,
+     "successes": 0,
+     "honeypot_runs": 0,
+     "furthest_step_median": 2.0,
+     "vlm_calls_median": 0.0,
+     "run_s_median": 19.81132733821869,
+     "spend": 0.0
+    },
+    "8": {
+     "runs": 2,
+     "successes": 0,
+     "honeypot_runs": 0,
+     "furthest_step_median": 4.0,
+     "vlm_calls_median": 0.0,
+     "run_s_median": 21.03579866886139,
+     "spend": 0.0
+    },
+    "9": {
+     "runs": 2,
+     "successes": 0,
+     "honeypot_runs": 0,
+     "furthest_step_median": 0.0,
+     "vlm_calls_median": 0.0,
+     "run_s_median": 15.101582288742065,
+     "spend": 0.0
+    }
+   },
+   "c-vlm / glm-5.3-flash": {
+    "0": {
+     "runs": 2,
+     "successes": 2,
+     "honeypot_runs": 0,
+     "furthest_step_median": 5.0,
+     "vlm_calls_median": 11.0,
+     "run_s_median": 37.09076797962189,
+     "spend": 0.0036890000000000004
+    },
+    "1": {
+     "runs": 2,
+     "successes": 2,
+     "honeypot_runs": 0,
+     "furthest_step_median": 5.0,
+     "vlm_calls_median": 11.5,
+     "run_s_median": 46.81368815898895,
+     "spend": 0.0038917
+    },
+    "2": {
+     "runs": 2,
+     "successes": 2,
+     "honeypot_runs": 0,
+     "furthest_step_median": 5.0,
+     "vlm_calls_median": 12.0,
+     "run_s_median": 35.29585635662079,
+     "spend": 0.0040843
+    },
+    "3": {
+     "runs": 2,
+     "successes": 2,
+     "honeypot_runs": 0,
+     "furthest_step_median": 5.0,
+     "vlm_calls_median": 11.0,
+     "run_s_median": 27.123635172843933,
+     "spend": 0.0036922000000000005
+    },
+    "4": {
+     "runs": 2,
+     "successes": 2,
+     "honeypot_runs": 0,
+     "furthest_step_median": 5.0,
+     "vlm_calls_median": 16.0,
+     "run_s_median": 30.077422857284546,
+     "spend": 0.0055912
+    },
+    "5": {
+     "runs": 2,
+     "successes": 2,
+     "honeypot_runs": 0,
+     "furthest_step_median": 5.0,
+     "vlm_calls_median": 17.5,
+     "run_s_median": 33.551419377326965,
+     "spend": 0.006167000000000001
+    },
+    "6": {
+     "runs": 2,
+     "successes": 1,
+     "honeypot_runs": 0,
+     "furthest_step_median": 5.0,
+     "vlm_calls_median": 19.5,
+     "run_s_median": 72.29438388347626,
+     "spend": 0.0087591
+    },
+    "7": {
+     "runs": 2,
+     "successes": 2,
+     "honeypot_runs": 0,
+     "furthest_step_median": 5.0,
+     "vlm_calls_median": 12.5,
+     "run_s_median": 24.655399560928345,
+     "spend": 0.0042813
+    },
+    "8": {
+     "runs": 2,
+     "successes": 2,
+     "honeypot_runs": 0,
+     "furthest_step_median": 5.0,
+     "vlm_calls_median": 12.0,
+     "run_s_median": 27.421308398246765,
+     "spend": 0.0040912
+    },
+    "9": {
+     "runs": 2,
+     "successes": 2,
+     "honeypot_runs": 0,
+     "furthest_step_median": 5.0,
+     "vlm_calls_median": 20.0,
+     "run_s_median": 36.68787109851837,
+     "spend": 0.007313200000000001
+    }
+   },
+   "c-vlm / kimi-k3": {
+    "2": {
+     "runs": 1,
+     "successes": 1,
+     "honeypot_runs": 0,
+     "furthest_step_median": 5,
+     "vlm_calls_median": 15,
+     "run_s_median": 77.55596256256104,
+     "spend": 0.10745279999999999
+    },
+    "5": {
+     "runs": 1,
+     "successes": 1,
+     "honeypot_runs": 0,
+     "furthest_step_median": 5,
+     "vlm_calls_median": 20,
+     "run_s_median": 106.7146589756012,
+     "spend": 0.1440712
+    },
+    "6": {
+     "runs": 1,
+     "successes": 1,
+     "honeypot_runs": 0,
+     "furthest_step_median": 5,
+     "vlm_calls_median": 16,
+     "run_s_median": 163.7624249458313,
+     "spend": 0.18653879999999998
+    },
+    "7": {
+     "runs": 1,
+     "successes": 1,
+     "honeypot_runs": 0,
+     "furthest_step_median": 5,
+     "vlm_calls_median": 15,
+     "run_s_median": 75.63838315010071,
+     "spend": 0.1058456
+    },
+    "8": {
+     "runs": 1,
+     "successes": 1,
+     "honeypot_runs": 0,
+     "furthest_step_median": 5,
+     "vlm_calls_median": 13,
+     "run_s_median": 58.15268063545227,
+     "spend": 0.08603279999999999
+    },
+    "9": {
+     "runs": 1,
+     "successes": 1,
+     "honeypot_runs": 0,
+     "furthest_step_median": 5,
+     "vlm_calls_median": 17,
+     "run_s_median": 152.0935559272766,
+     "spend": 0.178822
+    }
+   }
+  }
+ },
+ "experiment_a_kinematics": {
+  "classifier": {
+   "rule": {
+    "N": 1,
+    "S": 0.9925
+   },
+   "rate_hz": 50.0,
+   "gap_s": 1.0,
+   "min_travel_px": 20,
+   "train_users": [
+    "user15",
+    "user16",
+    "user21",
+    "user23",
+    "user35",
+    "user7"
+   ],
+   "test_users": [
+    "user12",
+    "user20",
+    "user29",
+    "user9"
+   ],
+   "n_train": 68578,
+   "n_test": 38272,
+   "test_accuracy": 0.9323265050167224,
+   "test_human_flagged": 0.08977842809364549,
+   "test_bot_flagged": 0.9544314381270903
+  },
+  "scores": {
+   "Balabit human, held-out users": {
+    "movements": 19136,
+    "flagged_bot": 1718,
+    "median_samples": 61.0,
+    "median_straightness": 0.8271127555202168,
+    "median_duration_s": 1.217000000000553,
+    "median_pause_s": 0.0,
+    "median_v_std": 335.34695321064623
+   },
+   "Synthetic straight/teleport, held-out": {
+    "movements": 19136,
+    "flagged_bot": 18264,
+    "median_samples": 5.0,
+    "median_straightness": 1.0,
+    "median_duration_s": 0.08333333333303017,
+    "median_pause_s": 0.05002204514539699,
+    "median_v_std": 9.985004634511421e-08
+   },
+   "(a) Playwright CDP click (a-role)": {
+    "movements": 42,
+    "flagged_bot": 42,
+    "median_samples": 1.0,
+    "median_straightness": 1.0,
+    "median_duration_s": 0.0,
+    "median_pause_s": 0.0009999999999999731,
+    "median_v_std": 0.0
+   },
+   "(b) scripted xdotool, pointer jumps": {
+    "movements": 98,
+    "flagged_bot": 98,
+    "median_samples": 1.0,
+    "median_straightness": 1.0,
+    "median_duration_s": 0.0,
+    "median_pause_s": 0.0057499999999999565,
+    "median_v_std": 0.0
+   },
+   "(c) VLM agent, glm-5.3-flash": {
+    "movements": 154,
+    "flagged_bot": 154,
+    "median_samples": 1.0,
+    "median_straightness": 1.0,
+    "median_duration_s": 0.0,
+    "median_pause_s": 0.004600000000002158,
+    "median_v_std": 0.0
+   },
+   "(c) VLM agent, kimi-k3": {
+    "movements": 59,
+    "flagged_bot": 59,
+    "median_samples": 1.0,
+    "median_straightness": 1.0,
+    "median_duration_s": 0.0,
+    "median_pause_s": 0.005000000000000782,
+    "median_v_std": 0.0
+   },
+   "(e) smoothed OS input, min-jerk": {
+    "movements": 100,
+    "flagged_bot": 0,
+    "median_samples": 24.0,
+    "median_straightness": 0.9561830595291219,
+    "median_duration_s": 0.46355,
+    "median_pause_s": 0.1802499999999999,
+    "median_v_std": 198.07725588062513
+   }
+  }
  }
 }

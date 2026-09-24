@@ -7,7 +7,7 @@ Requires: X11 session, xdotool, a Chrome/Chromium binary (CHROME env, default ch
 Usage: python b_osinput.py [--runs N] [--delay 0.08]
 """
 import argparse, os, shutil, subprocess, tempfile, time
-from common import BASE, FLOW_ANSWERS, Run
+from common import BASE, FLOW, FLOW_ANSWERS, Run
 
 CHROME = os.environ.get("CHROME", "chromium")
 
@@ -57,7 +57,7 @@ def drive_flow(run, delay, start_step=1):
 
 def one_run(delay):
     run = Run("b-xdotool")
-    proc, prof = launch(f"{BASE}/flow/1?run={run.id}")
+    proc, prof = launch(f"{BASE}{FLOW}/1?run={run.id}")
     try:
         run.act("launch")
         run.r["success"] = drive_flow(run, delay)

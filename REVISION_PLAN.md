@@ -21,7 +21,7 @@ Collected from `paper.md` and the repo (`grep -rn "TODO(author)"`), plus open AU
    snapshot for a PAT-capable iPhone ($100–$300 is an assumption).
 3. `docs/fact-check.md`: check Azad et al. [51] one-line summary against the DIMVA 2020 abstract.
 4. `paper.md` "Use of AI Tools": placeholder text, fill per IEEE S&P 2027 policy.
-5. Confirm the original literature-search date ("August 2026", §3.1).
+5. ~~Confirm the original literature-search date~~ — resolved from git: the search predates the 2026-05-04 draft; §3.1 says so.
 6. Measurement (Phase 4): run the harness (`measurement/README.md`), incl. a second VLM (open
    model) adapter; any human pilot needs an IRB/ethics determination first.
 7. Archive/screenshot URLs for the four price pages [94–97] (fact-check "Blocked").
@@ -36,15 +36,15 @@ Collected from `paper.md` and the repo (`grep -rn "TODO(author)"`), plus open AU
 | F1 | L1–L4 attributed to [24], which never mentions Botguard (all 5) | DONE — Path B evidence table in §3.4 (documented/inferred/hypothesized per layer) |
 | F2 | Tier 1 "resilient" is a category error; device farms ignored (all 5) | DONE — reframed + §5.6 device-farm cost per clearance token |
 | F3 | Protocol errors: PAT attester/issuer, DBSC owner/export, PST, SDK proxies, iOS consent, unlinkability (all 5) | DONE (DBSC registration-time key capture caveat added, §6.1) |
-| F4 | §5 formula & arithmetic errors, unsourced prices (all 5) | PARTIAL — arithmetic script-generated; §5 now reconciled with §5.7 measurements (Table 5.2 = frontier scenario). Bright Data + used-iPhone prices = AUTHOR |
+| F4 | §5 formula & arithmetic errors, unsourced prices (all 5) | DONE — script-generated; reconciled with §5.7; Bright Data ($2.50–$8/GB) and used-iPhone (Swappa) prices verified via Wayback snapshots (Phase 8) |
 | F5 | Self-contradictions: Axis C, profile aging, "arms race moot" (all 5) | DONE |
 | F6 | Leftover revision-response text, phantom cross-refs (all 5) | DONE |
 | F7 | Citation misuse ([67],[68],[71],[42],[73–75],[49], secondary 99.8%) (all 5) | DONE (PPI price now matches Caballero et al.) |
-| F8 | §3.1 methodology not systematic; corpus = reference list (all 5) | PARTIAL — dated rerun logged, but 437/444 records unscreened, single screener. OPEN: screen all, second screener on ≥20% with κ (all 5 boards, round 2: high/fatal) |
-| F9 | Missing related work (≥3 boards) | DONE (§2.5; Searles/Bonneau figures verified) — Azad summary = AUTHOR |
-| F10 | PACT built on news/blogs (all 5) | PARTIAL — §6.4 still leans on blogs [40], [88]. OPEN: re-source to antifraudcg/pact repo [39, 107, 108] or attribute as commentary (round 2: high) |
-| F11 | Anonymity, ethics, Open Science, AI-use disclosure (USENIX, S&P, Euro) | DONE (Open Science lists artifacts) except AI-use = AUTHOR |
-| F12 | No measurement at all; VLM vs scripted OS-input confound (all 5; S&P fatal) | DONE (small): §5.7 Tables 5.4/5.5 — 70 runs, configs (a)–(d), two Melious VLMs, N=10/cell; but no detector ran, so (b) vs (c) is not a detection result. OPEN: frontier CU model, mouse-dynamics classifier, real sitekeys on own domain if ToS allow, human baseline (round 2: high) |
+| F8 | §3.1 methodology not systematic; corpus = reference list (all 5) | DONE (LLM-assisted) — all 444 double-screened, κ = 0.79; 46 adjudicated; 195 included and Type-coded (κ = 0.76). AUTHOR: spot-check includes; full-text coding of 188 new includes not done |
+| F9 | Missing related work (≥3 boards) | DONE (§2.5; Searles/Bonneau verified; Azad summary corrected against DIMVA abstract) |
+| F10 | PACT built on news/blogs (all 5) | DONE — 22 sentences re-sourced to MoLE draft, Mozilla post, antifraudcg issues (`docs/pact-sources.md`); Gupta blog dropped; Rudis attributed as opinion |
+| F11 | Anonymity, ethics, Open Science, AI-use disclosure (USENIX, S&P, Euro) | DONE — App. C AI-use disclosure per CFP Transparency/Responsibility (AUTHOR: confirm wording); anonymized repo URL = AUTHOR |
+| F12 | No measurement at all; VLM vs scripted OS-input confound (all 5; S&P fatal) | DONE (small): §5.7 Tables 5.4/5.5 — 70 runs, configs (a)–(d), two Melious VLMs, N=10/cell; plus Phase 8: kinematic detector (Balabit-fitted rule; VLM and scripted pointer both 100% flagged, min-jerk 0%) and unseen-form generalisation (scripts 4–6/18, VLM 17/18, kimi-k3 6/6). OPEN (author): real sitekeys, human baseline (IRB); no native computer-use API model |
 | F13 | Page limit: likely 15–20+ pages (USENIX, S&P) | DONE — IEEEtran body 13 pages (Phase 6) |
 | F14 | No systematization figure; tables lack per-cell citations; no comparison vs prior surveys (S&P, Euro) | DONE (Fig. cost_shift, per-cell cites, §2.5 table) |
 | F15 | Cognitive honeypot untested (S&P, USENIX, CCS) | DONE: a-dom 10/10 hits, a-role 0/10, OS-input 0/70 (§5.7); holds by construction, stated |
@@ -180,6 +180,23 @@ Round-2 mock reviews (all five boards; verdicts reject/weak reject): consensus i
    link check on all URLs, spell-check.
 3. Final read by a human outside the project (catches jargon the agents normalize).
 4. Tag `submission-<venue>-2027`, push.
+
+
+## Phase 8 — Close every open item (2026-09-24) — W1–W5 DONE, W6 author
+
+Inventory of what is still open, who can close it, and how. Evidence already found while planning:
+the earliest committed draft (git `8bc5cde`, 2026-05-04) already describes the search, so the "August 2026"
+date for the original pass is contradicted by the repo history.
+
+| ID | Item | Owner | Method |
+|---|---|---|---|
+| W1 | Facts: Bright Data price, used-iPhone price snapshot, Azad [51] summary, archived copies of price pages, S&P 2027 CFP re-check (appendices, AI use, ethics), licenses of the Melious models used | agent (research) | Firecrawl, primary pages only, results in `docs/fact-check.md` |
+| W2 | F10: re-source §6.4/§4.4 PACT claims from blogs [40, 88] to the antifraudcg/pact repo, issues, W3C/IETF text | agent (research) | claim → primary-source table in `docs/pact-sources.md`, replacement text proposal |
+| W3 | F8: screen all 444 rerun records; second screener; κ | script + agents | abstracts via Semantic Scholar/arXiv APIs; two independent LLM screeners (different models, temperature 0) on all records, Cohen's κ; disagreements adjudicated by a third reader; `analysis/screen_corpus.py`, `docs/corpus.csv`; LLM assistance disclosed in §3.1 and App. C |
+| W4 | F12: detector-bearing measurement | agent (engineering) | (a) testbed logs mouse kinematics; classifier on public human mouse data (Balabit) vs agent traces; (b) cross-site generalisation: scripted vs VLM on unseen form variants; (c) stronger model (Melious Kimi K3) and an open-weights model with verified license (not Gemma). Localhost + Xvfb only; new spend cap €2 |
+| W5 | Integration | me | §3.1, §5.7, §6.4, App. C, Table 5.1, §5.6 from W1–W4; body stays 13 pages; `make numbers`, `check_refs.py`, link check; rerun five reviewers |
+| W1–W5 status | DONE 2026-09-24 | | W1 facts (`docs/fact-check.md`), W2 PACT (`docs/pact-sources.md`), W3 screening (`analysis/screen_corpus.py`, `docs/screening.md`, κ 0.79/0.76), W4 Experiments A/B (§5.7 Tables 5.6/5.7, €0.87), W5 integration (§7.4 legal moved to App. D; body 13 pages; all checks pass) |
+| W6 | Author-only | author | IRB/human baseline; real sitekeys on own domain (vendor ToS); anonymized repository URL (Anonymous GitHub login); confirm AI-use text and the search date; human read-through; submission tag |
 
 ---
 

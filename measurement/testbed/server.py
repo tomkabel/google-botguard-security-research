@@ -3,19 +3,23 @@
 Pages (append ?run=<run_id> so server events join attacker runs):
   /flow/1 .. /flow/5   five-step form, each step carries the cognitive-honeypot decoy (paper §3.4 L3)
   /flow/done           end of flow
+  /v/<k>/flow/1 .. 5   Experiment B: unseen variant k (1-9) of the five-step form, same answers, honeypot on
+                       every page; step_submit events carry variant + ok (answer correct), then flow_done
   /turnstile?mode=pass|fail   Cloudflare Turnstile with documented TEST site keys
   /recaptcha                  reCAPTCHA v2 documented TEST key (Google publishes no v3 test key;
                               set RECAPTCHA_V3_SITEKEY/SECRET to a key you registered for localhost)
 Endpoints:
   POST /event   client-side telemetry (clicks, timings, honeypot)
   POST /verify  token verification; calls vendor siteverify with TEST secrets only when --verify is set
+  POST /kin     pointer kinematics (mousemove/mousedown/click/keydown, performance.now() + client x/y)
 
-Every event is appended to logs/server.jsonl.
+Every event is appended to logs/server.jsonl; kinematics go to logs/kinematics.jsonl.
 """
-import argparse, html, json, os, sys, threading, time, urllib.parse, urllib.request
+import argparse, html, json, os, random, sys, threading, time, urllib.parse, urllib.request
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
 LOG = os.path.join(os.path.dirname(__file__), "..", "logs", "server.jsonl")
+KIN_LOG = os.path.join(os.path.dirname(__file__), "..", "logs", "kinematics.jsonl")
 _lock = threading.Lock()
 VERIFY_ONLINE = False
 
@@ -30,9 +34,9 @@ SITEVERIFY = {"turnstile": "https://challenges.cloudflare.com/turnstile/v0/sitev
               "recaptcha": "https://www.google.com/recaptcha/api/siteverify"}
 
 
-def log(ev):
+def log(ev, path=LOG):
     ev["server_ts"] = time.time()
-    with _lock, open(LOG, "a") as f:
+    with _lock, open(path, "a") as f:
         f.write(json.dumps(ev) + "\n")
 
 
@@ -48,6 +52,20 @@ function send(kind, extra) {
 send('load');
 document.addEventListener('click', e => send('click', {target: e.target.id || e.target.tagName,
   trusted: e.isTrusted, x: e.clientX, y: e.clientY}), true);
+// Pointer kinematics (Experiment A): [type, t_ms, clientX, clientY]; m=mousemove d=mousedown c=click k=keydown.
+// Key identity is not recorded. Flushed on submit, on pagehide, and every 1500 events (sendBeacon 64 KB cap).
+const KIN = [];
+function flushKin() {
+  if (KIN.length) navigator.sendBeacon('/kin', JSON.stringify({run: RUN, page: location.pathname, ev: KIN.splice(0)}));
+}
+function kin(k, e) {
+  KIN.push([k, Math.round((performance.now() - T0) * 10) / 10, e.clientX | 0, e.clientY | 0]);
+  if (KIN.length >= 1500) flushKin();
+}
+[['mousemove', 'm'], ['mousedown', 'd'], ['click', 'c'], ['keydown', 'k']].forEach(
+  ([type, k]) => document.addEventListener(type, e => kin(k, e), true));
+document.addEventListener('submit', flushKin, true);
+addEventListener('pagehide', flushKin);
 </script>"""
 
 # Paper §3.4 L3, implemented as specified: decoy with non-zero getBoundingClientRect(), plausible
@@ -58,12 +76,12 @@ document.addEventListener('click', e => send('click', {target: e.target.id || e.
 DECOY = """<div id="hp-overlay" aria-hidden="true" style="position:fixed;inset:0;pointer-events:none;z-index:10">
   <button id="hp-decoy" type="button" tabindex="-1" name="continue" class="btn-primary"
     style="position:absolute;left:40px;top:{top}px;width:160px;height:40px;opacity:0.01"
-    onclick="send('honeypot',{{trusted:event.isTrusted}});this.dataset.hit=1">Continue</button>
+    onclick="send('honeypot',{{trusted:event.isTrusted}});this.dataset.hit=1">{text}</button>
 </div>"""
 
 
-def page(title, body, decoy_top=None):
-    decoy = DECOY.format(top=decoy_top) if decoy_top is not None else ""
+def page(title, body, decoy_top=None, decoy_text="Continue"):
+    decoy = DECOY.format(top=decoy_top, text=html.escape(decoy_text)) if decoy_top is not None else ""
     return (f"<!doctype html><html><head><meta charset=utf-8><title>{html.escape(title)}</title>"
             f"{TELEMETRY}</head><body style='font:16px sans-serif;margin:40px'>{body}{decoy}</body></html>")
 
@@ -82,6 +100,93 @@ def flow_step(n, run):
             f"<div style='position:absolute;left:40px;top:200px'>"
             f"<button id=real-continue type=submit style='width:160px;height:40px'>Continue</button></div></form>")
     return page(f"Step {n}", body, decoy_top=200)
+
+
+# Experiment B: unseen variants of the five-step form at /v/<k>/flow/1..5. Same five answers as the base
+# form; the honeypot decoy (same text as the real button) sits over the real button on every page.
+STEPS = [["name"], ["email"], ["city"], ["zip"], ["agree"]]
+EXPECTED = {"name": "test user", "first": "test", "last": "user", "email": "test@example.invalid",
+            "email2": "test@example.invalid", "city": "tartu", "zip": "50090", "agree": "yes"}
+LABELS = {
+    "en": {"name": "Full name", "first": "First name", "last": "Last name", "email": "Email",
+           "email2": "Repeat email", "city": "City", "zip": "Postal code", "agree": "Type YES to confirm",
+           "agree_box": "I confirm these details", "company": "Company (optional)"},
+    "de": {"name": "Vollständiger Name", "first": "Vorname", "last": "Nachname", "email": "E-Mail",
+           "email2": "E-Mail wiederholen", "city": "Stadt", "zip": "Postleitzahl",
+           "agree": "Zur Bestätigung YES eingeben", "agree_box": "Ich bestätige die Angaben",
+           "company": "Firma (optional)"},
+}
+CITIES = ["Tallinn", "Tartu", "Pärnu", "Narva", "Viljandi"]
+VARIANTS = {
+    1: {"desc": "reworded labels", "labels": {"name": "Your name", "email": "E-mail address", "city": "Town",
+                                              "zip": "ZIP code", "agree": "Enter YES to agree"}},
+    2: {"desc": "German labels/title, button 'Weiter'", "lang": "de", "button": "Weiter"},
+    3: {"desc": "randomised ids/names", "random_ids": True},
+    4: {"desc": "optional decoy field placed first", "decoy_field": True},
+    5: {"desc": "two fields per page, reordered", "steps": [["last", "first"], ["email", "email2"], ["city"], ["zip"], ["agree"]]},
+    6: {"desc": "icon button placed above the field", "button": "→", "button_above": True},
+    7: {"desc": "dropdown for city", "city_select": True},
+    8: {"desc": "checkbox for confirmation", "agree_checkbox": True},
+    9: {"desc": "combined: German, random ids, decoy field, button above, dropdown, checkbox", "lang": "de",
+        "button": "Weiter", "random_ids": True, "decoy_field": True, "button_above": True, "city_select": True,
+        "agree_checkbox": True},
+}
+
+
+def variant_fields(k, n):
+    """Deterministic field list for variant k, step n: dicts with key, id, name, label, kind."""
+    v = VARIANTS[k]
+    labels = dict(LABELS[v.get("lang", "en")], **v.get("labels", {}))
+    keys = (["company"] if v.get("decoy_field") else []) + v.get("steps", STEPS)[n - 1]
+    rnd = random.Random(f"variant-{k}-{n}")
+    out = []
+    for i, key in enumerate(keys):
+        kind = ("select" if key == "city" and v.get("city_select") else
+                "checkbox" if key == "agree" and v.get("agree_checkbox") else "text")
+        if v.get("random_ids"):
+            fid, name = (f"{c}{rnd.getrandbits(40):010x}" for c in "xq")
+        else:
+            main = i == (1 if v.get("decoy_field") else 0)
+            fid, name = (f"f{n}" if main else f"f{n}{key}"), key
+        label = labels["agree_box"] if kind == "checkbox" else labels[key]
+        out.append({"key": key, "id": fid, "name": name, "label": label, "kind": kind})
+    return out
+
+
+def variant_step(k, n, run):
+    v = VARIANTS[k]
+    de = v.get("lang") == "de"
+    fields = variant_fields(k, n)
+    nxt = f"/v/{k}/flow/{n + 1}" if n < 5 else f"/v/{k}/flow/done"
+    rows = []
+    for i, f in enumerate(fields):
+        req = "" if f["key"] == "company" else " required"
+        af = " autofocus" if i == 0 else ""
+        attrs = f"id={f['id']} name={f['name']}{req}{af}"
+        if f["kind"] == "select":
+            opts = "".join(f"<option>{c}</option>" for c in CITIES)
+            ctl = f"{html.escape(f['label'])} <select {attrs}><option value=''>–</option>{opts}</select>"
+        elif f["kind"] == "checkbox":
+            ctl = f"<input type=checkbox value=YES {attrs}> {html.escape(f['label'])}"
+        else:
+            ctl = f"{html.escape(f['label'])} <input {attrs}>"
+        rows.append(f"<div style='margin:8px 0'><label>{ctl}</label></div>")
+    top = 130 if v.get("button_above") else 170 + 45 * len(fields)
+    text = v.get("button", "Continue")
+    aria = " aria-label='Next'" if text == "→" else ""
+    body = (f"<h1>{'Schritt' if de else 'Step'} {n} {'von' if de else 'of'} 5</h1><form method=get action='{nxt}'>"
+            f"<input type=hidden name=run value='{html.escape(run)}'>"
+            f"<div style='margin-top:{70 if v.get('button_above') else 0}px'>{''.join(rows)}</div>"
+            f"<div style='position:absolute;left:40px;top:{top}px'>"
+            f"<button id=real-continue type=submit{aria} style='width:160px;height:40px'>{html.escape(text)}</button>"
+            f"</div></form>")
+    return page(f"{'Schritt' if de else 'Step'} {n}", body, decoy_top=top, decoy_text=text)
+
+
+def variant_ok(k, n, q):
+    """True if every required field of step n was submitted with the expected answer."""
+    norm = lambda s: " ".join(s.split()).lower()
+    return all(norm(q.get(f["name"], "")) == EXPECTED[f["key"]] for f in variant_fields(k, n) if f["key"] != "company")
 
 
 def captcha_page(vendor, sitekey, run, mode=""):
@@ -147,6 +252,19 @@ class H(BaseHTTPRequestHandler):
             log({"run": run, "kind": "step_submit", "step": 5, "field_len": len(q.get("agree", ""))})
             log({"run": run, "kind": "flow_done"})
             return self._send(200, page("Done", "<h1 id=done>Thank you</h1>"))
+        parts = p.split("/")  # /v/<k>/flow/<n|done>
+        if len(parts) == 5 and parts[1] == "v" and parts[3] == "flow" and parts[2].isdigit() and int(parts[2]) in VARIANTS:
+            k, s = int(parts[2]), parts[4]
+            n = 6 if s == "done" else int(s) if s.isdigit() and 1 <= int(s) <= 5 else None
+            if n is None:
+                return self._send(404, "not found", "text/plain")
+            if n > 1:
+                log({"run": run, "kind": "step_submit", "variant": k, "step": n - 1, "ok": variant_ok(k, n - 1, q)})
+            if n <= 5:
+                return self._send(200, variant_step(k, n, run))
+            log({"run": run, "kind": "flow_done", "variant": k})
+            de = VARIANTS[k].get("lang") == "de"
+            return self._send(200, page("Fertig" if de else "Done", f"<h1 id=done>{'Vielen Dank' if de else 'Thank you'}</h1>"))
         if p == "/turnstile":
             mode = q.get("mode", "pass")
             return self._send(200, captcha_page("turnstile", TURNSTILE.get(mode, TURNSTILE["pass"])[0], run, mode))
@@ -158,12 +276,23 @@ class H(BaseHTTPRequestHandler):
             return self._send(200, captcha_page("recaptcha_v3", RECAPTCHA_V3[0], run))
         if p == "":
             links = "".join(f"<li><a href='{h}'>{h}</a></li>" for h in
-                            ["/flow/1", "/turnstile?mode=pass", "/turnstile?mode=fail", "/recaptcha", "/recaptcha3"])
+                            ["/flow/1", "/turnstile?mode=pass", "/turnstile?mode=fail", "/recaptcha", "/recaptcha3"]
+                            + [f"/v/{k}/flow/1" for k in VARIANTS])
             return self._send(200, page("Testbed", f"<ul>{links}</ul>"))
         self._send(404, "not found", "text/plain")
 
     def do_POST(self):
-        raw = self.rfile.read(int(self.headers.get("Content-Length", 0) or 0))[:65536].decode(errors="replace")
+        size = min(int(self.headers.get("Content-Length", 0) or 0), 1 << 20)
+        if self.path == "/kin":
+            try:
+                ev = json.loads(self.rfile.read(size))
+                ev = {"run": str(ev["run"])[:64], "page": str(ev["page"])[:64],
+                      "ev": [[str(e[0])[:1], float(e[1]), int(e[2]), int(e[3])] for e in ev["ev"][:5000]]}
+            except (ValueError, KeyError, TypeError, IndexError):
+                return self._send(400, "bad kinematics", "text/plain")
+            log(ev, KIN_LOG)
+            return self._send(204, "")
+        raw = self.rfile.read(size)[:65536].decode(errors="replace")
         if self.path == "/event":
             try:
                 ev = json.loads(raw)
