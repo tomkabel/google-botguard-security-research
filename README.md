@@ -66,6 +66,10 @@ Rewrite from the v1.0 predictive/empirical draft into an analytical two-part SoK
 
 Original predictive/empirical draft. Superseded.
 
+### v0 — BotGuard write-up (September 2021)
+
+The repository started as my 2021 BotGuard token-portability write-up, on an earlier GitHub account of mine. It was later transferred here, which is why its creation date is older than this account.
+
 ---
 
 *This repository hosts an academic Systematization of Knowledge (SoK) paper. The work is purely analytical and comparative. It contains no empirical measurements of live production systems, no reverse-engineered proprietary code, and no novel attacks or defenses.*
